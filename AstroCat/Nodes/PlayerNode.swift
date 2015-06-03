@@ -10,7 +10,10 @@ import SpriteKit
 
 class PlayerNode: SKSpriteNode {
   // MARK: - Vars
-  var isAlive: Bool = true
+  private(set) var isAlive: Bool = true
+  var shouldMove: Bool = false
+  var distanceTravelled: CGFloat = 0
+  var initialPosition: CGPoint?
 
   // MARK: - Init
   init() {
@@ -31,17 +34,48 @@ class PlayerNode: SKSpriteNode {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - Life
+  func kill() {
+    isAlive = false
+    shouldMove = false
+  }
+  
+  func respawn() {
+    isAlive = true
+    shouldMove = false
+    distanceTravelled = 0
+  }
+  
   // MARK: - Movement
   func jump() {
     if let physicsBody = physicsBody {
-      let jumpMagnitude: CGFloat = physicsBody.mass * 1000
+      let magnitude: CGFloat = physicsBody.mass * 1000
       let angle = CGFloat(M_PI_2) - abs(zRotation % CGFloat(M_PI_2))
-      let dx = -zRotation.sign() * cos(angle) * jumpMagnitude
-      let dy = sin(angle) * jumpMagnitude
+      let dx = -zRotation.sign() * cos(angle) * magnitude
+      let dy = sin(angle) * magnitude
       let vector = CGVector(dx: dx, dy: dy)
       
       // Apply force
       physicsBody.applyImpulse(vector)
+    }
+  }
+  
+  func moveUpward() {
+    if let physicsBody = physicsBody where physicsBody.velocity.length() < 1500 {
+      let magnitude: CGFloat = physicsBody.mass * 5000
+      let angle = CGFloat(M_PI_2) - abs(zRotation % CGFloat(M_PI_2))
+      let dx = -zRotation.sign() * cos(angle) * magnitude
+      let dy = sin(angle) * magnitude
+      let vector = CGVector(dx: dx, dy: dy)
+      
+      // Apply force
+      physicsBody.applyForce(vector)
+    }
+  }
+  
+  func updateDistanceTravelled() {
+    if let initialPosition = initialPosition {
+      distanceTravelled = position.y - initialPosition.y
     }
   }
   
@@ -74,7 +108,7 @@ class PlayerNode: SKSpriteNode {
     
     physicsBody.categoryBitMask = PhysicsCategory.Player
     physicsBody.collisionBitMask = PhysicsCategory.Ground
-    physicsBody.contactTestBitMask = PhysicsCategory.Food
+    physicsBody.contactTestBitMask = PhysicsCategory.Comet | PhysicsCategory.Food | PhysicsCategory.Player
     physicsBody.restitution = 0
     physicsBody.friction = 0.5
     physicsBody.allowsRotation = false

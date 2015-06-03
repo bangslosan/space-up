@@ -18,6 +18,9 @@ class SceneBackgroundNode: SKNode {
   override init() {
     super.init()
     
+    galaxyForeground.alpha = 0.5
+    galaxyBackground.alpha = 0.5
+    
     addChild(galaxyForeground)
     addChild(galaxyBackground)
   }

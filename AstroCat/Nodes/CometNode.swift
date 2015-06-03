@@ -13,17 +13,38 @@ private struct KeyForAction {
 }
 
 class CometNode: SKSpriteNode {
-  init() {
-    let color = UIColor(hexString: "#ffffff")
-    let size = CGSize(width: 30, height: 30)
+  let type: CometType
 
-    super.init(texture: nil, color: color, size: size)
+  init(type: CometType) {
+    self.type = type
+
+    let ratio: CGFloat = 1/3
+    let texture: SKTexture
+    let size: CGSize
+
+    switch type {
+    case .Slow:
+      texture = SKTextureAtlas(named: "CometLarge").textureNamed("CometLarge0")
+      size = CGSize(width: 450 * ratio, height: 450 * ratio)
+
+    case .Fast:
+      texture = SKTextureAtlas(named: "CometSmall").textureNamed("CometSmall0")
+      size = CGSize(width: 60 * ratio, height: 60 * ratio)
+
+    default:
+      texture = SKTextureAtlas(named: "CometMedium").textureNamed("CometMedium0")
+      size = CGSize(width: 200 * ratio, height: 200 * ratio)
+    }
+
+    super.init(texture: texture, color: nil, size: size)
     
     // Physics
     physicsBody = SKPhysicsBody(rectangleOfSize: size)
     physicsBody!.categoryBitMask = PhysicsCategory.Comet
-    physicsBody!.collisionBitMask = PhysicsCategory.Comet
+    physicsBody!.collisionBitMask = 0
+    physicsBody!.contactTestBitMask = PhysicsCategory.Player
     physicsBody!.affectedByGravity = false
+    physicsBody!.usesPreciseCollisionDetection = true
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -35,7 +56,7 @@ class CometNode: SKSpriteNode {
     self.position = position
     
     let action = SKAction.sequence([
-      SKAction.moveTo(toPosition, duration:duration, timingMode: .EaseOut),
+      SKAction.moveTo(toPosition, duration:duration, timingMode: .EaseIn),
       SKAction.runBlock { completion?() }
     ])
     

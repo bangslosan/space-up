@@ -20,6 +20,8 @@ class GroundNode: SKSpriteNode {
     // Physics
     physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(origin: CGPointZero, size: size))
     physicsBody!.categoryBitMask = PhysicsCategory.Ground
+    physicsBody!.contactTestBitMask = PhysicsCategory.Player
+    physicsBody!.restitution = 0
   }
 
   required init?(coder aDecoder: NSCoder) {

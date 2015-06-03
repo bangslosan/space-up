@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Vars
   var gameData = GameData.sharedGameData
+  var gameStarted: Bool = false
 
   lazy var pauseMenu: PauseMenuNode = {
     let pauseMenu = PauseMenuNode(size: SceneSize)
@@ -30,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: "#000000")
+    backgroundColor = UIColor(hexString: "#323257")
     
     // Physics
     physicsWorld.contactDelegate = self
@@ -79,12 +80,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   // MARK: - Scene
   override func update(currentTime: CFTimeInterval) {
     // Score
-    if world.player.isAlive && gameData.shouldUpdate {
-      gameData.update()
+    if world.player.isAlive && gameStarted {
+      world.player.updateDistanceTravelled()
+
+      gameData.updateScoreForPlayer(world.player)
     }
     
-    if world.player.isAlive && gameData.energy == 0 {
-      // endGame()
+    if world.player.isAlive && world.player.shouldMove {
+      world.player.moveUpward()
     }
     
     // HUD
@@ -98,28 +101,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     // Background
     background.move(world.position)
+    
+    // Comet
+    if world.player.isAlive {
+      world.cometPopulator.update()
+    }
   }
   
   // MARK: - Event
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-    world.player.jump()
+    // world.player.jump()
+    world.player.shouldMove = true
+  }
+  
+  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    world.player.shouldMove = false
   }
   
   // MARK: - Gameflow
   func startGame() {
     // Player
-    world.player.position = CGPoint(x: frame.midX, y: frame.midY)
+    world.player.position = CGPoint(x: frame.midX, y: world.ground.frame.maxY)
     world.camera.position = CGPointZero
-    
-    world.player.isAlive = true
-    gameData.shouldUpdate = true
+    world.player.respawn()
     world.followPlayer()
-    world.cometPopulator.addEmittersIfNeeded()
+    
+    afterDelay(1) {
+      self.world.player.initialPosition = self.world.player.position
+    }
+    
+    // Data
+    gameData.reset()
+    gameStarted = true
   }
   
   func endGame() {
-    world.player.isAlive = false
-    gameData.shouldUpdate = false
+    world.player.kill()
+    gameStarted = false
 
     // Alert
     if let controller = UIApplication.sharedApplication().delegate?.window??.rootViewController {
@@ -179,7 +197,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     switch collision {
     case PhysicsCategory.Player | PhysicsCategory.Boundary:
-      if gameData.shouldUpdate && world.player.isAlive {
+      if gameStarted && world.player.isAlive {
+        endGame()
+      }
+      
+    case PhysicsCategory.Player | PhysicsCategory.Comet:
+      if gameStarted && world.player.isAlive {
         endGame()
       }
 
