@@ -31,12 +31,11 @@ class CometNode: SKSpriteNode {
   }
   
   // MARK: Movement
-  func moveFromPosition(position: CGPoint, toPosition: CGPoint, rate: CGFloat = 1/200, completion: (() -> Void)?) {
+  func moveFromPosition(position: CGPoint, toPosition: CGPoint, duration: NSTimeInterval, completion: (() -> Void)?) {
     self.position = position
     
     let action = SKAction.sequence([
-      SKAction.waitForDuration(1),
-      SKAction.moveTo(toPosition, duration: Double(toPosition.distanceTo(position) * rate), timingMode: .EaseOut),
+      SKAction.moveTo(toPosition, duration:duration, timingMode: .EaseOut),
       SKAction.runBlock { completion?() }
     ])
     

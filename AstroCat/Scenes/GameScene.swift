@@ -114,13 +114,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.player.isAlive = true
     gameData.shouldUpdate = true
     world.followPlayer()
-    world.cometPopulator.startPopulate()
+    world.cometPopulator.addEmittersIfNeeded()
   }
   
   func endGame() {
     world.player.isAlive = false
     gameData.shouldUpdate = false
-    world.cometPopulator.endPopulate()
 
     // Alert
     if let controller = UIApplication.sharedApplication().delegate?.window??.rootViewController {

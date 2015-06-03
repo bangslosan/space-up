@@ -60,6 +60,7 @@
 		EB02127F1B1DF0310087B2E6 /* LineBoundaryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02127E1B1DF0310087B2E6 /* LineBoundaryNode.swift */; };
 		EB0212811B1E65BE0087B2E6 /* CometNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212801B1E65BE0087B2E6 /* CometNode.swift */; };
 		EB0212841B1E68E40087B2E6 /* CometPopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212831B1E68E40087B2E6 /* CometPopulator.swift */; };
+		EB0212861B1E92320087B2E6 /* CometEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212851B1E92320087B2E6 /* CometEmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		EB02127E1B1DF0310087B2E6 /* LineBoundaryNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineBoundaryNode.swift; path = Nodes/LineBoundaryNode.swift; sourceTree = "<group>"; };
 		EB0212801B1E65BE0087B2E6 /* CometNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CometNode.swift; path = Nodes/CometNode.swift; sourceTree = "<group>"; };
 		EB0212831B1E68E40087B2E6 /* CometPopulator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CometPopulator.swift; path = Lib/CometPopulator.swift; sourceTree = "<group>"; };
+		EB0212851B1E92320087B2E6 /* CometEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CometEmitter.swift; path = Lib/CometEmitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0212831B1E68E40087B2E6 /* CometPopulator.swift */,
+				EB0212851B1E92320087B2E6 /* CometEmitter.swift */,
 			);
 			name = Lib;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				EB0212331B1DD3A00087B2E6 /* CGPoint+Extensions.swift in Sources */,
 				EB02123B1B1DD3A00087B2E6 /* SKTEffects.swift in Sources */,
 				EB0212491B1DD3B50087B2E6 /* NSFileManagerExtension.swift in Sources */,
+				EB0212861B1E92320087B2E6 /* CometEmitter.swift in Sources */,
 				EB0212661B1DD7950087B2E6 /* HUDNode.swift in Sources */,
 				EB0212521B1DD4010087B2E6 /* CameraNode.swift in Sources */,
 				EB0212481B1DD3B50087B2E6 /* CGSizeExtension.swift in Sources */,
