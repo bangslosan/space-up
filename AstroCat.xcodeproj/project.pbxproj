@@ -70,6 +70,7 @@
 		EB0212A61B1F1BC60087B2E6 /* CometSmall.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A01B1F1BC60087B2E6 /* CometSmall.atlas */; };
 		EB0212A71B1F1BC60087B2E6 /* CometStar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A11B1F1BC60087B2E6 /* CometStar.atlas */; };
 		EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A21B1F1BC60087B2E6 /* Images.xcassets */; };
+		EB0212AE1B1FAAA70087B2E6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0212AD1B1FAAA70087B2E6 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		EB0212A01B1F1BC60087B2E6 /* CometSmall.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = CometSmall.atlas; path = Resources/CometSmall.atlas; sourceTree = "<group>"; };
 		EB0212A11B1F1BC60087B2E6 /* CometStar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = CometStar.atlas; path = Resources/CometStar.atlas; sourceTree = "<group>"; };
 		EB0212A21B1F1BC60087B2E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
+		EB0212AD1B1FAAA70087B2E6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0212AE1B1FAAA70087B2E6 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +176,7 @@
 		EB0211DF1B1DCF990087B2E6 = {
 			isa = PBXGroup;
 			children = (
+				EB0212AD1B1FAAA70087B2E6 /* GameKit.framework */,
 				EB0211EA1B1DCF990087B2E6 /* AstroCat */,
 				EB0212041B1DCF9A0087B2E6 /* AstroCatTests */,
 				EB0211E91B1DCF990087B2E6 /* Products */,
@@ -444,6 +448,12 @@
 				TargetAttributes = {
 					EB0211E71B1DCF990087B2E6 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 3CQHHXMTN4;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					EB0212001B1DCF9A0087B2E6 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -680,9 +690,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AstroCat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -690,9 +703,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AstroCat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
