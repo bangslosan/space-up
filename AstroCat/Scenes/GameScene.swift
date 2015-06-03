@@ -137,6 +137,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func endGame() {
+    gameData.updateTopScore()
+    gameData.saveToArchive()
+    
+    // Kill player
     world.player.kill()
     gameStarted = false
 
@@ -237,6 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - NSNotification
   dynamic private func applicationWillResignActive(notification: NSNotification) {
+    gameData.saveToArchive()
     pauseGame(true)
   }
   

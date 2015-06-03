@@ -19,29 +19,15 @@ private struct KeyForCoder {
 
 private let fileURL: NSURL = {
   return NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, withPathComponent: GameDataArchiveName)
-  }()
+}()
 
 class GameData: NSObject, NSCoding {
   private(set) var topScore: CGFloat = 0
   private(set) var score: CGFloat = 0 {
     didSet {
       score = max(score, 0)
-      topScore = max(score, topScore)
     }
   }
-  
-  /*
-  private(set) var energy: CGFloat = 1 {
-    didSet {
-      energy = energy.clamped(0, 1)
-    }
-  }
-  
-  private(set) var foodCount: UInt = 0
-  
-  var shouldUpdate = false
-  var gameOver = false
-  */
   
   // MARK: - Computed vars
   class var sharedGameData: GameData {
@@ -81,37 +67,12 @@ class GameData: NSObject, NSCoding {
     if aDecoder.containsValueForKey(KeyForCoder.score) {
       score = CGFloat(aDecoder.decodeFloatForKey(KeyForCoder.score))
     }
-    
-    /*
-    if aDecoder.containsValueForKey(KeyForCoder.gameOver) {
-      gameOver = aDecoder.decodeBoolForKey(KeyForCoder.gameOver)
-    }
-    
-    if aDecoder.containsValueForKey(KeyForCoder.energy) {
-      energy = CGFloat(aDecoder.decodeFloatForKey(KeyForCoder.energy))
-    }
-    
-    if aDecoder.containsValueForKey(KeyForCoder.foodCount) {
-      foodCount = UInt(aDecoder.decodeIntegerForKey(KeyForCoder.foodCount))
-    }
-    
-    if aDecoder.containsValueForKey(KeyForCoder.shouldUpdate) {
-      shouldUpdate = aDecoder.decodeBoolForKey(KeyForCoder.shouldUpdate)
-    }
-    */
   }
   
   // MARK: - NSCoding
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeFloat(Float(topScore), forKey: KeyForCoder.topScore)
     aCoder.encodeFloat(Float(score), forKey: KeyForCoder.score)
-    /*
-    aCoder.encodeBool(gameOver, forKey: KeyForCoder.gameOver)
-    aCoder.encodeBool(shouldUpdate, forKey: KeyForCoder.shouldUpdate)
-    aCoder.encodeFloat(Float(energy), forKey: KeyForCoder.energy)
-    aCoder.encodeFloat(Float(score), forKey: KeyForCoder.score)
-    aCoder.encodeInteger(Int(foodCount), forKey: KeyForCoder.foodCount)
-    */
   }
   
   func saveToArchive() {
@@ -121,53 +82,15 @@ class GameData: NSObject, NSCoding {
   }
   
   // MARK: - Update
+  func updateTopScore() {
+    topScore = max(score, topScore)
+  }
+
   func updateScoreForPlayer(player: PlayerNode) {
     score = max(player.distanceTravelled, score)
   }
 
   func reset() {
     score = 0
-    // energy = 1
-    // foodCount = 0
-    // shouldUpdate = false
   }
-  
-  /*
-  func update() {
-    decreaseEnergy()
-  }
-  */
-  
-  /*
-  // MARK: - Food
-  func consumeFood(food: FoodNode) {
-    increaseEnergy()
-    increaseFoodCount()
-    increaseScore()
-  }
-  
-  // MARK: - Energy
-  func decreaseEnergy() {
-    let factor: CGFloat = 0.0001
-    
-    energy -= CGFloat(level) * factor
-  }
-  
-  func increaseEnergy() {
-    let factor: CGFloat = 0.02
-    
-    energy += 0.1 + CGFloat(level) * factor
-  }
-  */
-  
-  // MARK: - Score
-  /*
-  func increaseScore() {
-    score += 1
-  }
-  
-  func increaseFoodCount() {
-    foodCount += 1
-  }
-  */
 }
