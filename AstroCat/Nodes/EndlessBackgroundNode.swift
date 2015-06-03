@@ -46,8 +46,8 @@ class EndlessBackgroundNode: SKNode {
         }
       }
       
-      while maxY < scene.frame.maxY || backgrounds.last == nil {
-        if let imageName = imageNameAtIndex(index) {
+      if maxY < scene.frame.maxY || backgrounds.last == nil {
+        if let imageName = imageNameAtIndex(index) ?? imageNameAtIndex(0) {
           let newBackground = backgroundWithImageName(imageName)
           
           // Position
@@ -60,10 +60,6 @@ class EndlessBackgroundNode: SKNode {
           
           // Increment
           maxY = scene.convertFrame(newBackground.frame, fromNode: self).maxY
-          index++
-        } else {
-          index = 0
-          continue
         }
       }
     }
@@ -82,8 +78,8 @@ class EndlessBackgroundNode: SKNode {
         }
       }
       
-      while minY > scene.frame.minY || backgrounds.first == nil {
-        if let imageName = imageNameAtIndex(index) {
+      if minY > scene.frame.minY || backgrounds.first == nil {
+        if let imageName = imageNameAtIndex(index) ?? imageNameAtIndex(backgrounds.count - 1) {
           let newBackground = backgroundWithImageName(imageName)
           
           // Position
@@ -91,15 +87,11 @@ class EndlessBackgroundNode: SKNode {
             newBackground.position = CGPoint(x: 0, y: firstBackground.frame.minY - newBackground.frame.height)
           }
           
-          // Append
+          // Prepend
           prependBackground(newBackground)
           
           // Increment
           minY = scene.convertFrame(newBackground.frame, fromNode: self).minY
-          index--
-        } else {
-          index = backgrounds.count - 1
-          continue
         }
       }
     }
@@ -107,14 +99,14 @@ class EndlessBackgroundNode: SKNode {
   
   func removeIfNeeded() {
     if let scene = scene {
-      if let background = backgrounds.first {
-        if scene.convertFrame(background.frame, fromNode: self).maxY + 50 < scene.frame.minY {
+      if let background = backgrounds.last {
+        if scene.convertFrame(background.frame, fromNode: self).minY > scene.frame.maxY + scene.frame.height / 2 {
           removeBackground(background)
         }
       }
-      
-      if let background = backgrounds.last {
-        if scene.convertFrame(background.frame, fromNode: self).minY - 50 >= scene.frame.maxY {
+
+      if let background = backgrounds.first {
+        if scene.convertFrame(background.frame, fromNode: self).maxY < scene.frame.minY - scene.frame.height / 2 {
           removeBackground(background)
         }
       }
