@@ -39,7 +39,7 @@ class CometEmitter {
       duration *= 2
     
     case .Fast:
-      duration *= 0.5
+      duration *= 0.6
       
     default:
       break
@@ -61,8 +61,8 @@ class CometEmitter {
       }
       
       let sequenceAction = SKAction.sequence([
-        SKAction.runBlock {
-          self.addComet()
+        SKAction.runBlock { [weak self] in
+          self?.addComet()
         },
         SKAction.waitForDuration(self.duration)
       ])
@@ -88,6 +88,7 @@ class CometEmitter {
   func addComet() -> CometNode {
     let comet = CometNode(type: type)
     
+    comet.emitter = self
     populator?.world?.addChild(comet)
     comets.addObject(comet)
     
@@ -98,8 +99,17 @@ class CometEmitter {
   }
   
   func removeComet(comet: CometNode) {
+    comet.cancelMovement()
     comet.removeFromParent()
     comets.removeObject(comet)
+  }
+  
+  func removeAllComets() {
+    if let comets = comets.allObjects as? [CometNode] {
+      for comet in comets {
+        removeComet(comet)
+      }
+    }
   }
   
   func revealComet(comet: CometNode, completion: (() -> Void)? = nil) {

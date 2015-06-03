@@ -32,8 +32,8 @@ class CometPopulator {
         lastFromPosition = scene.convertPoint(lastEmitter.fromPosition, fromNode: world)
       }
       
-      if lastToPosition?.y < scene.frame.maxY || emitters.last == nil {
-        let spacing: CGFloat = 400
+      if lastToPosition?.y < scene.frame.maxY * 2 || emitters.last == nil {
+        let spacing: CGFloat = 420
 
         var fromPosition: CGPoint
         var toPosition: CGPoint
@@ -41,7 +41,7 @@ class CometPopulator {
         if lastFromPosition != nil {
           fromPosition = lastFromPosition! + CGPoint(x: 0, y: spacing)
         } else {
-          fromPosition = CGPoint(x: scene.frame.maxX, y: scene.frame.maxY)
+          fromPosition = CGPoint(x: scene.frame.maxX, y: scene.frame.maxX)
         }
         
         if lastToPosition != nil {
@@ -60,9 +60,16 @@ class CometPopulator {
   
   func removeEmittersIfNeeded() {
     if let world = world, scene = world.scene, emitter = emitters.first {
-      if scene.convertPoint(emitter.toPosition, fromNode: world).y < scene.frame.minY - scene.frame.height / 2 {
+      if scene.convertPoint(emitter.toPosition, fromNode: world).y < scene.frame.minY - scene.frame.height * 2 {
         removeEmitter(emitter)
       }
+    }
+  }
+  
+  func removeAllEmitters() {
+    for emitter in emitters {
+      emitter.removeAllComets()
+      removeEmitter(emitter)
     }
   }
   
@@ -84,6 +91,7 @@ class CometPopulator {
   }
   
   func removeEmitter(emitter: CometEmitter) {
+    emitter.endEmit()
     removeObjectByReference(emitter, fromArray: &emitters)
   }
 }

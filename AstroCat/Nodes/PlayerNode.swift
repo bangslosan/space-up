@@ -14,6 +14,13 @@ class PlayerNode: SKSpriteNode {
   var shouldMove: Bool = false
   var distanceTravelled: CGFloat = 0
   var initialPosition: CGPoint?
+  var shieldNode: ShieldNode?
+  
+  var isProtected: Bool = false {
+    didSet {
+      isProtected ? addShield() : removeShield()
+    }
+  }
 
   // MARK: - Init
   init() {
@@ -36,12 +43,18 @@ class PlayerNode: SKSpriteNode {
   
   // MARK: - Life
   func kill() {
+    reset()
     isAlive = false
-    shouldMove = false
   }
   
   func respawn() {
+    reset()
+  }
+  
+  private func reset() {
+    physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     isAlive = true
+    isProtected = false
     shouldMove = false
     distanceTravelled = 0
   }
@@ -76,6 +89,25 @@ class PlayerNode: SKSpriteNode {
   func updateDistanceTravelled() {
     if let initialPosition = initialPosition {
       distanceTravelled = position.y - initialPosition.y
+    }
+  }
+  
+  // MARK: - Protection
+  private func addShield() {
+    if shieldNode == nil {
+      let diameter = max(frame.width, frame.height) + 20
+
+      shieldNode = ShieldNode(size: CGSize(width: diameter, height: diameter))
+      shieldNode!.position = CGPoint(x: 0, y: frame.height * 0.5)
+      shieldNode!.zPosition = 20
+      addChild(shieldNode!)
+    }
+  }
+  
+  private func removeShield() {
+    if shieldNode != nil {
+      shieldNode!.removeFromParent()
+      shieldNode = nil
     }
   }
   

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */; };
 		EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */; };
-		EB0211F91B1DCF9A0087B2E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F81B1DCF9A0087B2E6 /* Images.xcassets */; };
 		EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */; };
 		EB0212081B1DCF9A0087B2E6 /* AstroCatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212071B1DCF9A0087B2E6 /* AstroCatTests.swift */; };
 		EB0212141B1DD18B0087B2E6 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212131B1DD18B0087B2E6 /* StartScene.swift */; };
@@ -50,8 +49,6 @@
 		EB0212691B1DD7D90087B2E6 /* WorldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212681B1DD7D90087B2E6 /* WorldDelegate.swift */; };
 		EB02126C1B1DD8820087B2E6 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02126B1B1DD8820087B2E6 /* GameData.swift */; };
 		EB02126E1B1DD9810087B2E6 /* PauseMenuNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02126D1B1DD9810087B2E6 /* PauseMenuNode.swift */; };
-		EB0212701B1DDA890087B2E6 /* FoodNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02126F1B1DDA890087B2E6 /* FoodNode.swift */; };
-		EB0212721B1DDDAD0087B2E6 /* Cat.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB0212711B1DDDAD0087B2E6 /* Cat.atlas */; };
 		EB0212741B1DE1320087B2E6 /* GroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212731B1DE1320087B2E6 /* GroundNode.swift */; };
 		EB0212761B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */; };
 		EB0212781B1DEB920087B2E6 /* BackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212771B1DEB920087B2E6 /* BackgroundNode.swift */; };
@@ -63,9 +60,15 @@
 		EB0212861B1E92320087B2E6 /* CometEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212851B1E92320087B2E6 /* CometEmitter.swift */; };
 		EB0212881B1EB9830087B2E6 /* CometPathNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212871B1EB9830087B2E6 /* CometPathNode.swift */; };
 		EB02128A1B1EBE930087B2E6 /* CometType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212891B1EBE930087B2E6 /* CometType.swift */; };
-		EB02128E1B1EC0B00087B2E6 /* CometLarge.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB02128B1B1EC0B00087B2E6 /* CometLarge.atlas */; };
-		EB02128F1B1EC0B00087B2E6 /* CometMedium.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB02128C1B1EC0B00087B2E6 /* CometMedium.atlas */; };
-		EB0212901B1EC0B00087B2E6 /* CometSmall.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB02128D1B1EC0B00087B2E6 /* CometSmall.atlas */; };
+		EB0212961B1F127C0087B2E6 /* ShieldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212951B1F127C0087B2E6 /* ShieldNode.swift */; };
+		EB0212981B1F188B0087B2E6 /* NodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212971B1F188B0087B2E6 /* NodeHelper.swift */; };
+		EB02129A1B1F18B40087B2E6 /* DispatchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */; };
+		EB0212A31B1F1BC60087B2E6 /* Cat.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB02129D1B1F1BC60087B2E6 /* Cat.atlas */; };
+		EB0212A41B1F1BC60087B2E6 /* CometLarge.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB02129E1B1F1BC60087B2E6 /* CometLarge.atlas */; };
+		EB0212A51B1F1BC60087B2E6 /* CometMedium.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB02129F1B1F1BC60087B2E6 /* CometMedium.atlas */; };
+		EB0212A61B1F1BC60087B2E6 /* CometSmall.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A01B1F1BC60087B2E6 /* CometSmall.atlas */; };
+		EB0212A71B1F1BC60087B2E6 /* CometStar.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A11B1F1BC60087B2E6 /* CometStar.atlas */; };
+		EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A21B1F1BC60087B2E6 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +86,6 @@
 		EB0211EC1B1DCF990087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB0211F61B1DCF9A0087B2E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EB0211F81B1DCF9A0087B2E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB0211FB1B1DCF9A0087B2E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EB0212011B1DCF9A0087B2E6 /* AstroCatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroCatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0212061B1DCF9A0087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -126,8 +128,6 @@
 		EB0212681B1DD7D90087B2E6 /* WorldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldDelegate.swift; path = Protocols/WorldDelegate.swift; sourceTree = "<group>"; };
 		EB02126B1B1DD8820087B2E6 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = Models/GameData.swift; sourceTree = "<group>"; };
 		EB02126D1B1DD9810087B2E6 /* PauseMenuNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PauseMenuNode.swift; path = Nodes/PauseMenuNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		EB02126F1B1DDA890087B2E6 /* FoodNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoodNode.swift; path = Nodes/FoodNode.swift; sourceTree = "<group>"; };
-		EB0212711B1DDDAD0087B2E6 /* Cat.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Cat.atlas; sourceTree = "<group>"; };
 		EB0212731B1DE1320087B2E6 /* GroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroundNode.swift; path = Nodes/GroundNode.swift; sourceTree = "<group>"; };
 		EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndlessBackgroundNode.swift; path = Nodes/EndlessBackgroundNode.swift; sourceTree = "<group>"; };
 		EB0212771B1DEB920087B2E6 /* BackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundNode.swift; path = Nodes/BackgroundNode.swift; sourceTree = "<group>"; };
@@ -139,9 +139,15 @@
 		EB0212851B1E92320087B2E6 /* CometEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CometEmitter.swift; path = Lib/CometEmitter.swift; sourceTree = "<group>"; };
 		EB0212871B1EB9830087B2E6 /* CometPathNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CometPathNode.swift; path = Nodes/CometPathNode.swift; sourceTree = "<group>"; };
 		EB0212891B1EBE930087B2E6 /* CometType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CometType.swift; path = Types/CometType.swift; sourceTree = "<group>"; };
-		EB02128B1B1EC0B00087B2E6 /* CometLarge.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CometLarge.atlas; sourceTree = "<group>"; };
-		EB02128C1B1EC0B00087B2E6 /* CometMedium.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CometMedium.atlas; sourceTree = "<group>"; };
-		EB02128D1B1EC0B00087B2E6 /* CometSmall.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CometSmall.atlas; sourceTree = "<group>"; };
+		EB0212951B1F127C0087B2E6 /* ShieldNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShieldNode.swift; path = Nodes/ShieldNode.swift; sourceTree = "<group>"; };
+		EB0212971B1F188B0087B2E6 /* NodeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeHelper.swift; path = Helpers/NodeHelper.swift; sourceTree = "<group>"; };
+		EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchHelper.swift; path = Helpers/DispatchHelper.swift; sourceTree = "<group>"; };
+		EB02129D1B1F1BC60087B2E6 /* Cat.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Cat.atlas; path = Resources/Cat.atlas; sourceTree = "<group>"; };
+		EB02129E1B1F1BC60087B2E6 /* CometLarge.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = CometLarge.atlas; path = Resources/CometLarge.atlas; sourceTree = "<group>"; };
+		EB02129F1B1F1BC60087B2E6 /* CometMedium.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = CometMedium.atlas; path = Resources/CometMedium.atlas; sourceTree = "<group>"; };
+		EB0212A01B1F1BC60087B2E6 /* CometSmall.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = CometSmall.atlas; path = Resources/CometSmall.atlas; sourceTree = "<group>"; };
+		EB0212A11B1F1BC60087B2E6 /* CometStar.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = CometStar.atlas; path = Resources/CometStar.atlas; sourceTree = "<group>"; };
+		EB0212A21B1F1BC60087B2E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,7 +259,6 @@
 				EB0212801B1E65BE0087B2E6 /* CometNode.swift */,
 				EB0212871B1EB9830087B2E6 /* CometPathNode.swift */,
 				EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */,
-				EB02126F1B1DDA890087B2E6 /* FoodNode.swift */,
 				EB0212731B1DE1320087B2E6 /* GroundNode.swift */,
 				EB0212641B1DD7950087B2E6 /* HUDNode.swift */,
 				EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */,
@@ -261,6 +266,7 @@
 				EB02126D1B1DD9810087B2E6 /* PauseMenuNode.swift */,
 				EB02125B1B1DD51E0087B2E6 /* PlayerNode.swift */,
 				EB02127C1B1DECA30087B2E6 /* SceneBackgroundNode.swift */,
+				EB0212951B1F127C0087B2E6 /* ShieldNode.swift */,
 				EB0212501B1DD4010087B2E6 /* TextButtonNode.swift */,
 				EB0212591B1DD4F90087B2E6 /* WorldNode.swift */,
 			);
@@ -279,11 +285,12 @@
 		EB02121B1B1DD23E0087B2E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EB0212711B1DDDAD0087B2E6 /* Cat.atlas */,
-				EB02128B1B1EC0B00087B2E6 /* CometLarge.atlas */,
-				EB02128C1B1EC0B00087B2E6 /* CometMedium.atlas */,
-				EB02128D1B1EC0B00087B2E6 /* CometSmall.atlas */,
-				EB0211F81B1DCF9A0087B2E6 /* Images.xcassets */,
+				EB02129D1B1F1BC60087B2E6 /* Cat.atlas */,
+				EB02129E1B1F1BC60087B2E6 /* CometLarge.atlas */,
+				EB02129F1B1F1BC60087B2E6 /* CometMedium.atlas */,
+				EB0212A01B1F1BC60087B2E6 /* CometSmall.atlas */,
+				EB0212A11B1F1BC60087B2E6 /* CometStar.atlas */,
+				EB0212A21B1F1BC60087B2E6 /* Images.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -370,6 +377,8 @@
 			isa = PBXGroup;
 			children = (
 				EB02127A1B1DEC060087B2E6 /* ArrayHelper.swift */,
+				EB0212971B1F188B0087B2E6 /* NodeHelper.swift */,
+				EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -463,13 +472,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB0212721B1DDDAD0087B2E6 /* Cat.atlas in Resources */,
-				EB02128F1B1EC0B00087B2E6 /* CometMedium.atlas in Resources */,
-				EB02128E1B1EC0B00087B2E6 /* CometLarge.atlas in Resources */,
+				EB0212A51B1F1BC60087B2E6 /* CometMedium.atlas in Resources */,
+				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
-				EB0211F91B1DCF9A0087B2E6 /* Images.xcassets in Resources */,
+				EB0212A61B1F1BC60087B2E6 /* CometSmall.atlas in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,
-				EB0212901B1EC0B00087B2E6 /* CometSmall.atlas in Resources */,
+				EB0212A41B1F1BC60087B2E6 /* CometLarge.atlas in Resources */,
+				EB0212A71B1F1BC60087B2E6 /* CometStar.atlas in Resources */,
+				EB0212A31B1F1BC60087B2E6 /* Cat.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,19 +509,20 @@
 				EB0212571B1DD4330087B2E6 /* Constants.swift in Sources */,
 				EB0212361B1DD3A00087B2E6 /* SKAction+Extensions.swift in Sources */,
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
+				EB0212961B1F127C0087B2E6 /* ShieldNode.swift in Sources */,
 				EB0212461B1DD3B50087B2E6 /* ArrayExtension.swift in Sources */,
 				EB02126C1B1DD8820087B2E6 /* GameData.swift in Sources */,
 				EB0212841B1E68E40087B2E6 /* CometPopulator.swift in Sources */,
 				EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */,
 				EB0212631B1DD5760087B2E6 /* PhysicsCategory.swift in Sources */,
 				EB02127B1B1DEC060087B2E6 /* ArrayHelper.swift in Sources */,
-				EB0212701B1DDA890087B2E6 /* FoodNode.swift in Sources */,
 				EB0212471B1DD3B50087B2E6 /* CGPointExtension.swift in Sources */,
 				EB0212671B1DD7950087B2E6 /* IconButtonNode.swift in Sources */,
 				EB0212881B1EB9830087B2E6 /* CometPathNode.swift in Sources */,
 				EB02125A1B1DD4F90087B2E6 /* WorldNode.swift in Sources */,
 				EB0212391B1DD3A00087B2E6 /* SKNode+Extensions.swift in Sources */,
 				EB02124C1B1DD3B50087B2E6 /* SKSceneExtension.swift in Sources */,
+				EB02129A1B1F18B40087B2E6 /* DispatchHelper.swift in Sources */,
 				EB0212161B1DD1DD0087B2E6 /* GameViewController.swift in Sources */,
 				EB02123C1B1DD3A00087B2E6 /* SKTTimingFunctions.swift in Sources */,
 				EB0212371B1DD3A00087B2E6 /* SKAction+SpecialEffects.swift in Sources */,
@@ -538,6 +549,7 @@
 				EB02127F1B1DF0310087B2E6 /* LineBoundaryNode.swift in Sources */,
 				EB02125C1B1DD51E0087B2E6 /* PlayerNode.swift in Sources */,
 				EB0212511B1DD4010087B2E6 /* ButtonNode.swift in Sources */,
+				EB0212981B1F188B0087B2E6 /* NodeHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +745,7 @@
 				EB02120D1B1DCF9A0087B2E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB02120E1B1DCF9A0087B2E6 /* Build configuration list for PBXNativeTarget "AstroCatTests" */ = {
 			isa = XCConfigurationList;
@@ -741,6 +754,7 @@
 				EB0212101B1DCF9A0087B2E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

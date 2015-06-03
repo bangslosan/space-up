@@ -12,6 +12,7 @@ enum CometType {
   case Regular
   case Slow
   case Fast
+  case Award
   
   static func randomType() -> CometType {
     var types = [CometType]()
@@ -22,6 +23,7 @@ enum CometType {
     
     types << .Slow
     types << .Fast
+    types << .Award
     
     return types.sample()!
   }

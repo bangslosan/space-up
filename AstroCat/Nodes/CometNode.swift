@@ -13,7 +13,12 @@ private struct KeyForAction {
 }
 
 class CometNode: SKSpriteNode {
+  // MARK: - Immutable vars
   let type: CometType
+  
+  // MARK: - Vars
+  weak var emitter: CometEmitter?
+  var enabled: Bool = true
 
   init(type: CometType) {
     self.type = type
@@ -30,6 +35,10 @@ class CometNode: SKSpriteNode {
     case .Fast:
       texture = SKTextureAtlas(named: "CometSmall").textureNamed("CometSmall0")
       size = CGSize(width: 60 * ratio, height: 60 * ratio)
+      
+    case .Award:
+      texture = SKTextureAtlas(named: "CometStar").textureNamed("CometStar0")
+      size = CGSize(width: 100 * ratio, height: 100 * ratio)
 
     default:
       texture = SKTextureAtlas(named: "CometMedium").textureNamed("CometMedium0")
@@ -40,7 +49,7 @@ class CometNode: SKSpriteNode {
     
     // Physics
     physicsBody = SKPhysicsBody(rectangleOfSize: size)
-    physicsBody!.categoryBitMask = PhysicsCategory.Comet
+    physicsBody!.categoryBitMask = type == .Award ? PhysicsCategory.Award : PhysicsCategory.Comet
     physicsBody!.collisionBitMask = 0
     physicsBody!.contactTestBitMask = PhysicsCategory.Player
     physicsBody!.affectedByGravity = false
@@ -61,5 +70,9 @@ class CometNode: SKSpriteNode {
     ])
     
     runAction(action, withKey: KeyForAction.moveFromPositionAction)
+  }
+  
+  func cancelMovement() {
+    removeActionForKey(KeyForAction.moveFromPositionAction)
   }
 }

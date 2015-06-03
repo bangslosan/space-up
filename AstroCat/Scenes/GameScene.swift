@@ -123,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Player
     world.player.position = CGPoint(x: frame.midX, y: world.ground.frame.maxY)
     world.camera.position = CGPointZero
+    world.cometPopulator.removeAllEmitters()
     world.player.respawn()
     world.followPlayer()
     
@@ -201,9 +202,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         endGame()
       }
       
+    case PhysicsCategory.Player | PhysicsCategory.Award:
+      if let comet = nodeInContact(contact, withCategoryBitMask: PhysicsCategory.Award) as? CometNode {
+        if gameStarted && world.player.isAlive && comet.enabled && !world.player.isProtected {
+          world.player.isProtected = true
+
+          comet.enabled = false
+          comet.emitter?.removeComet(comet)
+        }
+      }
+      
     case PhysicsCategory.Player | PhysicsCategory.Comet:
-      if gameStarted && world.player.isAlive {
-        endGame()
+      if let comet = nodeInContact(contact, withCategoryBitMask: PhysicsCategory.Comet) as? CometNode {
+        if gameStarted && world.player.isAlive && comet.enabled {
+          if world.player.isProtected {
+            world.player.isProtected = false
+          } else {
+            endGame()
+          }
+
+          comet.enabled = false
+          comet.emitter?.removeComet(comet)
+        }
       }
 
     default:
