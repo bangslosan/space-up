@@ -64,7 +64,7 @@ class CometEmitter {
         SKAction.runBlock { [weak self] in
           self?.addComet()
         },
-        SKAction.waitForDuration(self.duration)
+        SKAction.waitForDuration(self.duration * 2/3)
       ])
       
       let repeatAction = SKAction.repeatActionForever(sequenceAction)

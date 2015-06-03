@@ -25,37 +25,52 @@ class CometPopulator {
   func addEmittersIfNeeded() {
     if let world = world, scene = world.scene {
       var lastToPosition: CGPoint?
-      var lastFromPosition: CGPoint?
       
       if let lastEmitter = emitters.last {
         lastToPosition = scene.convertPoint(lastEmitter.toPosition, fromNode: world)
-        lastFromPosition = scene.convertPoint(lastEmitter.fromPosition, fromNode: world)
       }
       
       if lastToPosition?.y < scene.frame.maxY * 2 || emitters.last == nil {
-        let spacing: CGFloat = 420
-
-        var fromPosition: CGPoint
-        var toPosition: CGPoint
-        
-        if lastFromPosition != nil {
-          fromPosition = lastFromPosition! + CGPoint(x: 0, y: spacing)
-        } else {
-          fromPosition = CGPoint(x: scene.frame.maxX, y: scene.frame.maxX)
-        }
-        
-        if lastToPosition != nil {
-          toPosition = lastToPosition! + CGPoint(x: 0, y: spacing)
-        } else {
-          toPosition = CGPoint(x: scene.frame.minX, y: scene.frame.minY)
-        }
-        
-        fromPosition = world.convertPoint(fromPosition, fromNode: scene)
-        toPosition = world.convertPoint(toPosition, fromNode: scene)
+        let (fromPosition, toPosition) = positionForNewEmitter()
         
         addEmitter(fromPosition, toPosition: toPosition)
       }
     }
+  }
+  
+  func positionForNewEmitter() -> (fromPosition: CGPoint, toPosition:CGPoint) {
+    if let world = world, scene = world.scene {
+      let spacing: CGFloat = 420
+
+      var lastToPosition: CGPoint?
+      var lastFromPosition: CGPoint?
+      var fromPosition: CGPoint
+      var toPosition: CGPoint
+    
+      if let lastEmitter = emitters.last {
+        lastToPosition = scene.convertPoint(lastEmitter.toPosition, fromNode: world)
+        lastFromPosition = scene.convertPoint(lastEmitter.fromPosition, fromNode: world)
+      }
+    
+      if lastFromPosition != nil {
+        fromPosition = lastFromPosition! + CGPoint(x: 0, y: spacing)
+      } else {
+        fromPosition = CGPoint(x: scene.frame.maxX, y: scene.frame.maxX)
+      }
+      
+      if lastToPosition != nil {
+        toPosition = lastToPosition! + CGPoint(x: 0, y: spacing)
+      } else {
+        toPosition = CGPoint(x: scene.frame.minX, y: scene.frame.minY)
+      }
+      
+      fromPosition = world.convertPoint(fromPosition, fromNode: scene)
+      toPosition = world.convertPoint(toPosition, fromNode: scene)
+      
+      return (fromPosition, toPosition)
+    }
+    
+    return (CGPointZero, CGPointZero)
   }
   
   func removeEmittersIfNeeded() {

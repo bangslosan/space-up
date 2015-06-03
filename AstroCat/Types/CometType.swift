@@ -21,7 +21,10 @@ enum CometType {
       types << .Regular
     }
     
-    types << .Slow
+    for i in 1...2 {
+      types << .Slow
+    }
+
     types << .Fast
     types << .Award
     
