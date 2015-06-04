@@ -65,7 +65,7 @@ class CometNode: SKSpriteNode {
     self.position = position
     
     let action = SKAction.sequence([
-      SKAction.moveTo(toPosition, duration:duration, timingMode: .EaseIn),
+      SKAction.moveTo(toPosition, duration: duration, timingMode: .Linear),
       SKAction.runBlock { completion?() }
     ])
     

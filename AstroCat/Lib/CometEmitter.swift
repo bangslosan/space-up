@@ -54,17 +54,35 @@ class CometEmitter {
   
   // MARK: - Populate
   func startEmit() {
+    startEmitAt(1)
+  }
+  
+  func startEmitAt(initialPercentage: CGFloat) {
     if let world = populator?.world {
       // Only the add the same action once
       if world.hasActionForKey(KeyForAction.emitCometAction) {
         return
       }
+
+      let initialPercentage = initialPercentage.clamped(0, 1)
+      let hypotenuseLength = fromPosition.distanceTo(toPosition) * initialPercentage
+      let angle = atan((fromPosition.y - toPosition.y) / (fromPosition.x - toPosition.x))
+      let oppositeLength = sin(angle) * hypotenuseLength
+      let adjacentLength = cos(angle) * hypotenuseLength
+
+      var startPosition = CGPoint(x: toPosition.x + adjacentLength, y: toPosition.y + oppositeLength)
       
       let sequenceAction = SKAction.sequence([
         SKAction.runBlock { [weak self] in
-          self?.addComet()
+          if let emitter = self {
+            let comet = emitter.addComet()
+            
+            emitter.revealComet(comet, fromPosition: startPosition, toPosition: emitter.toPosition)
+            
+            startPosition = emitter.fromPosition
+          }
         },
-        SKAction.waitForDuration(self.duration * 2/3)
+        SKAction.waitForDuration(self.duration * 3/4)
       ])
       
       let repeatAction = SKAction.repeatActionForever(sequenceAction)
@@ -92,9 +110,6 @@ class CometEmitter {
     populator?.world?.addChild(comet)
     comets.addObject(comet)
     
-    // Reveal
-    revealComet(comet)
-    
     return comet
   }
   
@@ -112,7 +127,7 @@ class CometEmitter {
     }
   }
   
-  func revealComet(comet: CometNode, completion: (() -> Void)? = nil) {
+  func revealComet(comet: CometNode, fromPosition: CGPoint, toPosition: CGPoint, completion: (() -> Void)? = nil) {
     if let world = populator?.world, scene = world.scene {
       comet.moveFromPosition(fromPosition, toPosition: toPosition, duration: duration) {
         self.removeComet(comet)
