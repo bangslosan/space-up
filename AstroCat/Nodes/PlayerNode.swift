@@ -86,6 +86,15 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
+  func brake() {
+    if let physicsBody = physicsBody where physicsBody.velocity.dy > 0 {
+      let finalVelocity = CGVector(dx: physicsBody.velocity.dy, dy: 0)
+      let easing: CGFloat = 0.05
+      
+      physicsBody.velocity += CGVector(dx: 0, dy: (finalVelocity.dy - physicsBody.velocity.dy) * easing)
+    }
+  }
+  
   func updateDistanceTravelled() {
     if let initialPosition = initialPosition {
       distanceTravelled = position.y - initialPosition.y

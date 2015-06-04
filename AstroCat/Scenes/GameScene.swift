@@ -87,8 +87,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       gameData.updateScoreForPlayer(world.player)
     }
     
-    if world.player.isAlive && world.player.shouldMove {
-      world.player.moveUpward()
+    if world.player.isAlive {
+      if world.player.shouldMove {
+        world.player.moveUpward()
+      } else {
+        world.player.brake()
+      }
     }
     
     // HUD

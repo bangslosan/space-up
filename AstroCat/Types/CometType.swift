@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 David Chin. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
 
 enum CometType {
   case Regular
@@ -14,19 +14,18 @@ enum CometType {
   case Fast
   case Award
   
-  static func randomType() -> CometType {
+  static func randomType(#levelFactor: CGFloat) -> CometType {
     var types = [CometType]()
     
-    for i in 1...5 {
+    for i in 0..<5 {
       types << .Regular
     }
     
-    for i in 1...2 {
+    for i in 0..<Int(round(levelFactor * 5)) {
       types << .Slow
+      types << .Fast
+      types << .Award
     }
-
-    types << .Fast
-    types << .Award
     
     return types.sample()!
   }
