@@ -18,7 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Vars
   var gameData = GameData.sharedGameData
-  var gameStarted: Bool = false
+  var gameStarted = false
+  var godMode = false
 
   lazy var pauseMenu: PauseMenuNode = {
     let pauseMenu = PauseMenuNode(size: SceneSize)
@@ -215,8 +216,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
           comet.emitter?.removeComet(comet)
         }
       }
-      
+    
     case PhysicsCategory.Player | PhysicsCategory.Comet:
+      if godMode {
+        return
+      }
+      
       if let comet = nodeInContact(contact, withCategoryBitMask: PhysicsCategory.Comet) as? CometNode {
         if gameStarted && world.player.isAlive && comet.enabled {
           if world.player.isProtected {
