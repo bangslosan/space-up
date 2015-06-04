@@ -49,9 +49,13 @@ class GameData: NSObject, NSCoding {
   
   var level: UInt {
     let base: CGFloat = 1.1
-    let exponent = log((score + 100) / 100) / log(base)
+    let exponent = log((score + 10000) / 10000) / log(base)
     
     return 1 + UInt(round(exponent))
+  }
+  
+  var levelFactor: CGFloat {
+    return CGFloat(min(level, 20)) / 20
   }
   
   // MARK: - Init

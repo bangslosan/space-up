@@ -12,6 +12,7 @@ class CometPopulator {
   weak var world: WorldNode?
   
   var emitters = [CometEmitter]()
+  var gameData = GameData.sharedGameData
 
   init() {
   }
@@ -97,7 +98,8 @@ class CometPopulator {
   
   func addEmitter(fromPosition: CGPoint, toPosition: CGPoint) -> CometEmitter? {
     if let world = world, scene = world.scene {
-      let speed: CGFloat = CGFloat.random(min: 200, max: 300)
+      let speedOffset = gameData.levelFactor * -100
+      let speed = CGFloat.random(min: 200 + speedOffset, max: 300 + speedOffset)
       let type = CometType.randomType()
       let emitter = CometEmitter(type: type, speed: speed, fromPosition: fromPosition, toPosition: toPosition)
       

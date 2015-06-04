@@ -15,6 +15,7 @@ private struct KeyForAction {
 class CometEmitter {
   weak var populator: CometPopulator?
   weak var cometPath: CometPathNode?
+  var gameData = GameData.sharedGameData
 
   let comets = NSHashTable.weakObjectsHashTable()
   let speed: CGFloat
@@ -82,7 +83,7 @@ class CometEmitter {
             startPosition = emitter.fromPosition
           }
         },
-        SKAction.waitForDuration(self.duration * 3/4)
+        SKAction.waitForDuration(self.duration * 3/4 - Double(gameData.levelFactor * 1))
       ])
       
       let repeatAction = SKAction.repeatActionForever(sequenceAction)
