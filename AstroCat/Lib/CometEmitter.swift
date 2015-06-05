@@ -16,7 +16,7 @@ class CometEmitter {
   weak var populator: CometPopulator?
   weak var cometPath: CometPathNode?
   var gameData = GameData.sharedGameData
-  var didPass: Bool = false
+  // var didPass: Bool = false
 
   let comets = NSHashTable.weakObjectsHashTable()
   let speed: CGFloat

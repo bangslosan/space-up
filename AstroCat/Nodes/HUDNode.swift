@@ -56,7 +56,7 @@ class HUDNode: SKNode {
     let numberFormatter = NSNumberFormatter()
     
     // Configure number formatter
-    numberFormatter.maximumFractionDigits = 2
+    numberFormatter.maximumFractionDigits = 0
     numberFormatter.roundingMode = .RoundHalfUp
     
     topScoreLabel.text = numberFormatter.stringFromNumber(gameData.topScore) ?? "0"
