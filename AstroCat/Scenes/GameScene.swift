@@ -85,7 +85,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       world.player.updateDistanceTravelled()
 
       gameData.updateScoreForPlayer(world.player)
-      // gameData.updateScoreForPlayer(world.player, inWorld: world)
     }
     
     if world.player.isAlive {

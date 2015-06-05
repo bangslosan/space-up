@@ -96,18 +96,6 @@ class GameData: NSObject, NSCoding {
   func updateScoreForPlayer(player: PlayerNode) {
     score = max(player.distanceTravelled / 100, score)
   }
-  
-  /*
-  func updateScoreForPlayer(player: PlayerNode, inWorld world: WorldNode) {
-    for emitter in world.cometPopulator.emitters {
-      if !emitter.didPass && player.isAboveCometPath(emitter) {
-        emitter.didPass = true
-        
-        score++
-      }
-    }
-  }
-  */
 
   func reset() {
     score = 0
