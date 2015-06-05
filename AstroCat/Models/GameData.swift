@@ -49,13 +49,16 @@ class GameData: NSObject, NSCoding {
   
   var level: UInt {
     let base: CGFloat = 1.1
-    let exponent = log((score + 10000) / 10000) / log(base)
+    let offset: CGFloat = 30 // 10000
+    let exponent = log((score + offset) / offset) / log(base)
     
     return 1 + UInt(round(exponent))
   }
   
   var levelFactor: CGFloat {
-    return CGFloat(min(level, 20)) / 20
+    let maxLevel: UInt = 20
+
+    return CGFloat(min(level, maxLevel)) / CGFloat(maxLevel)
   }
   
   // MARK: - Init
@@ -92,6 +95,16 @@ class GameData: NSObject, NSCoding {
 
   func updateScoreForPlayer(player: PlayerNode) {
     score = max(player.distanceTravelled, score)
+  }
+  
+  func updateScoreForPlayer(player: PlayerNode, inWorld world: WorldNode) {
+    for emitter in world.cometPopulator.emitters {
+      if !emitter.didPass && player.isAboveCometPath(emitter) {
+        emitter.didPass = true
+        
+        score++
+      }
+    }
   }
 
   func reset() {

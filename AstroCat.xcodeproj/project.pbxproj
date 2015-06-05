@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */; };
 		EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */; };
 		EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */; };
 		EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */; };
@@ -82,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathHelper.swift; path = Helpers/MathHelper.swift; sourceTree = "<group>"; };
 		EB0211E81B1DCF990087B2E6 /* AstroCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstroCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0211EC1B1DCF990087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -377,8 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				EB02127A1B1DEC060087B2E6 /* ArrayHelper.swift */,
-				EB0212971B1F188B0087B2E6 /* NodeHelper.swift */,
 				EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */,
+				43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */,
+				EB0212971B1F188B0087B2E6 /* NodeHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				EB0212611B1DD5760087B2E6 /* AxisType.swift in Sources */,
 				EB02126E1B1DD9810087B2E6 /* PauseMenuNode.swift in Sources */,
 				EB0212331B1DD3A00087B2E6 /* CGPoint+Extensions.swift in Sources */,
+				43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */,
 				EB02123B1B1DD3A00087B2E6 /* SKTEffects.swift in Sources */,
 				EB0212491B1DD3B50087B2E6 /* NSFileManagerExtension.swift in Sources */,
 				EB0212861B1E92320087B2E6 /* CometEmitter.swift in Sources */,

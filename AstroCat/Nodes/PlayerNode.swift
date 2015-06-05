@@ -101,6 +101,13 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
+  // MARK: - Comet
+  func isAboveCometPath(emitter: CometEmitter) -> Bool {
+    let pointOnPath = lineFromPoint(emitter.fromPosition, toPoint: emitter.toPosition)(pointAtX: position.x)
+    
+    return position.y > pointOnPath.y
+  }
+  
   // MARK: - Protection
   private func addShield() {
     if shieldNode == nil {

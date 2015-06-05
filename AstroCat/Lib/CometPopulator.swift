@@ -100,7 +100,7 @@ class CometPopulator {
     if let world = world, scene = world.scene {
       let speedOffset = gameData.levelFactor * -100
       let speed = CGFloat.random(min: 200 + speedOffset, max: 400 + speedOffset)
-      let type = CometType.randomType(levelFactor: gameData.levelFactor)
+      let type = randomCometType()
       let emitter = CometEmitter(type: type, speed: speed, fromPosition: fromPosition, toPosition: toPosition)
       
       emitters << emitter
@@ -116,5 +116,20 @@ class CometPopulator {
   func removeEmitter(emitter: CometEmitter) {
     emitter.endEmit()
     removeObjectByReference(emitter, fromArray: &emitters)
+  }
+  
+  // MARK: - Type
+  private func randomCometType() -> CometType {
+    var type = CometType.randomType(levelFactor: gameData.levelFactor)
+    
+    if type == .Award && hasEmitterOfType(.Award) {
+      type = CometType.randomType(levelFactor: gameData.levelFactor, exceptTypes: [.Award])
+    }
+    
+    return type
+  }
+
+  private func hasEmitterOfType(type: CometType) -> Bool {
+    return contains(emitters) { $0.type == type }
   }
 }

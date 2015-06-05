@@ -28,7 +28,3 @@ func nodeWithCategoryBitMask(categoryBitMask: UInt32, inBodies bodies: [SKPhysic
 func areBits(bits: UInt32, setWithBits otherBits: UInt32) -> Bool {
   return bits & otherBits == otherBits
 }
-
-func pointBetweenPoint(pointA: CGPoint, andPoint pointB: CGPoint) -> CGPoint {
-  return CGPoint(x: (pointA.x + pointB.x) / 2, y: (pointA.y + pointB.y) / 2)
-}
