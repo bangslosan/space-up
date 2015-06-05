@@ -8,6 +8,9 @@
 
 import UIKit
 
+// MARK: - Domain
+let MainBundleIdentifier = NSBundle.mainBundle().bundleIdentifier!
+
 // MARK: - Size
 let SceneSize = CGSize(width: 768, height: 1024)
 let WorldArea = CGRect(x: 0, y: 0, width: SceneSize.width * 2, height: SceneSize.height)
@@ -15,6 +18,7 @@ let WorldArea = CGRect(x: 0, y: 0, width: SceneSize.width * 2, height: SceneSize
 // MARK: - Notification
 let DidRequestStartGameNotification = "DidRequestStartGameNotification"
 let DidRequestQuitGameNotification = "DidRequestQuitGameNotification"
+let DidRequestLeaderboardNotification = "DidRequestLeaderboardNotification"
 let DidPauseGameNotification = "DidPauseGameNotification"
 let DidResumeGameNotification = "DidResumeGameNotification"
 

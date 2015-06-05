@@ -6,10 +6,13 @@
 //  Copyright (c) 2015 David Chin. All rights reserved.
 //
 
-import UIKit
 import SpriteKit
+import GameKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, GameCenterManagerDelegate, GameSceneDelegate {
+  // MARK - Immutable vars
+  let gameCenterManager = GameCenterManager()
+
   // MARK: - Computed vars
   var skView: SKView! {
     return view as? SKView
@@ -31,6 +34,11 @@ class GameViewController: UIViewController {
     
     // Present scene
     presentStartScene()
+    
+    // Authenticate GameCenter
+    // TODO: Loading spinner
+    gameCenterManager.delegate = self
+    gameCenterManager.authenticateLocalPlayer()
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -38,6 +46,7 @@ class GameViewController: UIViewController {
     
     notificationCenter.addObserver(self, selector: "didRequestStartGameNotification:", name: DidRequestStartGameNotification, object: nil)
     notificationCenter.addObserver(self, selector: "didRequestQuitGameNotification:", name: DidRequestQuitGameNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "didRequestLeaderboardNotification:", name: DidRequestLeaderboardNotification, object: nil)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -67,6 +76,7 @@ class GameViewController: UIViewController {
   func presentGameScene() -> GameScene {
     let scene = GameScene(size: SceneSize)
     scene.scaleMode = .AspectFill
+    scene.gameSceneDelegate = self
     
     skView.presentScene(scene)
     
@@ -80,5 +90,50 @@ class GameViewController: UIViewController {
   
   func didRequestQuitGameNotification(notification: NSNotification) {
     presentStartScene()
+  }
+  
+  func didRequestLeaderboardNotification(notification: NSNotification) {
+    if gameCenterManager.leaderboardIdentifier == nil {
+      return
+    }
+    
+    presentLeaderboardViewControllerWithIdentifier(gameCenterManager.leaderboardIdentifier!)
+  }
+  
+  // MARK: - Leaderboard
+  func presentLeaderboardViewControllerWithIdentifier(identifier: String) -> GKGameCenterViewController {
+    let leaderboardViewController = GKGameCenterViewController()
+    
+    leaderboardViewController.gameCenterDelegate = self
+    leaderboardViewController.viewState = .Leaderboards
+    leaderboardViewController.leaderboardIdentifier = identifier
+    
+    presentViewController(leaderboardViewController, animated: true, completion: nil)
+    
+    return leaderboardViewController
+  }
+  
+  // MARK: - GKGameCenterControllerDelegate
+  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+    gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  // MARK: - GameCenterManagerDelegate
+  func gameCenterManager(manager: GameCenterManager, didProvideViewController viewController: UIViewController) {
+    presentViewController(viewController, animated: true, completion: nil)
+  }
+  
+  func gameCenterManager(manager: GameCenterManager, didAuthenticateLocalPlayer: Bool) {
+    if didAuthenticateLocalPlayer {
+      // TODO: Loading spinner
+      gameCenterManager.loadDefaultLeaderboardIdentifier()
+    }
+  }
+  
+  // MARK: - GameSceneDelegate
+  func gameScene(gameScene: GameScene, didEndGameWithScore score: CGFloat) {
+    let scoreValue = Int64(round(score))
+
+    gameCenterManager.reportScoreValue(scoreValue)
   }
 }

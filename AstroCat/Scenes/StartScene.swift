@@ -11,6 +11,7 @@ import SpriteKit
 class StartScene: SKScene, ButtonDelegate {
   // MARK: - Immutable var
   let startButton = TextButtonNode(size: CGSize(width: 300, height: 60))
+  let leaderboardButton = TextButtonNode(size: CGSize(width: 300, height: 60))
   
   // MARK: - View
   override func didMoveToView(view: SKView) {
@@ -21,12 +22,27 @@ class StartScene: SKScene, ButtonDelegate {
     startButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY)
     startButton.delegate = self
     addChild(startButton)
+    
+    // Leaderboard button
+    leaderboardButton.label.text = "Leaderboard"
+    leaderboardButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY - 100)
+    leaderboardButton.delegate = self
+    addChild(leaderboardButton)
   }
   
   // MARK: - ButtonDelegate
   func touchBeganForButton(button: ButtonNode) {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     
-    notificationCenter.postNotificationName(DidRequestStartGameNotification, object: self)
+    switch button {
+    case startButton:
+      notificationCenter.postNotificationName(DidRequestStartGameNotification, object: self)
+    
+    case leaderboardButton:
+      notificationCenter.postNotificationName(DidRequestLeaderboardNotification, object: self)
+      
+    default:
+      break
+    }
   }
 }

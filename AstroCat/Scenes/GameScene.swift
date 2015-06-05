@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
   
   // MARK: - Vars
+  weak var gameSceneDelegate: GameSceneDelegate?
   var gameData = GameData.sharedGameData
   var gameStarted = false
   var godMode = false
@@ -144,6 +145,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   func endGame() {
     gameData.updateTopScore()
     gameData.saveToArchive()
+    
+    // Delegate
+    gameSceneDelegate?.gameScene?(self, didEndGameWithScore: gameData.score)
     
     // Kill player
     world.player.kill()
