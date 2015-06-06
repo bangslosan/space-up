@@ -21,6 +21,7 @@ let DidRequestQuitGameNotification = "DidRequestQuitGameNotification"
 let DidRequestLeaderboardNotification = "DidRequestLeaderboardNotification"
 let DidPauseGameNotification = "DidPauseGameNotification"
 let DidResumeGameNotification = "DidResumeGameNotification"
+let DidEndGameNotifiation = "DidEndGameNotifiation"
 
 // MARK: - Archive
 let GameDataArchiveName = "GameData"

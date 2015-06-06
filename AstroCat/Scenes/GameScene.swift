@@ -18,19 +18,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   let cometPopulator = CometPopulator()
   
   // MARK: - Vars
+  weak var endGameView: EndGameView?
+  weak var pauseMenu: PauseMenuView?
   weak var gameSceneDelegate: GameSceneDelegate?
   var gameData = GameData.dataFromArchive()
   var gameStarted = false
   var godMode = false
-
-  lazy var pauseMenu: PauseMenuNode = {
-    let pauseMenu = PauseMenuNode(size: SceneSize)
-    
-    pauseMenu.resumeButton.delegate = self
-    pauseMenu.quitButton.delegate = self
-    
-    return pauseMenu
-  }()
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
@@ -127,6 +120,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.player.shouldMove = false
   }
   
+  // MARK: - Views
+  func presentPauseMenu() -> PauseMenuView {
+    let pauseMenu = PauseMenuView(size: SceneSize)
+    
+    pauseMenu.zPosition = 1000
+    pauseMenu.resumeButton.delegate = self
+    pauseMenu.quitButton.delegate = self
+
+    addChildIfNeeded(pauseMenu)
+    
+    return pauseMenu
+  }
+  
+  func presentEndGameView() -> EndGameView {
+    let endGameView = EndGameView(size: SceneSize)
+    
+    endGameView.zPosition = 1000
+    endGameView.continueButton.delegate = self
+    endGameView.quitButton.delegate = self
+    endGameView.updateWithGameData(gameData)
+
+    addChild(endGameView)
+    
+    return endGameView
+  }
+  
   // MARK: - Gameflow
   func startGame() {
     // Comets
@@ -158,17 +177,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.player.kill()
     gameStarted = false
 
-    // Alert
-    if let controller = UIApplication.sharedApplication().delegate?.window??.rootViewController {
-      let alertController = UIAlertController(title: "Game Over", message: "Sorry, please start again", preferredStyle: .Alert)
-      let alertAction = UIAlertAction(title: "OK", style: .Default) { _ in
-        self.startGame()
-      }
-      
-      alertController.addAction(alertAction)
-      
-      controller.presentViewController(alertController, animated: true, completion: nil)
-    }
+    // End view
+    endGameView = presentEndGameView()
+  }
+  
+  func continueGame() {
+    endGameView?.removeFromParent()
+    
+    startGame()
   }
   
   func togglePauseGame() {
@@ -181,11 +197,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     view?.paused = paused
     
     if paused {
-      addChildIfNeeded(pauseMenu)
-      
+      pauseMenu = presentPauseMenu()
+
       notificationCenter.postNotificationName(DidPauseGameNotification, object: self)
     } else {
-      pauseMenu.removeFromParent()
+      pauseMenu?.removeFromParent()
+      pauseMenu = nil
       
       notificationCenter.postNotificationName(DidResumeGameNotification, object: self)
     }
@@ -193,20 +210,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - ButtonDelegate
   func touchBeganForButton(button: ButtonNode) {
-    switch button {
-    case pauseButton:
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+
+    if button == pauseButton {
       togglePauseGame()
-      
-    case pauseMenu.resumeButton:
+    } else if button == pauseMenu?.resumeButton {
       pauseGame(false)
-      
-    case pauseMenu.quitButton:
-      let notificationCenter = NSNotificationCenter.defaultCenter()
-      
+    } else if button == pauseMenu?.quitButton || button == endGameView?.quitButton {
       notificationCenter.postNotificationName(DidRequestQuitGameNotification, object: self)
-      
-    default:
-      break
+    } else if button == endGameView?.continueButton {
+      continueGame()
     }
   }
   

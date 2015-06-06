@@ -1,5 +1,5 @@
 //
-//  PauseMenuNode.swift
+//  PauseMenuView.swift
 //  AstroCat
 //
 //  Created by David Chin on 26/05/2015.
@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class PauseMenuNode: SKShapeNode {
+class PauseMenuView: SKShapeNode {
   // MARK: - Immutable var
   let resumeButton = TextButtonNode(size: CGSize(width: 300, height: 60))
   let quitButton = TextButtonNode(size: CGSize(width: 300, height: 60))
@@ -24,7 +24,6 @@ class PauseMenuNode: SKShapeNode {
     
     // Config
     userInteractionEnabled = true
-    zPosition = 1000
     
     // Resume
     resumeButton.label.text = "Resume"
