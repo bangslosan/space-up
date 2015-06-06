@@ -27,3 +27,6 @@ let DidStartGameNotification = "DidStartGameNotification"
 
 // MARK: - Archive
 let GameDataArchiveName = "GameData"
+
+// MARK: - iAd
+let MinimumNumberOfRetriesBeforePresentingAd: UInt = 3

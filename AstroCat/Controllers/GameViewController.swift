@@ -15,8 +15,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   let gameCenterManager = GameCenterManager()
   
   // MARK: - Vars
-  var interstitialAdView: InterstitialAdView?
-  var interstitialAd: ADInterstitialAd?
+  private var interstitialAdView: InterstitialAdView?
+  private var interstitialAd: ADInterstitialAd?
+  private var numberOfRetriesSinceLastAd: UInt = 0
 
   // MARK: - Computed vars
   var skView: SKView! {
@@ -115,8 +116,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     let gameScene = notification.object as? GameScene
 
     // Show ad or restart game
-    if !presentInterstitialAd() {
+    if numberOfRetriesSinceLastAd < MinimumNumberOfRetriesBeforePresentingAd || !presentInterstitialAd() {
+      numberOfRetriesSinceLastAd++
+
       gameScene?.startGame()
+    } else {
+      numberOfRetriesSinceLastAd = 0
     }
   }
   
