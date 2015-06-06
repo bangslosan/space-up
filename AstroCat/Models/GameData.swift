@@ -30,23 +30,6 @@ class GameData: NSObject, NSCoding {
   }
   
   // MARK: - Computed vars
-  class var sharedGameData: GameData {
-    struct Static {
-      static let instance = GameData.dataFromArchive()
-    }
-    
-    return Static.instance
-  }
-  
-  class func dataFromArchive() -> GameData {
-    if let data = NSData(contentsOfURL: fileURL),
-      gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameData {
-        return gameData
-    }
-    
-    return GameData()
-  }
-  
   var level: UInt {
     let base: CGFloat = 1.1
     let offset: CGFloat = 100 // 30
@@ -62,6 +45,15 @@ class GameData: NSObject, NSCoding {
   }
   
   // MARK: - Init
+  class func dataFromArchive() -> GameData {
+    if let data = NSData(contentsOfURL: fileURL),
+      gameData = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? GameData {
+        return gameData
+    }
+    
+    return GameData()
+  }
+
   override init() {
     super.init()
   }

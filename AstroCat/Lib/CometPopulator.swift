@@ -10,9 +10,9 @@ import SpriteKit
 
 class CometPopulator {
   weak var world: WorldNode?
+  weak var dataSource: GameDataSource?
   
   var emitters = [CometEmitter]()
-  var gameData = GameData.sharedGameData
 
   init() {
   }
@@ -24,7 +24,7 @@ class CometPopulator {
   }
 
   func addEmittersIfNeeded() {
-    if let world = world, scene = world.scene {
+    if let world = world, scene = world.scene, gameData = dataSource?.gameData {
       var lastToPosition: CGPoint?
       
       if let lastEmitter = emitters.last {
@@ -36,9 +36,9 @@ class CometPopulator {
         
         if let emitter = addEmitter(fromPosition, toPosition: toPosition) {
           if toPosition.y > scene.frame.maxY {
-            emitter.startEmitAt(CGFloat.random(min: 0.5, max: 1))
+            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0.5, max: 1))
           } else {
-            emitter.startEmitAt(1)
+            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: 1)
           }
         }
       }
@@ -97,7 +97,7 @@ class CometPopulator {
   }
   
   func addEmitter(fromPosition: CGPoint, toPosition: CGPoint) -> CometEmitter? {
-    if let world = world, scene = world.scene {
+    if let world = world, scene = world.scene, gameData = dataSource?.gameData {
       let speedOffset = gameData.levelFactor * -100
       let speed = CGFloat.random(min: 200 + speedOffset, max: 400 + speedOffset)
       let type = randomCometType()
@@ -120,10 +120,11 @@ class CometPopulator {
   
   // MARK: - Type
   private func randomCometType() -> CometType {
-    var type = CometType.randomType(levelFactor: gameData.levelFactor)
+    let levelFactor = dataSource?.gameData.levelFactor ?? 0
+    var type = CometType.randomType(levelFactor: levelFactor)
     
     if type == .Award && hasEmitterOfType(.Award) {
-      type = CometType.randomType(levelFactor: gameData.levelFactor, exceptTypes: [.Award])
+      type = CometType.randomType(levelFactor: levelFactor, exceptTypes: [.Award])
     }
     
     return type

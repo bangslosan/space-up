@@ -8,17 +8,18 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegate, GameDataSource {
   // MARK: - Immutable var
   let world = WorldNode()
   let hud = HUDNode()
   let pauseButton = IconButtonNode(circleOfRadius: 30)
   let background = SceneBackgroundNode()
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
+  let cometPopulator = CometPopulator()
   
   // MARK: - Vars
   weak var gameSceneDelegate: GameSceneDelegate?
-  var gameData = GameData.sharedGameData
+  var gameData = GameData.dataFromArchive()
   var gameStarted = false
   var godMode = false
 
@@ -42,6 +43,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // World
     world.delegate = self
     addChild(world)
+    
+    // Populator
+    cometPopulator.world = world
+    cometPopulator.dataSource = self
     
     // Backgrounds
     addChild(background)
@@ -86,6 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       world.player.updateDistanceTravelled()
 
       gameData.updateScoreForPlayer(world.player)
+      hud.updateWithGameData(gameData)
     }
     
     if world.player.isAlive {
@@ -95,9 +101,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         world.player.brake()
       }
     }
-    
-    // HUD
-    hud.update()
   }
   
   // MARK: - Update
@@ -110,7 +113,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     // Comet
     if world.player.isAlive {
-      world.cometPopulator.update()
+      cometPopulator.update()
     }
   }
   
@@ -126,10 +129,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Gameflow
   func startGame() {
+    // Comets
+    cometPopulator.removeAllEmitters()
+
     // Player
-    world.player.position = CGPoint(x: frame.midX, y: world.ground.frame.maxY)
     world.camera.position = CGPointZero
-    world.cometPopulator.removeAllEmitters()
+    world.player.position = CGPoint(x: frame.midX, y: world.ground.frame.maxY)
     world.player.respawn()
     world.followPlayer()
     

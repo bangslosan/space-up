@@ -13,16 +13,12 @@ class WorldNode: SKNode {
   let camera = CameraNode()
   let player = PlayerNode()
   let ground = GroundNode(size: CGSize(width: SceneSize.width, height: 200))
-  let cometPopulator = CometPopulator()
   
   // MARK: - Vars
   weak var delegate: WorldDelegate?
   
   override init() {
     super.init()
-    
-    // Populator
-    cometPopulator.world = self
 
     // Camera
     addChild(camera)

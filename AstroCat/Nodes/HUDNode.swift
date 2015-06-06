@@ -12,10 +12,6 @@ class HUDNode: SKNode {
   // MARK: - Immutable var
   let scoreLabel = SKLabelNode(fontNamed: "HelveticaNeue")
   let topScoreLabel = SKLabelNode(fontNamed: "HelveticaNeue")
-  // let energyLabel = SKLabelNode(fontNamed: "HelveticaNeue")
-  
-  // MARK: - Var
-  var gameData = GameData.sharedGameData
   
   // MARK: - Init
   override init() {
@@ -33,18 +29,6 @@ class HUDNode: SKNode {
     scoreLabel.horizontalAlignmentMode = .Left
     scoreLabel.position = CGPoint(x: 20, y: -100)
     addChild(scoreLabel)
-    
-    /*
-    // Energy
-    energyLabel.color = UIColor.greenColor()
-    energyLabel.colorBlendFactor = 1
-    energyLabel.horizontalAlignmentMode = .Left
-    energyLabel.position = CGPoint(x: 20, y: -150)
-    addChild(energyLabel)
-    */
-    
-    // Update
-    update()
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -52,7 +36,7 @@ class HUDNode: SKNode {
   }
   
   // MARK: - Data
-  func update() {
+  func updateWithGameData(gameData: GameData) {
     let numberFormatter = NSNumberFormatter()
     
     // Configure number formatter
@@ -61,7 +45,5 @@ class HUDNode: SKNode {
     
     topScoreLabel.text = numberFormatter.stringFromNumber(gameData.topScore) ?? "0"
     scoreLabel.text = numberFormatter.stringFromNumber(gameData.score) ?? "0"
-    
-    // energyLabel.text = numberFormatter.stringFromNumber(gameData.energy) ?? "0"
   }
 }
