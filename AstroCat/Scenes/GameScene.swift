@@ -166,7 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     gameStarted = true
     
     // Notify
-    NSNotificationCenter.defaultCenter().postNotificationName(DidStartGameNotification, object: self)
+    gameSceneDelegate?.gameSceneDidStart?(self)
   }
   
   func endGame() {
@@ -174,7 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     gameData.saveToArchive()
     
     // Delegate
-    gameSceneDelegate?.gameScene?(self, didEndGameWithScore: gameData.score)
+    gameSceneDelegate?.gameSceneDidEnd?(self)
     
     // Kill player
     world.player.kill()
@@ -182,16 +182,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
     // End view
     endGameView = presentEndGameView()
-    
-    // Notify
-    NSNotificationCenter.defaultCenter().postNotificationName(DidEndGameNotification, object: self)
   }
   
   func continueGame() {
     endGameView?.removeFromParent()
-    
-    // Notify
-    NSNotificationCenter.defaultCenter().postNotificationName(DidRequestRetryGameNotification, object: self)
+    gameSceneDelegate?.gameSceneDidRequestRetry?(self)
   }
   
   func togglePauseGame() {
@@ -205,13 +200,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     if paused {
       pauseMenu = presentPauseMenu()
-
-      notificationCenter.postNotificationName(DidPauseGameNotification, object: self)
+      
+      gameSceneDelegate?.gameSceneDidPause?(self)
     } else {
       pauseMenu?.removeFromParent()
       pauseMenu = nil
       
-      notificationCenter.postNotificationName(DidResumeGameNotification, object: self)
+      gameSceneDelegate?.gameSceneDidResume?(self)
     }
   }
   
@@ -224,7 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     } else if button == pauseMenu?.resumeButton {
       pauseGame(false)
     } else if button == pauseMenu?.quitButton || button == endGameView?.quitButton {
-      notificationCenter.postNotificationName(DidRequestQuitGameNotification, object: self)
+      gameSceneDelegate?.gameSceneDidRequestQuit?(self)
     } else if button == endGameView?.continueButton {
       continueGame()
     }

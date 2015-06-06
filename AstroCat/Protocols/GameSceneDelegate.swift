@@ -9,5 +9,12 @@
 import SpriteKit
 
 @objc protocol GameSceneDelegate {
-  optional func gameScene(gameScene: GameScene, didEndGameWithScore score: CGFloat)
+  optional func gameSceneDidRequestStart(gameScene: GameScene)
+  optional func gameSceneDidRequestRetry(gameScene: GameScene)
+  optional func gameSceneDidRequestQuit(gameScene: GameScene)
+  optional func gameSceneDidRequestLeaderboard(gameScene: GameScene)
+  optional func gameSceneDidPause(gameScene: GameScene)
+  optional func gameSceneDidResume(gameScene: GameScene)
+  optional func gameSceneDidEnd(gameScene: GameScene)
+  optional func gameSceneDidStart(gameScene: GameScene)
 }

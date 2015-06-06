@@ -10,7 +10,7 @@ import SpriteKit
 import GameKit
 import iAd
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate {
   // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
   
@@ -50,23 +50,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     gameCenterManager.authenticateLocalPlayer()
   }
   
-  override func viewWillAppear(animated: Bool) {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    
-    notificationCenter.addObserver(self, selector: "didRequestStartGameNotification:", name: DidRequestStartGameNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "didRequestQuitGameNotification:", name: DidRequestQuitGameNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "didRequestLeaderboardNotification:", name: DidRequestLeaderboardNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "didRequestRetryGameNotification:", name: DidRequestRetryGameNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "didEndGameNotification:", name: DidEndGameNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "didStartGameNotification:", name: DidStartGameNotification, object: nil)
-  }
-  
-  override func viewWillDisappear(animated: Bool) {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    
-    notificationCenter.removeObserver(self)
-  }
-  
   override func shouldAutorotate() -> Bool {
     return true
   }
@@ -79,6 +62,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   func presentStartScene() -> StartScene {
     let scene = StartScene(size: SceneSize)
     scene.scaleMode = .AspectFill
+    scene.startSceneDelegate = self
     
     skView.presentScene(scene)
     
@@ -93,43 +77,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     skView.presentScene(scene)
     
     return scene
-  }
-  
-  // MARK: - Notification
-  func didRequestStartGameNotification(notification: NSNotification) {
-    presentGameScene()
-  }
-  
-  func didRequestQuitGameNotification(notification: NSNotification) {
-    presentStartScene()
-  }
-  
-  func didRequestLeaderboardNotification(notification: NSNotification) {
-    if gameCenterManager.leaderboardIdentifier == nil {
-      return
-    }
-    
-    presentLeaderboardViewControllerWithIdentifier(gameCenterManager.leaderboardIdentifier!)
-  }
-  
-  func didRequestRetryGameNotification(notification: NSNotification) {
-    let gameScene = notification.object as? GameScene
-
-    // Show ad or restart game
-    if numberOfRetriesSinceLastAd < MinimumNumberOfRetriesBeforePresentingAd || !presentInterstitialAd() {
-      numberOfRetriesSinceLastAd++
-
-      gameScene?.startGame()
-    } else {
-      numberOfRetriesSinceLastAd = 0
-    }
-  }
-  
-  func didEndGameNotification(notification: NSNotification) {
-  }
-  
-  func didStartGameNotification(notification: NSNotification) {
-    prepareInterstitialAd()
   }
   
   // MARK: - Leaderboard
@@ -204,10 +151,40 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - GameSceneDelegate
-  func gameScene(gameScene: GameScene, didEndGameWithScore score: CGFloat) {
-    let scoreValue = Int64(round(score))
+  func gameSceneDidEnd(gameScene: GameScene) {
+    let scoreValue = Int64(round(gameScene.gameData.score))
 
     gameCenterManager.reportScoreValue(scoreValue)
+  }
+  
+  func gameSceneDidStart(gameScene: GameScene) {
+    prepareInterstitialAd()
+  }
+  
+  func gameSceneDidRequestRetry(gameScene: GameScene) {
+    // Show ad or restart game
+    if numberOfRetriesSinceLastAd < MinimumNumberOfRetriesBeforePresentingAd || !presentInterstitialAd() {
+      numberOfRetriesSinceLastAd++
+      
+      gameScene.startGame()
+    } else {
+      numberOfRetriesSinceLastAd = 0
+    }
+  }
+  
+  func gameSceneDidRequestQuit(gameScene: GameScene) {
+    presentStartScene()
+  }
+  
+  // MARK: - StartSceneDelegate
+  func startSceneDidRequestStart(startScene: StartScene) {
+    presentGameScene()
+  }
+
+  func startSceneDidRequestLeaderboard(startScene: StartScene) {
+    if let leaderboardIdentifier = gameCenterManager.leaderboardIdentifier {
+      presentLeaderboardViewControllerWithIdentifier(leaderboardIdentifier)
+    }
   }
   
   // MARK: - ADInterstitialAdDelegate

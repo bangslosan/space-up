@@ -79,6 +79,7 @@
 		EB0212BE1B228E570087B2E6 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0212BD1B228E570087B2E6 /* iAd.framework */; };
 		EB0212C01B22B1820087B2E6 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212BF1B22B1820087B2E6 /* EndGameView.swift */; };
 		EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */; };
+		EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,7 @@
 		EB0212BD1B228E570087B2E6 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		EB0212BF1B22B1820087B2E6 /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = Nodes/EndGameView.swift; sourceTree = "<group>"; };
 		EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterstitialAdView.swift; path = Views/InterstitialAdView.swift; sourceTree = "<group>"; };
+		EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartSceneDelegate.swift; path = Protocols/StartSceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				EB0212B31B22706D0087B2E6 /* GameCenterManagerDelegate.swift */,
 				EB0212BB1B22859F0087B2E6 /* GameDataSource.swift */,
 				EB0212B51B22708C0087B2E6 /* GameSceneDelegate.swift */,
+				EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */,
 				EB0212681B1DD7D90087B2E6 /* WorldDelegate.swift */,
 			);
 			name = Protocols;
@@ -547,6 +550,7 @@
 				EB0212521B1DD4010087B2E6 /* CameraNode.swift in Sources */,
 				EB0212481B1DD3B50087B2E6 /* CGSizeExtension.swift in Sources */,
 				EB0212571B1DD4330087B2E6 /* Constants.swift in Sources */,
+				EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */,
 				EB0212361B1DD3A00087B2E6 /* SKAction+Extensions.swift in Sources */,
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
 				EB0212961B1F127C0087B2E6 /* ShieldNode.swift in Sources */,

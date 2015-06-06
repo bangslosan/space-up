@@ -9,6 +9,9 @@
 import SpriteKit
 
 class StartScene: SKScene, ButtonDelegate {
+  // MARK: - Vars
+  weak var startSceneDelegate: StartSceneDelegate?
+
   // MARK: - Immutable var
   let startButton = TextButtonNode(size: CGSize(width: 300, height: 60))
   let leaderboardButton = TextButtonNode(size: CGSize(width: 300, height: 60))
@@ -36,10 +39,10 @@ class StartScene: SKScene, ButtonDelegate {
     
     switch button {
     case startButton:
-      notificationCenter.postNotificationName(DidRequestStartGameNotification, object: self)
+      startSceneDelegate?.startSceneDidRequestStart?(self)
     
     case leaderboardButton:
-      notificationCenter.postNotificationName(DidRequestLeaderboardNotification, object: self)
+      startSceneDelegate?.startSceneDidRequestLeaderboard?(self)
       
     default:
       break
