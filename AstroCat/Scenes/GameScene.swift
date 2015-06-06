@@ -164,6 +164,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Data
     gameData.reset()
     gameStarted = true
+    
+    // Notify
+    NSNotificationCenter.defaultCenter().postNotificationName(DidStartGameNotification, object: self)
   }
   
   func endGame() {
@@ -181,15 +184,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     endGameView = presentEndGameView()
     
     // Notify
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    
-    notificationCenter.postNotificationName(DidEndGameNotifiation, object: self)
+    NSNotificationCenter.defaultCenter().postNotificationName(DidEndGameNotification, object: self)
   }
   
   func continueGame() {
     endGameView?.removeFromParent()
     
-    startGame()
+    // Notify
+    NSNotificationCenter.defaultCenter().postNotificationName(DidRequestRetryGameNotification, object: self)
   }
   
   func togglePauseGame() {

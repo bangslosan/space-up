@@ -31,8 +31,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    // Configure controller
-    // interstitialPresentationPolicy = .Manual
+    // iAd
+    interstitialPresentationPolicy = .Manual
     
     // Configure the view.
     skView.showsFPS = true
@@ -55,7 +55,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     notificationCenter.addObserver(self, selector: "didRequestStartGameNotification:", name: DidRequestStartGameNotification, object: nil)
     notificationCenter.addObserver(self, selector: "didRequestQuitGameNotification:", name: DidRequestQuitGameNotification, object: nil)
     notificationCenter.addObserver(self, selector: "didRequestLeaderboardNotification:", name: DidRequestLeaderboardNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "didEndGameNotification:", name: DidEndGameNotifiation, object: nil)
+    notificationCenter.addObserver(self, selector: "didRequestRetryGameNotification:", name: DidRequestRetryGameNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "didEndGameNotification:", name: DidEndGameNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "didStartGameNotification:", name: DidStartGameNotification, object: nil)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -109,8 +111,20 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentLeaderboardViewControllerWithIdentifier(gameCenterManager.leaderboardIdentifier!)
   }
   
+  func didRequestRetryGameNotification(notification: NSNotification) {
+    let gameScene = notification.object as? GameScene
+
+    // Show ad or restart game
+    if !presentInterstitialAd() {
+      gameScene?.startGame()
+    }
+  }
+  
   func didEndGameNotification(notification: NSNotification) {
-    presentInterstitialAd()
+  }
+  
+  func didStartGameNotification(notification: NSNotification) {
+    prepareInterstitialAd()
   }
   
   // MARK: - Leaderboard
@@ -127,17 +141,42 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - Ad
-  func presentInterstitialAd() {
-    if presentingFullScreenAd || interstitialAd != nil {
-      return
-    }
-
+  func prepareInterstitialAd() {
     interstitialAd = ADInterstitialAd()
     interstitialAd!.delegate = self
   }
+
+  func presentInterstitialAd() -> Bool {
+    if interstitialAd?.loaded == true {
+      // Container view
+      interstitialAdView = InterstitialAdView(frame: skView.bounds)
+      interstitialAdView!.closeButton.addTarget(self, action: "closeInterstitialAd", forControlEvents: .TouchUpInside)
+      skView.addSubview(interstitialAdView!)
+      
+      // Present ad in view
+      interstitialAdView!.presentInterstitialAd(interstitialAd!)
+      
+      return true
+    } else {
+      println("Ad not loaded")
+
+      return false
+    }
+  }
   
   func closeInterstitialAd() {
+    // Clean up
     interstitialAdView?.removeFromSuperview()
+    resetInterstitialAd()
+    
+    // Restart game
+    if let gameScene = skView.scene as? GameScene {
+      gameScene.startGame()
+    }
+  }
+  
+  func resetInterstitialAd() {
+    interstitialAd?.delegate = nil
     interstitialAd = nil
     interstitialAdView = nil
   }
@@ -167,22 +206,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - ADInterstitialAdDelegate
-  func interstitialAdDidLoad(interstitialAd: ADInterstitialAd!) {
-    // Container view
-    interstitialAdView = InterstitialAdView(frame: skView.bounds)
-    interstitialAdView!.closeButton.addTarget(self, action: "closeInterstitialAd", forControlEvents: .TouchUpInside)
-    skView.addSubview(interstitialAdView!)
-    
-    // Present ad in view
-    interstitialAdView!.presentInterstitialAd(interstitialAd)
-  }
-
   func interstitialAdDidUnload(interstitialAd: ADInterstitialAd!) {
-    closeInterstitialAd()
+    resetInterstitialAd()
   }
   
   func interstitialAd(interstitialAd: ADInterstitialAd!, didFailWithError error: NSError!) {
-    closeInterstitialAd()
+    resetInterstitialAd()
+    
+    println(error)
+  }
+
+  func interstitialAdDidLoad(interstitialAd: ADInterstitialAd!) {
+    println("Ad loaded")
   }
   
   func interstitialAdActionDidFinish(interstitialAd: ADInterstitialAd!) {
