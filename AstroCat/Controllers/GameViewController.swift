@@ -8,8 +8,9 @@
 
 import SpriteKit
 import GameKit
+import iAd
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, GameCenterManagerDelegate, GameSceneDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBannerViewDelegate, GameCenterManagerDelegate, GameSceneDelegate {
   // MARK - Immutable vars
   let gameCenterManager = GameCenterManager()
 
@@ -34,6 +35,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     
     // Present scene
     presentStartScene()
+    
+    // Present ad
+    let adView = ADBannerView(adType: .Banner)
+    adView.delegate = self
+    skView.addSubview(adView)
     
     // Authenticate GameCenter
     // TODO: Loading spinner
@@ -135,5 +141,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, Game
     let scoreValue = Int64(round(score))
 
     gameCenterManager.reportScoreValue(scoreValue)
+  }
+  
+  // MARK: - ADBannerViewDelegate
+  func bannerViewDidLoadAd(banner: ADBannerView!) {
+    banner.frame.origin.y = skView.frame.height - banner.frame.height
+  }
+  
+  func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+    
+  }
+  
+  func bannerViewActionDidFinish(banner: ADBannerView!) {
+    
   }
 }
