@@ -179,6 +179,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
     // End view
     endGameView = presentEndGameView()
+    
+    // Notify
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    
+    notificationCenter.postNotificationName(DidEndGameNotifiation, object: self)
   }
   
   func continueGame() {

@@ -10,9 +10,13 @@ import SpriteKit
 import GameKit
 import iAd
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBannerViewDelegate, GameCenterManagerDelegate, GameSceneDelegate {
-  // MARK - Immutable vars
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate {
+  // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
+  
+  // MARK: - Vars
+  var interstitialAdView: InterstitialAdView?
+  var interstitialAd: ADInterstitialAd?
 
   // MARK: - Computed vars
   var skView: SKView! {
@@ -27,6 +31,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBa
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Configure controller
+    // interstitialPresentationPolicy = .Manual
+    
     // Configure the view.
     skView.showsFPS = true
     skView.showsNodeCount = true
@@ -35,11 +42,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBa
     
     // Present scene
     presentStartScene()
-    
-    // Present ad
-    let adView = ADBannerView(adType: .Banner)
-    adView.delegate = self
-    skView.addSubview(adView)
     
     // Authenticate GameCenter
     // TODO: Loading spinner
@@ -53,6 +55,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBa
     notificationCenter.addObserver(self, selector: "didRequestStartGameNotification:", name: DidRequestStartGameNotification, object: nil)
     notificationCenter.addObserver(self, selector: "didRequestQuitGameNotification:", name: DidRequestQuitGameNotification, object: nil)
     notificationCenter.addObserver(self, selector: "didRequestLeaderboardNotification:", name: DidRequestLeaderboardNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "didEndGameNotification:", name: DidEndGameNotifiation, object: nil)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -106,6 +109,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBa
     presentLeaderboardViewControllerWithIdentifier(gameCenterManager.leaderboardIdentifier!)
   }
   
+  func didEndGameNotification(notification: NSNotification) {
+    presentInterstitialAd()
+  }
+  
   // MARK: - Leaderboard
   func presentLeaderboardViewControllerWithIdentifier(identifier: String) -> GKGameCenterViewController {
     let leaderboardViewController = GKGameCenterViewController()
@@ -117,6 +124,22 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBa
     presentViewController(leaderboardViewController, animated: true, completion: nil)
     
     return leaderboardViewController
+  }
+  
+  // MARK: - Ad
+  func presentInterstitialAd() {
+    if presentingFullScreenAd || interstitialAd != nil {
+      return
+    }
+
+    interstitialAd = ADInterstitialAd()
+    interstitialAd!.delegate = self
+  }
+  
+  func closeInterstitialAd() {
+    interstitialAdView?.removeFromSuperview()
+    interstitialAd = nil
+    interstitialAdView = nil
   }
   
   // MARK: - GKGameCenterControllerDelegate
@@ -143,16 +166,26 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADBa
     gameCenterManager.reportScoreValue(scoreValue)
   }
   
-  // MARK: - ADBannerViewDelegate
-  func bannerViewDidLoadAd(banner: ADBannerView!) {
-    banner.frame.origin.y = skView.frame.height - banner.frame.height
+  // MARK: - ADInterstitialAdDelegate
+  func interstitialAdDidLoad(interstitialAd: ADInterstitialAd!) {
+    // Container view
+    interstitialAdView = InterstitialAdView(frame: skView.bounds)
+    interstitialAdView!.closeButton.addTarget(self, action: "closeInterstitialAd", forControlEvents: .TouchUpInside)
+    skView.addSubview(interstitialAdView!)
+    
+    // Present ad in view
+    interstitialAdView!.presentInterstitialAd(interstitialAd)
+  }
+
+  func interstitialAdDidUnload(interstitialAd: ADInterstitialAd!) {
+    closeInterstitialAd()
   }
   
-  func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-    
+  func interstitialAd(interstitialAd: ADInterstitialAd!, didFailWithError error: NSError!) {
+    closeInterstitialAd()
   }
   
-  func bannerViewActionDidFinish(banner: ADBannerView!) {
-    
+  func interstitialAdActionDidFinish(interstitialAd: ADInterstitialAd!) {
+    closeInterstitialAd()
   }
 }

@@ -78,6 +78,7 @@
 		EB0212BC1B22859F0087B2E6 /* GameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212BB1B22859F0087B2E6 /* GameDataSource.swift */; };
 		EB0212BE1B228E570087B2E6 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0212BD1B228E570087B2E6 /* iAd.framework */; };
 		EB0212C01B22B1820087B2E6 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212BF1B22B1820087B2E6 /* EndGameView.swift */; };
+		EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		EB0212BB1B22859F0087B2E6 /* GameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameDataSource.swift; path = Protocols/GameDataSource.swift; sourceTree = "<group>"; };
 		EB0212BD1B228E570087B2E6 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		EB0212BF1B22B1820087B2E6 /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = Nodes/EndGameView.swift; sourceTree = "<group>"; };
+		EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterstitialAdView.swift; path = Views/InterstitialAdView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 			children = (
 				EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */,
 				EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */,
+				EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
 				EB0212961B1F127C0087B2E6 /* ShieldNode.swift in Sources */,
 				EB0212461B1DD3B50087B2E6 /* ArrayExtension.swift in Sources */,
+				EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */,
 				EB02126C1B1DD8820087B2E6 /* GameData.swift in Sources */,
 				EB0212841B1E68E40087B2E6 /* CometPopulator.swift in Sources */,
 				EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */,
