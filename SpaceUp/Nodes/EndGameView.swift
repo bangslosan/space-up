@@ -22,7 +22,7 @@ class EndGameView: SKNode {
     super.init()
     
     // Background
-    background.fillColor = UIColor(white: 255, alpha: 0.5)
+    background.fillColor = UIColor(white: 255, alpha: 0)
     background.strokeColor = UIColor.clearColor()
     background.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
     addChild(background)

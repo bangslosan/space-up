@@ -20,6 +20,7 @@ class CometNode: SKSpriteNode {
   weak var emitter: CometEmitter?
   var enabled: Bool = true
 
+  // MARK: - Init
   init(type: CometType) {
     self.type = type
 
@@ -74,5 +75,28 @@ class CometNode: SKSpriteNode {
   
   func cancelMovement() {
     removeActionForKey(KeyForAction.moveFromPositionAction)
+  }
+  
+  // MARK: Removal
+  func removeFromEmitter() {
+    enabled = false
+    emitter?.removeComet(self)
+  }
+
+  func explodeAndRemove() {
+    if let parent = parent {
+      // Add explosion effect
+      let explosionEmitter = SKEmitterNode(fileNamed: "Explosion.sks")
+
+      explosionEmitter.position = position
+      parent.addChild(explosionEmitter)
+      
+      afterDelay(2) {
+        explosionEmitter.removeFromParent()
+      }
+    }
+    
+    // Remove itself
+    removeFromEmitter()
   }
 }

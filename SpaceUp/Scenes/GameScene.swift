@@ -276,8 +276,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
             endGame()
           }
 
-          comet.enabled = false
-          comet.emitter?.removeComet(comet)
+          comet.explodeAndRemove()
         }
       }
 

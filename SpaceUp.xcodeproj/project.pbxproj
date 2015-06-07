@@ -80,6 +80,8 @@
 		EB0212C01B22B1820087B2E6 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212BF1B22B1820087B2E6 /* EndGameView.swift */; };
 		EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */; };
 		EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */; };
+		EB05653C1B2479BF00A76297 /* Spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EB05653A1B2479BF00A76297 /* Spark.png */; };
+		EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB05653D1B247BAB00A76297 /* Explosion.sks */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
 		EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9F1B23CCFE00768015 /* Explode.wav */; };
 		EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1ECA01B23CCFE00768015 /* Meow.wav */; };
@@ -175,6 +177,8 @@
 		EB0212BF1B22B1820087B2E6 /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = Nodes/EndGameView.swift; sourceTree = "<group>"; };
 		EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterstitialAdView.swift; path = Views/InterstitialAdView.swift; sourceTree = "<group>"; };
 		EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartSceneDelegate.swift; path = Protocols/StartSceneDelegate.swift; sourceTree = "<group>"; };
+		EB05653A1B2479BF00A76297 /* Spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spark.png; sourceTree = "<group>"; };
+		EB05653D1B247BAB00A76297 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		EBB1EC9F1B23CCFE00768015 /* Explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explode.wav; path = Sounds/Explode.wav; sourceTree = "<group>"; };
 		EBB1ECA01B23CCFE00768015 /* Meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meow.wav; path = Sounds/Meow.wav; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */,
 				EB0212541B1DD42A0087B2E6 /* Configs */,
 				EB0212121B1DD1300087B2E6 /* Controllers */,
+				EB0565381B2479BF00A76297 /* Effects */,
 				EB0212231B1DD3830087B2E6 /* Extensions */,
 				EB0212791B1DEBD90087B2E6 /* Helpers */,
 				EB0212821B1E66B70087B2E6 /* Lib */,
@@ -440,6 +445,15 @@
 			name = Lib;
 			sourceTree = "<group>";
 		};
+		EB0565381B2479BF00A76297 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				EB05653A1B2479BF00A76297 /* Spark.png */,
+				EB05653D1B247BAB00A76297 /* Explosion.sks */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
 		EBB1EC9D1B23CCEC00768015 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +554,8 @@
 				EB0212A51B1F1BC60087B2E6 /* CometMedium.atlas in Resources */,
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
+				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,
+				EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */,
 				EB0212A61B1F1BC60087B2E6 /* CometSmall.atlas in Resources */,
 				EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,
