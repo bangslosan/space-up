@@ -94,4 +94,10 @@ extension SKNode {
   func hasActionForKey(key: String) -> Bool {
     return actionForKey(key) != nil
   }
+  
+  func runAction(action: SKAction, withKey key: String? = nil, when condition: Bool) {
+    if condition {
+      key == nil ? runAction(action) : runAction(action, withKey: key)
+    }
+  }
 }

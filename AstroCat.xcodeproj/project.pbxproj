@@ -83,6 +83,8 @@
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
 		EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9F1B23CCFE00768015 /* Explode.wav */; };
 		EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1ECA01B23CCFE00768015 /* Meow.wav */; };
+		EBB1ECA71B23DBEA00768015 /* KeyForUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */; };
+		EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +178,8 @@
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		EBB1EC9F1B23CCFE00768015 /* Explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explode.wav; path = Sounds/Explode.wav; sourceTree = "<group>"; };
 		EBB1ECA01B23CCFE00768015 /* Meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meow.wav; path = Sounds/Meow.wav; sourceTree = "<group>"; };
+		EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyForUserDefaults.swift; path = Types/KeyForUserDefaults.swift; sourceTree = "<group>"; };
+		EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsHelper.swift; path = Helpers/UserDefaultsHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,6 +405,7 @@
 				EB0212891B1EBE930087B2E6 /* CometType.swift */,
 				EB02125F1B1DD5760087B2E6 /* DirectionType.swift */,
 				EB0212601B1DD5760087B2E6 /* PhysicsCategory.swift */,
+				EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */,
 			);
 			name = Types;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */,
 				43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */,
 				EB0212971B1F188B0087B2E6 /* NodeHelper.swift */,
+				EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -600,9 +606,11 @@
 				EB0212811B1E65BE0087B2E6 /* CometNode.swift in Sources */,
 				EB0212181B1DD1EA0087B2E6 /* GameScene.swift in Sources */,
 				EB0212741B1DE1320087B2E6 /* GroundNode.swift in Sources */,
+				EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */,
 				EB0212761B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift in Sources */,
 				EB0212781B1DEB920087B2E6 /* BackgroundNode.swift in Sources */,
 				EB02124D1B1DD3B50087B2E6 /* UIColorExtension.swift in Sources */,
+				EBB1ECA71B23DBEA00768015 /* KeyForUserDefaults.swift in Sources */,
 				EB0212381B1DD3A00087B2E6 /* SKColor+Extensions.swift in Sources */,
 				EB02124B1B1DD3B50087B2E6 /* SKNodeExtension.swift in Sources */,
 				EB0212341B1DD3A00087B2E6 /* CGVector+Extensions.swift in Sources */,

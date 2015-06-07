@@ -10,6 +10,7 @@ import SpriteKit
 
 private struct KeyForAction {
   static let movementSoundAction = "movementSoundAction"
+  static let killSoundAction = "killSoundAction"
 }
 
 class PlayerNode: SKSpriteNode {
@@ -55,10 +56,10 @@ class PlayerNode: SKSpriteNode {
   
   // MARK: - Life
   func kill() {
-    runAction(killSoundAction)
-    
     reset()
     isAlive = false
+    
+    runAction(killSoundAction, when: isSoundEnabled())
   }
   
   func respawn() {
@@ -107,12 +108,12 @@ class PlayerNode: SKSpriteNode {
     shouldMove = true
     
     removeActionForKey(KeyForAction.movementSoundAction)
-    runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction)
+    runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
   }
-  
+
   func endMoveUpward() {
     shouldMove = false
-
+    
     removeActionForKey(KeyForAction.movementSoundAction)
   }
   
