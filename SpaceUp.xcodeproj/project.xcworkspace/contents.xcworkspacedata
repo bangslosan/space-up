@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/davidchin/src/astro-cat/SpaceUp.xcodeproj">
+      location = "self:/Users/davidchin/src/space-up/SpaceUp.xcodeproj">
    </FileRef>
 </Workspace>
