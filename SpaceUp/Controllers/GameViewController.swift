@@ -170,9 +170,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   // MARK: - GameSceneDelegate
   func gameSceneDidEnd(gameScene: GameScene) {
-    let scoreValue = Int64(round(gameScene.gameData.score))
+    if !gameScene.godMode {
+      let scoreValue = Int64(round(gameScene.gameData.score))
 
-    gameCenterManager.reportScoreValue(scoreValue)
+      gameCenterManager.reportScoreValue(scoreValue)
+    }
   }
   
   func gameSceneDidStart(gameScene: GameScene) {

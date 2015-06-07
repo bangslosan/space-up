@@ -70,6 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     notificationCenter.addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
     
     // Start Game
+    pauseGame(false)
     startGame()
   }
   
@@ -201,16 +202,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func togglePauseGame() {
-    pauseGame(paused == true ? false : true)
+    if paused {
+      pauseGame(false)
+    } else {
+      pauseGame(true)
+    }
   }
   
-  func pauseGame(paused: Bool) {
+  func pauseGame(paused: Bool, presentMenuIfNeeded: Bool = true) {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     
     view?.paused = paused
     
     if paused {
-      pauseMenu = presentPauseMenu()
+      if presentMenuIfNeeded {
+        pauseMenu = presentPauseMenu()
+      }
       
       gameSceneDelegate?.gameSceneDidPause?(self)
     } else {
