@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+private struct KeyForAction {
+  static let movementSoundAction = "movementSoundAction"
+}
+
 class PlayerNode: SKSpriteNode {
   // MARK: - Vars
   private(set) var isAlive: Bool = true
@@ -21,6 +25,14 @@ class PlayerNode: SKSpriteNode {
       isProtected ? addShield() : removeShield()
     }
   }
+  
+  lazy var movementSoundAction: SKAction = { () -> SKAction in
+    let action = SKAction.playSoundFileNamed("Meow.wav", waitForCompletion: true)
+    
+    return SKAction.repeatActionForever(action)
+  }()
+  
+  lazy var killSoundAction: SKAction = SKAction.playSoundFileNamed("Explode.wav", waitForCompletion: false)
 
   // MARK: - Init
   init() {
@@ -43,6 +55,8 @@ class PlayerNode: SKSpriteNode {
   
   // MARK: - Life
   func kill() {
+    runAction(killSoundAction)
+    
     reset()
     isAlive = false
   }
@@ -57,6 +71,9 @@ class PlayerNode: SKSpriteNode {
     isProtected = false
     shouldMove = false
     distanceTravelled = 0
+    
+    // Stop sound loop
+    removeActionForKey(KeyForAction.movementSoundAction)
   }
   
   // MARK: - Movement
@@ -84,6 +101,19 @@ class PlayerNode: SKSpriteNode {
       // Apply force
       physicsBody.applyForce(vector)
     }
+  }
+  
+  func startMoveUpward() {
+    shouldMove = true
+    
+    removeActionForKey(KeyForAction.movementSoundAction)
+    runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction)
+  }
+  
+  func endMoveUpward() {
+    shouldMove = false
+
+    removeActionForKey(KeyForAction.movementSoundAction)
   }
   
   func brake() {

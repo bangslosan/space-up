@@ -108,6 +108,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
       // Present ad in view
       interstitialAdView!.presentInterstitialAd(interstitialAd!)
       
+      // Pause view
+      skView.paused = true
+      
       return true
     } else {
       println("Ad not loaded")
@@ -120,6 +123,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Clean up
     interstitialAdView?.removeFromSuperview()
     resetInterstitialAd()
+
+    // Unpause view
+    skView.paused = false
     
     // Restart game
     if let gameScene = skView.scene as? GameScene {

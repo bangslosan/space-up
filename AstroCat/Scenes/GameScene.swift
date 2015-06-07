@@ -112,12 +112,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Event
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-    // world.player.jump()
-    world.player.shouldMove = true
+    if view?.paused == true {
+      return
+    }
+
+    if world.player.isAlive {
+      world.player.startMoveUpward()
+    }
   }
   
   override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-    world.player.shouldMove = false
+    if view?.paused == true {
+      return
+    }
+
+    if world.player.isAlive {
+      world.player.endMoveUpward()
+    }
   }
   
   // MARK: - Views
