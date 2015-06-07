@@ -75,10 +75,10 @@ class StartScene: SKScene, ButtonDelegate {
 
     if isSoundEnabled() {
       userDefaults.setValue(true, forKey: KeyForUserDefaults.SoundDisabled)
-      soundButton.label.text = "Music Off"
+      soundButton.label.text = "Sound Off"
     } else {
       userDefaults.setValue(false, forKey: KeyForUserDefaults.SoundDisabled)
-      soundButton.label.text = "Music On"
+      soundButton.label.text = "Sound On"
     }
     
     userDefaults.synchronize()

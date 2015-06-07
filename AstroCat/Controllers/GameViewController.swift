@@ -64,7 +64,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     scene.scaleMode = .AspectFill
     scene.startSceneDelegate = self
     
+    // Present scene
     skView.presentScene(scene)
+    
+    // Background music
+    SKTAudio.sharedInstance().pauseBackgroundMusic()
     
     return scene
   }
@@ -74,7 +78,15 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     scene.scaleMode = .AspectFill
     scene.gameSceneDelegate = self
     
+    // Present scene
     skView.presentScene(scene)
+    
+    // Background music
+    if isMusicEnabled() {
+      SKTAudio.sharedInstance().playBackgroundMusic("BackgroundMusic.mp3")
+    } else {
+      SKTAudio.sharedInstance().pauseBackgroundMusic()
+    }
     
     return scene
   }
