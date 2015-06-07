@@ -61,12 +61,9 @@ class CometEmitter {
       }
 
       let initialPercentage = initialPercentage.clamped(0, 1)
-      let hypotenuseLength = fromPosition.distanceTo(toPosition) * initialPercentage
-      let angle = atan((fromPosition.y - toPosition.y) / (fromPosition.x - toPosition.x))
-      let oppositeLength = sin(angle) * hypotenuseLength
-      let adjacentLength = cos(angle) * hypotenuseLength
-
-      var startPosition = CGPoint(x: toPosition.x + adjacentLength, y: toPosition.y + oppositeLength)
+      
+      var startPosition = CGPoint(x: fromPosition.x + (toPosition.x - fromPosition.x) * initialPercentage,
+                                  y: fromPosition.y + (toPosition.y - fromPosition.y) * initialPercentage)
       
       let sequenceAction = SKAction.sequence([
         SKAction.runBlock { [weak self] in

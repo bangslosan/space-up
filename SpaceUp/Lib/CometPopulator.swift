@@ -36,9 +36,9 @@ class CometPopulator {
         
         if let emitter = addEmitter(fromPosition, toPosition: toPosition) {
           if toPosition.y > scene.frame.maxY {
-            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0.5, max: 1))
+            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0, max: 0.5))
           } else {
-            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: 1)
+            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: 0)
           }
         }
       }
@@ -48,8 +48,8 @@ class CometPopulator {
   func positionForNewEmitter() -> (fromPosition: CGPoint, toPosition:CGPoint) {
     if let world = world, scene = world.scene {
       let spacing: CGFloat = EmitterVerticalSpacing
-      let initialFromOffset = CGPoint(x: 100, y: 200)
-      let initialToOffset = CGPoint(x: -100, y: 200)
+      let initialFromOffset = CGPoint(x: -100, y: 200)
+      let initialToOffset = CGPoint(x: 100, y: 200)
 
       var lastToPosition: CGPoint?
       var lastFromPosition: CGPoint?
@@ -64,13 +64,13 @@ class CometPopulator {
       if lastFromPosition != nil {
         fromPosition = lastFromPosition! + CGPoint(x: 0, y: spacing)
       } else {
-        fromPosition = CGPoint(x: scene.frame.maxX, y: scene.frame.maxX) + initialFromOffset
+        fromPosition = CGPoint(x: scene.frame.minX, y: scene.frame.maxX) + initialFromOffset
       }
       
       if lastToPosition != nil {
         toPosition = lastToPosition! + CGPoint(x: 0, y: spacing)
       } else {
-        toPosition = CGPoint(x: scene.frame.minX, y: scene.frame.minY) + initialToOffset
+        toPosition = CGPoint(x: scene.frame.maxX, y: scene.frame.minY) + initialToOffset
       }
       
       fromPosition = world.convertPoint(fromPosition, fromNode: scene)
