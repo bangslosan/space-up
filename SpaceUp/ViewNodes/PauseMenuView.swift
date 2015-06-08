@@ -8,36 +8,36 @@
 
 import SpriteKit
 
-class PauseMenuView: SKShapeNode {
+class PauseMenuView: SKNode {
   // MARK: - Immutable var
+  let background: SKShapeNode
   let resumeButton = TextButtonNode(size: CGSize(width: 300, height: 60))
   let quitButton = TextButtonNode(size: CGSize(width: 300, height: 60))
   
   // MARK: - Init
-  init(rect: CGRect) {
+  init(size: CGSize) {
+    background = SKShapeNode(rectOfSize: size)
+
     super.init()
-    
-    // Shape
-    path = CGPathCreateWithRect(rect, nil)
-    fillColor = UIColor(white: 0, alpha: 0.5)
-    strokeColor = UIColor.clearColor()
     
     // Config
     userInteractionEnabled = true
     
+    // Background
+    background.fillColor = UIColor(white: 0, alpha: 0.5)
+    background.strokeColor = UIColor.clearColor()
+    background.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
+    addChild(background)
+    
     // Resume
     resumeButton.label.text = "Resume"
-    resumeButton.position = CGPoint(x: frame.midX, y: frame.midY + 60)
+    resumeButton.position = CGPoint(x: background.frame.midX, y: background.frame.midY + 60)
     addChild(resumeButton)
     
     // Quit
     quitButton.label.text = "Quit"
-    quitButton.position = CGPoint(x: frame.midX, y: frame.midY - 60)
+    quitButton.position = CGPoint(x: background.frame.midX, y: background.frame.midY - 60)
     addChild(quitButton)
-  }
-  
-  convenience init(size: CGSize) {
-    self.init(rect: CGRect(origin: CGPointZero, size: size))
   }
   
   required init?(coder aDecoder: NSCoder) {
