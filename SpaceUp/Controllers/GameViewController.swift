@@ -73,8 +73,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     return scene
   }
   
-  func presentGameScene() -> GameScene {
-    let scene = GameScene(size: SceneSize)
+  func presentGameSceneWithTextureAtlases(textureAtlases: [SKTextureAtlas]) -> GameScene {
+    let scene = GameScene(size: SceneSize, textureAtlases: textureAtlases)
     scene.scaleMode = .AspectFill
     scene.gameSceneDelegate = self
     
@@ -87,6 +87,32 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     } else {
       SKTAudio.sharedInstance().pauseBackgroundMusic()
     }
+    
+    return scene
+  }
+  
+  func presentGameScene(completion: ((GameScene) -> Void)? = nil) {
+    let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
+    let textureAtlases: [SKTextureAtlas] = [textureAtlas]
+
+    SKTextureAtlas.preloadTextureAtlases(textureAtlases) {
+      afterDelay(1) {
+        let scene = self.presentGameSceneWithTextureAtlases(textureAtlases)
+      
+        completion?(scene)
+      }
+    }
+  }
+  
+  func presentLoadingScene() -> LoadingScene {
+    let scene = LoadingScene(size: SceneSize)
+    scene.scaleMode = .AspectFill
+    
+    // Present scene
+    skView.presentScene(scene)
+    
+    // Background music
+    SKTAudio.sharedInstance().pauseBackgroundMusic()
     
     return scene
   }
@@ -198,6 +224,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   // MARK: - StartSceneDelegate
   func startSceneDidRequestStart(startScene: StartScene) {
+    presentLoadingScene()
     presentGameScene()
   }
 

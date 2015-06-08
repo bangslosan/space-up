@@ -85,6 +85,7 @@
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
 		EBD100CC1B2533F500D3680B /* PauseMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100CA1B2533F500D3680B /* PauseMenuView.swift */; };
+		EBD100CE1B25364400D3680B /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100CD1B25364400D3680B /* LoadingScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
 		EBD100CA1B2533F500D3680B /* PauseMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseMenuView.swift; path = ViewNodes/PauseMenuView.swift; sourceTree = "<group>"; };
+		EBD100CD1B25364400D3680B /* LoadingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingScene.swift; path = Scenes/LoadingScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0212171B1DD1EA0087B2E6 /* GameScene.swift */,
+				EBD100CD1B25364400D3680B /* LoadingScene.swift */,
 				EB0212131B1DD18B0087B2E6 /* StartScene.swift */,
 			);
 			name = Scenes;
@@ -590,6 +593,7 @@
 				EB0212571B1DD4330087B2E6 /* Constants.swift in Sources */,
 				EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */,
 				EB0212361B1DD3A00087B2E6 /* SKAction+Extensions.swift in Sources */,
+				EBD100CE1B25364400D3680B /* LoadingScene.swift in Sources */,
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
 				EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */,
 				EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */,

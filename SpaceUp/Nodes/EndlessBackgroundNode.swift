@@ -57,9 +57,6 @@ class EndlessBackgroundNode: SKNode {
           
           // Append
           appendBackground(newBackground)
-          
-          // Increment
-          // maxY = scene.convertFrame(newBackground.frame, fromNode: self).maxY
         }
       }
     }
@@ -89,9 +86,6 @@ class EndlessBackgroundNode: SKNode {
           
           // Prepend
           prependBackground(newBackground)
-          
-          // Increment
-          // minY = scene.convertFrame(newBackground.frame, fromNode: self).minY
         }
       }
     }
