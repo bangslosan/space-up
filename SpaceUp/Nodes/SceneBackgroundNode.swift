@@ -11,18 +11,17 @@ import SpriteKit
 class SceneBackgroundNode: SKNode {
   weak var world: WorldNode?
   
-  let galaxyForeground = EndlessBackgroundNode(imageNames: ["BackgroundFront0"])
-  let galaxyBackground = EndlessBackgroundNode(imageNames: ["BackgroundBack0"])
+  private let galaxyBackground = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
+  private let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
+  private let galaxyPlanets = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundPlanets, TextureFileName.BackgroundPlanets + "2"])
   
   // MARK: - Init
   override init() {
     super.init()
     
-    galaxyForeground.alpha = 0.5
-    galaxyBackground.alpha = 0.5
-    
-    addChild(galaxyForeground)
     addChild(galaxyBackground)
+    addChild(galaxyStars)
+    addChild(galaxyPlanets)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -31,7 +30,8 @@ class SceneBackgroundNode: SKNode {
   
   // MARK: - Update
   func move(position: CGPoint) {
-    galaxyForeground.move(position, multiplier: 0.8)
-    galaxyBackground.move(position, multiplier: 0.6)
+    galaxyBackground.move(position, multiplier: 0.5)
+    galaxyStars.move(position, multiplier: 0.6)
+    galaxyPlanets.move(position, multiplier: 0.7)
   }
 }

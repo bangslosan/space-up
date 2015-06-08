@@ -2,17 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "BackgroundStars.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "BackgroundFront0@2x.png"
+      "filename" : "BackgroundStars@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "BackgroundFront0@3x.png"
+      "filename" : "BackgroundStars@3x.png"
     }
   ],
   "info" : {

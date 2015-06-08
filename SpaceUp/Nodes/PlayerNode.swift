@@ -14,6 +14,9 @@ private struct KeyForAction {
 }
 
 class PlayerNode: SKSpriteNode {
+  // MAKR: - Immutable vars
+  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
+
   // MARK: - Vars
   private(set) var isAlive: Bool = true
   var shouldMove: Bool = false
@@ -27,19 +30,31 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
-  lazy var movementSoundAction: SKAction = { () -> SKAction in
-    let action = SKAction.playSoundFileNamed("Meow.wav", waitForCompletion: true)
+  lazy var movementSoundAction: SKAction = {
+    let action = SKAction.playSoundFileNamed(SoundFileName.Flying, waitForCompletion: true)
     
     return SKAction.repeatActionForever(action)
   }()
   
-  lazy var killSoundAction: SKAction = SKAction.playSoundFileNamed("Explode.wav", waitForCompletion: false)
+  lazy var killSoundAction: SKAction = SKAction.playSoundFileNamed(SoundFileName.Explosion, waitForCompletion: false)
+  
+  lazy var moveUpAnimateAction: SKAction = {
+    return SKAction.animateWithTextures([
+      self.textureAtlas.textureNamed(TextureFileName.MuffyFlying)
+    ], timePerFrame: 1/60)
+  }()
+  
+  lazy var stopMoveUpAnimateAction: SKAction = {
+    return SKAction.animateWithTextures([
+      self.textureAtlas.textureNamed(TextureFileName.MuffyStopFlying)
+    ], timePerFrame: 1/60)
+  }()
 
   // MARK: - Init
   init() {
-    let texture = SKTextureAtlas(named: "Cat").textureNamed("Cat0")
-    let ratio: CGFloat = 1/6
-    let size = CGSize(width: 430 * ratio, height: 460 * ratio)
+    let texture = textureAtlas.textureNamed(TextureFileName.MuffyStanding)
+    let ratio: CGFloat = 1/3
+    let size = CGSize(width: 520 * ratio, height: 680 * ratio)
     
     super.init(texture: texture, color: UIColor.clearColor(), size: size)
     
@@ -59,11 +74,18 @@ class PlayerNode: SKSpriteNode {
     reset()
     isAlive = false
     
+    // Movement
+    endMoveUpward()
+    
+    // Sound
     runAction(killSoundAction, when: isSoundEnabled())
   }
   
   func respawn() {
     reset()
+    
+    // Texture
+    texture = textureAtlas.textureNamed(TextureFileName.MuffyStanding)
   }
   
   private func reset() {
@@ -107,14 +129,22 @@ class PlayerNode: SKSpriteNode {
   func startMoveUpward() {
     shouldMove = true
     
+    // Sound
     removeActionForKey(KeyForAction.movementSoundAction)
     runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
+    
+    // Animate
+    runAction(moveUpAnimateAction)
   }
 
   func endMoveUpward() {
     shouldMove = false
     
+    // Sound
     removeActionForKey(KeyForAction.movementSoundAction)
+    
+    // Animate
+    runAction(stopMoveUpAnimateAction)
   }
   
   func brake() {
@@ -163,17 +193,19 @@ class PlayerNode: SKSpriteNode {
     var offsetX = CGFloat(size.width * anchorPoint.x)
     var offsetY = CGFloat(size.height * anchorPoint.y)
     var path = CGPathCreateMutable()
-    var ratio: CGFloat = 1/6
+    var ratio: CGFloat = 1/3
 
-    CGPathMoveToPoint(path, nil, 190 * ratio - offsetX, size.height - 460 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 135 * ratio - offsetX, size.height - 395 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 0 * ratio - offsetX, size.height - 275 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 0 * ratio - offsetX, size.height - 180 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 120 * ratio - offsetX, size.height - 0 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 190 * ratio - offsetX, size.height - 55 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 400 * ratio - offsetX, size.height - 70 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 310 * ratio - offsetX, size.height - 290 * ratio - offsetY)
-    CGPathAddLineToPoint(path, nil, 230 * ratio - offsetX, size.height - 460 * ratio - offsetY)
+    CGPathMoveToPoint(path, nil, 250 * ratio - offsetX, size.height - 560 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 155 * ratio - offsetX, size.height - 470 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 195 * ratio - offsetX, size.height - 400 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 75 * ratio - offsetX, size.height - 295 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 110 * ratio - offsetX, size.height - 205 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 260 * ratio - offsetX, size.height - 150 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 390 * ratio - offsetX, size.height - 280 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 330 * ratio - offsetX, size.height - 390 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 340 * ratio - offsetX, size.height - 515 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 285 * ratio - offsetX, size.height - 525 * ratio - offsetY)
+    CGPathAddLineToPoint(path, nil, 285 * ratio - offsetX, size.height - 560 * ratio - offsetY)
     
     CGPathCloseSubpath(path)
     

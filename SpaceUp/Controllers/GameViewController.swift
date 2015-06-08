@@ -36,8 +36,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     interstitialPresentationPolicy = .Manual
     
     // Configure the view.
-    skView.showsFPS = true
-    skView.showsNodeCount = true
+    // skView.showsFPS = true
+    // skView.showsNodeCount = true
     // skView.showsPhysics = true
     skView.ignoresSiblingOrder = true
     
@@ -83,7 +83,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     // Background music
     if isMusicEnabled() {
-      SKTAudio.sharedInstance().playBackgroundMusic("BackgroundMusic.mp3")
+      SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic)
     } else {
       SKTAudio.sharedInstance().pauseBackgroundMusic()
     }

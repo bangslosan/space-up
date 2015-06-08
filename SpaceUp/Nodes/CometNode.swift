@@ -14,6 +14,7 @@ private struct KeyForAction {
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
+  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
   let type: CometType
   
   // MARK: - Vars
@@ -30,19 +31,19 @@ class CometNode: SKSpriteNode {
 
     switch type {
     case .Slow:
-      texture = SKTextureAtlas(named: "CometLarge").textureNamed("CometLarge0")
+      texture = textureAtlas.textureNamed(TextureFileName.CometLarge)
       size = CGSize(width: 450 * ratio, height: 450 * ratio)
 
     case .Fast:
-      texture = SKTextureAtlas(named: "CometSmall").textureNamed("CometSmall0")
+      texture = textureAtlas.textureNamed(TextureFileName.CometSmall)
       size = CGSize(width: 60 * ratio, height: 60 * ratio)
       
     case .Award:
-      texture = SKTextureAtlas(named: "CometStar").textureNamed("CometStar0")
+      texture = textureAtlas.textureNamed(TextureFileName.CometStar)
       size = CGSize(width: 100 * ratio, height: 100 * ratio)
 
     default:
-      texture = SKTextureAtlas(named: "CometMedium").textureNamed("CometMedium0")
+      texture = textureAtlas.textureNamed(TextureFileName.CometMedium)
       size = CGSize(width: 200 * ratio, height: 200 * ratio)
     }
 
