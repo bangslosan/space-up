@@ -73,8 +73,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     return scene
   }
   
-  func presentGameSceneWithTextureAtlases(textureAtlases: [SKTextureAtlas]) -> GameScene {
-    let scene = GameScene(size: SceneSize, textureAtlases: textureAtlases)
+  func presentGameScene() -> GameScene {
+    let scene = GameScene(size: SceneSize)
     scene.scaleMode = .AspectFill
     scene.gameSceneDelegate = self
     
@@ -91,15 +91,34 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     return scene
   }
   
-  func presentGameScene(completion: ((GameScene) -> Void)? = nil) {
-    let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
-    let textureAtlases: [SKTextureAtlas] = [textureAtlas]
+  func preloadAndPresentGameScene(completion: ((GameScene) -> Void)? = nil) {
+    let textureAtlases: [SKTextureAtlas] = [
+      SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
+    ]
+    
+    let textures: [SKTexture] = [
+      SKTexture(imageNamed: TextureFileName.Background),
+      SKTexture(imageNamed: TextureFileName.BackgroundPlanets),
+      SKTexture(imageNamed: TextureFileName.BackgroundPlanets + "2"),
+      SKTexture(imageNamed: TextureFileName.BackgroundStars)
+    ]
+    
+    // Show loading scene
+    presentLoadingScene()
 
+    // Preload textures
     SKTextureAtlas.preloadTextureAtlases(textureAtlases) {
-      afterDelay(1) {
-        let scene = self.presentGameSceneWithTextureAtlases(textureAtlases)
-      
-        completion?(scene)
+      SKTexture.preloadTextures(textures) {
+        afterDelay(1) {
+          // Present game scene
+          let scene = self.presentGameScene()
+          
+          // Retain preloaded textures
+          scene.textureAtlases = textureAtlases
+          scene.textures = textures
+          
+          completion?(scene)
+        }
       }
     }
   }
@@ -224,8 +243,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   // MARK: - StartSceneDelegate
   func startSceneDidRequestStart(startScene: StartScene) {
-    presentLoadingScene()
-    presentGameScene()
+    preloadAndPresentGameScene()
   }
 
   func startSceneDidRequestLeaderboard(startScene: StartScene) {

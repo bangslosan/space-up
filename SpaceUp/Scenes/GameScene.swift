@@ -16,26 +16,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   let background = SceneBackgroundNode()
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
   let cometPopulator = CometPopulator()
-  let textureAtlases: [SKTextureAtlas]
   
   // MARK: - Vars
   weak var endGameView: EndGameView?
   weak var pauseMenu: PauseMenuView?
   weak var gameSceneDelegate: GameSceneDelegate?
+  var textures: [SKTexture]?
+  var textureAtlases: [SKTextureAtlas]?
   var gameData = GameData.dataFromArchive()
   var gameStarted = false
   var godMode = false
-  
-  // MARK: - Init
-  init(size: CGSize, textureAtlases: [SKTextureAtlas]) {
-    self.textureAtlases = textureAtlases
-
-    super.init(size: size)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
