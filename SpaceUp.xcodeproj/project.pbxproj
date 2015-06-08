@@ -49,7 +49,6 @@
 		EB0212671B1DD7950087B2E6 /* IconButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */; };
 		EB0212691B1DD7D90087B2E6 /* WorldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212681B1DD7D90087B2E6 /* WorldDelegate.swift */; };
 		EB02126C1B1DD8820087B2E6 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02126B1B1DD8820087B2E6 /* GameData.swift */; };
-		EB02126E1B1DD9810087B2E6 /* PauseMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB02126D1B1DD9810087B2E6 /* PauseMenuView.swift */; };
 		EB0212741B1DE1320087B2E6 /* GroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212731B1DE1320087B2E6 /* GroundNode.swift */; };
 		EB0212761B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */; };
 		EB0212781B1DEB920087B2E6 /* BackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212771B1DEB920087B2E6 /* BackgroundNode.swift */; };
@@ -72,7 +71,6 @@
 		EB0212B81B2274CE0087B2E6 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212B71B2274CE0087B2E6 /* NSErrorExtension.swift */; };
 		EB0212BC1B22859F0087B2E6 /* GameDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212BB1B22859F0087B2E6 /* GameDataSource.swift */; };
 		EB0212BE1B228E570087B2E6 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0212BD1B228E570087B2E6 /* iAd.framework */; };
-		EB0212C01B22B1820087B2E6 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212BF1B22B1820087B2E6 /* EndGameView.swift */; };
 		EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */; };
 		EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */; };
 		EB05653C1B2479BF00A76297 /* Spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EB05653A1B2479BF00A76297 /* Spark.png */; };
@@ -85,6 +83,8 @@
 		EBD100C31B25121500D3680B /* GameSceneForeground.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBD100C21B25121500D3680B /* GameSceneForeground.atlas */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
+		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
+		EBD100CC1B2533F500D3680B /* PauseMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100CA1B2533F500D3680B /* PauseMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,7 +144,6 @@
 		EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = IconButtonNode.swift; path = Nodes/IconButtonNode.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB0212681B1DD7D90087B2E6 /* WorldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldDelegate.swift; path = Protocols/WorldDelegate.swift; sourceTree = "<group>"; };
 		EB02126B1B1DD8820087B2E6 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = Models/GameData.swift; sourceTree = "<group>"; };
-		EB02126D1B1DD9810087B2E6 /* PauseMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = PauseMenuView.swift; path = Nodes/PauseMenuView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EB0212731B1DE1320087B2E6 /* GroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroundNode.swift; path = Nodes/GroundNode.swift; sourceTree = "<group>"; };
 		EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndlessBackgroundNode.swift; path = Nodes/EndlessBackgroundNode.swift; sourceTree = "<group>"; };
 		EB0212771B1DEB920087B2E6 /* BackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundNode.swift; path = Nodes/BackgroundNode.swift; sourceTree = "<group>"; };
@@ -167,7 +166,6 @@
 		EB0212B71B2274CE0087B2E6 /* NSErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSErrorExtension.swift; path = Extensions/NSErrorExtension.swift; sourceTree = "<group>"; };
 		EB0212BB1B22859F0087B2E6 /* GameDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameDataSource.swift; path = Protocols/GameDataSource.swift; sourceTree = "<group>"; };
 		EB0212BD1B228E570087B2E6 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		EB0212BF1B22B1820087B2E6 /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = Nodes/EndGameView.swift; sourceTree = "<group>"; };
 		EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterstitialAdView.swift; path = Views/InterstitialAdView.swift; sourceTree = "<group>"; };
 		EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartSceneDelegate.swift; path = Protocols/StartSceneDelegate.swift; sourceTree = "<group>"; };
 		EB05653A1B2479BF00A76297 /* Spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spark.png; sourceTree = "<group>"; };
@@ -180,6 +178,8 @@
 		EBD100C21B25121500D3680B /* GameSceneForeground.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = GameSceneForeground.atlas; path = Images/GameSceneForeground.atlas; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
+		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
+		EBD100CA1B2533F500D3680B /* PauseMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseMenuView.swift; path = ViewNodes/PauseMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,16 +231,17 @@
 				EB0565381B2479BF00A76297 /* Effects */,
 				EB0212231B1DD3830087B2E6 /* Extensions */,
 				EB0212791B1DEBD90087B2E6 /* Helpers */,
+				EB02121B1B1DD23E0087B2E6 /* Images */,
 				EB0212821B1E66B70087B2E6 /* Lib */,
 				EB02126A1B1DD8250087B2E6 /* Models */,
 				EB0212191B1DD1F80087B2E6 /* Nodes */,
 				EB02121C1B1DD2690087B2E6 /* Protocols */,
-				EB02121B1B1DD23E0087B2E6 /* Images */,
 				EB0212111B1DD0FF0087B2E6 /* Scenes */,
 				EBB1EC9D1B23CCEC00768015 /* Sounds */,
 				EB0211EB1B1DCF990087B2E6 /* Supporting Files */,
 				EB02125D1B1DD56E0087B2E6 /* Types */,
 				EB0212241B1DD3870087B2E6 /* Vendor */,
+				EBD100C81B2533B400D3680B /* ViewNodes */,
 				EB02121A1B1DD2340087B2E6 /* Views */,
 			);
 			path = SpaceUp;
@@ -296,13 +297,11 @@
 				EB02124F1B1DD4010087B2E6 /* CameraNode.swift */,
 				EB0212801B1E65BE0087B2E6 /* CometNode.swift */,
 				EB0212871B1EB9830087B2E6 /* CometPathNode.swift */,
-				EB0212BF1B22B1820087B2E6 /* EndGameView.swift */,
 				EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */,
 				EB0212731B1DE1320087B2E6 /* GroundNode.swift */,
 				EB0212641B1DD7950087B2E6 /* HUDNode.swift */,
 				EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */,
 				EB02127E1B1DF0310087B2E6 /* LineBoundaryNode.swift */,
-				EB02126D1B1DD9810087B2E6 /* PauseMenuView.swift */,
 				EB02125B1B1DD51E0087B2E6 /* PlayerNode.swift */,
 				EB02127C1B1DECA30087B2E6 /* SceneBackgroundNode.swift */,
 				EB0212951B1F127C0087B2E6 /* ShieldNode.swift */,
@@ -458,6 +457,15 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		EBD100C81B2533B400D3680B /* ViewNodes */ = {
+			isa = PBXGroup;
+			children = (
+				EBD100C91B2533F500D3680B /* EndGameView.swift */,
+				EBD100CA1B2533F500D3680B /* PauseMenuView.swift */,
+			);
+			name = ViewNodes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -571,10 +579,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB0212611B1DD5760087B2E6 /* AxisType.swift in Sources */,
-				EB02126E1B1DD9810087B2E6 /* PauseMenuView.swift in Sources */,
 				EB0212331B1DD3A00087B2E6 /* CGPoint+Extensions.swift in Sources */,
 				43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */,
-				EB0212C01B22B1820087B2E6 /* EndGameView.swift in Sources */,
 				EB02123B1B1DD3A00087B2E6 /* SKTEffects.swift in Sources */,
 				EB0212491B1DD3B50087B2E6 /* NSFileManagerExtension.swift in Sources */,
 				EB0212861B1E92320087B2E6 /* CometEmitter.swift in Sources */,
@@ -586,6 +592,7 @@
 				EB0212361B1DD3A00087B2E6 /* SKAction+Extensions.swift in Sources */,
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
 				EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */,
+				EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */,
 				EB0212961B1F127C0087B2E6 /* ShieldNode.swift in Sources */,
 				EB0212461B1DD3B50087B2E6 /* ArrayExtension.swift in Sources */,
 				EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */,
@@ -595,6 +602,7 @@
 				EB0212631B1DD5760087B2E6 /* PhysicsCategory.swift in Sources */,
 				EB02127B1B1DEC060087B2E6 /* ArrayHelper.swift in Sources */,
 				EB0212471B1DD3B50087B2E6 /* CGPointExtension.swift in Sources */,
+				EBD100CC1B2533F500D3680B /* PauseMenuView.swift in Sources */,
 				EB0212671B1DD7950087B2E6 /* IconButtonNode.swift in Sources */,
 				EB0212881B1EB9830087B2E6 /* CometPathNode.swift in Sources */,
 				EB02125A1B1DD4F90087B2E6 /* WorldNode.swift in Sources */,
