@@ -89,6 +89,7 @@
 		EBD100D61B27077800D3680B /* Environment.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBD100D41B27077800D3680B /* Environment.atlas */; };
 		EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBD100D81B2715EB00D3680B /* Righteous-Regular.ttf */; };
 		EBD100DC1B27221500D3680B /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBD100DB1B27221500D3680B /* FontAwesome.otf */; };
+		EBD100DE1B279F0200D3680B /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100DD1B279F0200D3680B /* PlayerState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,7 @@
 		EBD100D41B27077800D3680B /* Environment.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Environment.atlas; path = Images/Environment.atlas; sourceTree = "<group>"; };
 		EBD100D81B2715EB00D3680B /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
 		EBD100DB1B27221500D3680B /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		EBD100DD1B279F0200D3680B /* PlayerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerState.swift; path = Types/PlayerState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +415,7 @@
 				EB02125F1B1DD5760087B2E6 /* DirectionType.swift */,
 				EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */,
 				EB0212601B1DD5760087B2E6 /* PhysicsCategory.swift */,
+				EBD100DD1B279F0200D3680B /* PlayerState.swift */,
 				EBD100C61B2524DD00D3680B /* SoundFileName.swift */,
 				EBD100C41B2524CA00D3680B /* TextureFileName.swift */,
 			);
@@ -663,6 +666,7 @@
 				EB0212BC1B22859F0087B2E6 /* GameDataSource.swift in Sources */,
 				EB0212691B1DD7D90087B2E6 /* WorldDelegate.swift in Sources */,
 				EB02121E1B1DD2940087B2E6 /* ButtonDelegate.swift in Sources */,
+				EBD100DE1B279F0200D3680B /* PlayerState.swift in Sources */,
 				EB0212B41B22706D0087B2E6 /* GameCenterManagerDelegate.swift in Sources */,
 				EB02127F1B1DF0310087B2E6 /* LineBoundaryNode.swift in Sources */,
 				EB02125C1B1DD51E0087B2E6 /* PlayerNode.swift in Sources */,

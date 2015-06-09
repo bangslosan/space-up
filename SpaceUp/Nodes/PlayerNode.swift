@@ -48,6 +48,12 @@ class PlayerNode: SKSpriteNode {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.MuffyStopFlying)
     ], timePerFrame: 1/60)
+    }()
+  
+  lazy var killAnimateAction: SKAction = {
+    return SKAction.animateWithTextures([
+      self.textureAtlas.textureNamed(TextureFileName.MuffyDead)
+    ], timePerFrame: 1/60)
   }()
 
   // MARK: - Init
@@ -77,6 +83,9 @@ class PlayerNode: SKSpriteNode {
     // Movement
     endMoveUpward()
     
+    // Animate
+    runAction(killAnimateAction)
+    
     // Sound
     runAction(killSoundAction, when: isSoundEnabled())
   }
@@ -89,6 +98,7 @@ class PlayerNode: SKSpriteNode {
   func stand() {
     // Texture
     texture = textureAtlas.textureNamed(TextureFileName.MuffyStanding)
+    zRotation = 0
   }
   
   private func reset() {
