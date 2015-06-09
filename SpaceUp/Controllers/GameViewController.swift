@@ -213,9 +213,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     }
   }
   
+  func gameCenterManager(manager: GameCenterManager, didReceiveError error: NSError) {
+    // Cancelled by user
+    println(error)
+  }
+  
   // MARK: - GameSceneDelegate
   func gameSceneDidEnd(gameScene: GameScene) {
-    if !gameScene.godMode {
+    if !gameScene.godMode && gameCenterManager.isAuthenticated {
       let scoreValue = Int64(round(gameScene.gameData.score))
 
       gameCenterManager.reportScoreValue(scoreValue)
@@ -247,8 +252,20 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
 
   func startSceneDidRequestLeaderboard(startScene: StartScene) {
-    if let leaderboardIdentifier = gameCenterManager.leaderboardIdentifier {
+    if let leaderboardIdentifier = gameCenterManager.leaderboardIdentifier where gameCenterManager.isAuthenticated {
       presentLeaderboardViewControllerWithIdentifier(leaderboardIdentifier)
+    } else {
+      let message = "Please log into GameCenter to access the leaderboard"
+      let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+      let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil)
+      let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { _ in
+        self.gameCenterManager.promptLocalPlayerAuthentication()
+      }
+      
+      alertController.addAction(okAlertAction)
+      alertController.addAction(cancelAlertAction)
+      
+      presentViewController(alertController, animated: true, completion: nil)
     }
   }
   

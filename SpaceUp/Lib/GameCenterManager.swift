@@ -37,6 +37,12 @@ class GameCenterManager: NSObject {
     }
   }
   
+  func promptLocalPlayerAuthentication() {
+    if let url = NSURL(string: "gamecenter:") {
+      UIApplication.sharedApplication().openURL(url)
+    }
+  }
+  
   func loadDefaultLeaderboardIdentifier() {
     localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler { (leaderboardIdentifier, error) -> Void in
       self.leaderboardIdentifier = leaderboardIdentifier
