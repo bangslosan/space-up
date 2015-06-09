@@ -281,6 +281,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
           comet.explodeAndRemove()
         }
       }
+      
+    case PhysicsCategory.Player | PhysicsCategory.Ground:
+      world.player.stand()
 
     default:
       break

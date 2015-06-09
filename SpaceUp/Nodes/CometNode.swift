@@ -14,7 +14,7 @@ private struct KeyForAction {
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
-  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
+  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Environment)
   let type: CometType
   
   // MARK: - Vars

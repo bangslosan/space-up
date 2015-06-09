@@ -8,19 +8,32 @@
 
 import SpriteKit
 
-class ShieldNode: SKShapeNode {
+private struct KeyForAction {
+  static let rotationAction = "rotationAction"
+}
+
+class ShieldNode: SKSpriteNode {
+  // MARK: - Init
   init(size: CGSize) {
-    super.init()
+    let texture = SKTexture(imageNamed: TextureFileName.Shield)
+
+    super.init(texture: texture, color: nil, size: size)
     
-    let rect = CGRect(origin: CGPoint(x: size.width * -0.5, y: size.height * -0.5), size: size)
-    let path = CGPathCreateWithEllipseInRect(rect, nil)
-    
-    self.path = path
-    fillColor = UIColor(white: 1, alpha: 0.4)
-    strokeColor = UIColor.clearColor()
+    animate()
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  // MARK: - Animate
+  func animate() {
+    let rotationAction = SKAction.rotateByAngle(CGFloat(M_PI) * 2, duration: 1)
+
+    runAction(SKAction.repeatActionForever(rotationAction), withKey: KeyForAction.rotationAction)
+  }
+  
+  func stopAnimate() {
+    removeActionForKey(KeyForAction.rotationAction)
   }
 }

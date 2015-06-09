@@ -93,14 +93,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   func preloadAndPresentGameScene(completion: ((GameScene) -> Void)? = nil) {
     let textureAtlases: [SKTextureAtlas] = [
-      SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
+      SKTextureAtlas(named: TextureAtlasFileName.Environment),
+      SKTextureAtlas(named: TextureAtlasFileName.Character)
     ]
     
     let textures: [SKTexture] = [
       SKTexture(imageNamed: TextureFileName.Background),
-      SKTexture(imageNamed: TextureFileName.BackgroundPlanets),
-      SKTexture(imageNamed: TextureFileName.BackgroundPlanets + "2"),
-      SKTexture(imageNamed: TextureFileName.BackgroundStars)
+      SKTexture(imageNamed: TextureFileName.BackgroundSmallPlanets),
+      SKTexture(imageNamed: TextureFileName.BackgroundSmallPlanets + "2"),
+      SKTexture(imageNamed: TextureFileName.BackgroundLargePlanets),
+      SKTexture(imageNamed: TextureFileName.BackgroundLargePlanets + "2"),
+      SKTexture(imageNamed: TextureFileName.BackgroundStars),
+      SKTexture(imageNamed: TextureFileName.PlanetGround)
     ]
     
     // Show loading scene
@@ -243,6 +247,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   func gameSceneDidRequestQuit(gameScene: GameScene) {
+    gameScene.paused = true
+
     presentStartScene()
   }
   

@@ -12,7 +12,7 @@ class WorldNode: SKNode {
   // MARK: - Immutable vars
   let camera = CameraNode()
   let player = PlayerNode()
-  let ground = GroundNode(size: CGSize(width: SceneSize.width, height: 200))
+  let ground = GroundNode(size: CGSize(width: SceneSize.width, height: 240))
   
   // MARK: - Vars
   weak var delegate: WorldDelegate?

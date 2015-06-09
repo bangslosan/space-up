@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "BackgroundPlanets.png"
+      "filename" : "BackgroundLargePlanets.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "BackgroundPlanets@2x.png"
+      "filename" : "BackgroundLargePlanets@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "BackgroundPlanets@3x.png"
+      "filename" : "BackgroundLargePlanets@3x.png"
     }
   ],
   "info" : {

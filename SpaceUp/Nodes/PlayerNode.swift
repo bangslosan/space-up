@@ -15,7 +15,7 @@ private struct KeyForAction {
 
 class PlayerNode: SKSpriteNode {
   // MAKR: - Immutable vars
-  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.GameSceneForeground)
+  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
 
   // MARK: - Vars
   private(set) var isAlive: Bool = true
@@ -83,7 +83,10 @@ class PlayerNode: SKSpriteNode {
   
   func respawn() {
     reset()
-    
+    stand()
+  }
+  
+  func stand() {
     // Texture
     texture = textureAtlas.textureNamed(TextureFileName.MuffyStanding)
   }
@@ -219,7 +222,7 @@ class PlayerNode: SKSpriteNode {
     
     physicsBody.categoryBitMask = PhysicsCategory.Player
     physicsBody.collisionBitMask = PhysicsCategory.Ground
-    physicsBody.contactTestBitMask = PhysicsCategory.Comet | PhysicsCategory.Food | PhysicsCategory.Player
+    physicsBody.contactTestBitMask = PhysicsCategory.Comet | PhysicsCategory.Food | PhysicsCategory.Ground
     physicsBody.restitution = 0
     physicsBody.friction = 0.5
     physicsBody.allowsRotation = false

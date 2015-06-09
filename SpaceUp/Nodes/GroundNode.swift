@@ -10,15 +10,16 @@ import SpriteKit
 
 class GroundNode: SKSpriteNode {
   init(size: CGSize) {
-    let color = UIColor(hexString: "#cccccc")
+    let texture = SKTexture(imageNamed: TextureFileName.PlanetGround)
 
-    super.init(texture: nil, color: color, size: size)
+    super.init(texture: texture, color: nil, size: size)
     
     // Anchor
     anchorPoint = CGPoint(x: 0, y: 0)
 
     // Physics
-    physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(origin: CGPointZero, size: size))
+    let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height - 60)
+    physicsBody = SKPhysicsBody(edgeLoopFromRect: rect)
     physicsBody!.categoryBitMask = PhysicsCategory.Ground
     physicsBody!.contactTestBitMask = PhysicsCategory.Player
     physicsBody!.restitution = 0

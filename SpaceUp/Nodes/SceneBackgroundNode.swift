@@ -13,7 +13,14 @@ class SceneBackgroundNode: SKNode {
   
   private let galaxyBackground = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
   private let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
-  private let galaxyPlanets = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundPlanets, TextureFileName.BackgroundPlanets + "2"])
+  private let galaxyLargePlanets = EndlessBackgroundNode(imageNames: [
+    TextureFileName.BackgroundLargePlanets,
+    TextureFileName.BackgroundLargePlanets + "2"
+  ])
+  private let galaxySmallPlanets = EndlessBackgroundNode(imageNames: [
+    TextureFileName.BackgroundSmallPlanets,
+    TextureFileName.BackgroundSmallPlanets + "2"
+  ])
   
   // MARK: - Init
   override init() {
@@ -21,7 +28,8 @@ class SceneBackgroundNode: SKNode {
     
     addChild(galaxyBackground)
     addChild(galaxyStars)
-    addChild(galaxyPlanets)
+    addChild(galaxySmallPlanets)
+    addChild(galaxyLargePlanets)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -30,8 +38,9 @@ class SceneBackgroundNode: SKNode {
   
   // MARK: - Update
   func move(position: CGPoint) {
-    galaxyBackground.move(position, multiplier: 0.5)
-    galaxyStars.move(position, multiplier: 0.6)
-    galaxyPlanets.move(position, multiplier: 0.7)
+    galaxyBackground.move(position, multiplier: 0.4)
+    galaxyStars.move(position, multiplier: 0.5)
+    galaxySmallPlanets.move(position, multiplier: 0.6)
+    galaxyLargePlanets.move(position, multiplier: 0.7)
   }
 }
