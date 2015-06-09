@@ -10,24 +10,17 @@ import SpriteKit
 
 class HUDNode: SKNode {
   // MARK: - Immutable var
-  let scoreLabel = SKLabelNode(fontNamed: "HelveticaNeue")
-  let topScoreLabel = SKLabelNode(fontNamed: "HelveticaNeue")
+  let scoreLabel = SKLabelNode(fontNamed: "Righteous-Regular")
   
   // MARK: - Init
   override init() {
     super.init()
-    
-    // Score
-    topScoreLabel.color = UIColor.magentaColor()
-    topScoreLabel.colorBlendFactor = 1
-    topScoreLabel.horizontalAlignmentMode = .Left
-    topScoreLabel.position = CGPoint(x: 20, y: -50)
-    addChild(topScoreLabel)
 
-    scoreLabel.color = UIColor.lightGrayColor()
+    scoreLabel.color = UIColor.whiteColor()
     scoreLabel.colorBlendFactor = 1
-    scoreLabel.horizontalAlignmentMode = .Left
-    scoreLabel.position = CGPoint(x: 20, y: -100)
+    scoreLabel.horizontalAlignmentMode = .Center
+    scoreLabel.position = CGPoint(x: 0, y: -150)
+    scoreLabel.fontSize = 80
     addChild(scoreLabel)
   }
 
@@ -43,7 +36,7 @@ class HUDNode: SKNode {
     numberFormatter.maximumFractionDigits = 0
     numberFormatter.roundingMode = .RoundHalfUp
     
-    topScoreLabel.text = numberFormatter.stringFromNumber(gameData.topScore) ?? "0"
+    // Update text
     scoreLabel.text = numberFormatter.stringFromNumber(gameData.score) ?? "0"
   }
 }

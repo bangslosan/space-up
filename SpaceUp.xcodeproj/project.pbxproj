@@ -87,6 +87,8 @@
 		EBD100CE1B25364400D3680B /* LoadingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100CD1B25364400D3680B /* LoadingScene.swift */; };
 		EBD100D51B27077800D3680B /* Character.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBD100D31B27077800D3680B /* Character.atlas */; };
 		EBD100D61B27077800D3680B /* Environment.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBD100D41B27077800D3680B /* Environment.atlas */; };
+		EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBD100D81B2715EB00D3680B /* Righteous-Regular.ttf */; };
+		EBD100DC1B27221500D3680B /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBD100DB1B27221500D3680B /* FontAwesome.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +186,8 @@
 		EBD100CD1B25364400D3680B /* LoadingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingScene.swift; path = Scenes/LoadingScene.swift; sourceTree = "<group>"; };
 		EBD100D31B27077800D3680B /* Character.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Character.atlas; path = Images/Character.atlas; sourceTree = "<group>"; };
 		EBD100D41B27077800D3680B /* Environment.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Environment.atlas; path = Images/Environment.atlas; sourceTree = "<group>"; };
+		EBD100D81B2715EB00D3680B /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		EBD100DB1B27221500D3680B /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +238,7 @@
 				EB0212121B1DD1300087B2E6 /* Controllers */,
 				EB0565381B2479BF00A76297 /* Effects */,
 				EB0212231B1DD3830087B2E6 /* Extensions */,
+				EBD100D71B2715EB00D3680B /* Fonts */,
 				EB0212791B1DEBD90087B2E6 /* Helpers */,
 				EB02121B1B1DD23E0087B2E6 /* Images */,
 				EB0212821B1E66B70087B2E6 /* Lib */,
@@ -472,6 +477,15 @@
 			name = ViewNodes;
 			sourceTree = "<group>";
 		};
+		EBD100D71B2715EB00D3680B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EBD100DB1B27221500D3680B /* FontAwesome.otf */,
+				EBD100D81B2715EB00D3680B /* Righteous-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -560,10 +574,12 @@
 			files = (
 				EBD100D51B27077800D3680B /* Character.atlas in Resources */,
 				EBD100D61B27077800D3680B /* Environment.atlas in Resources */,
+				EBD100DC1B27221500D3680B /* FontAwesome.otf in Resources */,
 				EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */,
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
 				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,
+				EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */,
 				EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */,
 				EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,

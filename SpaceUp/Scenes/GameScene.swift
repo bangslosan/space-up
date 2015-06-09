@@ -12,7 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   // MARK: - Immutable var
   let world = WorldNode()
   let hud = HUDNode()
-  let pauseButton = IconButtonNode(circleOfRadius: 30)
+  let pauseButton = IconButtonNode(size: CGSize(width: 70, height: 70), text: "\u{f04c}")
   let background = SceneBackgroundNode()
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
   let cometPopulator = CometPopulator()
@@ -54,14 +54,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     // HUD
     hud.zPosition = 100
-    hud.position = CGPoint(x: screenFrame.minX, y: screenFrame.maxY)
+    hud.position = CGPoint(x: screenFrame.midX, y: screenFrame.maxY)
     addChild(hud)
     
     // Pause button
     pauseButton.delegate = self
     pauseButton.zPosition = 100
-    pauseButton.position = CGPoint(x: screenFrame.maxX, y: screenFrame.maxY) -
-      CGPoint(x: pauseButton.frame.width / 2 + 20, y: pauseButton.frame.height / 2 + 20)
+    pauseButton.position = CGPoint(x: screenFrame.maxX, y: screenFrame.maxY) - CGPoint(x: 60, y: 60)
     addChild(pauseButton)
     
     // Notification
