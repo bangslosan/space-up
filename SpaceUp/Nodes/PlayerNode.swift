@@ -16,6 +16,7 @@ private struct KeyForAction {
 class PlayerNode: SKSpriteNode {
   // MAKR: - Immutable vars
   let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
+  let energyBar = EnergyBarNode(size: CGSize(width: 140, height: 16))
 
   // MARK: - Vars
   private(set) var isAlive: Bool = true
@@ -81,6 +82,10 @@ class PlayerNode: SKSpriteNode {
     
     // Physics
     physicsBody = physicsBodyOfSize(size)
+    
+    // Energy
+    energyBar.position = CGPoint(x: -energyBar.frame.width / 2, y: size.height + 20)
+    addChild(energyBar)
   }
   
   required init?(coder aDecoder: NSCoder) {

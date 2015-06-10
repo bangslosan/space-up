@@ -23,9 +23,16 @@ private let fileURL: NSURL = {
 
 class GameData: NSObject, NSCoding {
   private(set) var topScore: CGFloat = 0
+
   private(set) var score: CGFloat = 0 {
     didSet {
       score = max(score, 0)
+    }
+  }
+  
+  private(set) var energy: CGFloat = 1 {
+    didSet {
+      energy = energy.clamped(0, 1)
     }
   }
   
@@ -66,12 +73,17 @@ class GameData: NSObject, NSCoding {
     if aDecoder.containsValueForKey(KeyForCoder.score) {
       score = CGFloat(aDecoder.decodeFloatForKey(KeyForCoder.score))
     }
+    
+    if aDecoder.containsValueForKey(KeyForCoder.energy) {
+      energy = CGFloat(aDecoder.decodeFloatForKey(KeyForCoder.energy))
+    }
   }
   
   // MARK: - NSCoding
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeFloat(Float(topScore), forKey: KeyForCoder.topScore)
     aCoder.encodeFloat(Float(score), forKey: KeyForCoder.score)
+    aCoder.encodeFloat(Float(energy), forKey: KeyForCoder.energy)
   }
   
   func saveToArchive() {
@@ -88,8 +100,17 @@ class GameData: NSObject, NSCoding {
   func updateScoreForPlayer(player: PlayerNode) {
     score = max(player.distanceTravelled / 100, score)
   }
+  
+  func decrementEnergy() {
+    energy -= 0.005
+  }
+  
+  func restoreEnergy(amount: CGFloat = 0.2) {
+    energy += amount
+  }
 
   func reset() {
     score = 0
+    energy = 1
   }
 }

@@ -91,7 +91,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     if world.player.isAlive {
       if world.player.shouldMove {
+        gameData.decrementEnergy()
         world.player.moveUpward()
+        world.player.energyBar.updateEnergy(gameData.energy)
       } else {
         world.player.brake()
       }
@@ -174,6 +176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.camera.position = CGPointZero
     world.player.position = CGPoint(x: frame.midX, y: world.ground.frame.maxY)
     world.player.respawn()
+    world.player.energyBar.reset()
     world.followPlayer()
     
     afterDelay(1) {
