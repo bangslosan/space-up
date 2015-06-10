@@ -10,13 +10,18 @@ import SpriteKit
 
 class CameraNode: SKNode {
   // MARK: - Follow
-  func followPlayer(player: PlayerNode) {
+  func followPlayer(player: PlayerNode, crawlIncrement: CGFloat = 2) {
     if let scene = scene, playerParent = player.parent {
       var cameraPosition = position
       var boundaryFrame = playerParent.convertFrame(scene.frame, fromNode: scene)
       
       cameraPosition.x = player.position.x.clamped(boundaryFrame.minX, boundaryFrame.maxX)
-      cameraPosition.y = max(cameraPosition.y, player.position.y, scene.frame.midY)
+      
+      if player.position.y < boundaryFrame.midY {
+        cameraPosition.y = max(cameraPosition.y + crawlIncrement, scene.frame.midY)
+      } else {
+        cameraPosition.y = max(cameraPosition.y, player.position.y, scene.frame.midY)
+      }
 
       position = cameraPosition
     }
