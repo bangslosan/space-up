@@ -87,7 +87,7 @@ class CometNode: SKSpriteNode {
   func explodeAndRemove() {
     if let parent = parent {
       // Add explosion effect
-      let explosionEmitter = SKEmitterNode(fileNamed: "Explosion.sks")
+      let explosionEmitter = SKEmitterNode(fileNamed: EffectFileName.Explosion)
 
       explosionEmitter.position = position
       parent.addChild(explosionEmitter)
