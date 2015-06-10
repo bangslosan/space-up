@@ -117,6 +117,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Comet
     if world.player.isAlive {
       cometPopulator.update()
+      
+      // Fuel
+      if gameData.energy == 0 {
+        endGame()
+      }
     }
   }
   
@@ -268,7 +273,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         if gameStarted && world.player.isAlive && comet.enabled && !world.player.isProtected {
           world.player.isProtected = true
 
-          comet.enabled = false
           comet.emitter?.removeComet(comet)
         }
       }
@@ -288,6 +292,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
           comet.explodeAndRemove()
         }
+      }
+      
+    case PhysicsCategory.Player | PhysicsCategory.Fuel:
+      if let comet = nodeInContact(contact, withCategoryBitMask: PhysicsCategory.Fuel) as? CometNode {
+        gameData.restoreEnergy(amount: 0.3)
+        world.player.energyBar.updateEnergy(gameData.energy)
+        
+        comet.emitter?.removeComet(comet)
       }
       
     case PhysicsCategory.Player | PhysicsCategory.Ground:

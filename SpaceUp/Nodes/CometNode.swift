@@ -26,8 +26,9 @@ class CometNode: SKSpriteNode {
     self.type = type
 
     let ratio: CGFloat = 1/3
-    let texture: SKTexture
     let size: CGSize
+    var texture: SKTexture!
+    var color: UIColor!
 
     switch type {
     case .Slow:
@@ -41,21 +42,33 @@ class CometNode: SKSpriteNode {
     case .Award:
       texture = textureAtlas.textureNamed(TextureFileName.CometStar)
       size = CGSize(width: 100 * ratio, height: 100 * ratio)
+      
+    case .Fuel:
+      texture = nil
+      size = CGSize(width: 60 * ratio, height: 60 * ratio)
+      color = UIColor.redColor()
 
     default:
       texture = textureAtlas.textureNamed(TextureFileName.CometMedium)
       size = CGSize(width: 200 * ratio, height: 200 * ratio)
     }
 
-    super.init(texture: texture, color: nil, size: size)
+    super.init(texture: texture, color: color, size: size)
     
     // Physics
     physicsBody = SKPhysicsBody(rectangleOfSize: size)
-    physicsBody!.categoryBitMask = type == .Award ? PhysicsCategory.Award : PhysicsCategory.Comet
     physicsBody!.collisionBitMask = 0
     physicsBody!.contactTestBitMask = PhysicsCategory.Player
     physicsBody!.affectedByGravity = false
     physicsBody!.usesPreciseCollisionDetection = true
+    
+    if type == .Award {
+      physicsBody!.categoryBitMask = PhysicsCategory.Award
+    } else if type == .Fuel {
+      physicsBody!.categoryBitMask = PhysicsCategory.Fuel
+    } else {
+      physicsBody!.categoryBitMask = PhysicsCategory.Comet
+    }
   }
   
   required init?(coder aDecoder: NSCoder) {

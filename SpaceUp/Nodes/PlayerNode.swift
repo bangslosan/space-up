@@ -262,7 +262,7 @@ class PlayerNode: SKSpriteNode {
     
     physicsBody.categoryBitMask = PhysicsCategory.Player
     physicsBody.collisionBitMask = PhysicsCategory.Ground
-    physicsBody.contactTestBitMask = PhysicsCategory.Comet | PhysicsCategory.Food | PhysicsCategory.Ground
+    physicsBody.contactTestBitMask = PhysicsCategory.Comet | PhysicsCategory.Fuel | PhysicsCategory.Ground
     physicsBody.restitution = 0
     physicsBody.friction = 0.5
     physicsBody.allowsRotation = false

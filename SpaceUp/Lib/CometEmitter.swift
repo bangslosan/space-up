@@ -107,6 +107,7 @@ class CometEmitter {
   }
   
   func removeComet(comet: CometNode) {
+    comet.enabled = false
     comet.cancelMovement()
     comet.removeFromParent()
     comets.removeObject(comet)

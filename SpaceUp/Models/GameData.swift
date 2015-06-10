@@ -102,7 +102,7 @@ class GameData: NSObject, NSCoding {
   }
   
   func decrementEnergy() {
-    energy -= 0.005
+    energy -= 0.001
   }
   
   func restoreEnergy(amount: CGFloat = 0.2) {

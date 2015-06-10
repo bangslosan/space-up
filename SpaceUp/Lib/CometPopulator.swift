@@ -136,6 +136,10 @@ class CometPopulator {
       type = CometType.randomType(levelFactor: levelFactor, exceptTypes: [.Award])
     }
     
+    if dataSource?.gameData.energy < 0.5 && !hasEmitterOfType(.Fuel) {
+      type = .Fuel
+    }
+    
     return type
   }
 

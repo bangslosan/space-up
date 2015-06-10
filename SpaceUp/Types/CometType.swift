@@ -13,6 +13,7 @@ enum CometType {
   case Slow
   case Fast
   case Award
+  case Fuel
   
   static func randomType(#levelFactor: CGFloat, exceptTypes: [CometType]? = nil) -> CometType {
     var types = [CometType]()

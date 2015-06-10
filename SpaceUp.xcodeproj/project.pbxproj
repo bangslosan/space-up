@@ -78,6 +78,7 @@
 		EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E31B28522D00C1E5BA /* EffectFileName.swift */; };
 		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
 		EB2914E81B285A6F00C1E5BA /* EnergyBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E71B285A6F00C1E5BA /* EnergyBarNode.swift */; };
+		EB2914EA1B286E7C00C1E5BA /* FuelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E91B286E7C00C1E5BA /* FuelNode.swift */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
 		EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9F1B23CCFE00768015 /* Explode.wav */; };
 		EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1ECA01B23CCFE00768015 /* Meow.wav */; };
@@ -183,6 +184,7 @@
 		EB2914E31B28522D00C1E5BA /* EffectFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EffectFileName.swift; path = Types/EffectFileName.swift; sourceTree = "<group>"; };
 		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		EB2914E71B285A6F00C1E5BA /* EnergyBarNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnergyBarNode.swift; path = Nodes/EnergyBarNode.swift; sourceTree = "<group>"; };
+		EB2914E91B286E7C00C1E5BA /* FuelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelNode.swift; path = Nodes/FuelNode.swift; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		EBB1EC9F1B23CCFE00768015 /* Explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explode.wav; path = Sounds/Explode.wav; sourceTree = "<group>"; };
 		EBB1ECA01B23CCFE00768015 /* Meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meow.wav; path = Sounds/Meow.wav; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				EB0212871B1EB9830087B2E6 /* CometPathNode.swift */,
 				EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */,
 				EB2914E71B285A6F00C1E5BA /* EnergyBarNode.swift */,
+				EB2914E91B286E7C00C1E5BA /* FuelNode.swift */,
 				EB0212731B1DE1320087B2E6 /* GroundNode.swift */,
 				EB0212641B1DD7950087B2E6 /* HUDNode.swift */,
 				EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */,
@@ -692,6 +695,7 @@
 				EB02125C1B1DD51E0087B2E6 /* PlayerNode.swift in Sources */,
 				EB0212511B1DD4010087B2E6 /* ButtonNode.swift in Sources */,
 				EB0212981B1F188B0087B2E6 /* NodeHelper.swift in Sources */,
+				EB2914EA1B286E7C00C1E5BA /* FuelNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
