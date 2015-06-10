@@ -23,6 +23,12 @@ class PlayerNode: SKSpriteNode {
   var distanceTravelled: CGFloat = 0
   var initialPosition: CGPoint?
   var shieldNode: ShieldNode?
+
+  var state: PlayerState = .Standing {
+    didSet {
+      runAnimationForState(state)
+    }
+  }
   
   var isProtected: Bool = false {
     didSet {
@@ -55,6 +61,12 @@ class PlayerNode: SKSpriteNode {
       self.textureAtlas.textureNamed(TextureFileName.MuffyDead)
     ], timePerFrame: 1/60)
   }()
+  
+  lazy var standAnimateAction: SKAction = {
+    return SKAction.animateWithTextures([
+      self.textureAtlas.textureNamed(TextureFileName.MuffyStanding)
+    ], timePerFrame: 1/60)
+  }()
 
   // MARK: - Init
   init() {
@@ -84,10 +96,7 @@ class PlayerNode: SKSpriteNode {
     endMoveUpward()
     
     // Animate
-    runAction(killAnimateAction)
-    
-    // Sound
-    runAction(killSoundAction, when: isSoundEnabled())
+    state = .Dying
   }
   
   func respawn() {
@@ -96,8 +105,7 @@ class PlayerNode: SKSpriteNode {
   }
   
   func stand() {
-    // Texture
-    texture = textureAtlas.textureNamed(TextureFileName.MuffyStanding)
+    state = .Standing
     zRotation = 0
   }
   
@@ -142,22 +150,15 @@ class PlayerNode: SKSpriteNode {
   func startMoveUpward() {
     shouldMove = true
     
-    // Sound
-    removeActionForKey(KeyForAction.movementSoundAction)
-    runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
-    
     // Animate
-    runAction(moveUpAnimateAction)
+    state = .Flying
   }
 
   func endMoveUpward() {
     shouldMove = false
     
-    // Sound
-    removeActionForKey(KeyForAction.movementSoundAction)
-    
     // Animate
-    runAction(stopMoveUpAnimateAction)
+    state = .Dropping
   }
   
   func brake() {
@@ -172,6 +173,30 @@ class PlayerNode: SKSpriteNode {
   func updateDistanceTravelled() {
     if let initialPosition = initialPosition {
       distanceTravelled = position.y - initialPosition.y
+    }
+  }
+  
+  // MARK: - Animation
+  func runAnimationForState(state: PlayerState) {
+    switch state {
+    case .Dying:
+      runAction(killAnimateAction)
+      runAction(killSoundAction, when: isSoundEnabled())
+      
+    case .Flying:
+      removeActionForKey(KeyForAction.movementSoundAction)
+      runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
+      runAction(moveUpAnimateAction)
+      
+    case .Dropping:
+      removeActionForKey(KeyForAction.movementSoundAction)
+      runAction(stopMoveUpAnimateAction)
+      
+    case .Standing:
+      runAction(standAnimateAction)
+      
+    default:
+      break
     }
   }
   
