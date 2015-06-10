@@ -23,7 +23,6 @@ class PlayerNode: SKSpriteNode {
   var distanceTravelled: CGFloat = 0
   var initialPosition: CGPoint?
   var shieldNode: ShieldNode?
-  var propelEmitter: SKEmitterNode?
 
   var state: PlayerState = .Standing {
     didSet {
@@ -189,15 +188,9 @@ class PlayerNode: SKSpriteNode {
       runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
       runAction(moveUpAnimateAction)
       
-      propelEmitter = SKEmitterNode(fileNamed: EffectFileName.Propel)
-      propelEmitter!.position = CGPoint(x: 25, y: 30)
-      insertChild(propelEmitter!, atIndex: 0)
-      
     case .Dropping:
       removeActionForKey(KeyForAction.movementSoundAction)
       runAction(stopMoveUpAnimateAction)
-      
-      propelEmitter?.removeFromParent()
       
     case .Standing:
       runAction(standAnimateAction)

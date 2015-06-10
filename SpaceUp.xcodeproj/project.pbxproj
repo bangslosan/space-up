@@ -76,6 +76,7 @@
 		EB05653C1B2479BF00A76297 /* Spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EB05653A1B2479BF00A76297 /* Spark.png */; };
 		EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB05653D1B247BAB00A76297 /* Explosion.sks */; };
 		EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E31B28522D00C1E5BA /* EffectFileName.swift */; };
+		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
 		EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9F1B23CCFE00768015 /* Explode.wav */; };
 		EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1ECA01B23CCFE00768015 /* Meow.wav */; };
@@ -179,6 +180,7 @@
 		EB05653A1B2479BF00A76297 /* Spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spark.png; sourceTree = "<group>"; };
 		EB05653D1B247BAB00A76297 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		EB2914E31B28522D00C1E5BA /* EffectFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EffectFileName.swift; path = Types/EffectFileName.swift; sourceTree = "<group>"; };
+		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		EBB1EC9F1B23CCFE00768015 /* Explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explode.wav; path = Sounds/Explode.wav; sourceTree = "<group>"; };
 		EBB1ECA01B23CCFE00768015 /* Meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meow.wav; path = Sounds/Meow.wav; sourceTree = "<group>"; };
@@ -462,10 +464,11 @@
 		EB0565381B2479BF00A76297 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				EBD100DF1B284A0600D3680B /* Sphere.png */,
-				EB05653A1B2479BF00A76297 /* Spark.png */,
 				EB05653D1B247BAB00A76297 /* Explosion.sks */,
 				EBD100E11B284A3C00D3680B /* Propel.sks */,
+				EB05653A1B2479BF00A76297 /* Spark.png */,
+				EBD100DF1B284A0600D3680B /* Sphere.png */,
+				EB2914E51B2852E500C1E5BA /* Trail.sks */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				EBD100E01B284A0600D3680B /* Sphere.png in Resources */,
 				EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */,
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
+				EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
 				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,
 				EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */,
