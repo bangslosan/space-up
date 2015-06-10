@@ -100,8 +100,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Update
   override func didSimulatePhysics() {
+    var crawlIncrement: CGFloat = 0
+    
+    if world.player.state != .Standing {
+      crawlIncrement = 1 + MaximumCameraCrawlIncrement * gameData.levelFactor
+    }
+
     // Camera
-    world.followPlayer()
+    world.followPlayer(crawlIncrement: crawlIncrement)
     
     // Background
     background.move(world.position)

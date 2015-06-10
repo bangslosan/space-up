@@ -18,6 +18,9 @@ let WorldArea = CGRect(x: 0, y: 0, width: SceneSize.width * 2, height: SceneSize
 // MARK: - Emitter
 let EmitterVerticalSpacing: CGFloat = 450
 
+// MARK: - Camera
+let MaximumCameraCrawlIncrement: CGFloat = 6
+
 // MARK: - Archive
 let GameDataArchiveName = "GameData"
 

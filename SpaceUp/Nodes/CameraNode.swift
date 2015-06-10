@@ -10,7 +10,7 @@ import SpriteKit
 
 class CameraNode: SKNode {
   // MARK: - Follow
-  func followPlayer(player: PlayerNode, crawlIncrement: CGFloat = 2) {
+  func followPlayer(player: PlayerNode, crawlIncrement: CGFloat = 0) {
     if let scene = scene, playerParent = player.parent {
       var cameraPosition = position
       var boundaryFrame = playerParent.convertFrame(scene.frame, fromNode: scene)

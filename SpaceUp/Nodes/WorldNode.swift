@@ -36,9 +36,9 @@ class WorldNode: SKNode {
   }
   
   // MARK: - Camera
-  func followPlayer() {
+  func followPlayer(crawlIncrement: CGFloat = 0) {
     if player.isAlive {
-      camera.followPlayer(player)
+      camera.followPlayer(player, crawlIncrement: crawlIncrement)
       centerCamera()
     }
   }
