@@ -15,13 +15,13 @@ class InterstitialAdView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    closeButton.frame = CGRect(x: 20, y: 20, width: 30, height: 30)
-    closeButton.setTitle("x", forState: .Normal)
-    closeButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-    closeButton.backgroundColor = UIColor.whiteColor()
-    closeButton.layer.cornerRadius = 15
-    closeButton.layer.borderColor = UIColor.blackColor().CGColor
-    closeButton.layer.borderWidth = 1
+    closeButton.frame = CGRect(x: 15, y: 15, width: 32, height: 32)
+    closeButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 18)
+    closeButton.titleLabel?.textAlignment = .Center
+    closeButton.setTitle("\u{f00d}", forState: .Normal)
+    closeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+    closeButton.backgroundColor = UIColor.blackColor()
+    closeButton.layer.cornerRadius = 6
     closeButton.layer.zPosition = 1000
     
     addSubview(closeButton)
