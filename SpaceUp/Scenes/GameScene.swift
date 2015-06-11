@@ -181,15 +181,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Comets
     cometPopulator.removeAllEmitters()
 
-    // Player
-    world.camera.position = CGPointZero
-    world.player.position = CGPoint(x: frame.midX, y: world.ground.frame.maxY)
+    // World
+    world.resetPlayerPosition()
     world.player.respawn()
-    world.followPlayer()
-    
-    afterDelay(1) {
-      self.world.player.initialPosition = self.world.player.position
-    }
+    world.scoreLine.updateWithScore(gameData.topScore, forPlayer: world.player)
     
     // Data
     gameData.reset()
@@ -198,7 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Notify
     gameSceneDelegate?.gameSceneDidStart?(self)
   }
-  
+
   func endGame() {
     gameData.updateTopScore()
     gameData.saveToArchive()

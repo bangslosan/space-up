@@ -109,7 +109,7 @@ class PlayerNode: SKSpriteNode {
     zRotation = 0
   }
   
-  private func reset() {
+  func reset() {
     physicsBody?.velocity = CGVector(dx: 0, dy: 0)
     isAlive = true
     isProtected = false

@@ -9,8 +9,12 @@
 import SpriteKit
 
 class GroundNode: SKSpriteNode {
+  let physicsFrame: CGRect
+
   init(size: CGSize) {
     let texture = SKTexture(imageNamed: TextureFileName.PlanetGround)
+    
+    physicsFrame = CGRect(x: 0, y: 0, width: size.width, height: size.height - 60)
 
     super.init(texture: texture, color: nil, size: size)
     
@@ -18,8 +22,7 @@ class GroundNode: SKSpriteNode {
     anchorPoint = CGPoint(x: 0, y: 0)
 
     // Physics
-    let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height - 60)
-    physicsBody = SKPhysicsBody(edgeLoopFromRect: rect)
+    physicsBody = SKPhysicsBody(edgeLoopFromRect: physicsFrame)
     physicsBody!.categoryBitMask = PhysicsCategory.Ground
     physicsBody!.contactTestBitMask = PhysicsCategory.Player
     physicsBody!.restitution = 0

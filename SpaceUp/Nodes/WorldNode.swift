@@ -32,11 +32,8 @@ class WorldNode: SKNode {
     addChild(player)
     
     // Score
-    /*
-    scoreLine.position = CGPoint(x: 0, y: 400)
     scoreLine.alpha = 0.5
     addChild(scoreLine)
-    */
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -44,6 +41,14 @@ class WorldNode: SKNode {
   }
   
   // MARK: - Camera
+  func resetPlayerPosition() {
+    camera.position = CGPointZero
+    player.position = CGPoint(x: ground.physicsFrame.midX, y: ground.physicsFrame.maxY)
+    player.initialPosition = player.position
+
+    followPlayer()
+  }
+
   func followPlayer(crawlIncrement: CGFloat = 0) {
     if player.isAlive {
       camera.followPlayer(player, crawlIncrement: crawlIncrement)

@@ -35,4 +35,12 @@ class ScoreLineNode: SKNode {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  // MARK: - Score
+  func updateWithScore(score: CGFloat, forPlayer player: PlayerNode) {
+    let distance = GameData.transformScoreToDistance(score)
+    let y = (player.initialPosition?.y ?? 0) + distance
+    
+    position = CGPoint(x: 0, y: y)
+  }
 }

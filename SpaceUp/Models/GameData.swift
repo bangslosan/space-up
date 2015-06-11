@@ -82,6 +82,15 @@ class GameData: NSObject, NSCoding {
     data.writeToURL(fileURL, atomically: true)
   }
   
+  // MARK: - Transform value
+  class func transformDistanceToScore(distance: CGFloat) -> CGFloat {
+    return distance / 100
+  }
+  
+  class func transformScoreToDistance(score: CGFloat) -> CGFloat {
+    return score * 100
+  }
+  
   // MARK: - Update
   func updateTopScoreWithGKScore(score: GKScore) {
     topScore = CGFloat(score.value)
