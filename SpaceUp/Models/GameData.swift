@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 
 private struct KeyForCoder {
   static let topScore = "topScore"
@@ -22,6 +23,7 @@ private let fileURL: NSURL = {
 }()
 
 class GameData: NSObject, NSCoding {
+  // MARK: - Vars
   private(set) var topScore: CGFloat = 0
   private(set) var score: CGFloat = 0 {
     didSet {
@@ -81,6 +83,10 @@ class GameData: NSObject, NSCoding {
   }
   
   // MARK: - Update
+  func updateTopScoreWithGKScore(score: GKScore) {
+    topScore = CGFloat(score.value)
+  }
+
   func updateTopScore() {
     topScore = max(score, topScore)
   }

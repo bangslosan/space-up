@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegate, GameDataSource {
   // MARK: - Immutable var
+  unowned let gameData: GameData
   let world = WorldNode()
   let hud = HUDNode()
   let pauseButton = IconButtonNode(size: CGSize(width: 70, height: 70), text: "\u{f04c}")
@@ -23,9 +24,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   weak var gameSceneDelegate: GameSceneDelegate?
   var textures: [SKTexture]?
   var textureAtlases: [SKTextureAtlas]?
-  var gameData = GameData.dataFromArchive()
   var gameStarted = false
   var godMode = false
+  
+  // MARK: - Init
+  init(size: CGSize, gameData: GameData) {
+    self.gameData = gameData
+
+    super.init(size: size)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
   // MARK: - View
   override func didMoveToView(view: SKView) {

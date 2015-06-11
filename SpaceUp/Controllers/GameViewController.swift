@@ -13,6 +13,7 @@ import iAd
 class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate {
   // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
+  let gameData = GameData.dataFromArchive()
   
   // MARK: - Vars
   private var interstitialAdView: InterstitialAdView?
@@ -74,7 +75,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   func presentGameScene() -> GameScene {
-    let scene = GameScene(size: SceneSize)
+    let scene = GameScene(size: SceneSize, gameData: gameData)
     scene.scaleMode = .AspectFill
     scene.gameSceneDelegate = self
     
@@ -220,6 +221,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   func gameCenterManager(manager: GameCenterManager, didReceiveError error: NSError) {
     // Cancelled by user
     println(error)
+  }
+  
+  func gameCenterManager(manager: GameCenterManager, didLoadDefaultLeaderboardIdentifier identifier: String) {
+    gameCenterManager.loadLeaderboardScore()
+  }
+  
+  func gameCenterManager(manager: GameCenterManager, didLoadLocalPlayerScore score: GKScore) {
+    gameData.updateTopScoreWithGKScore(score)
   }
   
   // MARK: - GameSceneDelegate

@@ -74,4 +74,20 @@ class GameCenterManager: NSObject {
       }
     }
   }
+  
+  func loadLeaderboardScore() {
+    if let leaderboardIdentifier = leaderboardIdentifier {
+      let leaderboard = GKLeaderboard(players: [localPlayer])
+      
+      leaderboard.identifier = leaderboardIdentifier
+      
+      leaderboard.loadScoresWithCompletionHandler { (scores, error) in
+        if let error = error {
+          self.delegate?.gameCenterManager?(self, didReceiveError: error)
+        } else if let localPlayerScore = leaderboard.localPlayerScore {
+          self.delegate?.gameCenterManager?(self, didLoadLocalPlayerScore: localPlayerScore)
+        }
+      }
+    }
+  }
 }

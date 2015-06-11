@@ -13,6 +13,7 @@ import GameKit
   optional func gameCenterManager(manager: GameCenterManager, didProvideViewController viewController: UIViewController)
   optional func gameCenterManager(manager: GameCenterManager, didAuthenticateLocalPlayer: Bool)
   optional func gameCenterManager(manager: GameCenterManager, didLoadDefaultLeaderboardIdentifier identifier: String)
+  optional func gameCenterManager(manager: GameCenterManager, didLoadLocalPlayerScore score: GKScore)
   optional func gameCenterManager(manager: GameCenterManager, didReportScore: GKScore)
   optional func gameCenterManager(manager: GameCenterManager, didReceiveError error: NSError)
 }
