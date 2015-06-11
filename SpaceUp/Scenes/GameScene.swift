@@ -60,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     background.move(world.position)
     
     // Bottom bound
-    bottomBoundary.position = CGPointZero
+    bottomBoundary.position = CGPoint(x: 0, y: -world.player.frame.height)
     addChild(bottomBoundary)
     
     // HUD
@@ -195,8 +195,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
 
   func endGame() {
-    gameData.updateTopScore()
-    gameData.saveToArchive()
+    if !godMode {
+      gameData.updateTopScore()
+      gameData.saveToArchive()
+    }
     
     // Delegate
     gameSceneDelegate?.gameSceneDidEnd?(self)

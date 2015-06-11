@@ -36,7 +36,7 @@ class CometPopulator {
         
         if let emitter = addEmitter(fromPosition, toPosition: toPosition) {
           if toPosition.y > scene.frame.maxY {
-            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0, max: 0.5))
+            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0, max: 0.3))
           } else {
             emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: 0)
           }
@@ -141,12 +141,10 @@ class CometPopulator {
   }
 
   private func hasEmitterOfType(type: CometType) -> Bool {
-    return contains(emitters) { emitter -> Bool in
-      if emitter.type == .Award {
-        return emitter.shouldAward
-      } else {
-        return emitter.type == type
-      }
+    if type == .Award {
+      return contains(emitters) { $0.shouldAward == true }
+    } else {
+      return contains(emitters) { $0.type == type }
     }
   }
 }
