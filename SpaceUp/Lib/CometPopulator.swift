@@ -110,11 +110,16 @@ class CometPopulator {
       let speedOffset = gameData.levelFactor * -100
       let speed = CGFloat.random(min: 200 + speedOffset, max: 400 + speedOffset)
       let type = randomCometType()
+      let levelFactor = dataSource?.gameData.levelFactor ?? 0
       let emitter = CometEmitter(type: type, speed: speed, fromPosition: fromPosition, toPosition: toPosition)
       
       emitters << emitter
       
       emitter.populator = self
+      
+      if !hasEmitterOfType(.Award) && CometType.randomType(levelFactor: levelFactor) == .Award {
+        emitter.shouldAward = true
+      }
       
       return emitter
     }
@@ -130,11 +135,7 @@ class CometPopulator {
   // MARK: - Type
   private func randomCometType() -> CometType {
     let levelFactor = dataSource?.gameData.levelFactor ?? 0
-    var type = CometType.randomType(levelFactor: levelFactor)
-    
-    if type == .Award && hasEmitterOfType(.Award) {
-      type = CometType.randomType(levelFactor: levelFactor, exceptTypes: [.Award])
-    }
+    var type = CometType.randomType(levelFactor: levelFactor, exceptTypes: [.Award])
     
     return type
   }

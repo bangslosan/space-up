@@ -13,9 +13,12 @@ private struct KeyForAction {
 }
 
 class CometEmitter {
+  // MARK: - Vars
   weak var populator: CometPopulator?
   weak var cometPath: CometPathNode?
+  var shouldAward: Bool = false
 
+  // MARK: - Immutable vars
   let comets = NSHashTable.weakObjectsHashTable()
   let speed: CGFloat
   let fromPosition: CGPoint
@@ -61,42 +64,59 @@ class CometEmitter {
       }
 
       let initialPercentage = initialPercentage.clamped(0, 1)
+      let delayDuration = duration * 3/4 - Double(speedFactor)
       
+      var actions = [SKAction]()
       var startPosition = CGPoint(x: fromPosition.x + (toPosition.x - fromPosition.x) * initialPercentage,
                                   y: fromPosition.y + (toPosition.y - fromPosition.y) * initialPercentage)
       
-      let sequenceAction = SKAction.sequence([
+      // Comet
+      let cometAction = SKAction.sequence([
         SKAction.runBlock { [weak self] in
           if let emitter = self {
             let comet = emitter.addComet()
             
             emitter.revealComet(comet, fromPosition: startPosition, toPosition: emitter.toPosition)
-            
+
             startPosition = emitter.fromPosition
           }
         },
-        SKAction.waitForDuration(self.duration * 3/4 - Double(speedFactor))
+        SKAction.waitForDuration(delayDuration)
       ])
       
-      let repeatAction = SKAction.repeatActionForever(sequenceAction)
+      actions << SKAction.repeatActionForever(cometAction)
       
-      world.runAction(repeatAction, withKey: "\(KeyForAction.emitCometAction)-\(uid)")
+      // Award
+      if shouldAward {
+        let awardAction = SKAction.sequence([
+          SKAction.waitForDuration(delayDuration * 0.5),
+          SKAction.runBlock { [weak self] in
+            if let emitter = self {
+              let comet = emitter.addCometOfType(.Award)
+              
+              emitter.revealComet(comet, fromPosition: emitter.fromPosition, toPosition: emitter.toPosition)
+            }
+          },
+          SKAction.waitForDuration(delayDuration * 0.5)
+        ])
+        
+        actions << SKAction.repeatActionForever(awardAction)
+      }
       
-      // Path
-      /*
-      addCometPath()
-      revealCometPath()
-      */
+      world.runAction(SKAction.group(actions), withKey: "\(KeyForAction.emitCometAction)-\(uid)")
     }
   }
   
   func endEmit() {
-    // removeCometPath()
     populator?.world?.removeActionForKey("\(KeyForAction.emitCometAction)-\(uid)")
   }
 
   // MARK: - Add / Remove
   func addComet() -> CometNode {
+    return addCometOfType(type)
+  }
+
+  func addCometOfType(type: CometType) -> CometNode {
     let comet = CometNode(type: type)
     
     comet.emitter = self
