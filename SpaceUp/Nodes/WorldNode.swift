@@ -13,6 +13,7 @@ class WorldNode: SKNode {
   let camera = CameraNode()
   let player = PlayerNode()
   let ground = GroundNode(size: CGSize(width: SceneSize.width, height: 240))
+  let scoreLine = ScoreLineNode(length: SceneSize.width)
   
   // MARK: - Vars
   weak var delegate: WorldDelegate?
@@ -29,6 +30,13 @@ class WorldNode: SKNode {
     // Player
     player.zPosition = 1
     addChild(player)
+    
+    // Score
+    /*
+    scoreLine.position = CGPoint(x: 0, y: 400)
+    scoreLine.alpha = 0.5
+    addChild(scoreLine)
+    */
   }
 
   required init?(coder aDecoder: NSCoder) {

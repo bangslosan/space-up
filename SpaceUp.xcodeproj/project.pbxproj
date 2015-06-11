@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DEB1B296321009B8148 /* ScoreLineNode.swift */; };
 		43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */; };
 		EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */; };
 		EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */; };
@@ -107,6 +108,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43C05DEB1B296321009B8148 /* ScoreLineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreLineNode.swift; path = Nodes/ScoreLineNode.swift; sourceTree = "<group>"; };
 		43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathHelper.swift; path = Helpers/MathHelper.swift; sourceTree = "<group>"; };
 		EB0211E81B1DCF990087B2E6 /* SpaceUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0211EC1B1DCF990087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				EB02127C1B1DECA30087B2E6 /* SceneBackgroundNode.swift */,
 				EB0212951B1F127C0087B2E6 /* ShieldNode.swift */,
 				EB0212501B1DD4010087B2E6 /* TextButtonNode.swift */,
+				43C05DEB1B296321009B8148 /* ScoreLineNode.swift */,
 				EB0212591B1DD4F90087B2E6 /* WorldNode.swift */,
 			);
 			name = Nodes;
@@ -677,6 +680,7 @@
 				EB0212141B1DD18B0087B2E6 /* StartScene.swift in Sources */,
 				EB02123A1B1DD3A00087B2E6 /* SKTAudio.swift in Sources */,
 				EB0212321B1DD3A00087B2E6 /* CGFloat+Extensions.swift in Sources */,
+				43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */,
 				EB0212621B1DD5760087B2E6 /* DirectionType.swift in Sources */,
 				EB02127D1B1DECA30087B2E6 /* SceneBackgroundNode.swift in Sources */,
 				EB0212BC1B22859F0087B2E6 /* GameDataSource.swift in Sources */,
