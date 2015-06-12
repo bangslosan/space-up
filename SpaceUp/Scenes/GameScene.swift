@@ -119,13 +119,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         world.player.brake()
       }
       
-      if filteredMotion.acceleration.x < -0.2 {
-        world.player.side = .Left
-      } else if filteredMotion.acceleration.x > 0.2 {
-        world.player.side = .Right
-      } else {
-        world.player.side = .Center
+      if world.player.state != .Standing {
+        world.player.moveByMotion(filteredMotion)
       }
+      /*
+      if filteredMotion.acceleration.x < -0.1 {
+        world.player.moveToSide(.Left)
+        // world.player.side = .Left
+      } else if filteredMotion.acceleration.x > 0.1 {
+        world.player.moveToSide(.Right)
+        // world.player.side = .Right
+      } else {
+        world.player.moveToSide(.Center)
+        // world.player.side = .Center
+      }
+      */
     }
   }
   

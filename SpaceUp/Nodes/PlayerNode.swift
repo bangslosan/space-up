@@ -31,6 +31,7 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
+  /*
   var side: PlayerSide = .Center {
     didSet {
       if side != oldValue {
@@ -38,6 +39,7 @@ class PlayerNode: SKSpriteNode {
       }
     }
   }
+  */
   
   var isProtected: Bool = false {
     didSet {
@@ -156,6 +158,14 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
+  func moveByMotion(motion: FilteredMotion) {
+    if let scene = scene where abs(motion.acceleration.x) > 0.08 {
+      let x = position.x + CGFloat(motion.acceleration.x) * 20
+      
+      position.x = x.clamped(scene.screenFrame.midX - 150, scene.screenFrame.midX + 150)
+    }
+  }
+  
   func moveToSide(side: PlayerSide) {
     if let scene = scene {
       let segment = scene.screenFrame.width / 3
@@ -164,15 +174,16 @@ class PlayerNode: SKSpriteNode {
 
       switch side {
       case .Right:
-        endPosition = CGPoint(x: segment * 2, y: position.y)
+        endPosition = CGPoint(x: scene.screenFrame.midX + 150, y: position.y)
         
       case .Left:
-        endPosition = CGPoint(x: segment, y: position.y)
+        endPosition = CGPoint(x: scene.screenFrame.midX - 150, y: position.y)
         
       case .Center:
         endPosition = CGPoint(x: scene.screenFrame.midX, y: position.y)
       }
       
+      /*
       let effect = SKTMoveEffect(node: self, duration: 0.8, startPosition: startPosition, endPosition: endPosition)
       effect.timingFunction = SKTTimingFunctionQuadraticEaseOut
       
@@ -180,6 +191,9 @@ class PlayerNode: SKSpriteNode {
       
       removeActionForKey(KeyForAction.moveToSideAction)
       runAction(action, withKey: KeyForAction.moveToSideAction)
+      */
+      
+      position.x += (endPosition.x - position.x) * 0.05
     }
   }
   
