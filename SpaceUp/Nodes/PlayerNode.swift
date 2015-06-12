@@ -9,6 +9,7 @@
 import SpriteKit
 
 private struct KeyForAction {
+  static let moveToSideAction = "moveToSideAction"
   static let movementSoundAction = "movementSoundAction"
   static let killSoundAction = "killSoundAction"
 }
@@ -144,6 +145,33 @@ class PlayerNode: SKSpriteNode {
       
       // Apply force
       physicsBody.applyForce(vector)
+    }
+  }
+  
+  func moveToSide(side: PlayerSide) {
+    if let scene = scene {
+      let segment = scene.screenFrame.width / 3
+      let startPosition = position
+      let endPosition: CGPoint
+
+      switch side {
+      case .Right:
+        endPosition = CGPoint(x: segment * 2, y: position.y)
+        
+      case .Left:
+        endPosition = CGPoint(x: segment, y: position.y)
+        
+      case .Center:
+        endPosition = CGPoint(x: scene.screenFrame.midX, y: position.y)
+      }
+      
+      let effect = SKTMoveEffect(node: self, duration: 0.8, startPosition: startPosition, endPosition: endPosition)
+      effect.timingFunction = SKTTimingFunctionQuadraticEaseOut
+      
+      let action = SKAction.actionWithEffect(effect)
+      
+      removeActionForKey(KeyForAction.moveToSideAction)
+      runAction(action, withKey: KeyForAction.moveToSideAction)
     }
   }
   

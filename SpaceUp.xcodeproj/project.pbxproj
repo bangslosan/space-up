@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DEB1B296321009B8148 /* ScoreLineNode.swift */; };
+		43C05DEE1B2A737C009B8148 /* PlayerSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DED1B2A737C009B8148 /* PlayerSide.swift */; };
 		43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */; };
 		EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */; };
 		EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */; };
@@ -109,6 +110,7 @@
 
 /* Begin PBXFileReference section */
 		43C05DEB1B296321009B8148 /* ScoreLineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreLineNode.swift; path = Nodes/ScoreLineNode.swift; sourceTree = "<group>"; };
+		43C05DED1B2A737C009B8148 /* PlayerSide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerSide.swift; path = Types/PlayerSide.swift; sourceTree = "<group>"; };
 		43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathHelper.swift; path = Helpers/MathHelper.swift; sourceTree = "<group>"; };
 		EB0211E81B1DCF990087B2E6 /* SpaceUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0211EC1B1DCF990087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				EB2914E31B28522D00C1E5BA /* EffectFileName.swift */,
 				EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */,
 				EB0212601B1DD5760087B2E6 /* PhysicsCategory.swift */,
+				43C05DED1B2A737C009B8148 /* PlayerSide.swift */,
 				EBD100DD1B279F0200D3680B /* PlayerState.swift */,
 				EBD100C61B2524DD00D3680B /* SoundFileName.swift */,
 				EBD100C41B2524CA00D3680B /* TextureFileName.swift */,
@@ -643,6 +646,7 @@
 				EB0212C21B22DCB00087B2E6 /* InterstitialAdView.swift in Sources */,
 				EB02126C1B1DD8820087B2E6 /* GameData.swift in Sources */,
 				EB0212841B1E68E40087B2E6 /* CometPopulator.swift in Sources */,
+				43C05DEE1B2A737C009B8148 /* PlayerSide.swift in Sources */,
 				EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */,
 				EB0212631B1DD5760087B2E6 /* PhysicsCategory.swift in Sources */,
 				EB02127B1B1DEC060087B2E6 /* ArrayHelper.swift in Sources */,
