@@ -15,7 +15,7 @@ class CameraNode: SKNode {
       var cameraPosition = position
       var boundaryFrame = playerParent.convertFrame(scene.frame, fromNode: scene)
       
-      cameraPosition.x = player.position.x.clamped(boundaryFrame.minX, boundaryFrame.maxX)
+      cameraPosition.x = scene.frame.midX // player.position.x.clamped(boundaryFrame.minX, boundaryFrame.maxX)
       
       if player.position.y < boundaryFrame.midY {
         cameraPosition.y = max(cameraPosition.y + crawlIncrement, scene.frame.midY)

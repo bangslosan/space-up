@@ -136,6 +136,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
 
     if world.player.isAlive {
+      let touch = touches.first as! UITouch
+      let touchPoint = touch.locationInNode(self)
+      let x: CGFloat
+      let startPosition = world.player.position
+      let endPosition: CGPoint
+      let segment = screenFrame.width / 3
+      
+      if touchPoint.x > segment * 2 {
+        endPosition = CGPoint(x: segment * 2, y: world.player.position.y)
+      } else if touchPoint.x < segment {
+        endPosition = CGPoint(x: segment, y: world.player.position.y)
+      } else {
+        endPosition = CGPoint(x: frame.midX, y: world.player.position.y)
+      }
+      
+      let effect = SKTMoveEffect(node: world.player, duration: 0.8, startPosition: startPosition, endPosition: endPosition)
+      effect.timingFunction = SKTTimingFunctionQuadraticEaseOut
+      
+      let action = SKAction.actionWithEffect(effect)
+
+      world.player.runAction(action)
       world.player.startMoveUpward()
     }
   }
