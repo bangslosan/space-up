@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegate, GameDataSource {
   // MARK: - Immutable var
@@ -17,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   let background = SceneBackgroundNode()
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
   let cometPopulator = CometPopulator()
+  let motionManager = CMMotionManager()
+  let filteredMotion = FilteredMotion(type: .None, factor: 0)
   
   // MARK: - Vars
   weak var endGameView: EndGameView?
@@ -81,6 +84,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     notificationCenter.addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     notificationCenter.addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
     
+    // Motion
+    observeMotion()
+    
     // Start Game
     pauseGame(false)
     startGame()
@@ -88,10 +94,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   override func willMoveFromView(view: SKView) {
     NSNotificationCenter.defaultCenter().removeObserver(self)
+    
+    // Motion
+    stopObservingMotion()
   }
   
   // MARK: - Scene
   override func update(currentTime: CFTimeInterval) {
+    // Motion
+    updateMotion()
+
     // Score
     if world.player.isAlive && gameStarted {
       world.player.updateDistanceTravelled()
@@ -105,6 +117,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         world.player.moveUpward()
       } else {
         world.player.brake()
+      }
+      
+      if filteredMotion.acceleration.x < -0.2 {
+        world.player.side = .Left
+      } else if filteredMotion.acceleration.x > 0.2 {
+        world.player.side = .Right
+      } else {
+        world.player.side = .Center
       }
     }
   }
@@ -129,6 +149,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
   }
   
+  // MARK: - Motion
+  func observeMotion() {
+    // Motion manager
+    if motionManager.accelerometerAvailable && !motionManager.accelerometerActive {
+      motionManager.accelerometerUpdateInterval = 1/100
+      motionManager.startAccelerometerUpdates()
+    }
+  }
+  
+  func stopObservingMotion() {
+    motionManager.stopAccelerometerUpdates()
+  }
+  
+  func updateMotion() {
+    if let acceleration = motionManager.accelerometerData?.acceleration {
+      filteredMotion.updateAcceleration(acceleration)
+    }
+  }
+  
   // MARK: - Event
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
     if view?.paused == true {
@@ -136,6 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
 
     if world.player.isAlive {
+      /*
       let touch = touches.first as! UITouch
       let touchPoint = touch.locationInNode(self)
       let segment = screenFrame.width / 3
@@ -147,6 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       } else {
         world.player.moveToSide(.Center)
       }
+      */
 
       world.player.startMoveUpward()
     }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DEB1B296321009B8148 /* ScoreLineNode.swift */; };
 		43C05DEE1B2A737C009B8148 /* PlayerSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DED1B2A737C009B8148 /* PlayerSide.swift */; };
+		43C05DF01B2A8154009B8148 /* FilteredMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DEF1B2A8154009B8148 /* FilteredMotion.swift */; };
+		43C05DF21B2A81A4009B8148 /* SamplingFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C05DF11B2A81A4009B8148 /* SamplingFilterType.swift */; };
 		43F1ABB31B2127DE00DA1E1D /* MathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */; };
 		EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0211ED1B1DCF990087B2E6 /* AppDelegate.swift */; };
 		EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */; };
@@ -111,6 +113,8 @@
 /* Begin PBXFileReference section */
 		43C05DEB1B296321009B8148 /* ScoreLineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreLineNode.swift; path = Nodes/ScoreLineNode.swift; sourceTree = "<group>"; };
 		43C05DED1B2A737C009B8148 /* PlayerSide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerSide.swift; path = Types/PlayerSide.swift; sourceTree = "<group>"; };
+		43C05DEF1B2A8154009B8148 /* FilteredMotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilteredMotion.swift; path = Lib/FilteredMotion.swift; sourceTree = "<group>"; };
+		43C05DF11B2A81A4009B8148 /* SamplingFilterType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SamplingFilterType.swift; path = Types/SamplingFilterType.swift; sourceTree = "<group>"; };
 		43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathHelper.swift; path = Helpers/MathHelper.swift; sourceTree = "<group>"; };
 		EB0211E81B1DCF990087B2E6 /* SpaceUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0211EC1B1DCF990087B2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -431,6 +435,7 @@
 				EB0212601B1DD5760087B2E6 /* PhysicsCategory.swift */,
 				43C05DED1B2A737C009B8148 /* PlayerSide.swift */,
 				EBD100DD1B279F0200D3680B /* PlayerState.swift */,
+				43C05DF11B2A81A4009B8148 /* SamplingFilterType.swift */,
 				EBD100C61B2524DD00D3680B /* SoundFileName.swift */,
 				EBD100C41B2524CA00D3680B /* TextureFileName.swift */,
 			);
@@ -462,6 +467,7 @@
 			children = (
 				EB0212851B1E92320087B2E6 /* CometEmitter.swift */,
 				EB0212831B1E68E40087B2E6 /* CometPopulator.swift */,
+				43C05DEF1B2A8154009B8148 /* FilteredMotion.swift */,
 				EB0212AF1B22557B0087B2E6 /* GameCenterManager.swift */,
 			);
 			name = Lib;
@@ -670,6 +676,7 @@
 				EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */,
 				EB0212811B1E65BE0087B2E6 /* CometNode.swift in Sources */,
 				EB0212181B1DD1EA0087B2E6 /* GameScene.swift in Sources */,
+				43C05DF21B2A81A4009B8148 /* SamplingFilterType.swift in Sources */,
 				EB0212741B1DE1320087B2E6 /* GroundNode.swift in Sources */,
 				EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */,
 				EB0212761B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift in Sources */,
@@ -677,6 +684,7 @@
 				EB02124D1B1DD3B50087B2E6 /* UIColorExtension.swift in Sources */,
 				EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */,
 				EBB1ECA71B23DBEA00768015 /* KeyForUserDefaults.swift in Sources */,
+				43C05DF01B2A8154009B8148 /* FilteredMotion.swift in Sources */,
 				EB0212381B1DD3A00087B2E6 /* SKColor+Extensions.swift in Sources */,
 				EB02124B1B1DD3B50087B2E6 /* SKNodeExtension.swift in Sources */,
 				EB0212341B1DD3A00087B2E6 /* CGVector+Extensions.swift in Sources */,

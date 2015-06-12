@@ -31,6 +31,14 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
+  var side: PlayerSide = .Center {
+    didSet {
+      if side != oldValue {
+        moveToSide(side)
+      }
+    }
+  }
+  
   var isProtected: Bool = false {
     didSet {
       isProtected ? addShield() : removeShield()
