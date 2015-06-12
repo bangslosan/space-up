@@ -132,9 +132,9 @@ class PlayerNode: SKSpriteNode {
   }
   
   // MARK: - Movement
-  func jump() {
-    if let physicsBody = physicsBody {
-      let magnitude: CGFloat = physicsBody.mass * 1000
+  func jump(magnitude: CGFloat = 1000) {
+    if let physicsBody = physicsBody where physicsBody.velocity.length() < MaximumPlayerResultantVelocity {
+      let magnitude: CGFloat = physicsBody.mass * magnitude
       let angle = CGFloat(M_PI_2) - abs(zRotation % CGFloat(M_PI_2))
       let dx = -zRotation.sign() * cos(angle) * magnitude
       let dy = sin(angle) * magnitude
@@ -145,9 +145,9 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
-  func moveUpward() {
-    if let physicsBody = physicsBody where physicsBody.velocity.length() < 1500 {
-      let magnitude: CGFloat = physicsBody.mass * 5000
+  func moveUpward(magnitude: CGFloat = 5000) {
+    if let physicsBody = physicsBody where physicsBody.velocity.length() < MaximumPlayerResultantVelocity {
+      let magnitude: CGFloat = physicsBody.mass * magnitude
       let angle = CGFloat(M_PI_2) - abs(zRotation % CGFloat(M_PI_2))
       let dx = -zRotation.sign() * cos(angle) * magnitude
       let dy = sin(angle) * magnitude

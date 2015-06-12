@@ -15,6 +15,9 @@ let MainBundleIdentifier = NSBundle.mainBundle().bundleIdentifier!
 let SceneSize = CGSize(width: 720, height: 1280) // CGSize(width: 768, height: 1024)
 let WorldArea = CGRect(x: 0, y: 0, width: SceneSize.width * 2, height: SceneSize.height)
 
+// MARK: - Player
+let MaximumPlayerResultantVelocity: CGFloat = 1000
+
 // MARK: - Emitter
 let EmitterVerticalSpacing: CGFloat = 450
 
