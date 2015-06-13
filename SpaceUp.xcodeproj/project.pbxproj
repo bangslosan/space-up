@@ -88,6 +88,9 @@
 		EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */; };
 		EBCA805B1B2C234B00CC00E2 /* SpriteButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805A1B2C234B00CC00E2 /* SpriteButtonNode.swift */; };
 		EBCA805D1B2C239D00CC00E2 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805C1B2C239D00CC00E2 /* ButtonState.swift */; };
+		EBCA805F1B2CF0E000CC00E2 /* FontName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805E1B2CF0E000CC00E2 /* FontName.swift */; };
+		EBCA80611B2CF2A900CC00E2 /* PreloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */; };
+		EBCA80631B2CF7B800CC00E2 /* ShadowLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
@@ -198,6 +201,9 @@
 		EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsHelper.swift; path = Helpers/UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		EBCA805A1B2C234B00CC00E2 /* SpriteButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpriteButtonNode.swift; path = Nodes/SpriteButtonNode.swift; sourceTree = "<group>"; };
 		EBCA805C1B2C239D00CC00E2 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonState.swift; path = Types/ButtonState.swift; sourceTree = "<group>"; };
+		EBCA805E1B2CF0E000CC00E2 /* FontName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontName.swift; path = Types/FontName.swift; sourceTree = "<group>"; };
+		EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreloadHelper.swift; path = Helpers/PreloadHelper.swift; sourceTree = "<group>"; };
+		EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShadowLabelNode.swift; path = Nodes/ShadowLabelNode.swift; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
@@ -337,6 +343,7 @@
 				EB02125B1B1DD51E0087B2E6 /* PlayerNode.swift */,
 				EB02127C1B1DECA30087B2E6 /* SceneBackgroundNode.swift */,
 				43C05DEB1B296321009B8148 /* ScoreLineNode.swift */,
+				EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */,
 				EB0212951B1F127C0087B2E6 /* ShieldNode.swift */,
 				EBCA805A1B2C234B00CC00E2 /* SpriteButtonNode.swift */,
 				EB0212501B1DD4010087B2E6 /* TextButtonNode.swift */,
@@ -438,6 +445,7 @@
 				EB0212891B1EBE930087B2E6 /* CometType.swift */,
 				EB02125F1B1DD5760087B2E6 /* DirectionType.swift */,
 				EB2914E31B28522D00C1E5BA /* EffectFileName.swift */,
+				EBCA805E1B2CF0E000CC00E2 /* FontName.swift */,
 				EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */,
 				EB0212601B1DD5760087B2E6 /* PhysicsCategory.swift */,
 				EBD100DD1B279F0200D3680B /* PlayerState.swift */,
@@ -463,6 +471,7 @@
 				EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */,
 				43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */,
 				EB0212971B1F188B0087B2E6 /* NodeHelper.swift */,
+				EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */,
 				EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */,
 			);
 			name = Helpers;
@@ -653,6 +662,7 @@
 				EB0212361B1DD3A00087B2E6 /* SKAction+Extensions.swift in Sources */,
 				EBD100CE1B25364400D3680B /* LoadingScene.swift in Sources */,
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
+				EBCA805F1B2CF0E000CC00E2 /* FontName.swift in Sources */,
 				EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */,
 				EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */,
 				EB0212961B1F127C0087B2E6 /* ShieldNode.swift in Sources */,
@@ -689,6 +699,7 @@
 				EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */,
 				EB0212761B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift in Sources */,
 				EB0212781B1DEB920087B2E6 /* BackgroundNode.swift in Sources */,
+				EBCA80631B2CF7B800CC00E2 /* ShadowLabelNode.swift in Sources */,
 				EB02124D1B1DD3B50087B2E6 /* UIColorExtension.swift in Sources */,
 				EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */,
 				EBB1ECA71B23DBEA00768015 /* KeyForUserDefaults.swift in Sources */,
@@ -698,6 +709,7 @@
 				EB0212341B1DD3A00087B2E6 /* CGVector+Extensions.swift in Sources */,
 				EB0212531B1DD4010087B2E6 /* TextButtonNode.swift in Sources */,
 				EB0212141B1DD18B0087B2E6 /* StartScene.swift in Sources */,
+				EBCA80611B2CF2A900CC00E2 /* PreloadHelper.swift in Sources */,
 				EB02123A1B1DD3A00087B2E6 /* SKTAudio.swift in Sources */,
 				EB0212321B1DD3A00087B2E6 /* CGFloat+Extensions.swift in Sources */,
 				43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */,

@@ -10,7 +10,7 @@ import SpriteKit
 
 class HUDNode: SKNode {
   // MARK: - Immutable var
-  let scoreLabel = SKLabelNode(fontNamed: "Righteous-Regular")
+  let scoreLabel = SKLabelNode(fontNamed: FontName.RegularFont)
   
   // MARK: - Init
   override init() {

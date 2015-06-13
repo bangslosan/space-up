@@ -9,28 +9,18 @@
 import SpriteKit
 
 class LoadingScene: SKScene {
-  let loadingLabel = SKLabelNode(fontNamed: "HelveticaNeue")
-  let background: SKSpriteNode
-  
-  override init(size: CGSize) {
-    background = SKSpriteNode(texture: nil, color: UIColor.blackColor(), size: size)
-
-    super.init(size: size)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+  let loadingLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
+  let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
     // Background
-    background.anchorPoint = CGPointZero
     addChild(background)
     
     // Label
-    loadingLabel.color = UIColor.whiteColor()
+    loadingLabel.color = UIColor(hexString: "#e0ebed")
     loadingLabel.colorBlendFactor = 1
+    loadingLabel.fontSize = 60
     loadingLabel.horizontalAlignmentMode = .Center
     loadingLabel.position = CGPoint(x: background.frame.midX, y: background.frame.midY)
     loadingLabel.text = "Loading..."

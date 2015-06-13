@@ -112,19 +112,15 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentLoadingScene()
 
     // Preload textures
-    SKTextureAtlas.preloadTextureAtlases(textureAtlases) {
-      SKTexture.preloadTextures(textures) {
-        dispatch_async(dispatch_get_main_queue()) {
-          // Present game scene
-          let scene = self.presentGameScene()
-          
-          // Retain preloaded textures
-          scene.textureAtlases = textureAtlases
-          scene.textures = textures
-          
-          completion?(scene)
-        }
-      }
+    preloadTextures(textures, textureAtlases) {
+      // Present game scene
+      let scene = self.presentGameScene()
+      
+      // Retain preloaded textures
+      scene.textureAtlases = textureAtlases
+      scene.textures = textures
+      
+      completion?(scene)
     }
   }
   
