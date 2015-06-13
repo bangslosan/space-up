@@ -11,9 +11,13 @@ import Foundation
 struct TextureAtlasFileName {
   static let Environment = "Environment"
   static let Character = "Character"
+  static let StartScene = "StartScene"
 }
 
 struct TextureFileName {
+  static let StartBackground = "StartBackground"
+  static let StartLogo = "StartLogo"
+  
   static let Background = "Background"
   static let BackgroundStars = "BackgroundStars"
   static let BackgroundLargePlanets = "BackgroundLargePlanets"
@@ -30,4 +34,12 @@ struct TextureFileName {
   static let CometMedium = "CometMedium"
   static let CometSmall = "CometSmall"
   static let CometStar = "CometStar"
+  
+  static let ButtonAd = "BtnAd"
+  static let ButtonLeaderboard = "BtnLeaderboard"
+  static let ButtonMusic = "BtnMusic"
+  static let ButtonMusicOff = "BtnMusicOff"
+  static let ButtonSound = "BtnSound"
+  static let ButtonSoundOff = "BtnSoundOff"
+  static let ButtonPlay = "BtnPlay"
 }

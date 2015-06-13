@@ -18,13 +18,8 @@ class IconButtonNode: ButtonNode {
 
     iconLabel = SKLabelNode(fontNamed: "FontAwesome")
     buttonFace = SKShapeNode(rect: rect, cornerRadius: 12)
-
-    super.init()
     
-    // Touch area
-    path = CGPathCreateWithRect(rect, nil)
-    fillColor = UIColor.clearColor()
-    strokeColor = UIColor.clearColor()
+    super.init(texture: nil, color: nil, size: size)
     
     // Button
     buttonFace.fillColor = UIColor(white: 0, alpha: 0.8)

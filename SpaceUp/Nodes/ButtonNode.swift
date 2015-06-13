@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class ButtonNode: SKShapeNode {
+class ButtonNode: SKSpriteNode {
   // MARK: - Vars
   weak var delegate: ButtonDelegate?
   private(set) var touchCount: UInt = 0
@@ -24,8 +24,18 @@ class ButtonNode: SKShapeNode {
   }
   
   // MARK: - Init
-  override init() {
-    super.init()
+  convenience init(imageNamed imageName: String) {
+    let texture = SKTexture(imageNamed: imageName)
+    
+    self.init(texture: texture, color: nil, size: texture.size())
+  }
+  
+  convenience init(texture: SKTexture) {
+    self.init(texture: texture, color: nil, size: texture.size())
+  }
+
+  override init(texture: SKTexture?, color: UIColor?, size: CGSize) {
+    super.init(texture: texture, color: color, size: size)
     
     // Interaction
     userInteractionEnabled = true
@@ -53,7 +63,7 @@ class ButtonNode: SKShapeNode {
   override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
     isTouched = false
   }
-  
+
   // MARK: - Touch count
   func resetTouchCount() {
     touchCount = 0

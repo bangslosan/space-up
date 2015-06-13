@@ -14,15 +14,10 @@ class TextButtonNode: ButtonNode {
 
   // MARK: - Init
   init(size: CGSize) {
-    super.init()
-
-    // Shape
-    let rect = CGRect(origin: CGPoint(x: size.width / -2, y: size.height / -2), size: size)
-    path = CGPathCreateWithRect(rect, nil)
+    super.init(texture: nil, color: nil, size: size)
     
     // Fill color
-    fillColor = UIColor(white: 0, alpha: 0.2)
-    strokeColor = UIColor.clearColor()
+    color = UIColor(white: 0, alpha: 0.2)
     
     // Label
     label.fontSize = 30

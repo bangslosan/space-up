@@ -13,38 +13,68 @@ class StartScene: SKScene, ButtonDelegate {
   weak var startSceneDelegate: StartSceneDelegate?
 
   // MARK: - Immutable var
-  let startButton = TextButtonNode(size: CGSize(width: 300, height: 60))
-  let leaderboardButton = TextButtonNode(size: CGSize(width: 300, height: 60))
-  let soundButton = TextButtonNode(size: CGSize(width: 300, height: 60))
-  let musicButton = TextButtonNode(size: CGSize(width: 300, height: 60))
+  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.StartScene)
+  let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
+  let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
+  let startButton: SpriteButtonNode
+  let leaderboardButton: SpriteButtonNode
+  let soundButton: SpriteButtonNode
+  let musicButton: SpriteButtonNode
+  let adButton: SpriteButtonNode
+  
+  // MARK: - Init
+  override init(size: CGSize) {
+    startButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonPlay))
+    leaderboardButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonLeaderboard))
+    soundButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonSound))
+    musicButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonMusic))
+    adButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonAd))
+    
+    super.init(size: size)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor.whiteColor()
+    // Background
+    addChild(background)
+    
+    // Logo
+    logo.anchorPoint = CGPoint(x: 0.5, y: 1)
+    logo.position = CGPoint(x: background.frame.midX, y: background.frame.maxY - 60)
+    addChild(logo)
     
     // Start button
-    startButton.label.text = "Start Game"
-    startButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY + 100)
+    startButton.position = CGPoint(x: logo.frame.midX, y: logo.frame.minY - 100)
     startButton.delegate = self
     addChild(startButton)
     
     // Leaderboard button
-    leaderboardButton.label.text = "Leaderboard"
-    leaderboardButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY)
+    leaderboardButton.position = CGPoint(x: screenFrame.minX + 100, y: startButton.frame.midY - 50)
     leaderboardButton.delegate = self
     addChild(leaderboardButton)
     
+    // Music button
+    musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 50)
+    musicButton.setTexture(textureAtlas.textureNamed(TextureFileName.ButtonMusicOff), forState: .Active)
+    musicButton.state = isMusicEnabled() ? .Normal : .Active
+    musicButton.delegate = self
+    addChild(musicButton)
+    
     // Sound button
-    soundButton.label.text = isSoundEnabled() ? "Sound On" : "Sound Off"
-    soundButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY - 100)
+    soundButton.position = CGPoint(x: screenFrame.maxX - 250, y: screenFrame.minY + 170)
+    soundButton.setTexture(textureAtlas.textureNamed(TextureFileName.ButtonSoundOff), forState: .Active)
+    soundButton.state = isSoundEnabled() ? .Normal : .Active
     soundButton.delegate = self
     addChild(soundButton)
     
-    // Music button
-    musicButton.label.text = isMusicEnabled() ? "Music On" : "Music Off"
-    musicButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY - 200)
-    musicButton.delegate = self
-    addChild(musicButton)
+    // Ad button
+    adButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
+    adButton.delegate = self
+    addChild(adButton)
   }
   
   // MARK: - ButtonDelegate
@@ -75,10 +105,10 @@ class StartScene: SKScene, ButtonDelegate {
 
     if isSoundEnabled() {
       userDefaults.setValue(true, forKey: KeyForUserDefaults.SoundDisabled)
-      soundButton.label.text = "Sound Off"
+      soundButton.state = .Active
     } else {
       userDefaults.setValue(false, forKey: KeyForUserDefaults.SoundDisabled)
-      soundButton.label.text = "Sound On"
+      soundButton.state = .Normal
     }
     
     userDefaults.synchronize()
@@ -89,10 +119,10 @@ class StartScene: SKScene, ButtonDelegate {
 
     if isMusicEnabled() {
       userDefaults.setValue(true, forKey: KeyForUserDefaults.MusicDisabled)
-      musicButton.label.text = "Music Off"
+      musicButton.state = .Active
     } else {
       userDefaults.setValue(false, forKey: KeyForUserDefaults.MusicDisabled)
-      musicButton.label.text = "Music On"
+      musicButton.state = .Normal
     }
     
     userDefaults.synchronize()
