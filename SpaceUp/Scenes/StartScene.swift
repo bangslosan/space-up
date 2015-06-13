@@ -53,12 +53,12 @@ class StartScene: SKScene, ButtonDelegate {
     addChild(startButton)
     
     // Leaderboard button
-    leaderboardButton.position = CGPoint(x: screenFrame.minX + 100, y: startButton.frame.midY - 50)
+    leaderboardButton.position = CGPoint(x: screenFrame.minX + 100, y: startButton.frame.midY - 40)
     leaderboardButton.delegate = self
     addChild(leaderboardButton)
     
     // Music button
-    musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 50)
+    musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 40)
     musicButton.setTexture(textureAtlas.textureNamed(TextureFileName.ButtonMusicOff), forState: .Active)
     musicButton.state = isMusicEnabled() ? .Normal : .Active
     musicButton.delegate = self
