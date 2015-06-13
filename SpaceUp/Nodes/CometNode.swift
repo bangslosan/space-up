@@ -32,7 +32,7 @@ class CometNode: SKSpriteNode {
     switch type {
     case .Slow:
       texture = textureAtlas.textureNamed(TextureFileName.CometLarge)
-      size = CGSize(width: 400 * ratio, height: 400 * ratio)
+      size = CGSize(width: 300 * ratio, height: 300 * ratio)
 
     case .Fast:
       texture = textureAtlas.textureNamed(TextureFileName.CometSmall)

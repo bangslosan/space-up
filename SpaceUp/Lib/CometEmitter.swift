@@ -64,7 +64,7 @@ class CometEmitter {
       }
 
       let initialPercentage = initialPercentage.clamped(0, 1)
-      let delayDuration = duration - (duration * 0.2 + duration * 0.3 * Double(speedFactor))
+      let delayDuration = duration - (duration * 0.2 + duration * 0.4 * Double(speedFactor))
       
       var actions = [SKAction]()
       var startPosition = CGPoint(x: fromPosition.x + (toPosition.x - fromPosition.x) * initialPercentage,

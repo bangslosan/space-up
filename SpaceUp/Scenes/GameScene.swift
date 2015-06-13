@@ -28,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   var textures: [SKTexture]?
   var textureAtlases: [SKTextureAtlas]?
   var gameStarted = false
-  var godMode = true
+  var godMode = false
   
   // MARK: - Init
   init(size: CGSize, gameData: GameData) {
@@ -122,18 +122,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       if world.player.state != .Standing {
         world.player.moveByMotion(filteredMotion)
       }
-      /*
-      if filteredMotion.acceleration.x < -0.1 {
-        world.player.moveToSide(.Left)
-        // world.player.side = .Left
-      } else if filteredMotion.acceleration.x > 0.1 {
-        world.player.moveToSide(.Right)
-        // world.player.side = .Right
-      } else {
-        world.player.moveToSide(.Center)
-        // world.player.side = .Center
-      }
-      */
     }
   }
   
@@ -183,20 +171,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
 
     if world.player.isAlive {
-      /*
-      let touch = touches.first as! UITouch
-      let touchPoint = touch.locationInNode(self)
-      let segment = screenFrame.width / 3
-      
-      if touchPoint.x > segment * 2 {
-        world.player.moveToSide(.Right)
-      } else if touchPoint.x < segment {
-        world.player.moveToSide(.Left)
-      } else {
-        world.player.moveToSide(.Center)
-      }
-      */
-
       world.player.startMoveUpward()
     }
   }
