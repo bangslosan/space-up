@@ -117,7 +117,7 @@ class CometEmitter {
   }
 
   func addCometOfType(type: CometType) -> CometNode {
-    let comet = CometNode(type: type)
+    let comet = CometNode(type: type, isReversed: fromPosition.x > toPosition.x)
     
     comet.emitter = self
     populator?.world?.addChild(comet)

@@ -77,7 +77,7 @@ class CometPopulator {
       toPosition = world.convertPoint(toPosition, fromNode: scene)
       
       // Swap direction
-      if CGFloat.random(min: 0, max: 1) < gameData.levelFactor - 0.5 {
+      if CGFloat.random(min: 0, max: 1) < gameData.levelFactor - 0.4 {
         let oldFromPosition = fromPosition
         
         fromPosition = toPosition

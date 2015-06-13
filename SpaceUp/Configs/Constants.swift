@@ -19,7 +19,7 @@ let WorldArea = CGRect(x: 0, y: 0, width: SceneSize.width * 2, height: SceneSize
 let MaximumPlayerResultantVelocity: CGFloat = 2000
 
 // MARK: - Emitter
-let EmitterVerticalSpacing: CGFloat = 450
+let EmitterVerticalSpacing: CGFloat = 480
 
 // MARK: - Camera
 let MaximumCameraCrawlIncrement: CGFloat = 5

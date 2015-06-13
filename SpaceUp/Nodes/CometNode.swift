@@ -16,53 +16,28 @@ class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
   let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Environment)
   let type: CometType
-  let physicsFrame: CGRect
   
   // MARK: - Vars
   weak var emitter: CometEmitter?
   var enabled: Bool = true
+  var physicsFrame = CGRectZero
 
   // MARK: - Init
-  init(type: CometType) {
+  init(type: CometType, isReversed: Bool = false) {
     self.type = type
 
-    let texture: SKTexture
-    let textureSize: CGSize
-    let radius: CGFloat
-    let center: CGPoint
-
-    switch type {
-    case .Slow:
-      texture = textureAtlas.textureNamed(TextureFileName.CometLarge)
-      center = CGPoint(x: 284, y: 150)
-      radius = 99
-
-    case .Fast:
-      texture = textureAtlas.textureNamed(TextureFileName.CometSmall)
-      center = CGPoint(x: 134, y: 59)
-      radius = 36
-      
-    case .Award:
-      texture = textureAtlas.textureNamed(TextureFileName.CometStar)
-      center = CGPoint(x: 117, y: 44)
-      radius = 25
-
-    default:
-      texture = textureAtlas.textureNamed(TextureFileName.CometMedium)
-      center = CGPoint(x: 240, y: 115)
-      radius = 63
-    }
+    super.init(texture: nil, color: nil, size: CGSizeZero)
     
-    textureSize = texture.size()
-    physicsFrame = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2)
-
-    super.init(texture: texture, color: nil, size: textureSize)
+    // Configuration
+    let (texture, anchorPoint, physicsFrame) = configurationOfType(type, isReversed: isReversed)
     
-    // Anchor
-    anchorPoint = CGPoint(x: center.x / textureSize.width, y: center.y / textureSize.height)
+    self.texture = texture
+    self.size = texture.size()
+    self.physicsFrame = physicsFrame
+    self.anchorPoint = anchorPoint
     
     // Physics
-    physicsBody = SKPhysicsBody(circleOfRadius: radius)
+    physicsBody = SKPhysicsBody(circleOfRadius: physicsFrame.width / 2)
     physicsBody!.categoryBitMask = type == .Award ? PhysicsCategory.Award : PhysicsCategory.Comet
     physicsBody!.collisionBitMask = 0
     physicsBody!.contactTestBitMask = PhysicsCategory.Player
@@ -74,7 +49,43 @@ class CometNode: SKSpriteNode {
     fatalError("init(coder:) has not been implemented")
   }
   
-  // MARK: Movement
+  private func configurationOfType(type: CometType, isReversed: Bool) -> (texture: SKTexture, anchorPoint: CGPoint, physicsFrame: CGRect) {
+    let texture: SKTexture
+    let center: CGPoint
+    let anchorPoint: CGPoint
+    let radius: CGFloat
+    let physicsFrame: CGRect
+    
+    switch type {
+    case .Slow:
+      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometLargeUp : TextureFileName.CometLarge)
+      center = isReversed ? CGPoint(x: 167, y: 276) : CGPoint(x: 284, y: 150)
+      radius = 99
+      
+    case .Fast:
+      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometSmallUp : TextureFileName.CometSmall)
+      center = isReversed ? CGPoint(x: 81, y: 105) : CGPoint(x: 134, y: 59)
+      radius = 36
+      
+    case .Award:
+      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometStarUp : TextureFileName.CometStar)
+      center = isReversed ? CGPoint(x: 55, y: 99) : CGPoint(x: 117, y: 44)
+      radius = 25
+      
+    default:
+      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometMediumUp : TextureFileName.CometMedium)
+      center = isReversed ? CGPoint(x: 143, y: 218) : CGPoint(x: 240, y: 115)
+      radius = 63
+    }
+    
+    let textureSize = texture.size()
+    anchorPoint = CGPoint(x: center.x / textureSize.width, y: center.y / textureSize.height)
+    physicsFrame = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2)
+    
+    return (texture, anchorPoint, physicsFrame)
+  }
+  
+  // MARK: - Movement
   func moveFromPosition(position: CGPoint, toPosition: CGPoint, duration: NSTimeInterval, completion: (() -> Void)?) {
     self.position = position
     
@@ -90,7 +101,7 @@ class CometNode: SKSpriteNode {
     removeActionForKey(KeyForAction.moveFromPositionAction)
   }
   
-  // MARK: Removal
+  // MARK: - Removal
   func removeFromEmitter() {
     enabled = false
     emitter?.removeComet(self)
