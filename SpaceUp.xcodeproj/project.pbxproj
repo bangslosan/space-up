@@ -844,6 +844,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = SpaceUp;
 				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_SIZE = 4096x4096;
 			};
 			name = Debug;
 		};
@@ -857,6 +858,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = SpaceUp;
 				PROVISIONING_PROFILE = "";
+				SPRITEKIT_TEXTURE_ATLAS_SIZE = 4096x4096;
 			};
 			name = Release;
 		};
