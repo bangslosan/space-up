@@ -95,7 +95,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   func preloadAndPresentGameScene(completion: ((GameScene) -> Void)? = nil) {
     let textureAtlases: [SKTextureAtlas] = [
       SKTextureAtlas(named: TextureAtlasFileName.Environment),
-      SKTextureAtlas(named: TextureAtlasFileName.Character)
+      SKTextureAtlas(named: TextureAtlasFileName.Character),
+      SKTextureAtlas(named: TextureAtlasFileName.UserInterface)
     ]
     
     let textures: [SKTexture] = [

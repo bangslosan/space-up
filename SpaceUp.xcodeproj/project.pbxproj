@@ -80,7 +80,6 @@
 		EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB05653D1B247BAB00A76297 /* Explosion.sks */; };
 		EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E31B28522D00C1E5BA /* EffectFileName.swift */; };
 		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
-		EB36BD7E1B2BFB9C00E32CA2 /* StartScene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EB36BD7D1B2BFB9C00E32CA2 /* StartScene.atlas */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
 		EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9F1B23CCFE00768015 /* Explode.wav */; };
 		EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1ECA01B23CCFE00768015 /* Meow.wav */; };
@@ -91,6 +90,7 @@
 		EBCA805F1B2CF0E000CC00E2 /* FontName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805E1B2CF0E000CC00E2 /* FontName.swift */; };
 		EBCA80611B2CF2A900CC00E2 /* PreloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */; };
 		EBCA80631B2CF7B800CC00E2 /* ShadowLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */; };
+		EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBCA80641B2D484000CC00E2 /* UserInterface.atlas */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
@@ -193,7 +193,6 @@
 		EB05653D1B247BAB00A76297 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		EB2914E31B28522D00C1E5BA /* EffectFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EffectFileName.swift; path = Types/EffectFileName.swift; sourceTree = "<group>"; };
 		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
-		EB36BD7D1B2BFB9C00E32CA2 /* StartScene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = StartScene.atlas; path = Images/StartScene.atlas; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		EBB1EC9F1B23CCFE00768015 /* Explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explode.wav; path = Sounds/Explode.wav; sourceTree = "<group>"; };
 		EBB1ECA01B23CCFE00768015 /* Meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meow.wav; path = Sounds/Meow.wav; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		EBCA805E1B2CF0E000CC00E2 /* FontName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontName.swift; path = Types/FontName.swift; sourceTree = "<group>"; };
 		EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreloadHelper.swift; path = Helpers/PreloadHelper.swift; sourceTree = "<group>"; };
 		EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShadowLabelNode.swift; path = Nodes/ShadowLabelNode.swift; sourceTree = "<group>"; };
+		EBCA80641B2D484000CC00E2 /* UserInterface.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = UserInterface.atlas; path = Images/UserInterface.atlas; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
@@ -365,10 +365,10 @@
 		EB02121B1B1DD23E0087B2E6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EBCA80641B2D484000CC00E2 /* UserInterface.atlas */,
 				EBD100D31B27077800D3680B /* Character.atlas */,
 				EBD100D41B27077800D3680B /* Environment.atlas */,
 				EB0212A21B1F1BC60087B2E6 /* Images.xcassets */,
-				EB36BD7D1B2BFB9C00E32CA2 /* StartScene.atlas */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -620,6 +620,7 @@
 				EBD100E01B284A0600D3680B /* Sphere.png in Resources */,
 				EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */,
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
+				EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */,
 				EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
 				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,
@@ -629,7 +630,6 @@
 				EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,
 				EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */,
-				EB36BD7E1B2BFB9C00E32CA2 /* StartScene.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

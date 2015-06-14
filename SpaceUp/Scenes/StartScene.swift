@@ -13,7 +13,7 @@ class StartScene: SKScene, ButtonDelegate {
   weak var startSceneDelegate: StartSceneDelegate?
 
   // MARK: - Immutable var
-  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.StartScene)
+  let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
   let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
   let startButton: SpriteButtonNode
@@ -24,11 +24,11 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - Init
   override init(size: CGSize) {
-    startButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonPlay))
-    leaderboardButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonLeaderboard))
-    soundButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonSound))
-    musicButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonMusic))
-    adButton = SpriteButtonNode(texture: textureAtlas.textureNamed(TextureFileName.ButtonAd))
+    startButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonPlay))
+    leaderboardButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonLeaderboard))
+    soundButton = SpriteButtonNode(texture:  SKTexture(imageNamed: TextureFileName.ButtonSound))
+    musicButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonMusic))
+    adButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonAd))
     
     super.init(size: size)
   }
@@ -59,14 +59,14 @@ class StartScene: SKScene, ButtonDelegate {
     
     // Music button
     musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 40)
-    musicButton.setTexture(textureAtlas.textureNamed(TextureFileName.ButtonMusicOff), forState: .Active)
+    musicButton.setTexture(SKTexture(imageNamed: TextureFileName.ButtonMusicOff), forState: .Active)
     musicButton.state = isMusicEnabled() ? .Normal : .Active
     musicButton.delegate = self
     addChild(musicButton)
     
     // Sound button
     soundButton.position = CGPoint(x: screenFrame.maxX - 250, y: screenFrame.minY + 170)
-    soundButton.setTexture(textureAtlas.textureNamed(TextureFileName.ButtonSoundOff), forState: .Active)
+    soundButton.setTexture(SKTexture(imageNamed: TextureFileName.ButtonSoundOff), forState: .Active)
     soundButton.state = isSoundEnabled() ? .Normal : .Active
     soundButton.delegate = self
     addChild(soundButton)

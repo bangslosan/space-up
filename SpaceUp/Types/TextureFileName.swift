@@ -11,7 +11,7 @@ import Foundation
 struct TextureAtlasFileName {
   static let Environment = "Environment"
   static let Character = "Character"
-  static let StartScene = "StartScene"
+  static let UserInterface = "UserInterface"
 }
 
 struct TextureFileName {
