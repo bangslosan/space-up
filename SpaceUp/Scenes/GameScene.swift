@@ -119,9 +119,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
         world.player.brake()
       }
       
+      /*
       if world.player.state != .Standing {
         world.player.moveByMotion(filteredMotion)
       }
+      */
     }
   }
   
