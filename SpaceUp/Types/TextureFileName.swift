@@ -46,4 +46,8 @@ struct TextureFileName {
   static let ButtonSound = "BtnSound"
   static let ButtonSoundOff = "BtnSoundOff"
   static let ButtonPlay = "BtnPlay"
+  static let ButtonPlayAgain = "BtnPlayAgain"
+  static let ButtonHome = "BtnHome"
+  static let ButtonResume = "BtnResume"
+  static let LabelNewScore = "LabelNewScore"
 }

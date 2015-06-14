@@ -24,11 +24,11 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - Init
   override init(size: CGSize) {
-    startButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonPlay))
-    leaderboardButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonLeaderboard))
-    soundButton = SpriteButtonNode(texture:  SKTexture(imageNamed: TextureFileName.ButtonSound))
-    musicButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonMusic))
-    adButton = SpriteButtonNode(texture: SKTexture(imageNamed: TextureFileName.ButtonAd))
+    startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
+    leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
+    soundButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonSound)
+    musicButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonMusic)
+    adButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonAd)
     
     super.init(size: size)
   }
@@ -89,42 +89,13 @@ class StartScene: SKScene, ButtonDelegate {
       startSceneDelegate?.startSceneDidRequestLeaderboard?(self)
       
     case soundButton:
-      toggleSound()
+      startSceneDelegate?.startSceneDidRequestToggleSound?(self, withButton: soundButton)
       
     case musicButton:
-      toggleMusic()
+      startSceneDelegate?.startSceneDidRequestToggleMusic?(self, withButton: musicButton)
       
     default:
       break
     }
-  }
-  
-  // MARK: - Sound
-  func toggleSound() {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-
-    if isSoundEnabled() {
-      userDefaults.setValue(true, forKey: KeyForUserDefaults.SoundDisabled)
-      soundButton.state = .Active
-    } else {
-      userDefaults.setValue(false, forKey: KeyForUserDefaults.SoundDisabled)
-      soundButton.state = .Normal
-    }
-    
-    userDefaults.synchronize()
-  }
-  
-  func toggleMusic() {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-
-    if isMusicEnabled() {
-      userDefaults.setValue(true, forKey: KeyForUserDefaults.MusicDisabled)
-      musicButton.state = .Active
-    } else {
-      userDefaults.setValue(false, forKey: KeyForUserDefaults.MusicDisabled)
-      musicButton.state = .Normal
-    }
-    
-    userDefaults.synchronize()
   }
 }

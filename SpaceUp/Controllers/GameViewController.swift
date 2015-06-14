@@ -198,6 +198,49 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     interstitialAdView = nil
   }
   
+  // MARK: - Sound
+  func playMusic() {
+    SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic)
+  }
+  
+  func stopMusic() {
+    SKTAudio.sharedInstance().pauseBackgroundMusic()
+  }
+
+  func toggleSoundForScene(scene: SKScene, withButton button: SpriteButtonNode) -> Bool {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
+    if isSoundEnabled() {
+      userDefaults.setValue(true, forKey: KeyForUserDefaults.SoundDisabled)
+      button.state = .Active
+    } else {
+      userDefaults.setValue(false, forKey: KeyForUserDefaults.SoundDisabled)
+      button.state = .Normal
+    }
+    
+    userDefaults.synchronize()
+    
+    return isSoundEnabled()
+  }
+  
+  func toggleMusicForScene(scene: SKScene, withButton button: SpriteButtonNode) -> Bool {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
+    if isMusicEnabled() {
+      userDefaults.setValue(true, forKey: KeyForUserDefaults.MusicDisabled)
+      button.state = .Active
+      stopMusic()
+    } else {
+      userDefaults.setValue(false, forKey: KeyForUserDefaults.MusicDisabled)
+      button.state = .Normal
+      playMusic()
+    }
+    
+    userDefaults.synchronize()
+    
+    return isMusicEnabled()
+  }
+  
   // MARK: - GKGameCenterControllerDelegate
   func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
     gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
@@ -258,6 +301,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentStartScene()
   }
   
+  func gameSceneDidRequestToggleSound(gameScene: GameScene, withButton button: SpriteButtonNode) {
+    toggleSoundForScene(gameScene, withButton: button)
+  }
+
+  func gameSceneDidRequestToggleMusic(gameScene: GameScene, withButton button: SpriteButtonNode) {
+    toggleMusicForScene(gameScene, withButton: button)
+  }
+  
   // MARK: - StartSceneDelegate
   func startSceneDidRequestStart(startScene: StartScene) {
     preloadAndPresentGameScene()
@@ -279,6 +330,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
       
       presentViewController(alertController, animated: true, completion: nil)
     }
+  }
+  
+  func startSceneDidRequestToggleSound(startScene: StartScene, withButton button: SpriteButtonNode) {
+    toggleSoundForScene(startScene, withButton: button)
+  }
+
+  func startSceneDidRequestToggleMusic(startScene: StartScene, withButton button: SpriteButtonNode) {
+    toggleMusicForScene(startScene, withButton: button)
   }
   
   // MARK: - ADInterstitialAdDelegate

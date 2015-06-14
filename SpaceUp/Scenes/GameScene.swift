@@ -194,6 +194,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     pauseMenu.zPosition = 1000
     pauseMenu.resumeButton.delegate = self
     pauseMenu.quitButton.delegate = self
+    pauseMenu.soundButton.delegate = self
+    pauseMenu.musicButton.delegate = self
 
     addChildIfNeeded(pauseMenu)
     
@@ -290,6 +292,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       pauseGame(false)
     } else if button == pauseMenu?.quitButton || button == endGameView?.quitButton {
       gameSceneDelegate?.gameSceneDidRequestQuit?(self)
+    } else if button == pauseMenu?.musicButton {
+      gameSceneDelegate?.gameSceneDidRequestToggleMusic?(self, withButton: pauseMenu!.musicButton)
+    } else if button == pauseMenu?.soundButton {
+      gameSceneDelegate?.gameSceneDidRequestToggleSound?(self, withButton: pauseMenu!.soundButton)
     } else if button == endGameView?.continueButton {
       continueGame()
     }

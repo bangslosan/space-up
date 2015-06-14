@@ -91,6 +91,7 @@
 		EBCA80611B2CF2A900CC00E2 /* PreloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */; };
 		EBCA80631B2CF7B800CC00E2 /* ShadowLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */; };
 		EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBCA80641B2D484000CC00E2 /* UserInterface.atlas */; };
+		EBCA80671B2D4CD100CC00E2 /* ModalBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
@@ -204,6 +205,7 @@
 		EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreloadHelper.swift; path = Helpers/PreloadHelper.swift; sourceTree = "<group>"; };
 		EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShadowLabelNode.swift; path = Nodes/ShadowLabelNode.swift; sourceTree = "<group>"; };
 		EBCA80641B2D484000CC00E2 /* UserInterface.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = UserInterface.atlas; path = Images/UserInterface.atlas; sourceTree = "<group>"; };
+		EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalBackgroundNode.swift; path = Nodes/ModalBackgroundNode.swift; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				EB0212641B1DD7950087B2E6 /* HUDNode.swift */,
 				EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */,
 				EB02127E1B1DF0310087B2E6 /* LineBoundaryNode.swift */,
+				EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */,
 				EB02125B1B1DD51E0087B2E6 /* PlayerNode.swift */,
 				EB02127C1B1DECA30087B2E6 /* SceneBackgroundNode.swift */,
 				43C05DEB1B296321009B8148 /* ScoreLineNode.swift */,
@@ -694,6 +697,7 @@
 				EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */,
 				EB0212811B1E65BE0087B2E6 /* CometNode.swift in Sources */,
 				EB0212181B1DD1EA0087B2E6 /* GameScene.swift in Sources */,
+				EBCA80671B2D4CD100CC00E2 /* ModalBackgroundNode.swift in Sources */,
 				43C05DF21B2A81A4009B8148 /* SamplingFilterType.swift in Sources */,
 				EB0212741B1DE1320087B2E6 /* GroundNode.swift in Sources */,
 				EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */,

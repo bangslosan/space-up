@@ -20,6 +20,10 @@ class SpriteButtonNode: ButtonNode {
   }
   
   // MARK: - Init
+  convenience init(imageNamed imageName: String) {
+    self.init(texture: SKTexture(imageNamed: imageName))
+  }
+
   init(texture: SKTexture) {
     super.init(texture: texture, color: nil, size: texture.size())
     
