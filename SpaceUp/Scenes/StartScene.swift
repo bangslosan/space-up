@@ -16,20 +16,14 @@ class StartScene: SKScene, ButtonDelegate {
   let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
   let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
-  let startButton: SpriteButtonNode
-  let leaderboardButton: SpriteButtonNode
-  let soundButton: SpriteButtonNode
-  let musicButton: SpriteButtonNode
-  let adButton: SpriteButtonNode
+  let startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
+  let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
+  let soundButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonSound)
+  let musicButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonMusic)
+  let adButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonAd)
   
   // MARK: - Init
   override init(size: CGSize) {
-    startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
-    leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
-    soundButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonSound)
-    musicButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonMusic)
-    adButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonAd)
-    
     super.init(size: size)
   }
 

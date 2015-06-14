@@ -139,6 +139,24 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - Leaderboard
+  func presentLeaderboard() {
+    if let leaderboardIdentifier = gameCenterManager.leaderboardIdentifier where gameCenterManager.isAuthenticated {
+      presentLeaderboardViewControllerWithIdentifier(leaderboardIdentifier)
+    } else {
+      let message = "Please log into GameCenter to access the leaderboard"
+      let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+      let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil)
+      let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { _ in
+        self.gameCenterManager.promptLocalPlayerAuthentication()
+      }
+      
+      alertController.addAction(okAlertAction)
+      alertController.addAction(cancelAlertAction)
+      
+      presentViewController(alertController, animated: true, completion: nil)
+    }
+  }
+
   func presentLeaderboardViewControllerWithIdentifier(identifier: String) -> GKGameCenterViewController {
     let leaderboardViewController = GKGameCenterViewController()
     
@@ -146,6 +164,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     leaderboardViewController.viewState = .Leaderboards
     leaderboardViewController.leaderboardIdentifier = identifier
     
+    skView.paused = true
+
     presentViewController(leaderboardViewController, animated: true, completion: nil)
     
     return leaderboardViewController
@@ -244,6 +264,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   // MARK: - GKGameCenterControllerDelegate
   func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
     gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+    skView.paused = false
   }
   
   // MARK: - GameCenterManagerDelegate
@@ -301,6 +322,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentStartScene()
   }
   
+  func gameSceneDidRequestLeaderboard(gameScene: GameScene) {
+    presentLeaderboard()
+  }
+  
   func gameSceneDidRequestToggleSound(gameScene: GameScene, withButton button: SpriteButtonNode) {
     toggleSoundForScene(gameScene, withButton: button)
   }
@@ -315,21 +340,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
 
   func startSceneDidRequestLeaderboard(startScene: StartScene) {
-    if let leaderboardIdentifier = gameCenterManager.leaderboardIdentifier where gameCenterManager.isAuthenticated {
-      presentLeaderboardViewControllerWithIdentifier(leaderboardIdentifier)
-    } else {
-      let message = "Please log into GameCenter to access the leaderboard"
-      let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-      let cancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil)
-      let okAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { _ in
-        self.gameCenterManager.promptLocalPlayerAuthentication()
-      }
-      
-      alertController.addAction(okAlertAction)
-      alertController.addAction(cancelAlertAction)
-      
-      presentViewController(alertController, animated: true, completion: nil)
-    }
+    presentLeaderboard()
   }
   
   func startSceneDidRequestToggleSound(startScene: StartScene, withButton button: SpriteButtonNode) {

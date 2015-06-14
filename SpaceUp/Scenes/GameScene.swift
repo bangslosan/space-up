@@ -208,6 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     endGameView.zPosition = 1000
     endGameView.continueButton.delegate = self
     endGameView.quitButton.delegate = self
+    endGameView.leaderboardButton.delegate = self
     endGameView.updateWithGameData(gameData)
 
     addChild(endGameView)
@@ -298,6 +299,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       gameSceneDelegate?.gameSceneDidRequestToggleSound?(self, withButton: pauseMenu!.soundButton)
     } else if button == endGameView?.continueButton {
       continueGame()
+    } else if button == endGameView?.leaderboardButton {
+      gameSceneDelegate?.gameSceneDidRequestLeaderboard?(self)
     }
   }
   
