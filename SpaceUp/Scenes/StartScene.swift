@@ -14,7 +14,9 @@ class StartScene: SKScene, ButtonDelegate {
 
   // MARK: - Immutable var
   let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
-  let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
+  // let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
+  let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
+  let background = SKShapeNode(rectOfSize: SceneSize)
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
   let startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
   let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
@@ -31,10 +33,23 @@ class StartScene: SKScene, ButtonDelegate {
     fatalError("init(coder:) has not been implemented")
   }
   
+  deinit {
+    starFieldEmitter.targetNode = nil
+  }
+  
   // MARK: - View
   override func didMoveToView(view: SKView) {
+    backgroundColor = UIColor(hexString: "#212157")
+
     // Background
+    background.strokeColor = UIColor.clearColor()
+    background.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
+    background.zPosition = -10
     addChild(background)
+    
+    starFieldEmitter.targetNode = background
+    background.addChild(starFieldEmitter)
+    starFieldEmitter.advanceSimulationTime(20)
     
     // Logo
     logo.anchorPoint = CGPoint(x: 0.5, y: 1)

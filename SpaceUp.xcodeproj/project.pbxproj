@@ -92,6 +92,8 @@
 		EBCA80631B2CF7B800CC00E2 /* ShadowLabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */; };
 		EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBCA80641B2D484000CC00E2 /* UserInterface.atlas */; };
 		EBCA80671B2D4CD100CC00E2 /* ModalBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */; };
+		EBCA806B1B2F046A00CC00E2 /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = EBCA806A1B2F046A00CC00E2 /* Star.png */; };
+		EBCA806F1B2F052200CC00E2 /* StarField.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCA806E1B2F052200CC00E2 /* StarField.sks */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
@@ -206,6 +208,8 @@
 		EBCA80621B2CF7B800CC00E2 /* ShadowLabelNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShadowLabelNode.swift; path = Nodes/ShadowLabelNode.swift; sourceTree = "<group>"; };
 		EBCA80641B2D484000CC00E2 /* UserInterface.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = UserInterface.atlas; path = Images/UserInterface.atlas; sourceTree = "<group>"; };
 		EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalBackgroundNode.swift; path = Nodes/ModalBackgroundNode.swift; sourceTree = "<group>"; };
+		EBCA806A1B2F046A00CC00E2 /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
+		EBCA806E1B2F052200CC00E2 /* StarField.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarField.sks; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
@@ -498,7 +502,9 @@
 				EBD100E11B284A3C00D3680B /* Propel.sks */,
 				EB05653A1B2479BF00A76297 /* Spark.png */,
 				EBD100DF1B284A0600D3680B /* Sphere.png */,
+				EBCA806A1B2F046A00CC00E2 /* Star.png */,
 				EB2914E51B2852E500C1E5BA /* Trail.sks */,
+				EBCA806E1B2F052200CC00E2 /* StarField.sks */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -623,6 +629,7 @@
 				EBD100E01B284A0600D3680B /* Sphere.png in Resources */,
 				EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */,
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
+				EBCA806F1B2F052200CC00E2 /* StarField.sks in Resources */,
 				EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */,
 				EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
@@ -631,6 +638,7 @@
 				EBD100E21B284A3C00D3680B /* Propel.sks in Resources */,
 				EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */,
 				EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */,
+				EBCA806B1B2F046A00CC00E2 /* Star.png in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,
 				EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */,
 			);
