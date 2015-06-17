@@ -249,6 +249,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
     // End view
     endGameView = presentEndGameView()
+    endGameView!.appear()
   }
   
   func continueGame() {
@@ -265,8 +266,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func pauseGame(paused: Bool, presentMenuIfNeeded: Bool = true) {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    
     view?.paused = paused
     
     if paused {
@@ -285,8 +284,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - ButtonDelegate
   func touchBeganForButton(button: ButtonNode) {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-
     if button == pauseButton {
       togglePauseGame()
     } else if button == pauseMenu?.resumeButton {
