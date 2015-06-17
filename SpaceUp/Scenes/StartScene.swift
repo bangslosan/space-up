@@ -16,7 +16,6 @@ class StartScene: SKScene, ButtonDelegate {
   let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
   let background = BackgroundNode(imageNamed: TextureFileName.Background)
   let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
-  // let background = SKShapeNode(rectOfSize: SceneSize)
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
   let startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
   let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
@@ -83,6 +82,32 @@ class StartScene: SKScene, ButtonDelegate {
     adButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
     adButton.delegate = self
     addChild(adButton)
+  }
+  
+  // MARK: - Appear
+  func appear() {
+    let startScale = CGPoint(x: 0.001, y: 0.001)
+    let endScale = CGPoint(x: 1, y: 1)
+    
+    startButton.scaleAsPoint = startScale
+    leaderboardButton.scaleAsPoint = startScale
+    soundButton.scaleAsPoint = startScale
+    adButton.scaleAsPoint = startScale
+    musicButton.scaleAsPoint = startScale
+    
+    let startButtonAction = SKTScaleEffect.scaleActionWithNode(startButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    let leaderboardButtonAction = SKTScaleEffect.scaleActionWithNode(leaderboardButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    let soundButtonAction = SKTScaleEffect.scaleActionWithNode(soundButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    let adButtonAction = SKTScaleEffect.scaleActionWithNode(adButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    let musicButtonAction = SKTScaleEffect.scaleActionWithNode(musicButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    
+    runAction(SKAction.group([
+      startButtonAction,
+      SKAction.afterDelay(0.1, performAction: leaderboardButtonAction),
+      SKAction.afterDelay(0.2, performAction: adButtonAction),
+      SKAction.afterDelay(0.3, performAction: soundButtonAction),
+      SKAction.afterDelay(0.4, performAction: musicButtonAction)
+    ]))
   }
   
   // MARK: - ButtonDelegate

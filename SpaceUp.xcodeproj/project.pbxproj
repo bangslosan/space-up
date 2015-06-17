@@ -94,6 +94,7 @@
 		EBCA80671B2D4CD100CC00E2 /* ModalBackgroundNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */; };
 		EBCA806B1B2F046A00CC00E2 /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = EBCA806A1B2F046A00CC00E2 /* Star.png */; };
 		EBCA806F1B2F052200CC00E2 /* StarField.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCA806E1B2F052200CC00E2 /* StarField.sks */; };
+		EBCA80711B321B4200CC00E2 /* SKTEffectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
@@ -210,6 +211,7 @@
 		EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalBackgroundNode.swift; path = Nodes/ModalBackgroundNode.swift; sourceTree = "<group>"; };
 		EBCA806A1B2F046A00CC00E2 /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
 		EBCA806E1B2F052200CC00E2 /* StarField.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarField.sks; sourceTree = "<group>"; };
+		EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKTEffectExtension.swift; path = Extensions/SKTEffectExtension.swift; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				EB0212421B1DD3B50087B2E6 /* SKActionExtension.swift */,
 				EB0212431B1DD3B50087B2E6 /* SKNodeExtension.swift */,
 				EB0212441B1DD3B50087B2E6 /* SKSceneExtension.swift */,
+				EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */,
 				EB0212451B1DD3B50087B2E6 /* UIColorExtension.swift */,
 			);
 			name = Extensions;
@@ -720,6 +723,7 @@
 				EB02124B1B1DD3B50087B2E6 /* SKNodeExtension.swift in Sources */,
 				EB0212341B1DD3A00087B2E6 /* CGVector+Extensions.swift in Sources */,
 				EB0212531B1DD4010087B2E6 /* TextButtonNode.swift in Sources */,
+				EBCA80711B321B4200CC00E2 /* SKTEffectExtension.swift in Sources */,
 				EB0212141B1DD18B0087B2E6 /* StartScene.swift in Sources */,
 				EBCA80611B2CF2A900CC00E2 /* PreloadHelper.swift in Sources */,
 				EB02123A1B1DD3A00087B2E6 /* SKTAudio.swift in Sources */,

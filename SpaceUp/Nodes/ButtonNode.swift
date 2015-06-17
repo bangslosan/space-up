@@ -24,16 +24,6 @@ class ButtonNode: SKSpriteNode {
   }
   
   // MARK: - Init
-  convenience init(imageNamed imageName: String) {
-    let texture = SKTexture(imageNamed: imageName)
-    
-    self.init(texture: texture, color: nil, size: texture.size())
-  }
-  
-  convenience init(texture: SKTexture) {
-    self.init(texture: texture, color: nil, size: texture.size())
-  }
-
   override init(texture: SKTexture?, color: UIColor?, size: CGSize) {
     super.init(texture: texture, color: color, size: size)
     

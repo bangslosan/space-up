@@ -349,13 +349,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   // MARK: - NSNotification
   dynamic private func applicationWillResignActive(notification: NSNotification) {
     gameData.saveToArchive()
-    pauseGame(true)
+    pauseGame(false)
   }
   
   dynamic private func applicationDidEnterBackground(notification: NSNotification) {
   }
   
   dynamic private func applicationDidBecomeActive(notification: NSNotification) {
+    pauseGame(true)
   }
   
   dynamic private func applicationWillEnterForeground(notification: NSNotification) {

@@ -67,6 +67,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     // Present scene
     skView.presentScene(scene)
+    scene.appear()
     
     // Background music
     SKTAudio.sharedInstance().pauseBackgroundMusic()

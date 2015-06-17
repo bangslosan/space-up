@@ -229,7 +229,7 @@ class PlayerNode: SKSpriteNode {
       let diameter = max(frame.width, frame.height) + 20
 
       shieldNode = ShieldNode(size: CGSize(width: diameter, height: diameter))
-      shieldNode!.position = CGPoint(x: 0, y: frame.height * 0.5)
+      shieldNode!.position = CGPoint(x: 0, y: frame.height * 0.5 - 15)
       shieldNode!.zPosition = 20
       addChild(shieldNode!)
     }
