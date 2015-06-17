@@ -81,6 +81,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     // Present scene
     skView.presentScene(scene)
+    skView.paused = false
     
     // Background music
     if isMusicEnabled() {
@@ -131,6 +132,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     // Present scene
     skView.presentScene(scene)
+    skView.paused = false
     
     // Background music
     SKTAudio.sharedInstance().pauseBackgroundMusic()
@@ -317,8 +319,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   func gameSceneDidRequestQuit(gameScene: GameScene) {
-    gameScene.paused = true
-
     presentStartScene()
   }
   

@@ -10,8 +10,7 @@ import SpriteKit
 
 class LoadingScene: SKScene {
   let loadingLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
-  // let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
-  let background = SKShapeNode(rectOfSize: SceneSize)
+  let background = BackgroundNode(imageNamed: TextureFileName.Background)
   let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
   
   // MARK: - Init
@@ -21,15 +20,14 @@ class LoadingScene: SKScene {
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: "#212157")
+    backgroundColor = UIColor(hexString: "#292656")
 
     // Background
-    background.strokeColor = UIColor.clearColor()
-    background.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
     background.zPosition = -10
     addChild(background)
     
     starFieldEmitter.targetNode = background
+    starFieldEmitter.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
     background.addChild(starFieldEmitter)
     starFieldEmitter.advanceSimulationTime(20)
     
@@ -39,7 +37,7 @@ class LoadingScene: SKScene {
     loadingLabel.fontSize = 60
     loadingLabel.horizontalAlignmentMode = .Center
     loadingLabel.position = CGPoint(x: background.frame.midX, y: background.frame.midY)
-    loadingLabel.text = "Loading..."
+    loadingLabel.text = "LOADING..."
     addChild(loadingLabel)
   }
 }

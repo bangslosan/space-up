@@ -14,9 +14,9 @@ class StartScene: SKScene, ButtonDelegate {
 
   // MARK: - Immutable var
   let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
-  // let background = BackgroundNode(imageNamed: TextureFileName.StartBackground)
+  let background = BackgroundNode(imageNamed: TextureFileName.Background)
   let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
-  let background = SKShapeNode(rectOfSize: SceneSize)
+  // let background = SKShapeNode(rectOfSize: SceneSize)
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
   let startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
   let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
@@ -39,15 +39,14 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: "#212157")
+    backgroundColor = UIColor(hexString: "#292656")
 
     // Background
-    background.strokeColor = UIColor.clearColor()
-    background.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
     background.zPosition = -10
     addChild(background)
     
     starFieldEmitter.targetNode = background
+    starFieldEmitter.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
     background.addChild(starFieldEmitter)
     starFieldEmitter.advanceSimulationTime(20)
     

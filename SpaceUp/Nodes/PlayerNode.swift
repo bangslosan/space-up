@@ -24,7 +24,7 @@ class PlayerNode: SKSpriteNode {
   var distanceTravelled: CGFloat = 0
   var initialPosition: CGPoint?
   var shieldNode: ShieldNode?
-  lazy var engineEmitterNode = SKEmitterNode(fileNamed: "Propel.sks")
+  lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
 
   var state: PlayerState = .Standing {
     didSet {
@@ -79,7 +79,7 @@ class PlayerNode: SKSpriteNode {
     super.init(texture: texture, color: UIColor.clearColor(), size: size)
     
     // Anchor
-    anchorPoint = CGPoint(x: 0.5, y: 0)
+    anchorPoint = CGPoint(x: 0.5, y: 0.18)
     
     // Physics
     physicsBody = physicsBodyOfSize(size)
@@ -198,7 +198,7 @@ class PlayerNode: SKSpriteNode {
       runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
       runAction(moveUpAnimateAction)
       
-      engineEmitterNode?.position = CGPoint(x: 27, y: 25)
+      engineEmitterNode?.position = CGPoint(x: 27, y: 10)
       engineEmitterNode?.zPosition = -1
       engineEmitterNode?.addToParent(self)
       
