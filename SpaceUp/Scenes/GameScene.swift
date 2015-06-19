@@ -218,6 +218,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Gameflow
   func startGame() {
+    // Unpause
+    pauseGame(false)
+    
     // Comets
     cometPopulator.removeAllEmitters()
 
@@ -254,6 +257,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   func continueGame() {
     endGameView?.removeFromParent()
+    endGameView = nil
+
+    // Inform delegate
     gameSceneDelegate?.gameSceneDidRequestRetry?(self)
   }
   
@@ -348,15 +354,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - NSNotification
   dynamic private func applicationWillResignActive(notification: NSNotification) {
-    gameData.saveToArchive()
-    pauseGame(false)
+    if world.player.isAlive {
+      pauseGame(false)
+    }
   }
   
   dynamic private func applicationDidEnterBackground(notification: NSNotification) {
   }
   
   dynamic private func applicationDidBecomeActive(notification: NSNotification) {
-    pauseGame(true)
+    if world.player.isAlive {
+      pauseGame(true)
+    }
   }
   
   dynamic private func applicationWillEnterForeground(notification: NSNotification) {
