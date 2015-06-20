@@ -28,7 +28,9 @@ struct TextureFileName {
   static let MuffyStopFlying = "MuffyStopFlying"
   static let MuffyStanding = "MuffyStanding"
   static let MuffyDead = "MuffyDead"
+
   static let Shield = "Shield"
+  static let ShieldBlur = "ShieldBlur"
 
   static let CometLarge = "CometLarge"
   static let CometLargeUp = "CometLargeUp"
