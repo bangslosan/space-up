@@ -25,6 +25,7 @@ class PlayerNode: SKSpriteNode {
   var initialPosition: CGPoint?
   var shieldNode: ShieldNode?
   lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
+  lazy var shieldEmitterNode = SKEmitterNode(fileNamed: EffectFileName.ShieldGlow)
 
   var state: PlayerState = .Standing {
     didSet {
@@ -198,8 +199,9 @@ class PlayerNode: SKSpriteNode {
       runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
       runAction(moveUpAnimateAction)
       
-      engineEmitterNode?.position = CGPoint(x: 27, y: 10)
-      engineEmitterNode?.zPosition = -1
+      engineEmitterNode?.position = CGPoint(x: 27, y: -5)
+      engineEmitterNode?.zPosition = 19
+      engineEmitterNode?.resetSimulation()
       engineEmitterNode?.addToParent(self)
       
     case .Dropping:
@@ -226,17 +228,24 @@ class PlayerNode: SKSpriteNode {
   // MARK: - Protection
   private func addShield() {
     if shieldNode == nil {
-      let diameter = max(frame.width, frame.height) + 20
+      let diameter: CGFloat = 220
 
       shieldNode = ShieldNode(size: CGSize(width: diameter, height: diameter))
-      shieldNode!.position = CGPoint(x: 0, y: frame.height * 0.5 - 15)
+      shieldNode!.position = CGPoint(x: 0, y: diameter * 0.5 - 25)
       shieldNode!.zPosition = 20
       addChild(shieldNode!)
+
+      shieldEmitterNode.alpha = 0.1
+      shieldEmitterNode.zPosition = 19
+      shieldEmitterNode.position = shieldNode!.position
+      shieldEmitterNode.resetSimulation()
+      addChild(shieldEmitterNode)
     }
   }
   
   private func removeShield() {
     if shieldNode != nil {
+      shieldEmitterNode.removeFromParent()
       shieldNode!.removeFromParent()
       shieldNode = nil
     }

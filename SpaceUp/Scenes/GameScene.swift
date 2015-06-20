@@ -229,6 +229,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.player.respawn()
     world.scoreLine.updateWithScore(gameData.topScore, forPlayer: world.player)
     
+    // Background
+    background.move(world.position)
+    
     // Data
     gameData.reset()
     gameStarted = true

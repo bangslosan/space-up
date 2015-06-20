@@ -95,6 +95,7 @@
 		EBCA806B1B2F046A00CC00E2 /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = EBCA806A1B2F046A00CC00E2 /* Star.png */; };
 		EBCA806F1B2F052200CC00E2 /* StarField.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCA806E1B2F052200CC00E2 /* StarField.sks */; };
 		EBCA80711B321B4200CC00E2 /* SKTEffectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */; };
+		EBCA80731B34E26200CC00E2 /* ShieldGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBCA80721B34E26200CC00E2 /* ShieldGlow.sks */; };
 		EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C41B2524CA00D3680B /* TextureFileName.swift */; };
 		EBD100C71B2524DD00D3680B /* SoundFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C61B2524DD00D3680B /* SoundFileName.swift */; };
 		EBD100CB1B2533F500D3680B /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100C91B2533F500D3680B /* EndGameView.swift */; };
@@ -212,6 +213,7 @@
 		EBCA806A1B2F046A00CC00E2 /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
 		EBCA806E1B2F052200CC00E2 /* StarField.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarField.sks; sourceTree = "<group>"; };
 		EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKTEffectExtension.swift; path = Extensions/SKTEffectExtension.swift; sourceTree = "<group>"; };
+		EBCA80721B34E26200CC00E2 /* ShieldGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShieldGlow.sks; sourceTree = "<group>"; };
 		EBD100C41B2524CA00D3680B /* TextureFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureFileName.swift; path = Types/TextureFileName.swift; sourceTree = "<group>"; };
 		EBD100C61B2524DD00D3680B /* SoundFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SoundFileName.swift; path = Types/SoundFileName.swift; sourceTree = "<group>"; };
 		EBD100C91B2533F500D3680B /* EndGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EndGameView.swift; path = ViewNodes/EndGameView.swift; sourceTree = "<group>"; };
@@ -503,11 +505,12 @@
 			children = (
 				EB05653D1B247BAB00A76297 /* Explosion.sks */,
 				EBD100E11B284A3C00D3680B /* Propel.sks */,
+				EBCA80721B34E26200CC00E2 /* ShieldGlow.sks */,
 				EB05653A1B2479BF00A76297 /* Spark.png */,
 				EBD100DF1B284A0600D3680B /* Sphere.png */,
 				EBCA806A1B2F046A00CC00E2 /* Star.png */,
-				EB2914E51B2852E500C1E5BA /* Trail.sks */,
 				EBCA806E1B2F052200CC00E2 /* StarField.sks */,
+				EB2914E51B2852E500C1E5BA /* Trail.sks */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */,
 				EBD100E21B284A3C00D3680B /* Propel.sks in Resources */,
 				EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */,
+				EBCA80731B34E26200CC00E2 /* ShieldGlow.sks in Resources */,
 				EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */,
 				EBCA806B1B2F046A00CC00E2 /* Star.png in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,
