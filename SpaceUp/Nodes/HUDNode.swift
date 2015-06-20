@@ -16,7 +16,7 @@ class HUDNode: SKNode {
   override init() {
     super.init()
 
-    scoreLabel.color = UIColor.whiteColor()
+    scoreLabel.color = UIColor(hexString: ColorHex.TextColor)
     scoreLabel.colorBlendFactor = 1
     scoreLabel.horizontalAlignmentMode = .Center
     scoreLabel.position = CGPoint(x: 0, y: -150)

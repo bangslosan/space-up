@@ -43,7 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: "#323257")
+    backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
     
     // Physics
     physicsWorld.contactDelegate = self

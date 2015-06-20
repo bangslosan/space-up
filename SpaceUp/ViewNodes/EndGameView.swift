@@ -45,14 +45,14 @@ class EndGameView: SKNode {
     modal.addChild(modalBackground)
     
     // Game Over
-    gameOverLabel.fontColor = UIColor(hexString: "#e0ebed")
+    gameOverLabel.fontColor = UIColor(hexString: ColorHex.TextColor)
     gameOverLabel.position = CGPoint(x: modalBackground.frame.midX, y: modalBackground.frame.maxY - 180)
     gameOverLabel.fontSize = 80
     gameOverLabel.text = "GAME OVER"
     modal.addChild(gameOverLabel)
     
     // Recent score caption
-    scoreCaptionLabel.color = UIColor(hexString: "#e0ebed")
+    scoreCaptionLabel.color = UIColor(hexString: ColorHex.TextColor)
     scoreCaptionLabel.horizontalAlignmentMode = .Center
     scoreCaptionLabel.fontSize = 50
     scoreCaptionLabel.text = "SCORE"
@@ -60,14 +60,14 @@ class EndGameView: SKNode {
     modal.addChild(scoreCaptionLabel)
     
     // Recent score
-    scoreLabel.color = UIColor(hexString: "#e0ebed")
+    scoreLabel.color = UIColor(hexString: ColorHex.TextColor)
     scoreLabel.horizontalAlignmentMode = .Center
     scoreLabel.fontSize = 50
     scoreLabel.position = CGPoint(x: modalBackground.frame.midX, y: scoreCaptionLabel.frame.minY - 60)
     modal.addChild(scoreLabel)
     
     // Top score caption
-    topScoreCaptionLabel.color = UIColor(hexString: "#e0ebed")
+    topScoreCaptionLabel.color = UIColor(hexString: ColorHex.TextColor)
     topScoreCaptionLabel.horizontalAlignmentMode = .Center
     topScoreCaptionLabel.fontSize = 50
     topScoreCaptionLabel.text = "BEST"
@@ -75,7 +75,7 @@ class EndGameView: SKNode {
     modal.addChild(topScoreCaptionLabel)
     
     // Top score
-    topScoreLabel.color = UIColor(hexString: "#e0ebed")
+    topScoreLabel.color = UIColor(hexString: ColorHex.TextColor)
     topScoreLabel.colorBlendFactor = 1
     topScoreLabel.horizontalAlignmentMode = .Center
     topScoreLabel.fontSize = 50

@@ -20,7 +20,7 @@ class LoadingScene: SKScene {
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: "#292656")
+    backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
 
     // Background
     background.zPosition = -10
@@ -32,7 +32,7 @@ class LoadingScene: SKScene {
     starFieldEmitter.advanceSimulationTime(20)
     
     // Label
-    loadingLabel.color = UIColor(hexString: "#e0ebed")
+    loadingLabel.color = UIColor(hexString: ColorHex.TextColor)
     loadingLabel.colorBlendFactor = 1
     loadingLabel.fontSize = 60
     loadingLabel.horizontalAlignmentMode = .Center

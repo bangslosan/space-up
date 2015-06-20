@@ -38,7 +38,7 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: "#292656")
+    backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
 
     // Background
     background.zPosition = -10
