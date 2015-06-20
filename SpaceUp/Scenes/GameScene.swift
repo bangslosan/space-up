@@ -257,7 +257,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
     // End view
     endGameView = presentEndGameView(hasNewTopScore: hasNewTopScore)
-    endGameView!.appear()
+    endGameView!.hidden = true
+
+    afterDelay(0.5) {
+      self.endGameView?.hidden = false
+      self.endGameView?.appear()
+    }
   }
   
   func continueGame() {

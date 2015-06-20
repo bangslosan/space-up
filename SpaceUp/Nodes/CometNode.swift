@@ -26,6 +26,18 @@ class CometNode: SKSpriteNode {
   var sphereHighlight: SphereHighlightNode?
   var enabled: Bool = true
   var physicsFrame = CGRectZero
+  
+  lazy var explodeAnimateAction: SKAction = {
+    return SKAction.animateWithTextures([
+      self.textureAtlas.textureNamed(TextureFileName.CrackedMedium),
+      self.textureAtlas.textureNamed(TextureFileName.CrackedRed),
+      self.textureAtlas.textureNamed(TextureFileName.Explosion + "1"),
+      self.textureAtlas.textureNamed(TextureFileName.Explosion + "2"),
+      self.textureAtlas.textureNamed(TextureFileName.Explosion + "3"),
+      self.textureAtlas.textureNamed(TextureFileName.Explosion + "4"),
+      self.textureAtlas.textureNamed(TextureFileName.Explosion + "5")
+    ], timePerFrame: 1/15)
+  }()
 
   // MARK: - Init
   init(type: CometType, isReversed: Bool = false) {
@@ -123,14 +135,15 @@ class CometNode: SKSpriteNode {
   func explodeAndRemove() {
     if let parent = parent {
       // Add explosion effect
-      let explosionEmitter = SKEmitterNode(fileNamed: EffectFileName.Explosion)
-
-      explosionEmitter.position = position
-      parent.addChild(explosionEmitter)
+      let explosion = SKSpriteNode(imageNamed: TextureFileName.CrackedRed)
       
-      afterDelay(2) {
-        explosionEmitter.removeFromParent()
-      }
+      explosion.position = position
+      parent.addChild(explosion)
+      
+      explosion.runAction(SKAction.sequence([
+        explodeAnimateAction,
+        SKAction.runBlock { explosion.removeFromParent() }
+      ]))
     }
     
     // Remove itself
