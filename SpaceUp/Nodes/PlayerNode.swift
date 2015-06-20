@@ -227,10 +227,10 @@ class PlayerNode: SKSpriteNode {
   // MARK: - Protection
   private func addShield() {
     if shieldNode == nil {
-      let diameter: CGFloat = 220
+      let diameter: CGFloat = 230
 
       shieldNode = ShieldNode(size: CGSize(width: diameter, height: diameter))
-      shieldNode!.position = CGPoint(x: 0, y: diameter * 0.5 - 25)
+      shieldNode!.position = CGPoint(x: 0, y: diameter * 0.5 - 30)
       shieldNode!.zPosition = 20
       addChild(shieldNode!)
     }

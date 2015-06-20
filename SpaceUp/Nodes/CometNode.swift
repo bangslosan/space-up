@@ -10,15 +10,20 @@ import SpriteKit
 
 private struct KeyForAction {
   static let moveFromPositionAction = "moveFromPositionAction"
+  static let rotationAction = "rotationAction"
+  static let glowAction = "glowAction"
 }
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
   let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Environment)
   let type: CometType
+  let sphere: SKSpriteNode
+  let glow: SKSpriteNode
   
   // MARK: - Vars
   weak var emitter: CometEmitter?
+  var sphereHighlight: SphereHighlightNode?
   var enabled: Bool = true
   var physicsFrame = CGRectZero
 
@@ -26,16 +31,57 @@ class CometNode: SKSpriteNode {
   init(type: CometType, isReversed: Bool = false) {
     self.type = type
 
-    super.init(texture: nil, color: nil, size: CGSizeZero)
+    let radius: CGFloat
     
-    // Configuration
-    let (texture, anchorPoint, physicsFrame) = configurationOfType(type, isReversed: isReversed)
+    switch type {
+    case .Slow:
+      sphere = SKSpriteNode(imageNamed: TextureFileName.CometLarge)
+      glow = SKSpriteNode(imageNamed: TextureFileName.CometLargeGlow)
+      glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
+      radius = 99
+      
+    case .Fast:
+      sphere = SKSpriteNode(imageNamed: TextureFileName.CometSmall)
+      glow = SKSpriteNode(imageNamed: TextureFileName.CometSmallGlow)
+      glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
+      radius = 36
+      
+    case .Award:
+      sphere = SKSpriteNode(imageNamed: TextureFileName.CometStar)
+      glow = SKSpriteNode(imageNamed: TextureFileName.CometStarGlow)
+      radius = 25
+      
+    default:
+      sphere = SKSpriteNode(imageNamed: TextureFileName.CometMedium)
+      glow = SKSpriteNode(imageNamed: TextureFileName.CometMediumGlow)
+      glow.anchorPoint = CGPoint(x: 0.68, y: 0.38)
+      radius = 63
+    }
+
+    physicsFrame = CGRect(x: radius, y: radius, width: radius * 2, height: radius * 2)
+
+    super.init(texture: nil, color: nil, size: sphere.texture!.size())
     
-    self.texture = texture
-    self.size = texture.size()
-    self.physicsFrame = physicsFrame
-    self.anchorPoint = anchorPoint
+    // Sphere
+    addChild(sphere)
+
+    // Glow
+    glow.zPosition = 1
+    glow.blendMode = SKBlendMode.Screen
     
+    if isReversed {
+      glow.xScale = -1
+      glow.yScale = -1
+    }
+    
+    addChild(glow)
+    
+    // Highlight
+    if type != .Award {
+      sphereHighlight = SphereHighlightNode(radius: radius)
+      addChild(sphereHighlight!)
+    }
+
     // Physics
     physicsBody = SKPhysicsBody(circleOfRadius: physicsFrame.width / 2)
     physicsBody!.categoryBitMask = type == .Award ? PhysicsCategory.Award : PhysicsCategory.Comet
@@ -43,46 +89,13 @@ class CometNode: SKSpriteNode {
     physicsBody!.contactTestBitMask = PhysicsCategory.Player
     physicsBody!.affectedByGravity = false
     physicsBody!.usesPreciseCollisionDetection = true
+    
+    // Animate
+    animate()
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-  
-  private func configurationOfType(type: CometType, isReversed: Bool) -> (texture: SKTexture, anchorPoint: CGPoint, physicsFrame: CGRect) {
-    let texture: SKTexture
-    let center: CGPoint
-    let anchorPoint: CGPoint
-    let radius: CGFloat
-    let physicsFrame: CGRect
-    
-    switch type {
-    case .Slow:
-      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometLargeUp : TextureFileName.CometLarge)
-      center = isReversed ? CGPoint(x: 167, y: 276) : CGPoint(x: 284, y: 150)
-      radius = 99
-      
-    case .Fast:
-      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometSmallUp : TextureFileName.CometSmall)
-      center = isReversed ? CGPoint(x: 81, y: 105) : CGPoint(x: 134, y: 59)
-      radius = 36
-      
-    case .Award:
-      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometStarUp : TextureFileName.CometStar)
-      center = isReversed ? CGPoint(x: 55, y: 99) : CGPoint(x: 117, y: 44)
-      radius = 25
-      
-    default:
-      texture = textureAtlas.textureNamed(isReversed ? TextureFileName.CometMediumUp : TextureFileName.CometMedium)
-      center = isReversed ? CGPoint(x: 143, y: 218) : CGPoint(x: 240, y: 115)
-      radius = 63
-    }
-    
-    let textureSize = texture.size()
-    anchorPoint = CGPoint(x: center.x / textureSize.width, y: center.y / textureSize.height)
-    physicsFrame = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2)
-    
-    return (texture, anchorPoint, physicsFrame)
   }
   
   // MARK: - Movement
@@ -122,5 +135,24 @@ class CometNode: SKSpriteNode {
     
     // Remove itself
     removeFromEmitter()
+  }
+  
+  // MARK: - Animate
+  func animate() {
+    let rotationAction = SKAction.rotateByAngle(CGFloat(M_PI) * 2, duration: 6)
+    let glowAction = SKAction.sequence([
+      SKAction.fadeAlphaTo(1, duration: 0.6),
+      SKAction.fadeAlphaTo(0.5, duration: 0.6)
+    ])
+    
+    glowAction.timingMode = SKActionTimingMode.EaseInEaseOut
+    
+    sphere.runAction(SKAction.repeatActionForever(rotationAction), withKey: KeyForAction.rotationAction)
+    glow.runAction(SKAction.repeatActionForever(glowAction), withKey: KeyForAction.glowAction)
+  }
+  
+  func stopAnimate() {
+    sphere.removeActionForKey(KeyForAction.rotationAction)
+    glow.removeActionForKey(KeyForAction.glowAction)
   }
 }

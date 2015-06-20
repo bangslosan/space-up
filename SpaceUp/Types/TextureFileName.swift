@@ -33,13 +33,13 @@ struct TextureFileName {
   static let ShieldBlur = "ShieldBlur"
 
   static let CometLarge = "CometLarge"
-  static let CometLargeUp = "CometLargeUp"
+  static let CometLargeGlow = "CometLargeGlow"
   static let CometMedium = "CometMedium"
-  static let CometMediumUp = "CometMediumUp"
+  static let CometMediumGlow = "CometMediumGlow"
   static let CometSmall = "CometSmall"
-  static let CometSmallUp = "CometSmallUp"
+  static let CometSmallGlow = "CometSmallGlow"
   static let CometStar = "CometStar"
-  static let CometStarUp = "CometStarUp"
+  static let CometStarGlow = "CometStarGlow"
   
   static let ButtonAd = "BtnAd"
   static let ButtonLeaderboard = "BtnLeaderboard"
