@@ -25,7 +25,6 @@ class PlayerNode: SKSpriteNode {
   var initialPosition: CGPoint?
   var shieldNode: ShieldNode?
   lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
-  lazy var shieldBlurNode = SKSpriteNode(imageNamed: TextureFileName.ShieldBlur)
 
   var state: PlayerState = .Standing {
     didSet {
@@ -234,29 +233,11 @@ class PlayerNode: SKSpriteNode {
       shieldNode!.position = CGPoint(x: 0, y: diameter * 0.5 - 25)
       shieldNode!.zPosition = 20
       addChild(shieldNode!)
-
-      shieldBlurNode.alpha = 0.3
-      shieldBlurNode.zPosition = 19
-      shieldBlurNode.position = shieldNode!.position
-      shieldBlurNode.blendMode = SKBlendMode.Screen
-      shieldBlurNode.color = UIColor(hexString: "#FBB300")
-      shieldBlurNode.colorBlendFactor = 1
-      addChild(shieldBlurNode)
-      
-      let shieldBlurAction = SKAction.sequence([
-        SKAction.fadeAlphaTo(0.1, duration: 0.6),
-        SKAction.fadeAlphaTo(0.3, duration: 0.6)
-      ])
-      
-      shieldBlurAction.timingMode = SKActionTimingMode.EaseInEaseOut
-      
-      shieldBlurNode.runAction(SKAction.repeatActionForever(shieldBlurAction))
     }
   }
   
   private func removeShield() {
     if shieldNode != nil {
-      shieldBlurNode.removeFromParent()
       shieldNode!.removeFromParent()
       shieldNode = nil
     }
