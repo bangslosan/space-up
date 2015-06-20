@@ -202,14 +202,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     return pauseMenu
   }
   
-  func presentEndGameView() -> EndGameView {
+  func presentEndGameView(hasNewTopScore: Bool = false) -> EndGameView {
     let endGameView = EndGameView(size: SceneSize)
     
     endGameView.zPosition = 1000
     endGameView.continueButton.delegate = self
     endGameView.quitButton.delegate = self
     endGameView.leaderboardButton.delegate = self
-    endGameView.updateWithGameData(gameData)
+    endGameView.updateWithGameData(gameData, hasNewTopScore: hasNewTopScore)
 
     addChild(endGameView)
     
@@ -241,6 +241,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
 
   func endGame() {
+    let hasNewTopScore = gameData.score > gameData.topScore
+  
     if !godMode {
       gameData.updateTopScore()
       gameData.saveToArchive()
@@ -254,7 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     gameStarted = false
 
     // End view
-    endGameView = presentEndGameView()
+    endGameView = presentEndGameView(hasNewTopScore: hasNewTopScore)
     endGameView!.appear()
   }
   

@@ -20,6 +20,7 @@ class EndGameView: SKNode {
   let continueButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlayAgain)
   let quitButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonHome)
   let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
+  let newLabel = SpriteButtonNode(imageNamed: TextureFileName.LabelNewScore)
   
   // MARK: - Init
   init(size: CGSize) {
@@ -100,7 +101,7 @@ class EndGameView: SKNode {
   }
   
   // MARK: - Score
-  func updateWithGameData(gameData: GameData) {
+  func updateWithGameData(gameData: GameData, hasNewTopScore: Bool) {
     let numberFormatter = NSNumberFormatter()
     
     // Configure number formatter
@@ -109,6 +110,18 @@ class EndGameView: SKNode {
     
     topScoreLabel.text = numberFormatter.stringFromNumber(gameData.topScore) ?? "0"
     scoreLabel.text = numberFormatter.stringFromNumber(gameData.score) ?? "0"
+    
+    // Reposition
+    if hasNewTopScore {
+      newLabel.anchorPoint = CGPoint(x: 0.5, y: 0)
+      newLabel.position = CGPoint(x: modalBackground.frame.midX - newLabel.frame.width / 2 - 10,
+                                  y: topScoreCaptionLabel.position.y - 10)
+      topScoreCaptionLabel.position = CGPoint(x: modalBackground.frame.midX + topScoreCaptionLabel.frame.width / 2 + 10,
+                                              y: topScoreCaptionLabel.position.y)
+      modal.addChildIfNeeded(newLabel)
+    } else {
+      newLabel.removeFromParentIfNeeded()
+    }
   }
   
   // MARK: - Appear

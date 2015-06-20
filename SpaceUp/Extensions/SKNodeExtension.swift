@@ -44,6 +44,12 @@ extension SKNode {
     parent.addChild(self)
   }
   
+  func removeFromParentIfNeeded() {
+    if parent != nil {
+      removeFromParent()
+    }
+  }
+  
   func isNode(node: SKNode, containedInFrame frame: CGRect) -> Bool {
     if let nodeParent = node.parent {
       let position = convertPoint(node.position, fromNode: nodeParent)
