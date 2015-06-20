@@ -13,6 +13,21 @@ class LoadingScene: SKScene {
   let background = BackgroundNode(imageNamed: TextureFileName.Background)
   let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
   
+  lazy var dotAction: SKAction = {
+    return SKAction.sequence([
+      SKAction.waitForDuration(0.3),
+      SKAction.runBlock { [weak self] in
+        if let loadingLabel = self?.loadingLabel {
+          if loadingLabel.text == "LOADING..." {
+            loadingLabel.text = "LOADING"
+          } else {
+            loadingLabel.text = loadingLabel.text + "."
+          }
+        }
+      }
+    ])
+  }()
+  
   // MARK: - Init
   deinit {
     starFieldEmitter.targetNode = nil
@@ -37,7 +52,10 @@ class LoadingScene: SKScene {
     loadingLabel.fontSize = 60
     loadingLabel.horizontalAlignmentMode = .Center
     loadingLabel.position = CGPoint(x: background.frame.midX, y: background.frame.midY)
-    loadingLabel.text = "LOADING..."
+    loadingLabel.text = "LOADING"
     addChild(loadingLabel)
+
+    // Animate
+    loadingLabel.runAction(SKAction.repeatActionForever(dotAction))
   }
 }
