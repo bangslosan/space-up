@@ -88,6 +88,7 @@
 		EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */; };
 		EBC2EB8C1B358E9D00CEA20B /* Environment.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBC2EB8B1B358E9D00CEA20B /* Environment.atlas */; };
 		EBC2EB8E1B3597CD00CEA20B /* SphereHighlightNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC2EB8D1B3597CD00CEA20B /* SphereHighlightNode.swift */; };
+		EBC2EB901B36299200CEA20B /* ExplosionGlow.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBC2EB8F1B36299200CEA20B /* ExplosionGlow.sks */; };
 		EBCA805B1B2C234B00CC00E2 /* SpriteButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805A1B2C234B00CC00E2 /* SpriteButtonNode.swift */; };
 		EBCA805D1B2C239D00CC00E2 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805C1B2C239D00CC00E2 /* ButtonState.swift */; };
 		EBCA805F1B2CF0E000CC00E2 /* FontName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA805E1B2CF0E000CC00E2 /* FontName.swift */; };
@@ -208,6 +209,7 @@
 		EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsHelper.swift; path = Helpers/UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		EBC2EB8B1B358E9D00CEA20B /* Environment.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Environment.atlas; path = Images/Environment.atlas; sourceTree = "<group>"; };
 		EBC2EB8D1B3597CD00CEA20B /* SphereHighlightNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SphereHighlightNode.swift; path = Nodes/SphereHighlightNode.swift; sourceTree = "<group>"; };
+		EBC2EB8F1B36299200CEA20B /* ExplosionGlow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ExplosionGlow.sks; sourceTree = "<group>"; };
 		EBCA805A1B2C234B00CC00E2 /* SpriteButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpriteButtonNode.swift; path = Nodes/SpriteButtonNode.swift; sourceTree = "<group>"; };
 		EBCA805C1B2C239D00CC00E2 /* ButtonState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonState.swift; path = Types/ButtonState.swift; sourceTree = "<group>"; };
 		EBCA805E1B2CF0E000CC00E2 /* FontName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontName.swift; path = Types/FontName.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				EB05653D1B247BAB00A76297 /* Explosion.sks */,
+				EBC2EB8F1B36299200CEA20B /* ExplosionGlow.sks */,
 				EBD100E11B284A3C00D3680B /* Propel.sks */,
 				EBCA80721B34E26200CC00E2 /* ShieldGlow.sks */,
 				EB05653A1B2479BF00A76297 /* Spark.png */,
@@ -642,6 +645,7 @@
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
 				EBCA806F1B2F052200CC00E2 /* StarField.sks in Resources */,
 				EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */,
+				EBC2EB901B36299200CEA20B /* ExplosionGlow.sks in Resources */,
 				EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
 				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,

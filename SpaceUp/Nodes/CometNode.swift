@@ -136,6 +136,7 @@ class CometNode: SKSpriteNode {
     if let parent = parent {
       // Add explosion effect
       let explosion = SKSpriteNode(imageNamed: TextureFileName.CrackedRed)
+      let glow = SKEmitterNode(fileNamed: "ExplosionGlow")
       
       explosion.position = position
       parent.addChild(explosion)
@@ -144,6 +145,15 @@ class CometNode: SKSpriteNode {
         explodeAnimateAction,
         SKAction.runBlock { explosion.removeFromParent() }
       ]))
+
+      glow.position = position
+      glow.alpha = 0.3
+      glow.advanceSimulationTime(0.5)
+      parent.addChild(glow)
+      
+      parent.afterDelay(3) {
+        glow.removeFromParent()
+      }
     }
     
     // Remove itself
