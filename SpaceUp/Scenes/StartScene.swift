@@ -7,8 +7,9 @@
 //
 
 import SpriteKit
+import StoreKit
 
-class StartScene: SKScene, ButtonDelegate {
+class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
   // MARK: - Vars
   weak var startSceneDelegate: StartSceneDelegate?
   var backgroundPosition = CGPointZero
@@ -74,6 +75,9 @@ class StartScene: SKScene, ButtonDelegate {
     adButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
     adButton.delegate = self
     addChild(adButton)
+    
+    // IAP
+    requestProducts()
   }
   
   // MARK: - Update
@@ -108,6 +112,27 @@ class StartScene: SKScene, ButtonDelegate {
       SKAction.afterDelay(0.3, performAction: soundButtonAction),
       SKAction.afterDelay(0.4, performAction: musicButtonAction)
     ]))
+  }
+  
+  // MARK: - IAP
+  func requestProducts() {
+    let productIdentifiers = Set(["\(MainBundleIdentifier).RemoveAds"])
+    let request = SKProductsRequest(productIdentifiers: productIdentifiers)
+    
+    request.delegate = self
+    request.start()
+  }
+  
+  // MARK: - SKProductsRequestDelegate
+  func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    println(response.products)
+    println(response.invalidProductIdentifiers)
+
+    if let products = response.products as? [SKProduct] {
+      for product in products {
+        println("\(product.productIdentifier) - \(product.price)")
+      }
+    }
   }
   
   // MARK: - ButtonDelegate
