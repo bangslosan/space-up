@@ -42,5 +42,6 @@ class ScoreLineNode: SKNode {
     let y = (player.initialPosition?.y ?? 0) + distance
     
     position = CGPoint(x: 0, y: y)
+    hidden = score <= 10
   }
 }
