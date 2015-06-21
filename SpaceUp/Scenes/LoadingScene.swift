@@ -9,9 +9,13 @@
 import SpriteKit
 
 class LoadingScene: SKScene {
+  // MARK: - Vars
+  var backgroundPosition = CGPointZero
+
+  // MARK: - Immutable var
   let loadingLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
-  let background = BackgroundNode(imageNamed: TextureFileName.Background)
-  let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
+  let background = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
+  let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
   
   lazy var dotAction: SKAction = {
     return SKAction.sequence([
@@ -28,9 +32,12 @@ class LoadingScene: SKScene {
     ])
   }()
   
-  // MARK: - Init
-  deinit {
-    starFieldEmitter.targetNode = nil
+  // MARK: - Update
+  override func update(currentTime: NSTimeInterval) {
+    backgroundPosition.y -= 1
+    
+    background.move(backgroundPosition, multiplier: 0.4)
+    galaxyStars.move(backgroundPosition, multiplier: 0.7)
   }
 
   // MARK: - View
@@ -38,20 +45,15 @@ class LoadingScene: SKScene {
     backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
 
     // Background
-    background.zPosition = -10
     addChild(background)
-    
-    starFieldEmitter.targetNode = background
-    starFieldEmitter.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
-    background.addChild(starFieldEmitter)
-    starFieldEmitter.advanceSimulationTime(20)
+    addChild(galaxyStars)
     
     // Label
     loadingLabel.color = UIColor(hexString: ColorHex.TextColor)
     loadingLabel.colorBlendFactor = 1
     loadingLabel.fontSize = 60
     loadingLabel.horizontalAlignmentMode = .Center
-    loadingLabel.position = CGPoint(x: background.frame.midX, y: background.frame.midY)
+    loadingLabel.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY)
     loadingLabel.text = "LOADING"
     addChild(loadingLabel)
 

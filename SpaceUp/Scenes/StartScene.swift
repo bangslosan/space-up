@@ -11,11 +11,12 @@ import SpriteKit
 class StartScene: SKScene, ButtonDelegate {
   // MARK: - Vars
   weak var startSceneDelegate: StartSceneDelegate?
+  var backgroundPosition = CGPointZero
 
   // MARK: - Immutable var
   let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
-  let background = BackgroundNode(imageNamed: TextureFileName.Background)
-  let starFieldEmitter = SKEmitterNode(fileNamed: EffectFileName.StarField)
+  let background = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
+  let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
   let startButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonPlay)
   let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
@@ -32,26 +33,17 @@ class StartScene: SKScene, ButtonDelegate {
     fatalError("init(coder:) has not been implemented")
   }
   
-  deinit {
-    starFieldEmitter.targetNode = nil
-  }
-  
   // MARK: - View
   override func didMoveToView(view: SKView) {
     backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
 
     // Background
-    background.zPosition = -10
     addChild(background)
-    
-    starFieldEmitter.targetNode = background
-    starFieldEmitter.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
-    background.addChild(starFieldEmitter)
-    starFieldEmitter.advanceSimulationTime(20)
+    addChild(galaxyStars)
     
     // Logo
     logo.anchorPoint = CGPoint(x: 0.5, y: 1)
-    logo.position = CGPoint(x: background.frame.midX, y: background.frame.maxY - 60)
+    logo.position = CGPoint(x: screenFrame.midX, y: screenFrame.maxY - 60)
     addChild(logo)
     
     // Start button
@@ -82,6 +74,14 @@ class StartScene: SKScene, ButtonDelegate {
     adButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
     adButton.delegate = self
     addChild(adButton)
+  }
+  
+  // MARK: - Update
+  override func update(currentTime: NSTimeInterval) {
+    backgroundPosition.y -= 1
+
+    background.move(backgroundPosition, multiplier: 0.4)
+    galaxyStars.move(backgroundPosition, multiplier: 0.7)
   }
   
   // MARK: - Appear

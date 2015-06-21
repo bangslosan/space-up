@@ -13,4 +13,5 @@ struct EffectFileName {
   static let Propel = "Propel.sks"
   static let StarField = "StarField.sks"
   static let ShieldGlow = "ShieldGlow.sks"
+  static let ExplosionGlow = "ExplosionGlow.sks"
 }

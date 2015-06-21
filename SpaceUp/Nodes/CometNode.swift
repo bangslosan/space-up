@@ -136,7 +136,7 @@ class CometNode: SKSpriteNode {
     if let parent = parent {
       // Add explosion effect
       let explosion = SKSpriteNode(imageNamed: TextureFileName.CrackedRed)
-      let glow = SKEmitterNode(fileNamed: "ExplosionGlow")
+      let glow = SKEmitterNode(fileNamed: EffectFileName.ExplosionGlow)
       
       explosion.position = position
       parent.addChild(explosion)
