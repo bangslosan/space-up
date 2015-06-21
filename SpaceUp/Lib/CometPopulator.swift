@@ -48,8 +48,8 @@ class CometPopulator {
   func positionForNewEmitter() -> (fromPosition: CGPoint, toPosition:CGPoint) {
     if let world = world, scene = world.scene, gameData = dataSource?.gameData {
       let spacing: CGFloat = EmitterVerticalSpacing
-      let initialFromOffset = CGPoint(x: -100, y: scene.frame.height / 2)
-      let initialToOffset = CGPoint(x: 100, y: scene.frame.height / 2)
+      let initialFromOffset = CGPoint(x: -150, y: scene.frame.height / 2)
+      let initialToOffset = CGPoint(x: 150, y: scene.frame.height / 2)
 
       var lastToPosition: CGPoint?
       var lastFromPosition: CGPoint?
