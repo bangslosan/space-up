@@ -81,6 +81,7 @@
 		EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E31B28522D00C1E5BA /* EffectFileName.swift */; };
 		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
+		EB899F5F1B36D4A900BE59BD /* EngineFlameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
 		EBB1ECA21B23CCFE00768015 /* Explode.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9F1B23CCFE00768015 /* Explode.wav */; };
 		EBB1ECA31B23CCFE00768015 /* Meow.wav in Resources */ = {isa = PBXBuildFile; fileRef = EBB1ECA01B23CCFE00768015 /* Meow.wav */; };
@@ -202,6 +203,7 @@
 		EB2914E31B28522D00C1E5BA /* EffectFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EffectFileName.swift; path = Types/EffectFileName.swift; sourceTree = "<group>"; };
 		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
+		EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EngineFlameNode.swift; path = Nodes/EngineFlameNode.swift; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
 		EBB1EC9F1B23CCFE00768015 /* Explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Explode.wav; path = Sounds/Explode.wav; sourceTree = "<group>"; };
 		EBB1ECA01B23CCFE00768015 /* Meow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Meow.wav; path = Sounds/Meow.wav; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				EB0212801B1E65BE0087B2E6 /* CometNode.swift */,
 				EB0212871B1EB9830087B2E6 /* CometPathNode.swift */,
 				EB0212751B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift */,
+				EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */,
 				EB0212731B1DE1320087B2E6 /* GroundNode.swift */,
 				EB0212641B1DD7950087B2E6 /* HUDNode.swift */,
 				EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */,
@@ -714,6 +717,7 @@
 				EB0212161B1DD1DD0087B2E6 /* GameViewController.swift in Sources */,
 				EB0212B81B2274CE0087B2E6 /* NSErrorExtension.swift in Sources */,
 				EBCA805B1B2C234B00CC00E2 /* SpriteButtonNode.swift in Sources */,
+				EB899F5F1B36D4A900BE59BD /* EngineFlameNode.swift in Sources */,
 				EB02123C1B1DD3A00087B2E6 /* SKTTimingFunctions.swift in Sources */,
 				EB0212371B1DD3A00087B2E6 /* SKAction+SpecialEffects.swift in Sources */,
 				EB0212351B1DD3A00087B2E6 /* Int+Extensions.swift in Sources */,

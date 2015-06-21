@@ -9,7 +9,7 @@
 import SpriteKit
 
 class ModalBackgroundNode: SKShapeNode {
-  let foreground: SKShapeNode
+  private let foreground: SKShapeNode
 
   // MARK: - Init
   init(size: CGSize) {

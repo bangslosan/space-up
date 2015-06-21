@@ -10,8 +10,8 @@ import SpriteKit
 
 class EndlessBackgroundNode: SKNode {
   // MARK: - Vars
-  var backgrounds = [BackgroundNode]()
-  var imageNames = [String]()
+  private var backgrounds = [BackgroundNode]()
+  private var imageNames = [String]()
   
   init(imageNames: [String]) {
     self.imageNames = imageNames

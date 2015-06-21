@@ -14,7 +14,7 @@ private struct KeyForAction {
 }
 
 class ShieldNode: SKSpriteNode {
-  lazy var glow: SKSpriteNode = {
+  private lazy var glow: SKSpriteNode = {
     let glow = SKSpriteNode(imageNamed: TextureFileName.ShieldBlur)
 
     glow.alpha = 0.3

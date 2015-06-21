@@ -9,7 +9,7 @@
 import SpriteKit
 
 class ShadowLabelNode: SKLabelNode {
-  let effectLabel = SKLabelNode()
+  private let effectLabel = SKLabelNode()
 
   // MARK: - Init
   override init(fontNamed fontName: String!) {

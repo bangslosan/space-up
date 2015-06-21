@@ -9,8 +9,8 @@
 import SpriteKit
 
 class ScoreLineNode: SKNode {
-  let line: SKShapeNode
-  let scoreLabel = SKLabelNode(fontNamed: FontName.RegularFont)
+  private let line: SKShapeNode
+  private let scoreLabel = SKLabelNode(fontNamed: FontName.RegularFont)
 
   init(length: CGFloat) {
     line = SKShapeNode(rect: CGRect(x: 0, y: 0, width: length, height: 1))

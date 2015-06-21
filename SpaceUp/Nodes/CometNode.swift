@@ -16,18 +16,18 @@ private struct KeyForAction {
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
-  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Environment)
+  private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Environment)
+  private let sphere: SKSpriteNode
+  private let glow: SKSpriteNode
   let type: CometType
-  let sphere: SKSpriteNode
-  let glow: SKSpriteNode
   
   // MARK: - Vars
+  private var sphereHighlight: SphereHighlightNode?
   weak var emitter: CometEmitter?
-  var sphereHighlight: SphereHighlightNode?
   var enabled: Bool = true
   var physicsFrame = CGRectZero
   
-  lazy var explodeAnimateAction: SKAction = {
+  private lazy var explodeAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.CrackedMedium),
       self.textureAtlas.textureNamed(TextureFileName.CrackedRed),

@@ -16,15 +16,16 @@ private struct KeyForAction {
 
 class PlayerNode: SKSpriteNode {
   // MARK: - Immutable vars
-  let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
+  private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
 
   // MARK: - Vars
+  private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
+  private lazy var engineFlame = EngineFlameNode()
+  private var shieldNode: ShieldNode?
   private(set) var isAlive: Bool = true
   var shouldMove: Bool = false
   var distanceTravelled: CGFloat = 0
   var initialPosition: CGPoint?
-  var shieldNode: ShieldNode?
-  lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
 
   var state: PlayerState = .Standing {
     didSet {
@@ -38,33 +39,33 @@ class PlayerNode: SKSpriteNode {
     }
   }
   
-  lazy var movementSoundAction: SKAction = {
+  private lazy var movementSoundAction: SKAction = {
     let action = SKAction.playSoundFileNamed(SoundFileName.Flying, waitForCompletion: true)
     
     return SKAction.repeatActionForever(action)
   }()
   
-  lazy var killSoundAction: SKAction = SKAction.playSoundFileNamed(SoundFileName.Explosion, waitForCompletion: false)
+  private lazy var killSoundAction: SKAction = SKAction.playSoundFileNamed(SoundFileName.Explosion, waitForCompletion: false)
   
-  lazy var moveUpAnimateAction: SKAction = {
+  private lazy var moveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.MuffyFlying)
     ], timePerFrame: 1/60)
   }()
   
-  lazy var stopMoveUpAnimateAction: SKAction = {
+  private lazy var stopMoveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.MuffyStopFlying)
     ], timePerFrame: 1/60)
     }()
   
-  lazy var killAnimateAction: SKAction = {
+  private lazy var killAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.MuffyDead)
     ], timePerFrame: 1/60)
   }()
   
-  lazy var killRotationAction: SKAction = {
+  private lazy var killRotationAction: SKAction = {
     let action = SKAction.rotateByAngle(CGFloat(-90).degreesToRadians(), duration: 1)
     
     action.timingMode = SKActionTimingMode.EaseOut
@@ -72,21 +73,10 @@ class PlayerNode: SKSpriteNode {
     return action
   }()
   
-  lazy var standAnimateAction: SKAction = {
+  private lazy var standAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.MuffyStanding)
     ], timePerFrame: 1/60)
-  }()
-  
-  lazy var flameAnimateAction: SKAction = {
-    return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "1"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "2"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "3"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "4"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "5"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "6")
-    ], timePerFrame: 1/20)
   }()
 
   // MARK: - Init
@@ -102,6 +92,10 @@ class PlayerNode: SKSpriteNode {
     
     // Physics
     physicsBody = physicsBodyOfSize(size)
+    
+    // Flame
+    engineFlame.position = CGPoint(x: 30, y: -20)
+    addChild(engineFlame)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -218,16 +212,20 @@ class PlayerNode: SKSpriteNode {
       runAction(movementSoundAction, withKey: KeyForAction.movementSoundAction, when: isSoundEnabled())
       runAction(moveUpAnimateAction)
       
+      engineFlame.animate()
+      /*
       engineEmitterNode?.position = CGPoint(x: 27, y: -5)
       engineEmitterNode?.zPosition = 19
       engineEmitterNode?.resetSimulation()
       engineEmitterNode?.addToParent(self)
+      */
       
     case .Dropping:
       removeActionForKey(KeyForAction.movementSoundAction)
       runAction(stopMoveUpAnimateAction)
       
-      engineEmitterNode?.removeFromParent()
+      // engineEmitterNode?.removeFromParent()
+      engineFlame.stopAnimate()
       
     case .Standing:
       runAction(standAnimateAction)
