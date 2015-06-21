@@ -147,8 +147,7 @@ class CometNode: SKSpriteNode {
       ]))
 
       glow.position = position
-      glow.alpha = 0.3
-      glow.advanceSimulationTime(0.5)
+      glow.advanceSimulationTime(0.6)
       parent.addChild(glow)
       
       parent.afterDelay(3) {

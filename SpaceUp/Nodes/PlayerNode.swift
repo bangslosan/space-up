@@ -15,7 +15,7 @@ private struct KeyForAction {
 }
 
 class PlayerNode: SKSpriteNode {
-  // MAKR: - Immutable vars
+  // MARK: - Immutable vars
   let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
 
   // MARK: - Vars
@@ -62,6 +62,14 @@ class PlayerNode: SKSpriteNode {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.MuffyDead)
     ], timePerFrame: 1/60)
+  }()
+  
+  lazy var killRotationAction: SKAction = {
+    let action = SKAction.rotateByAngle(CGFloat(-90).degreesToRadians(), duration: 1)
+    
+    action.timingMode = SKActionTimingMode.EaseOut
+    
+    return action
   }()
   
   lazy var standAnimateAction: SKAction = {
@@ -191,6 +199,7 @@ class PlayerNode: SKSpriteNode {
     switch state {
     case .Dying:
       runAction(killAnimateAction)
+      runAction(killRotationAction)
       runAction(killSoundAction, when: isSoundEnabled())
       
     case .Flying:
