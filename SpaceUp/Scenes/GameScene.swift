@@ -234,10 +234,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     // Data
     gameData.reset()
-    gameStarted = true
     
     // Notify
     gameSceneDelegate?.gameSceneDidStart?(self)
+    
+    afterDelay(0.5) {
+      self.gameStarted = true
+    }
   }
 
   func endGame() {
