@@ -77,6 +77,17 @@ class PlayerNode: SKSpriteNode {
       self.textureAtlas.textureNamed(TextureFileName.MuffyStanding)
     ], timePerFrame: 1/60)
   }()
+  
+  lazy var flameAnimateAction: SKAction = {
+    return SKAction.animateWithTextures([
+      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "1"),
+      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "2"),
+      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "3"),
+      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "4"),
+      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "5"),
+      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "6")
+    ], timePerFrame: 1/20)
+  }()
 
   // MARK: - Init
   init() {

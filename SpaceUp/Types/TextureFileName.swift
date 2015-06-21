@@ -31,6 +31,8 @@ struct TextureFileName {
 
   static let Shield = "Shield"
   static let ShieldBlur = "ShieldBlur"
+  
+  static let EngineFlame = "EngineFlame"
 
   static let CometLarge = "CometLarge"
   static let CometLargeGlow = "CometLargeGlow"
