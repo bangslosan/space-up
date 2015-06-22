@@ -13,6 +13,7 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
   // MARK: - Vars
   weak var startSceneDelegate: StartSceneDelegate?
   var backgroundPosition = CGPointZero
+  var storeView: StoreView?
 
   // MARK: - Immutable var
   let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
@@ -23,7 +24,7 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
   let leaderboardButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonLeaderboard)
   let soundButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonSound)
   let musicButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonMusic)
-  let adButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonAd)
+  let storeButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonAd)
   
   // MARK: - Init
   override init(size: CGSize) {
@@ -72,9 +73,9 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
     addChild(soundButton)
     
     // Ad button
-    adButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
-    adButton.delegate = self
-    addChild(adButton)
+    storeButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
+    storeButton.delegate = self
+    addChild(storeButton)
     
     // IAP
     requestProducts()
@@ -96,22 +97,33 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
     startButton.scaleAsPoint = startScale
     leaderboardButton.scaleAsPoint = startScale
     soundButton.scaleAsPoint = startScale
-    adButton.scaleAsPoint = startScale
+    storeButton.scaleAsPoint = startScale
     musicButton.scaleAsPoint = startScale
     
     let startButtonAction = SKTScaleEffect.scaleActionWithNode(startButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
     let leaderboardButtonAction = SKTScaleEffect.scaleActionWithNode(leaderboardButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
     let soundButtonAction = SKTScaleEffect.scaleActionWithNode(soundButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
-    let adButtonAction = SKTScaleEffect.scaleActionWithNode(adButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    let storeButtonAction = SKTScaleEffect.scaleActionWithNode(storeButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
     let musicButtonAction = SKTScaleEffect.scaleActionWithNode(musicButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
     
     runAction(SKAction.group([
       startButtonAction,
       SKAction.afterDelay(0.1, performAction: leaderboardButtonAction),
-      SKAction.afterDelay(0.2, performAction: adButtonAction),
+      SKAction.afterDelay(0.2, performAction: storeButtonAction),
       SKAction.afterDelay(0.3, performAction: soundButtonAction),
       SKAction.afterDelay(0.4, performAction: musicButtonAction)
     ]))
+  }
+  
+  // MARK: - Store
+  func presentStore() -> StoreView {
+    let storeView = StoreView()
+    
+    storeView.closeButton.delegate = self
+    
+    addChild(storeView)
+    
+    return storeView
   }
   
   // MARK: - IAP
@@ -152,7 +164,19 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
     case musicButton:
       startSceneDelegate?.startSceneDidRequestToggleMusic?(self, withButton: musicButton)
       
+    case storeButton:
+      storeView = presentStore()
+      storeView!.appear()
+
+      startSceneDelegate?.startSceneDidRequestStore?(self)
+      
     default:
+      if button == storeView?.closeButton {
+        storeView?.disappear() {
+          self.storeView?.removeFromParent()
+        }
+      }
+
       break
     }
   }

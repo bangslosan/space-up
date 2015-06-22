@@ -189,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Views
   func presentPauseMenu() -> PauseMenuView {
-    let pauseMenu = PauseMenuView(size: SceneSize)
+    let pauseMenu = PauseMenuView()
     
     pauseMenu.zPosition = 1000
     pauseMenu.resumeButton.delegate = self
@@ -203,7 +203,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func presentEndGameView(hasNewTopScore: Bool = false) -> EndGameView {
-    let endGameView = EndGameView(size: SceneSize)
+    let endGameView = EndGameView()
     
     endGameView.zPosition = 1000
     endGameView.continueButton.delegate = self
@@ -269,9 +269,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func continueGame() {
-    endGameView?.removeFromParent()
-    endGameView = nil
-
+    endGameView?.disappear() {
+      self.endGameView?.removeFromParent()
+      self.endGameView = nil
+    }
+    
     // Inform delegate
     gameSceneDelegate?.gameSceneDidRequestRetry?(self)
   }

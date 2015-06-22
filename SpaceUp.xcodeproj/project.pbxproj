@@ -81,7 +81,10 @@
 		EB22525E1B366D320026BFCC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB22525D1B366D320026BFCC /* StoreKit.framework */; };
 		EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E31B28522D00C1E5BA /* EffectFileName.swift */; };
 		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
+		EB4603841B38139D000639F5 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603831B38139D000639F5 /* StoreView.swift */; };
+		EB4603861B381452000639F5 /* ModalOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603851B381452000639F5 /* ModalOverlayNode.swift */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
+		EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73BAB11B382C4E00BC7A38 /* ModalView.swift */; };
 		EB899F5F1B36D4A900BE59BD /* EngineFlameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */; };
 		EB899F611B38094A00BE59BD /* EngineSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB899F601B38094A00BE59BD /* EngineSpark.sks */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
@@ -205,7 +208,10 @@
 		EB22525D1B366D320026BFCC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EB2914E31B28522D00C1E5BA /* EffectFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EffectFileName.swift; path = Types/EffectFileName.swift; sourceTree = "<group>"; };
 		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
+		EB4603831B38139D000639F5 /* StoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreView.swift; path = ViewNodes/StoreView.swift; sourceTree = "<group>"; };
+		EB4603851B381452000639F5 /* ModalOverlayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalOverlayNode.swift; path = Nodes/ModalOverlayNode.swift; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
+		EB73BAB11B382C4E00BC7A38 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalView.swift; path = ViewNodes/ModalView.swift; sourceTree = "<group>"; };
 		EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EngineFlameNode.swift; path = Nodes/EngineFlameNode.swift; sourceTree = "<group>"; };
 		EB899F601B38094A00BE59BD /* EngineSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EngineSpark.sks; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
@@ -366,6 +372,7 @@
 				EB0212651B1DD7950087B2E6 /* IconButtonNode.swift */,
 				EB02127E1B1DF0310087B2E6 /* LineBoundaryNode.swift */,
 				EBCA80661B2D4CD100CC00E2 /* ModalBackgroundNode.swift */,
+				EB4603851B381452000639F5 /* ModalOverlayNode.swift */,
 				EB02125B1B1DD51E0087B2E6 /* PlayerNode.swift */,
 				EB02127C1B1DECA30087B2E6 /* SceneBackgroundNode.swift */,
 				43C05DEB1B296321009B8148 /* ScoreLineNode.swift */,
@@ -548,7 +555,9 @@
 			isa = PBXGroup;
 			children = (
 				EBD100C91B2533F500D3680B /* EndGameView.swift */,
+				EB73BAB11B382C4E00BC7A38 /* ModalView.swift */,
 				EBD100CA1B2533F500D3680B /* PauseMenuView.swift */,
+				EB4603831B38139D000639F5 /* StoreView.swift */,
 			);
 			name = ViewNodes;
 			sourceTree = "<group>";
@@ -736,12 +745,14 @@
 				EB02123D1B1DD3A00087B2E6 /* Vector3.swift in Sources */,
 				EBC2EB8E1B3597CD00CEA20B /* SphereHighlightNode.swift in Sources */,
 				EB0212B01B22557B0087B2E6 /* GameCenterManager.swift in Sources */,
+				EB4603841B38139D000639F5 /* StoreView.swift in Sources */,
 				EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */,
 				EB0212811B1E65BE0087B2E6 /* CometNode.swift in Sources */,
 				EB0212181B1DD1EA0087B2E6 /* GameScene.swift in Sources */,
 				EBCA80671B2D4CD100CC00E2 /* ModalBackgroundNode.swift in Sources */,
 				43C05DF21B2A81A4009B8148 /* SamplingFilterType.swift in Sources */,
 				EB0212741B1DE1320087B2E6 /* GroundNode.swift in Sources */,
+				EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */,
 				EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */,
 				EB0212761B1DEB4C0087B2E6 /* EndlessBackgroundNode.swift in Sources */,
 				EB0212781B1DEB920087B2E6 /* BackgroundNode.swift in Sources */,
@@ -758,6 +769,7 @@
 				EB0212141B1DD18B0087B2E6 /* StartScene.swift in Sources */,
 				EBCA80611B2CF2A900CC00E2 /* PreloadHelper.swift in Sources */,
 				EB02123A1B1DD3A00087B2E6 /* SKTAudio.swift in Sources */,
+				EB4603861B381452000639F5 /* ModalOverlayNode.swift in Sources */,
 				EB0212321B1DD3A00087B2E6 /* CGFloat+Extensions.swift in Sources */,
 				43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */,
 				EB0212621B1DD5760087B2E6 /* DirectionType.swift in Sources */,

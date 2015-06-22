@@ -8,10 +8,7 @@
 
 import SpriteKit
 
-class EndGameView: SKNode {
-  let background: SKShapeNode
-  let modal = SKNode()
-  let modalBackground = ModalBackgroundNode(size: CGSize(width: 640, height: 920))
+class EndGameView: ModalView {
   let gameOverLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
   let scoreCaptionLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
   let scoreLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
@@ -23,27 +20,8 @@ class EndGameView: SKNode {
   let newLabel = SpriteButtonNode(imageNamed: TextureFileName.LabelNewScore)
   
   // MARK: - Init
-  init(size: CGSize) {
-    background = SKShapeNode(rectOfSize: size)
-
-    super.init()
-    
-    // Background
-    background.fillColor = UIColor(white: 0, alpha: 0.5)
-    background.strokeColor = UIColor.clearColor()
-    background.position = CGPoint(x: background.frame.width / 2, y: background.frame.height / 2)
-    background.userInteractionEnabled = false
-    background.zPosition = -1
-    addChild(background)
-    
-    // Modal
-    addChild(modal)
-    
-    // Modal background
-    modalBackground.position = CGPoint(x: background.frame.midX, y: background.frame.midY)
-    modalBackground.userInteractionEnabled = false
-    modalBackground.zPosition = -1
-    modal.addChild(modalBackground)
+  init() {
+    super.init(size:  CGSize(width: 640, height: 920))
     
     // Game Over
     gameOverLabel.fontColor = UIColor(hexString: ColorHex.TextColor)
@@ -122,22 +100,5 @@ class EndGameView: SKNode {
     } else {
       newLabel.removeFromParentIfNeeded()
     }
-  }
-  
-  // MARK: - Appear
-  func appear() {
-    let startPosition = CGPoint(x: 0, y: -background.frame.height)
-    let endPosition = CGPoint(x: 0, y: 0)
-    let moveEffect = SKTMoveEffect(node: modal, duration: 0.6, startPosition: startPosition, endPosition: endPosition)
-    
-    moveEffect.timingFunction = SKTTimingFunctionBackEaseInOut
-    background.alpha = 0
-    modal.alpha = 0
-    
-    background.runAction(SKAction.fadeInWithDuration(0.6))
-    modal.runAction(SKAction.group([
-      SKAction.actionWithEffect(moveEffect),
-      SKAction.fadeInWithDuration(0)
-    ]))
   }
 }
