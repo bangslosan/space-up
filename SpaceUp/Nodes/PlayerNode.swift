@@ -19,7 +19,6 @@ class PlayerNode: SKSpriteNode {
   private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
 
   // MARK: - Vars
-  private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
   private lazy var engineFlame = EngineFlameNode()
   private var shieldNode: ShieldNode?
   private(set) var isAlive: Bool = true
@@ -213,18 +212,11 @@ class PlayerNode: SKSpriteNode {
       runAction(moveUpAnimateAction)
       
       engineFlame.animate()
-      /*
-      engineEmitterNode?.position = CGPoint(x: 27, y: -5)
-      engineEmitterNode?.zPosition = 19
-      engineEmitterNode?.resetSimulation()
-      engineEmitterNode?.addToParent(self)
-      */
       
     case .Dropping:
       removeActionForKey(KeyForAction.movementSoundAction)
       runAction(stopMoveUpAnimateAction)
       
-      // engineEmitterNode?.removeFromParent()
       engineFlame.stopAnimate()
       
     case .Standing:

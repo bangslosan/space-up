@@ -17,6 +17,7 @@ class EngineFlameNode: SKSpriteNode {
   private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
   
   // MARK: - Vars
+  private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
   private lazy var flameStartAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "1"),
@@ -48,19 +49,24 @@ class EngineFlameNode: SKSpriteNode {
   
   // MARK: - Animate
   func animate() {
-    let action = SKAction.sequence([
-      flameStartAnimateAction,
-      flamePersistAnimateAction
-    ])
-
     hidden = false
 
-    runAction(action, withKey: KeyForAction.engineAnimateAction)
+    // Action
+    runAction(SKAction.sequence([
+      flameStartAnimateAction,
+      flamePersistAnimateAction
+    ]), withKey: KeyForAction.engineAnimateAction)
+    
+    // Emitter
+    engineEmitterNode.position = CGPoint(x: 0, y: 0)
+    engineEmitterNode.resetSimulation()
+    engineEmitterNode.addToParent(self)
   }
   
   func stopAnimate() {
     hidden = true
 
     removeActionForKey(KeyForAction.engineAnimateAction)
+    engineEmitterNode.removeFromParent()
   }
 }
