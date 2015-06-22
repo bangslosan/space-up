@@ -28,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   var textures: [SKTexture]?
   var textureAtlases: [SKTextureAtlas]?
   var gameStarted = false
-  var godMode = true
+  var godMode = false
   
   // MARK: - Init
   init(size: CGSize, gameData: GameData) {
