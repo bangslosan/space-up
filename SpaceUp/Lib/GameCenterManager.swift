@@ -16,23 +16,24 @@ class GameCenterManager: NSObject {
   weak var delegate: GameCenterManagerDelegate?
   
   // MARK: - Computed vars
-  var localPlayer: GKLocalPlayer {
+  var localPlayer: GKLocalPlayer? {
     return GKLocalPlayer.localPlayer()
   }
   
   // MARK: - GameCenter
   func authenticateLocalPlayer() {
-    localPlayer.authenticateHandler = { (viewController, error) -> Void in
-      if let viewController = viewController {
-        self.delegate?.gameCenterManager?(self, didProvideViewController: viewController)
-      } else {
-        self.isAuthenticated = self.localPlayer.authenticated
+    localPlayer?.authenticateHandler = { [weak self] (viewController, error) -> Void in
+      if let delegate = self?.delegate, localPlayer = self?.localPlayer {
+        if let viewController = viewController {
+          delegate.gameCenterManager?(self!, didProvideViewController: viewController)
+        } else {
+          self!.isAuthenticated = localPlayer.authenticated
+          delegate.gameCenterManager?(self!, didAuthenticateLocalPlayer: localPlayer.authenticated)
+        }
         
-        self.delegate?.gameCenterManager?(self, didAuthenticateLocalPlayer: self.localPlayer.authenticated)
-      }
-      
-      if let error = error {
-        self.delegate?.gameCenterManager?(self, didReceiveError: error)
+        if let error = error {
+          delegate.gameCenterManager?(self!, didReceiveError: error)
+        }
       }
     }
   }
@@ -44,7 +45,7 @@ class GameCenterManager: NSObject {
   }
   
   func loadDefaultLeaderboardIdentifier() {
-    localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler { (leaderboardIdentifier, error) -> Void in
+    localPlayer?.loadDefaultLeaderboardIdentifierWithCompletionHandler { (leaderboardIdentifier, error) -> Void in
       self.leaderboardIdentifier = leaderboardIdentifier
       
       if let error = error {
@@ -76,7 +77,7 @@ class GameCenterManager: NSObject {
   }
   
   func loadLeaderboardScore() {
-    if let leaderboardIdentifier = leaderboardIdentifier {
+    if let leaderboardIdentifier = leaderboardIdentifier, localPlayer = localPlayer {
       let leaderboard = GKLeaderboard(players: [localPlayer])
       
       leaderboard.identifier = leaderboardIdentifier

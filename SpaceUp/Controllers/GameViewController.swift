@@ -95,6 +95,33 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     return scene
   }
   
+  func preloadAndPresentStartScene(completion: ((StartScene) -> Void)? = nil) {
+    let textureAtlases: [SKTextureAtlas] = [
+      SKTextureAtlas(named: TextureAtlasFileName.UserInterface)
+    ]
+    
+    let textures: [SKTexture] = [
+      SKTexture(imageNamed: TextureFileName.Background),
+      SKTexture(imageNamed: TextureFileName.BackgroundStars),
+      SKTexture(imageNamed: TextureFileName.StartLogo)
+    ]
+    
+    // Show loading scene
+    presentLoadingScene()
+    
+    // Preload textures
+    preloadTextures(textures, textureAtlases) {
+      // Present game scene
+      let scene = self.presentStartScene()
+      
+      // Retain preloaded textures
+      scene.textureAtlases = textureAtlases
+      scene.textures = textures
+      
+      completion?(scene)
+    }
+  }
+  
   func preloadAndPresentGameScene(completion: ((GameScene) -> Void)? = nil) {
     let textureAtlases: [SKTextureAtlas] = [
       SKTextureAtlas(named: TextureAtlasFileName.Environment),

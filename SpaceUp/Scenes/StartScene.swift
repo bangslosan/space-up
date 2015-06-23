@@ -10,13 +10,7 @@ import SpriteKit
 import StoreKit
 
 class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
-  // MARK: - Vars
-  weak var startSceneDelegate: StartSceneDelegate?
-  var backgroundPosition = CGPointZero
-  var storeView: StoreView?
-
   // MARK: - Immutable var
-  let textureAtlases = [SKTextureAtlas(named: TextureAtlasFileName.UserInterface)]
   let background = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
   let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
   let logo = SKSpriteNode(imageNamed: TextureFileName.StartLogo)
@@ -25,6 +19,13 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
   let soundButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonSound)
   let musicButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonMusic)
   let storeButton = SpriteButtonNode(imageNamed: TextureFileName.ButtonAd)
+
+  // MARK: - Vars
+  weak var startSceneDelegate: StartSceneDelegate?
+  var backgroundPosition = CGPointZero
+  var storeView: StoreView?
+  var textureAtlases: [SKTextureAtlas]?
+  var textures: [SKTexture]?
   
   // MARK: - Init
   override init(size: CGSize) {
