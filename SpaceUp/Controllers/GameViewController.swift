@@ -27,6 +27,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   // MARK: - View
   override func loadView() {
+    super.loadView()
+
     view = SKView()
   }
   
@@ -110,15 +112,15 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentLoadingScene()
     
     // Preload textures
-    preloadTextures(textures, textureAtlases) {
+    preloadTextures(textures, textureAtlases) { [weak self] in
       // Present game scene
-      let scene = self.presentStartScene()
-      
-      // Retain preloaded textures
-      scene.textureAtlases = textureAtlases
-      scene.textures = textures
-      
-      completion?(scene)
+      if let scene = self?.presentStartScene() {
+        // Retain preloaded textures
+        scene.textureAtlases = textureAtlases
+        scene.textures = textures
+        
+        completion?(scene)
+      }
     }
   }
   
@@ -143,15 +145,15 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentLoadingScene()
 
     // Preload textures
-    preloadTextures(textures, textureAtlases) {
+    preloadTextures(textures, textureAtlases) { [weak self] in
       // Present game scene
-      let scene = self.presentGameScene()
-      
-      // Retain preloaded textures
-      scene.textureAtlases = textureAtlases
-      scene.textures = textures
-      
-      completion?(scene)
+      if let scene = self?.presentGameScene() {
+        // Retain preloaded textures
+        scene.textureAtlases = textureAtlases
+        scene.textures = textures
+        
+        completion?(scene)
+      }
     }
   }
   

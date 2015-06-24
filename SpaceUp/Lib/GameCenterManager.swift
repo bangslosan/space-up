@@ -45,13 +45,15 @@ class GameCenterManager: NSObject {
   }
   
   func loadDefaultLeaderboardIdentifier() {
-    localPlayer?.loadDefaultLeaderboardIdentifierWithCompletionHandler { (leaderboardIdentifier, error) -> Void in
-      self.leaderboardIdentifier = leaderboardIdentifier
-      
-      if let error = error {
-        self.delegate?.gameCenterManager?(self, didReceiveError: error)
-      } else {
-        self.delegate?.gameCenterManager?(self, didLoadDefaultLeaderboardIdentifier: leaderboardIdentifier)
+    localPlayer?.loadDefaultLeaderboardIdentifierWithCompletionHandler { [weak self] (leaderboardIdentifier, error) -> Void in
+      if let delegate = self?.delegate {
+        self!.leaderboardIdentifier = leaderboardIdentifier
+        
+        if let error = error {
+          delegate.gameCenterManager?(self!, didReceiveError: error)
+        } else {
+          delegate.gameCenterManager?(self!, didLoadDefaultLeaderboardIdentifier: leaderboardIdentifier)
+        }
       }
     }
   }

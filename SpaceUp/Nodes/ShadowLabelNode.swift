@@ -19,7 +19,6 @@ class ShadowLabelNode: SKLabelNode {
     effectLabel.position = CGPoint(x: 6, y: -6)
     effectLabel.alpha = 0.3
     effectLabel.colorBlendFactor = 1
-    effectLabel.blendMode = .Multiply
     effectLabel.color = UIColor.blackColor()
     addChild(effectLabel)
     

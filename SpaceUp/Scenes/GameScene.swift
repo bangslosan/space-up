@@ -238,8 +238,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Notify
     gameSceneDelegate?.gameSceneDidStart?(self)
     
-    afterDelay(0.5) {
-      self.gameStarted = true
+    afterDelay(0.5) { [weak self] in
+      self?.gameStarted = true
     }
   }
 
@@ -262,9 +262,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     endGameView = presentEndGameView(hasNewTopScore: hasNewTopScore)
     endGameView!.hidden = true
 
-    afterDelay(0.5) {
-      self.endGameView?.hidden = false
-      self.endGameView?.appear()
+    afterDelay(0.5) { [weak self] in
+      self?.endGameView?.hidden = false
+      self?.endGameView?.appear()
     }
   }
   

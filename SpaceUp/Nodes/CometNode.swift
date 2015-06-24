@@ -151,8 +151,8 @@ class CometNode: SKSpriteNode {
       glow.advanceSimulationTime(0.6)
       parent.addChild(glow)
       
-      parent.afterDelay(3) {
-        glow.removeFromParent()
+      parent.afterDelay(3) { [weak glow] in
+        glow?.removeFromParent()
       }
     }
     

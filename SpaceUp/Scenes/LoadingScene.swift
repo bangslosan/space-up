@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+private struct KeyForAction {
+  static let loadingAnimateAction = "loadingAnimateAction"
+}
+
 class LoadingScene: SKScene {
   // MARK: - Vars
   var backgroundPosition = CGPointZero
@@ -58,6 +62,6 @@ class LoadingScene: SKScene {
     addChild(loadingLabel)
 
     // Animate
-    loadingLabel.runAction(SKAction.repeatActionForever(dotAction))
+    loadingLabel.runAction(SKAction.repeatActionForever(dotAction), withKey: KeyForAction.loadingAnimateAction)
   }
 }
