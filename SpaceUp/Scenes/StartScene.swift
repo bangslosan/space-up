@@ -7,9 +7,8 @@
 //
 
 import SpriteKit
-import StoreKit
 
-class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
+class StartScene: SKScene, ButtonDelegate {
   // MARK: - Immutable var
   let background = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
   let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
@@ -77,9 +76,6 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
     storeButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
     storeButton.delegate = self
     addChild(storeButton)
-    
-    // IAP
-    requestProducts()
   }
   
   // MARK: - Update
@@ -127,27 +123,6 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
     return storeView
   }
   
-  // MARK: - IAP
-  func requestProducts() {
-    let productIdentifiers = Set(["\(MainBundleIdentifier).RemoveAds"])
-    let request = SKProductsRequest(productIdentifiers: productIdentifiers)
-    
-    request.delegate = self
-    request.start()
-  }
-  
-  // MARK: - SKProductsRequestDelegate
-  func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
-    println(response.products)
-    println(response.invalidProductIdentifiers)
-
-    if let products = response.products as? [SKProduct] {
-      for product in products {
-        println("\(product.productIdentifier) - \(product.price)")
-      }
-    }
-  }
-  
   // MARK: - ButtonDelegate
   func touchBeganForButton(button: ButtonNode) {
     let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -166,9 +141,6 @@ class StartScene: SKScene, ButtonDelegate, SKProductsRequestDelegate {
       startSceneDelegate?.startSceneDidRequestToggleMusic?(self, withButton: musicButton)
       
     case storeButton:
-      storeView = presentStore()
-      storeView!.appear()
-
       startSceneDelegate?.startSceneDidRequestStore?(self)
       
     default:

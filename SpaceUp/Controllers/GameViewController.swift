@@ -9,8 +9,9 @@
 import SpriteKit
 import GameKit
 import iAd
+import StoreKit
 
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
   // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
   let gameData = GameData.dataFromArchive()
@@ -19,6 +20,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   private var interstitialAdView: InterstitialAdView?
   private var interstitialAd: ADInterstitialAd?
   private var numberOfRetriesSinceLastAd: UInt = 0
+  private var products: [SKProduct]?
+  private var removeAdsProduct: SKProduct?
 
   // MARK: - Computed vars
   var skView: SKView! {
@@ -251,6 +254,44 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     interstitialAdView = nil
   }
   
+  // MARK: - IAP
+  func presentStoreActionSheet() {
+    if let removeAdsProduct = removeAdsProduct {
+      let numberFormatter = NSNumberFormatter()
+      
+      numberFormatter.formatterBehavior = .Behavior10_4
+      numberFormatter.numberStyle = .CurrencyStyle
+      numberFormatter.locale = removeAdsProduct.priceLocale
+      
+      let formattedPrice = numberFormatter.stringFromNumber(removeAdsProduct.price)!
+      let actionController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+      let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+      let okAction = UIAlertAction(title: "Remove ads for \(formattedPrice)", style: .Default) { _ in
+        self.purchaseProduct(removeAdsProduct)
+      }
+      
+      actionController.addAction(okAction)
+      actionController.addAction(cancelAction)
+    
+      presentViewController(actionController, animated: true, completion: nil)
+    }
+  }
+  
+  func requestProducts() {
+    let productIdentifiers = Set(["\(MainBundleIdentifier).RemoveAds"])
+    let request = SKProductsRequest(productIdentifiers: productIdentifiers)
+    
+    request.delegate = self
+    request.start()
+  }
+  
+  func purchaseProduct(product: SKProduct) {
+    let payment = SKPayment(product: product)
+    let paymentQueue = SKPaymentQueue.defaultQueue()
+    
+    paymentQueue.addPayment(payment)
+  }
+  
   // MARK: - Sound
   func playMusic() {
     SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic)
@@ -374,6 +415,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentLeaderboard()
   }
   
+  func startSceneDidRequestStore(stareScene: StartScene) {
+    requestProducts()
+  }
+  
   func startSceneDidRequestToggleSound(startScene: StartScene, withButton button: SpriteButtonNode) {
     toggleSoundForScene(startScene, withButton: button)
   }
@@ -399,5 +444,42 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   func interstitialAdActionDidFinish(interstitialAd: ADInterstitialAd!) {
     closeInterstitialAd()
+  }
+  
+  // MARK: - SKProductsRequestDelegate
+  func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+    products = response.products as? [SKProduct]
+    
+    if let products = products {
+      for product in products {
+        if product.productIdentifier == "\(MainBundleIdentifier).RemoveAds" {
+          removeAdsProduct = product
+        }
+        
+        break
+      }
+    }
+    
+    presentStoreActionSheet()
+  }
+  
+  // MARK: - SKPaymentTransactionObserver
+  func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+    if let transactions = transactions {
+      for transaction in transactions {
+        if let transactionState = transaction.transactionState {
+          switch (transactionState) {
+          case SKPaymentTransactionState.Purchased:
+            break;
+
+          case SKPaymentTransactionState.Restored:
+            break;
+
+          default:
+            break;
+          }
+        }
+      }
+    }
   }
 }
