@@ -119,6 +119,7 @@
 		EBD100DE1B279F0200D3680B /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD100DD1B279F0200D3680B /* PlayerState.swift */; };
 		EBD100E01B284A0600D3680B /* Sphere.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD100DF1B284A0600D3680B /* Sphere.png */; };
 		EBD100E21B284A3C00D3680B /* Propel.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBD100E11B284A3C00D3680B /* Propel.sks */; };
+		EBE4E5AB1B3E35F4000664C1 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4E5AA1B3E35F4000664C1 /* LoadingIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +249,7 @@
 		EBD100DD1B279F0200D3680B /* PlayerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerState.swift; path = Types/PlayerState.swift; sourceTree = "<group>"; };
 		EBD100DF1B284A0600D3680B /* Sphere.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sphere.png; sourceTree = "<group>"; };
 		EBD100E11B284A3C00D3680B /* Propel.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Propel.sks; sourceTree = "<group>"; };
+		EBE4E5AA1B3E35F4000664C1 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingIndicatorView.swift; path = Views/LoadingIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,9 +395,10 @@
 		EB02121A1B1DD2340087B2E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */,
-				EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */,
 				EB0212C11B22DCB00087B2E6 /* InterstitialAdView.swift */,
+				EB0211FA1B1DCF9A0087B2E6 /* LaunchScreen.xib */,
+				EBE4E5AA1B3E35F4000664C1 /* LoadingIndicatorView.swift */,
+				EB0211F51B1DCF9A0087B2E6 /* Main.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				EB02125A1B1DD4F90087B2E6 /* WorldNode.swift in Sources */,
 				EB0212391B1DD3A00087B2E6 /* SKNode+Extensions.swift in Sources */,
 				EB0212B61B22708C0087B2E6 /* GameSceneDelegate.swift in Sources */,
+				EBE4E5AB1B3E35F4000664C1 /* LoadingIndicatorView.swift in Sources */,
 				EB02124C1B1DD3B50087B2E6 /* SKSceneExtension.swift in Sources */,
 				EB02129A1B1F18B40087B2E6 /* DispatchHelper.swift in Sources */,
 				EB0212161B1DD1DD0087B2E6 /* GameViewController.swift in Sources */,

@@ -51,9 +51,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Present scene
     presentStartScene()
     
-    // Authenticate GameCenter
-    // TODO: Loading spinner
+    // GameCenter
     gameCenterManager.delegate = self
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    LoadingIndicatorView.sharedView.showInView(view)
+    
     gameCenterManager.authenticateLocalPlayer()
   }
   
@@ -274,6 +278,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
       }
       
       actionController.addAction(purchaseAction)
+      actionController.addAction(restoreAction)
       actionController.addAction(cancelAction)
     
       presentViewController(actionController, animated: true, completion: nil)
@@ -320,7 +325,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   func failedTransaction(transaction: SKPaymentTransaction) {
     let queue = SKPaymentQueue.defaultQueue()
     
-    if transaction.error.code != SKErrorPaymentCancelled {
+    if let error = transaction.error where error.code != SKErrorPaymentCancelled {
       println("Transaction error: \(transaction.error.localizedDescription)")
     }
     
@@ -332,6 +337,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     userDefaults.setBool(true, forKey: identifier)
     userDefaults.synchronize()
+    
+    // Feedback
+    let alertController = UIAlertController(title: "Thank you", message: "Thank you for your purchase!", preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    
+    alertController.addAction(okAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
   }
   
   // MARK: - Sound
@@ -390,14 +403,13 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   func gameCenterManager(manager: GameCenterManager, didAuthenticateLocalPlayer: Bool) {
     if didAuthenticateLocalPlayer {
-      // TODO: Loading spinner
       gameCenterManager.loadDefaultLeaderboardIdentifier()
     }
   }
   
   func gameCenterManager(manager: GameCenterManager, didReceiveError error: NSError) {
     // Cancelled by user
-    println(error)
+    LoadingIndicatorView.sharedView.dismiss()
   }
   
   func gameCenterManager(manager: GameCenterManager, didLoadDefaultLeaderboardIdentifier identifier: String) {
@@ -406,6 +418,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   func gameCenterManager(manager: GameCenterManager, didLoadLocalPlayerScore score: GKScore) {
     gameData.updateTopScoreWithGKScore(score)
+    
+    LoadingIndicatorView.sharedView.dismiss()
   }
   
   // MARK: - GameSceneDelegate
@@ -458,6 +472,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   func startSceneDidRequestStore(stareScene: StartScene) {
+    LoadingIndicatorView.sharedView.showInView(view)
+
     requestProducts()
   }
   
@@ -501,17 +517,20 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
         break
       }
     }
-    
+
+    // Hide indicator
+    LoadingIndicatorView.sharedView.dismiss()
+
+    // Present products
     presentStoreActionSheet()
   }
   
   // MARK: - SKPaymentTransactionObserver
   func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
     if let transactions = transactions {
-
       for transaction in transactions {
-        if let transactionState = transaction.transactionState, transaction = transaction as? SKPaymentTransaction {
-          switch (transactionState) {
+        if let transaction = transaction as? SKPaymentTransaction {
+          switch (transaction.transactionState) {
           case SKPaymentTransactionState.Purchased:
             completeTransaction(transaction)
 

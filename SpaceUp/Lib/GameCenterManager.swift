@@ -60,7 +60,7 @@ class GameCenterManager: NSObject {
   
   func reportScoreValue(scoreValue: Int64) {
     if leaderboardIdentifier == nil {
-      let error = NSError.errorWithMessage("Leaderboard identifier is not available", code: 500)
+      let error = NSError.errorWithMessage("Leaderboard identifier is not available")
       
       self.delegate?.gameCenterManager?(self, didReceiveError: error)
     } else {
@@ -89,6 +89,8 @@ class GameCenterManager: NSObject {
           self.delegate?.gameCenterManager?(self, didReceiveError: error)
         } else if let localPlayerScore = leaderboard.localPlayerScore {
           self.delegate?.gameCenterManager?(self, didLoadLocalPlayerScore: localPlayerScore)
+        } else {
+          self.delegate?.gameCenterManager?(self, didReceiveError: NSError.errorWithMessage("Player score is not available"))
         }
       }
     }
