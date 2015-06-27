@@ -11,6 +11,7 @@ import GameKit
 import iAd
 import StoreKit
 
+// TODO: Refactor, too many responsbilities atm
 class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
   // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
@@ -214,24 +215,28 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
 
   func presentInterstitialAd() -> Bool {
-    if interstitialAd?.loaded == true {
-      // Container view
-      interstitialAdView = InterstitialAdView(frame: skView.bounds)
-      interstitialAdView!.closeButton.addTarget(self, action: "closeInterstitialAd", forControlEvents: .TouchUpInside)
-      skView.addSubview(interstitialAdView!)
+    if isAdsEnabled() == false {
+      println("Ads are disabled")
       
-      // Present ad in view
-      interstitialAdView!.presentInterstitialAd(interstitialAd!)
-      
-      // Pause view
-      skView.paused = true
-      
-      return true
-    } else {
+      return false
+    } else if interstitialAd?.loaded != true {
       println("Ad not loaded")
-
+      
       return false
     }
+
+    // Container view
+    interstitialAdView = InterstitialAdView(frame: skView.bounds)
+    interstitialAdView!.closeButton.addTarget(self, action: "closeInterstitialAd", forControlEvents: .TouchUpInside)
+    skView.addSubview(interstitialAdView!)
+    
+    // Pause view
+    skView.paused = true
+    
+    // Present ad in view
+    interstitialAdView!.presentInterstitialAd(interstitialAd!)
+    
+    return true
   }
   
   func closeInterstitialAd() {
@@ -257,20 +262,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   // MARK: - IAP
   func presentStoreActionSheet() {
     if let removeAdsProduct = removeAdsProduct {
-      let numberFormatter = NSNumberFormatter()
-      
-      numberFormatter.formatterBehavior = .Behavior10_4
-      numberFormatter.numberStyle = .CurrencyStyle
-      numberFormatter.locale = removeAdsProduct.priceLocale
-      
-      let formattedPrice = numberFormatter.stringFromNumber(removeAdsProduct.price)!
       let actionController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
       let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-      let okAction = UIAlertAction(title: "Remove ads for \(formattedPrice)", style: .Default) { _ in
+
+      let purchaseAction = UIAlertAction(title: "Remove ads for \(removeAdsProduct.formattedPrice)", style: .Default) { _ in
         self.purchaseProduct(removeAdsProduct)
       }
+
+      let restoreAction = UIAlertAction(title: "Restore purchase", style: .Default) { _ in
+        self.restoreProducts()
+      }
       
-      actionController.addAction(okAction)
+      actionController.addAction(purchaseAction)
       actionController.addAction(cancelAction)
     
       presentViewController(actionController, animated: true, completion: nil)
@@ -278,7 +281,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   func requestProducts() {
-    let productIdentifiers = Set(["\(MainBundleIdentifier).RemoveAds"])
+    let productIdentifiers = Set([ProductIdentifier.RemoveAds])
     let request = SKProductsRequest(productIdentifiers: productIdentifiers)
     
     request.delegate = self
@@ -290,6 +293,45 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     let paymentQueue = SKPaymentQueue.defaultQueue()
     
     paymentQueue.addPayment(payment)
+  }
+  
+  func restoreProducts() {
+    let paymentQueue = SKPaymentQueue.defaultQueue()
+  
+    paymentQueue.restoreCompletedTransactions()
+  }
+  
+  func completeTransaction(transaction: SKPaymentTransaction) {
+    let queue = SKPaymentQueue.defaultQueue()
+    
+    provideContentForProductIdentifier(transaction.payment.productIdentifier)
+    
+    queue.finishTransaction(transaction)
+  }
+  
+  func restoreTransaction(transaction: SKPaymentTransaction) {
+    let queue = SKPaymentQueue.defaultQueue()
+    
+    provideContentForProductIdentifier(transaction.originalTransaction.payment.productIdentifier)
+    
+    queue.finishTransaction(transaction)
+  }
+  
+  func failedTransaction(transaction: SKPaymentTransaction) {
+    let queue = SKPaymentQueue.defaultQueue()
+    
+    if transaction.error.code != SKErrorPaymentCancelled {
+      println("Transaction error: \(transaction.error.localizedDescription)")
+    }
+    
+    queue.finishTransaction(transaction)
+  }
+  
+  func provideContentForProductIdentifier(identifier: String) {
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
+    userDefaults.setBool(true, forKey: identifier)
+    userDefaults.synchronize()
   }
   
   // MARK: - Sound
@@ -452,7 +494,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     if let products = products {
       for product in products {
-        if product.productIdentifier == "\(MainBundleIdentifier).RemoveAds" {
+        if product.productIdentifier == ProductIdentifier.RemoveAds {
           removeAdsProduct = product
         }
         
@@ -466,17 +508,18 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   // MARK: - SKPaymentTransactionObserver
   func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
     if let transactions = transactions {
+
       for transaction in transactions {
-        if let transactionState = transaction.transactionState {
+        if let transactionState = transaction.transactionState, transaction = transaction as? SKPaymentTransaction {
           switch (transactionState) {
           case SKPaymentTransactionState.Purchased:
-            break;
+            completeTransaction(transaction)
 
           case SKPaymentTransactionState.Restored:
-            break;
+            restoreTransaction(transaction)
 
           default:
-            break;
+            failedTransaction(transaction)
           }
         }
       }

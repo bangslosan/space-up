@@ -85,6 +85,8 @@
 		EB4603861B381452000639F5 /* ModalOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603851B381452000639F5 /* ModalOverlayNode.swift */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
 		EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73BAB11B382C4E00BC7A38 /* ModalView.swift */; };
+		EB7A1A8C1B3E284600C79457 /* ProductIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */; };
+		EB7A1A901B3E2EC400C79457 /* SKProductExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8F1B3E2EC400C79457 /* SKProductExtension.swift */; };
 		EB899F5F1B36D4A900BE59BD /* EngineFlameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */; };
 		EB899F611B38094A00BE59BD /* EngineSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB899F601B38094A00BE59BD /* EngineSpark.sks */; };
 		EBB1ECA11B23CCFE00768015 /* BackgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */; };
@@ -212,6 +214,8 @@
 		EB4603851B381452000639F5 /* ModalOverlayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalOverlayNode.swift; path = Nodes/ModalOverlayNode.swift; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
 		EB73BAB11B382C4E00BC7A38 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalView.swift; path = ViewNodes/ModalView.swift; sourceTree = "<group>"; };
+		EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductIdentifier.swift; path = Types/ProductIdentifier.swift; sourceTree = "<group>"; };
+		EB7A1A8F1B3E2EC400C79457 /* SKProductExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKProductExtension.swift; path = Extensions/SKProductExtension.swift; sourceTree = "<group>"; };
 		EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EngineFlameNode.swift; path = Nodes/EngineFlameNode.swift; sourceTree = "<group>"; };
 		EB899F601B38094A00BE59BD /* EngineSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EngineSpark.sks; sourceTree = "<group>"; };
 		EBB1EC9E1B23CCFE00768015 /* BackgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = BackgroundMusic.mp3; path = Sounds/BackgroundMusic.mp3; sourceTree = "<group>"; };
@@ -430,6 +434,7 @@
 				EB0212411B1DD3B50087B2E6 /* NSFileManagerExtension.swift */,
 				EB0212421B1DD3B50087B2E6 /* SKActionExtension.swift */,
 				EB0212431B1DD3B50087B2E6 /* SKNodeExtension.swift */,
+				EB7A1A8F1B3E2EC400C79457 /* SKProductExtension.swift */,
 				EB0212441B1DD3B50087B2E6 /* SKSceneExtension.swift */,
 				EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */,
 				EB0212451B1DD3B50087B2E6 /* UIColorExtension.swift */,
@@ -485,6 +490,7 @@
 				EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */,
 				EB0212601B1DD5760087B2E6 /* PhysicsCategory.swift */,
 				EBD100DD1B279F0200D3680B /* PlayerState.swift */,
+				EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */,
 				43C05DF11B2A81A4009B8148 /* SamplingFilterType.swift */,
 				EBD100C61B2524DD00D3680B /* SoundFileName.swift */,
 				EBD100C41B2524CA00D3680B /* TextureFileName.swift */,
@@ -713,6 +719,7 @@
 				EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */,
 				EB0212361B1DD3A00087B2E6 /* SKAction+Extensions.swift in Sources */,
 				EBD100CE1B25364400D3680B /* LoadingScene.swift in Sources */,
+				EB7A1A901B3E2EC400C79457 /* SKProductExtension.swift in Sources */,
 				EB02124A1B1DD3B50087B2E6 /* SKActionExtension.swift in Sources */,
 				EBCA805F1B2CF0E000CC00E2 /* FontName.swift in Sources */,
 				EBD100C51B2524CA00D3680B /* TextureFileName.swift in Sources */,
@@ -772,6 +779,7 @@
 				EB4603861B381452000639F5 /* ModalOverlayNode.swift in Sources */,
 				EB0212321B1DD3A00087B2E6 /* CGFloat+Extensions.swift in Sources */,
 				43C05DEC1B296321009B8148 /* ScoreLineNode.swift in Sources */,
+				EB7A1A8C1B3E284600C79457 /* ProductIdentifier.swift in Sources */,
 				EB0212621B1DD5760087B2E6 /* DirectionType.swift in Sources */,
 				EB02127D1B1DECA30087B2E6 /* SceneBackgroundNode.swift in Sources */,
 				EB0212BC1B22859F0087B2E6 /* GameDataSource.swift in Sources */,

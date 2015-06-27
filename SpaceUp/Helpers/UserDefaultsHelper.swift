@@ -9,9 +9,19 @@
 import Foundation
 
 func isSoundEnabled() -> Bool {
-  return NSUserDefaults.standardUserDefaults().boolForKey(KeyForUserDefaults.SoundDisabled) != true
+  let userDefaults = NSUserDefaults.standardUserDefaults()
+
+  return userDefaults.boolForKey(KeyForUserDefaults.SoundDisabled) != true
 }
 
 func isMusicEnabled() -> Bool {
-  return NSUserDefaults.standardUserDefaults().boolForKey(KeyForUserDefaults.MusicDisabled) != true
+  let userDefaults = NSUserDefaults.standardUserDefaults()
+
+  return userDefaults.boolForKey(KeyForUserDefaults.MusicDisabled) != true
+}
+
+func isAdsEnabled() -> Bool {
+  let userDefaults = NSUserDefaults.standardUserDefaults()
+  
+  return userDefaults.boolForKey(ProductIdentifier.RemoveAds) != true
 }
