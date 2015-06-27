@@ -13,32 +13,29 @@ private struct KeyForAction {
 }
 
 class EngineFlameNode: SKSpriteNode {
-  // MARK: - Immutable vars
-  private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
-  
   // MARK: - Vars
   private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.EngineSpark)
   private lazy var flameStartAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "1"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "2"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "3"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "4"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "5"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "6")
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "1"),
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "2"),
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "3"),
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "4"),
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "5"),
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "6")
     ], timePerFrame: 1/30)
   }()
   
   private lazy var flamePersistAnimateAction: SKAction = {
     return SKAction.repeatActionForever(SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "5"),
-      self.textureAtlas.textureNamed(TextureFileName.EngineFlame + "6")
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "5"),
+      SKTexture(imageNamed: TextureFileName.EngineFlame + "6")
     ], timePerFrame: 1/20))
   }()
 
   // MARK: - Init
   init() {
-    let texture = textureAtlas.textureNamed(TextureFileName.EngineFlame + "1")
+    let texture = SKTexture(imageNamed: TextureFileName.EngineFlame + "1")
 
     super.init(texture: texture, color: nil, size: texture.size())
   }

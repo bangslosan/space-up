@@ -15,9 +15,6 @@ private struct KeyForAction {
 }
 
 class PlayerNode: SKSpriteNode {
-  // MARK: - Immutable vars
-  private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Character)
-
   // MARK: - Vars
   private lazy var engineFlame = EngineFlameNode()
   private var shieldNode: ShieldNode?
@@ -48,19 +45,19 @@ class PlayerNode: SKSpriteNode {
   
   private lazy var moveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.MuffyFlying)
+      SKTexture(imageNamed: TextureFileName.MuffyFlying)
     ], timePerFrame: 1/60)
   }()
   
   private lazy var stopMoveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.MuffyStopFlying)
+      SKTexture(imageNamed: TextureFileName.MuffyStopFlying)
     ], timePerFrame: 1/60)
-    }()
+  }()
   
   private lazy var killAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.MuffyDead)
+      SKTexture(imageNamed: TextureFileName.MuffyDead)
     ], timePerFrame: 1/60)
   }()
   
@@ -74,13 +71,13 @@ class PlayerNode: SKSpriteNode {
   
   private lazy var standAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.MuffyStanding)
+      SKTexture(imageNamed: TextureFileName.MuffyStanding)
     ], timePerFrame: 1/60)
   }()
 
   // MARK: - Init
   init() {
-    let texture = textureAtlas.textureNamed(TextureFileName.MuffyStanding)
+    let texture = SKTexture(imageNamed: TextureFileName.MuffyStanding)
     let ratio: CGFloat = 1/3
     let size = CGSize(width: 520 * ratio, height: 680 * ratio)
     

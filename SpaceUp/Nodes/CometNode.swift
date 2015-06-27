@@ -16,7 +16,6 @@ private struct KeyForAction {
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
-  private let textureAtlas = SKTextureAtlas(named: TextureAtlasFileName.Environment)
   private let sphere: SKSpriteNode
   private let glow: SKSpriteNode
   let type: CometType
@@ -32,23 +31,23 @@ class CometNode: SKSpriteNode {
     
     switch self.type {
     case .Slow:
-      texture0 = self.textureAtlas.textureNamed(TextureFileName.CrackedLarge)
+      texture0 = SKTexture(imageNamed: TextureFileName.CrackedLarge)
 
     case .Fast:
-      texture0 = self.textureAtlas.textureNamed(TextureFileName.CrackedSmall)
+      texture0 = SKTexture(imageNamed: TextureFileName.CrackedSmall)
 
     default:
-      texture0 = self.textureAtlas.textureNamed(TextureFileName.CrackedMedium)
+      texture0 = SKTexture(imageNamed: TextureFileName.CrackedMedium)
     }
     
     return SKAction.animateWithTextures([
       texture0,
-      self.textureAtlas.textureNamed(TextureFileName.CrackedRed),
-      self.textureAtlas.textureNamed(TextureFileName.Explosion + "1"),
-      self.textureAtlas.textureNamed(TextureFileName.Explosion + "2"),
-      self.textureAtlas.textureNamed(TextureFileName.Explosion + "3"),
-      self.textureAtlas.textureNamed(TextureFileName.Explosion + "4"),
-      self.textureAtlas.textureNamed(TextureFileName.Explosion + "5")
+      SKTexture(imageNamed: TextureFileName.CrackedRed),
+      SKTexture(imageNamed: TextureFileName.Explosion + "1"),
+      SKTexture(imageNamed: TextureFileName.Explosion + "2"),
+      SKTexture(imageNamed: TextureFileName.Explosion + "3"),
+      SKTexture(imageNamed: TextureFileName.Explosion + "4"),
+      SKTexture(imageNamed: TextureFileName.Explosion + "5")
     ], timePerFrame: 1/15)
   }()
 

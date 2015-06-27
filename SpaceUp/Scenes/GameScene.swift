@@ -272,10 +272,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     endGameView?.disappear() {
       self.endGameView?.removeFromParent()
       self.endGameView = nil
+      
+      // Inform delegate
+      self.gameSceneDelegate?.gameSceneDidRequestRetry?(self)
     }
-    
-    // Inform delegate
-    gameSceneDelegate?.gameSceneDidRequestRetry?(self)
   }
   
   func togglePauseGame() {
