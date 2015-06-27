@@ -9,8 +9,10 @@
 import SpriteKit
 
 class SceneBackgroundNode: SKNode {
+  // MARK: - Vars
   weak var world: WorldNode?
   
+  // MARK: - Immutable vars
   private let galaxyBackground = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
   private let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
   private let galaxyLargePlanets = EndlessBackgroundNode(imageNames: [
@@ -21,6 +23,7 @@ class SceneBackgroundNode: SKNode {
     TextureFileName.BackgroundSmallPlanets,
     TextureFileName.BackgroundSmallPlanets + "2"
   ])
+  private var positionOffset = CGPointZero
   
   // MARK: - Init
   override init() {
@@ -38,9 +41,18 @@ class SceneBackgroundNode: SKNode {
   
   // MARK: - Update
   func move(position: CGPoint) {
-    galaxyBackground.move(position, multiplier: 0.4)
-    galaxyStars.move(position, multiplier: 0.5)
-    galaxySmallPlanets.move(position, multiplier: 0.6)
-    galaxyLargePlanets.move(position, multiplier: 0.7)
+    galaxyBackground.move(position + positionOffset, multiplier: 0.4)
+    galaxyStars.move(position + positionOffset, multiplier: 0.5)
+    galaxySmallPlanets.move(position + positionOffset, multiplier: 0.6)
+    galaxyLargePlanets.move(position + positionOffset, multiplier: 0.7)
+  }
+  
+  // MARK: - Offset
+  func updateOffsetByMotion(motion: FilteredMotion) {
+    let maxDiff: CGFloat = 100
+    let dx: CGFloat = 0 // maxDiff * CGFloat(motion.acceleration.x)
+    let dy: CGFloat = maxDiff * CGFloat(motion.acceleration.y)
+    
+    positionOffset = CGPoint(x: dx, y: dy)
   }
 }

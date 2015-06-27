@@ -49,6 +49,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     physicsWorld.contactDelegate = self
     physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
     
+    // Motion
+    observeMotion()
+    
     // World
     world.delegate = self
     addChild(world)
@@ -60,7 +63,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Backgrounds
     addChild(background)
     background.world = world
-    background.move(world.position)
     
     // Bottom bound
     bottomBoundary.position = CGPoint(x: 0, y: -world.player.frame.height)
@@ -83,9 +85,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     notificationCenter.addObserver(self, selector: "applicationDidEnterBackground:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
     notificationCenter.addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
     notificationCenter.addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
-    
-    // Motion
-    observeMotion()
     
     // Start Game
     pauseGame(false)
@@ -139,6 +138,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.followPlayer(crawlIncrement: crawlIncrement)
     
     // Background
+    background.updateOffsetByMotion(filteredMotion)
     background.move(world.position)
     
     // Comet
