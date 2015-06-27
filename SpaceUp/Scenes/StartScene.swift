@@ -54,28 +54,37 @@ class StartScene: SKScene, ButtonDelegate {
     addChild(startButton)
     
     // Leaderboard button
-    leaderboardButton.position = CGPoint(x: screenFrame.minX + 100, y: startButton.frame.midY - 40)
     leaderboardButton.delegate = self
     addChild(leaderboardButton)
     
     // Music button
-    musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 40)
     musicButton.setTexture(SKTexture(imageNamed: TextureFileName.ButtonMusicOff), forState: .Active)
     musicButton.state = isMusicEnabled() ? .Normal : .Active
     musicButton.delegate = self
     addChild(musicButton)
     
     // Sound button
-    soundButton.position = CGPoint(x: screenFrame.maxX - 250, y: screenFrame.minY + 170)
     soundButton.setTexture(SKTexture(imageNamed: TextureFileName.ButtonSoundOff), forState: .Active)
     soundButton.state = isSoundEnabled() ? .Normal : .Active
     soundButton.delegate = self
     addChild(soundButton)
     
     // Ad button
-    storeButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
     storeButton.delegate = self
     addChild(storeButton)
+    
+    // Layout
+    updateLayout()
+    
+    // Notification
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
+  }
+  
+  override func willMoveFromView(view: SKView) {
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.removeObserver(self)
   }
   
   // MARK: - Update
@@ -84,6 +93,24 @@ class StartScene: SKScene, ButtonDelegate {
 
     background.move(backgroundPosition, multiplier: 0.4)
     galaxyStars.move(backgroundPosition, multiplier: 0.7)
+  }
+  
+  // MARK: - Layout
+  func updateLayout() {
+    if isAdsEnabled() {
+      leaderboardButton.position = CGPoint(x: screenFrame.minX + 100, y: startButton.frame.midY - 40)
+      musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 40)
+      soundButton.position = CGPoint(x: screenFrame.maxX - 250, y: screenFrame.minY + 170)
+      storeButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
+      
+      addChildIfNeeded(storeButton)
+    } else {
+      leaderboardButton.position = CGPoint(x: screenFrame.minX + 140, y: startButton.frame.midY - 120)
+      musicButton.position = CGPoint(x: screenFrame.maxX - 140, y: startButton.frame.midY - 120)
+      soundButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.minY + 170)
+    
+      storeButton.removeFromParentIfNeeded()
+    }
   }
   
   // MARK: - Appear
@@ -121,6 +148,15 @@ class StartScene: SKScene, ButtonDelegate {
     addChild(storeView)
     
     return storeView
+  }
+  
+  // MARK: - Notification
+  func paymentTransactionDidComplete(notification: NSNotification) {
+    updateLayout()
+  }
+  
+  func paymentTransactionDidRestore(notification: NSNotification) {
+    updateLayout()
   }
   
   // MARK: - ButtonDelegate

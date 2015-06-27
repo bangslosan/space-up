@@ -59,6 +59,17 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Authenticate GameCenter
     LoadingIndicatorView.sharedView.showInView(view)
     gameCenterManager.authenticateLocalPlayer()
+    
+    // Notification
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidFail:", name: PaymentTransactionDidFailNotification, object: nil)
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.removeObserver(self)
   }
   
   override func shouldAutorotate() -> Bool {
@@ -270,10 +281,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
       let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 
       let purchaseAction = UIAlertAction(title: "Remove ads for \(removeAdsProduct.formattedPrice)", style: .Default) { _ in
+        LoadingIndicatorView.sharedView.showInView(self.view)
+
         self.purchaseProduct(removeAdsProduct)
       }
 
       let restoreAction = UIAlertAction(title: "Restore purchase", style: .Default) { _ in
+        LoadingIndicatorView.sharedView.showInView(self.view)
+
         self.restoreProducts()
       }
       
@@ -302,7 +317,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   func restoreProducts() {
     let paymentQueue = SKPaymentQueue.defaultQueue()
-  
+    
     paymentQueue.restoreCompletedTransactions()
   }
   
@@ -349,9 +364,29 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     return isMusicEnabled()
   }
   
+  // MARK: - Notification
+  func paymentTransactionDidComplete(notification: NSNotification) {
+    restoreViewFromTransaction()
+  }
+  
+  func paymentTransactionDidRestore(notification: NSNotification) {
+    restoreViewFromTransaction()
+  }
+  
+  func paymentTransactionDidFail(notification: NSNotification) {
+    restoreViewFromTransaction()
+  }
+  
+  private func restoreViewFromTransaction() {
+    LoadingIndicatorView.sharedView.dismiss()
+    
+    skView.paused = false
+  }
+  
   // MARK: - GKGameCenterControllerDelegate
   func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
     gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
+
     skView.paused = false
   }
   

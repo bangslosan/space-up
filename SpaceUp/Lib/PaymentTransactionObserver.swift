@@ -15,18 +15,20 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
     let queue = SKPaymentQueue.defaultQueue()
     
     updateUserDefaultsWithBoolValue(true, forKey: transaction.payment.productIdentifier)
-    postNotificatonName(PaymentTransactionDidCompleteNotification, forTransaction: transaction)
     
     queue.finishTransaction(transaction)
+    
+    postNotificatonName(PaymentTransactionDidCompleteNotification, forTransaction: transaction)
   }
   
   func restoreTransaction(transaction: SKPaymentTransaction) {
     let queue = SKPaymentQueue.defaultQueue()
     
     updateUserDefaultsWithBoolValue(true, forKey: transaction.originalTransaction.payment.productIdentifier)
-    postNotificatonName(PaymentTransactionDidRestoreNotification, forTransaction: transaction.originalTransaction)
     
     queue.finishTransaction(transaction)
+
+    postNotificatonName(PaymentTransactionDidRestoreNotification, forTransaction: transaction.originalTransaction)
   }
   
   func failedTransaction(transaction: SKPaymentTransaction) {
@@ -36,9 +38,9 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
       println("Transaction error: \(transaction.error.localizedDescription)")
     }
     
-    postNotificatonName(PaymentTransactionDidFailNotification, forTransaction: transaction)
-    
     queue.finishTransaction(transaction)
+    
+    postNotificatonName(PaymentTransactionDidFailNotification, forTransaction: transaction)
   }
   
   func provideContentForProductIdentifier(identifier: String) {
@@ -71,10 +73,18 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
   }
   
+  func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
+    postNotificatonName(PaymentTransactionDidRestoreAllNotification, forTransaction: nil)
+  }
+  
   // MARK: - Notification
-  private func postNotificatonName(name: String, forTransaction transaction: SKPaymentTransaction) {
+  private func postNotificatonName(name: String, forTransaction transaction: SKPaymentTransaction?) {
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    let userInfo = ["transaction": transaction]
+    var userInfo = [NSObject: AnyObject]()
+    
+    if let transaction = transaction {
+      userInfo["transaction"] = transaction
+    }
     
     notificationCenter.postNotificationName(name, object: self, userInfo: userInfo)
   }

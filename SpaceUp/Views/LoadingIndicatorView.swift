@@ -70,12 +70,12 @@ class LoadingIndicatorView: UIView {
   }
   
   func dismiss() {
-    indicatorView.stopAnimating()
     ignoreInteractionEvents = false
     
     UIView.animateWithDuration(0.5, animations: {
       self.alpha = 0
     }) { _ in
+      self.indicatorView.stopAnimating()
       self.removeFromSuperview()
     }
   }
