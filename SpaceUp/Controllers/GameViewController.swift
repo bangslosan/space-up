@@ -59,18 +59,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Authenticate GameCenter
     LoadingIndicatorView.sharedView.showInView(view)
     gameCenterManager.authenticateLocalPlayer()
-    
-    // Observe notifications
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "paymentTransactionDidFail:", name: PaymentTransactionDidFailNotification, object: nil)
-  }
-
-  override func viewWillDisappear(animated: Bool) {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    
-    notificationCenter.removeObserver(self)
   }
   
   override func shouldAutorotate() -> Bool {
@@ -359,42 +347,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     userDefaults.synchronize()
     
     return isMusicEnabled()
-  }
-  
-  // MARK: - Notification
-  func paymentTransactionDidComplete(notification: NSNotification) {
-    let alertController = UIAlertController(title: "Thank you", message: "Thank you for your support.", preferredStyle: .Alert)
-    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-    
-    alertController.addAction(okAction)
-    
-    presentViewController(alertController, animated: true, completion: nil)
-  }
-  
-  func paymentTransactionDidRestore(notification: NSNotification) {
-    let alertController = UIAlertController(title: "Success", message: "Your purchases have been restored.", preferredStyle: .Alert)
-    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-    
-    alertController.addAction(okAction)
-    
-    presentViewController(alertController, animated: true, completion: nil)
-  }
-  
-  func paymentTransactionDidFail(notification: NSNotification) {
-    let message: String
-    
-    if let userInfo = notification.userInfo, transaction = userInfo["transaction"] as? SKPaymentTransaction, error = transaction.error {
-      message = error.localizedDescription
-    } else {
-      message = "Sorry, your payment cannot be processed due to a technical issue. Please try again later."
-    }
-    
-    let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
-    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-    
-    alertController.addAction(okAction)
-    
-    presentViewController(alertController, animated: true, completion: nil)
   }
   
   // MARK: - GKGameCenterControllerDelegate
