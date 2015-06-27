@@ -56,6 +56,8 @@ struct TextureFileName {
   static let LabelNewScore = "LabelNewScore"
   
   static let CrackedRed = "CrackedRed"
+  static let CrackedSmall = "CrackedSmall"
   static let CrackedMedium = "CrackedMedium"
+  static let CrackedLarge = "CrackedLarge"
   static let Explosion = "Explosion"
 }

@@ -28,8 +28,21 @@ class CometNode: SKSpriteNode {
   var physicsFrame = CGRectZero
   
   private lazy var explodeAnimateAction: SKAction = {
+    let texture0: SKTexture
+    
+    switch self.type {
+    case .Slow:
+      texture0 = self.textureAtlas.textureNamed(TextureFileName.CrackedLarge)
+
+    case .Fast:
+      texture0 = self.textureAtlas.textureNamed(TextureFileName.CrackedSmall)
+
+    default:
+      texture0 = self.textureAtlas.textureNamed(TextureFileName.CrackedMedium)
+    }
+    
     return SKAction.animateWithTextures([
-      self.textureAtlas.textureNamed(TextureFileName.CrackedMedium),
+      texture0,
       self.textureAtlas.textureNamed(TextureFileName.CrackedRed),
       self.textureAtlas.textureNamed(TextureFileName.Explosion + "1"),
       self.textureAtlas.textureNamed(TextureFileName.Explosion + "2"),
