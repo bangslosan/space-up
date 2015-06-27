@@ -7,10 +7,13 @@
 //
 
 import SpriteKit
+import StoreKit
 import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+  let paymentTransactionObserver = PaymentTransactionObserver()
 
   var window: UIWindow?
 
@@ -19,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let audioSession = AVAudioSession.sharedInstance()
 
     audioSession.setCategory(AVAudioSessionCategoryAmbient, error: nil)
+    
+    // Payment transaction
+    let queue = SKPaymentQueue.defaultQueue()
+    queue.addTransactionObserver(paymentTransactionObserver)
 
     return true
   }

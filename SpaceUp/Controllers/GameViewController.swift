@@ -12,7 +12,7 @@ import iAd
 import StoreKit
 
 // TODO: Refactor, too many responsbilities atm
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate, SKProductsRequestDelegate {
   // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
   let gameData = GameData.dataFromArchive()
@@ -56,9 +56,21 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   override func viewWillAppear(animated: Bool) {
+    // Authenticate GameCenter
     LoadingIndicatorView.sharedView.showInView(view)
-    
     gameCenterManager.authenticateLocalPlayer()
+    
+    // Observe notifications
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "paymentTransactionDidFail:", name: PaymentTransactionDidFailNotification, object: nil)
+  }
+
+  override func viewWillDisappear(animated: Bool) {
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    
+    notificationCenter.removeObserver(self)
   }
   
   override func shouldAutorotate() -> Bool {
@@ -306,47 +318,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     paymentQueue.restoreCompletedTransactions()
   }
   
-  func completeTransaction(transaction: SKPaymentTransaction) {
-    let queue = SKPaymentQueue.defaultQueue()
-    
-    provideContentForProductIdentifier(transaction.payment.productIdentifier)
-    
-    queue.finishTransaction(transaction)
-  }
-  
-  func restoreTransaction(transaction: SKPaymentTransaction) {
-    let queue = SKPaymentQueue.defaultQueue()
-    
-    provideContentForProductIdentifier(transaction.originalTransaction.payment.productIdentifier)
-    
-    queue.finishTransaction(transaction)
-  }
-  
-  func failedTransaction(transaction: SKPaymentTransaction) {
-    let queue = SKPaymentQueue.defaultQueue()
-    
-    if let error = transaction.error where error.code != SKErrorPaymentCancelled {
-      println("Transaction error: \(transaction.error.localizedDescription)")
-    }
-    
-    queue.finishTransaction(transaction)
-  }
-  
-  func provideContentForProductIdentifier(identifier: String) {
-    let userDefaults = NSUserDefaults.standardUserDefaults()
-    
-    userDefaults.setBool(true, forKey: identifier)
-    userDefaults.synchronize()
-    
-    // Feedback
-    let alertController = UIAlertController(title: "Thank you", message: "Thank you for your purchase!", preferredStyle: .Alert)
-    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-    
-    alertController.addAction(okAction)
-    
-    presentViewController(alertController, animated: true, completion: nil)
-  }
-  
   // MARK: - Sound
   func playMusic() {
     SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic)
@@ -388,6 +359,42 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     userDefaults.synchronize()
     
     return isMusicEnabled()
+  }
+  
+  // MARK: - Notification
+  func paymentTransactionDidComplete(notification: NSNotification) {
+    let alertController = UIAlertController(title: "Thank you", message: "Thank you for your support.", preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    
+    alertController.addAction(okAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  func paymentTransactionDidRestore(notification: NSNotification) {
+    let alertController = UIAlertController(title: "Success", message: "Your purchases have been restored.", preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    
+    alertController.addAction(okAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
+  }
+  
+  func paymentTransactionDidFail(notification: NSNotification) {
+    let message: String
+    
+    if let userInfo = notification.userInfo, transaction = userInfo["transaction"] as? SKPaymentTransaction, error = transaction.error {
+      message = error.localizedDescription
+    } else {
+      message = "Sorry, your payment cannot be processed due to a technical issue. Please try again later."
+    }
+    
+    let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+    let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+    
+    alertController.addAction(okAction)
+    
+    presentViewController(alertController, animated: true, completion: nil)
   }
   
   // MARK: - GKGameCenterControllerDelegate
@@ -523,25 +530,5 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
 
     // Present products
     presentStoreActionSheet()
-  }
-  
-  // MARK: - SKPaymentTransactionObserver
-  func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
-    if let transactions = transactions {
-      for transaction in transactions {
-        if let transaction = transaction as? SKPaymentTransaction {
-          switch (transaction.transactionState) {
-          case SKPaymentTransactionState.Purchased:
-            completeTransaction(transaction)
-
-          case SKPaymentTransactionState.Restored:
-            restoreTransaction(transaction)
-
-          default:
-            failedTransaction(transaction)
-          }
-        }
-      }
-    }
   }
 }
