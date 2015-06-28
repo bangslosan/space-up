@@ -49,7 +49,7 @@ class SceneBackgroundNode: SKNode {
   
   // MARK: - Offset
   func updateOffsetByMotion(motion: FilteredMotion) {
-    let maxDiff: CGFloat = 200
+    let maxDiff: CGFloat = 150
     let dx: CGFloat = 0 // maxDiff * CGFloat(motion.acceleration.x)
     let dy: CGFloat = maxDiff * CGFloat(motion.acceleration.y)
     

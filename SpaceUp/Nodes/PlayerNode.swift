@@ -45,14 +45,18 @@ class PlayerNode: SKSpriteNode {
   
   private lazy var moveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyFlying)
-    ], timePerFrame: 1/60)
+      SKTexture(imageNamed: TextureFileName.MuffyFlying + "1"),
+      SKTexture(imageNamed: TextureFileName.MuffyFlying + "2")
+    ], timePerFrame: 1/30)
   }()
   
   private lazy var stopMoveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyStopFlying)
-    ], timePerFrame: 1/60)
+      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "1"),
+      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "2"),
+      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "3"),
+      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "4")
+    ], timePerFrame: 1/30)
   }()
   
   private lazy var killAnimateAction: SKAction = {

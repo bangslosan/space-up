@@ -71,6 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // HUD
     hud.zPosition = 100
     hud.position = CGPoint(x: screenFrame.midX, y: screenFrame.maxY)
+    gameData.updateScoreForPlayer(world.player)
+    hud.updateWithGameData(gameData)
     addChild(hud)
     
     // Pause button
@@ -135,7 +137,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.followPlayer(crawlIncrement: crawlIncrement)
     
     // Background
-    background.updateOffsetByMotion(filteredMotion)
+    if round(gameData.score) == 0 {
+      background.updateOffsetByMotion(filteredMotion)
+    }
+
     background.move(world.position)
     
     // Comet
