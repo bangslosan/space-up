@@ -65,6 +65,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     notificationCenter.addObserver(self, selector: "paymentTransactionDidComplete:", name: PaymentTransactionDidCompleteNotification, object: nil)
     notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
     notificationCenter.addObserver(self, selector: "paymentTransactionDidFail:", name: PaymentTransactionDidFailNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "applicationWillResignActive:", name: UIApplicationWillResignActiveNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -365,6 +367,14 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - Notification
+  func applicationWillResignActive(notification: NSNotification) {
+    SKTAudio.sharedInstance().pauseBackgroundMusic()
+  }
+  
+  func applicationWillEnterForeground(notification: NSNotification) {
+    SKTAudio.sharedInstance().resumeBackgroundMusic()
+  }
+
   func paymentTransactionDidComplete(notification: NSNotification) {
     restoreViewFromTransaction()
   }

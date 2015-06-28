@@ -269,6 +269,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func continueGame() {
+    pauseGame(false)
+
     endGameView?.disappear() {
       self.endGameView?.removeFromParent()
       self.endGameView = nil
