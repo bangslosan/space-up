@@ -16,8 +16,8 @@ private struct KeyForAction {
 
 class CometNode: SKSpriteNode {
   // MARK: - Immutable vars
-  private let sphere: SKSpriteNode
-  private let glow: SKSpriteNode
+  let sphere: SKSpriteNode
+  let glow: SKSpriteNode
   let type: CometType
   
   // MARK: - Vars

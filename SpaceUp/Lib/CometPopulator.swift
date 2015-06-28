@@ -32,11 +32,12 @@ class CometPopulator {
       }
       
       if lastToPosition?.y < scene.frame.maxY * 2 || emitters.last == nil {
-        let (fromPosition, toPosition) = positionForNewEmitter()
+        let type = randomCometType()
+        let (fromPosition, toPosition) = positionForNewEmitterOfType(type)
         
-        if let emitter = addEmitter(fromPosition, toPosition: toPosition) {
+        if let emitter = addEmitterOfType(type, fromPosition: fromPosition, toPosition: toPosition) {
           if toPosition.y > scene.frame.maxY {
-            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0, max: 0.3))
+            emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: CGFloat.random(min: 0, max: 0.5))
           } else {
             emitter.startEmit(speedFactor: gameData.levelFactor, initialPercentage: 0)
           }
@@ -45,11 +46,12 @@ class CometPopulator {
     }
   }
   
-  func positionForNewEmitter() -> (fromPosition: CGPoint, toPosition:CGPoint) {
+  func positionForNewEmitterOfType(type: CometType) -> (fromPosition: CGPoint, toPosition:CGPoint) {
     if let world = world, scene = world.scene, gameData = dataSource?.gameData {
+      let textureSize = SKTexture(imageNamed: TextureFileName.CometLargeGlow).size()
       let spacing: CGFloat = EmitterVerticalSpacing
-      let initialFromOffset = CGPoint(x: -150, y: scene.frame.height / 2)
-      let initialToOffset = CGPoint(x: 150, y: scene.frame.height / 2)
+      let initialFromOffset = CGPoint(x: -textureSize.width, y: scene.frame.height / 2 + textureSize.width)
+      let initialToOffset = CGPoint(x: textureSize.width, y: scene.frame.height / 2 - textureSize.width)
 
       var lastToPosition: CGPoint?
       var lastFromPosition: CGPoint?
@@ -77,7 +79,7 @@ class CometPopulator {
       toPosition = world.convertPoint(toPosition, fromNode: scene)
       
       // Swap direction
-      if CGFloat.random(min: 0, max: 1) <= gameData.levelFactor + 0.3 {
+      if CGFloat.random(min: 0, max: 1) <= gameData.levelFactor + 0.3 && emitters.count != 0 {
         let oldFromPosition = fromPosition
         
         fromPosition = toPosition
@@ -105,11 +107,10 @@ class CometPopulator {
     }
   }
   
-  func addEmitter(fromPosition: CGPoint, toPosition: CGPoint) -> CometEmitter? {
+  func addEmitterOfType(type: CometType, fromPosition: CGPoint, toPosition: CGPoint) -> CometEmitter? {
     if let world = world, scene = world.scene, gameData = dataSource?.gameData {
       let speedOffset = gameData.levelFactor * 100
       let speed = CGFloat.random(min: 200, max: 300) + speedOffset
-      let type = randomCometType()
       let levelFactor = dataSource?.gameData.levelFactor ?? 0
       let emitter = CometEmitter(type: type, speed: speed, fromPosition: fromPosition, toPosition: toPosition)
       
