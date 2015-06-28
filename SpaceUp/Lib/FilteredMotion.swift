@@ -10,12 +10,17 @@ import UIKit
 import CoreMotion
 
 class FilteredMotion {
-  lazy var acceleration = CMAcceleration(x: 0, y: 0, z: 0)
-  lazy var rotationRate = CMRotationRate(x: 0, y: 0, z: 0)
-  let factor: Double
-  let type: SamplingFilterType
+  // MARK: - Vars
+  lazy private(set) var acceleration = CMAcceleration(x: 0, y: 0, z: 0)
+  lazy private(set) var rotationRate = CMRotationRate(x: 0, y: 0, z: 0)
+  var factor: Double = 0
+  var type: SamplingFilterType = .None
   
-  init(type: SamplingFilterType, factor: Double) {
+  init() {}
+  
+  convenience init(type: SamplingFilterType, factor: Double) {
+    self.init()
+
     self.type = type
     self.factor = factor
   }

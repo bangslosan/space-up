@@ -18,13 +18,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   let background = SceneBackgroundNode()
   let bottomBoundary = LineBoundaryNode(length: SceneSize.width, axis: .X)
   let cometPopulator = CometPopulator()
-  let motionManager = CMMotionManager()
-  let filteredMotion = FilteredMotion(type: .None, factor: 0)
+  let filteredMotion = FilteredMotion()
   
   // MARK: - Vars
   weak var endGameView: EndGameView?
   weak var pauseMenu: PauseMenuView?
   weak var gameSceneDelegate: GameSceneDelegate?
+  weak var motionDataSource: MotionDataSource?
   var textures: [SKTexture]?
   var textureAtlases: [SKTextureAtlas]?
   var gameStarted = false
@@ -49,9 +49,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     physicsWorld.contactDelegate = self
     physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
     
-    // Motion
-    observeMotion()
-    
     // World
     world.delegate = self
     addChild(world)
@@ -59,10 +56,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     // Populator
     cometPopulator.world = world
     cometPopulator.dataSource = self
-    
+
     // Backgrounds
+    updateMotion()
     addChild(background)
     background.world = world
+    background.updateOffsetByMotion(filteredMotion)
+    background.move(world.position)
     
     // Bottom bound
     bottomBoundary.position = CGPoint(x: 0, y: -world.player.frame.height)
@@ -93,9 +93,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   override func willMoveFromView(view: SKView) {
     NSNotificationCenter.defaultCenter().removeObserver(self)
-    
-    // Motion
-    stopObservingMotion()
   }
   
   // MARK: - Scene
@@ -147,25 +144,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
   }
   
-  // MARK: - Motion
-  func observeMotion() {
-    // Motion manager
-    if motionManager.accelerometerAvailable && !motionManager.accelerometerActive {
-      motionManager.accelerometerUpdateInterval = 1/100
-      motionManager.startAccelerometerUpdates()
-    }
-  }
-  
-  func stopObservingMotion() {
-    motionManager.stopAccelerometerUpdates()
-  }
-  
-  func updateMotion() {
-    if let acceleration = motionManager.accelerometerData?.acceleration {
-      filteredMotion.updateAcceleration(acceleration)
-    }
-  }
-  
   // MARK: - Event
   override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
     if view?.paused == true {
@@ -184,6 +162,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
 
     if world.player.isAlive {
       world.player.endMoveUpward()
+    }
+  }
+  
+  // MARK: - Motion
+  func updateMotion() {
+    if let acceleration = motionDataSource?.accelerometerDataForScene(self)?.acceleration {
+      filteredMotion.updateAcceleration(acceleration)
     }
   }
   

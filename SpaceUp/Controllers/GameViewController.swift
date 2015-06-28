@@ -10,12 +10,14 @@ import SpriteKit
 import GameKit
 import iAd
 import StoreKit
+import CoreMotion
 
 // TODO: Refactor, too many responsbilities atm
-class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate, SKProductsRequestDelegate {
+class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADInterstitialAdDelegate, GameCenterManagerDelegate, GameSceneDelegate, StartSceneDelegate, SKProductsRequestDelegate, MotionDataSource {
   // MARK: - Immutable vars
   let gameCenterManager = GameCenterManager()
   let gameData = GameData.dataFromArchive()
+  let motionManager = CMMotionManager()
   
   // MARK: - Vars
   private var interstitialAdView: InterstitialAdView?
@@ -56,6 +58,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   override func viewWillAppear(animated: Bool) {
+    // Motion
+    observeMotion()
+
     // Authenticate GameCenter
     LoadingIndicatorView.sharedView.showInView(view)
     gameCenterManager.authenticateLocalPlayer()
@@ -72,6 +77,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   override func viewWillDisappear(animated: Bool) {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     notificationCenter.removeObserver(self)
+    
+    // Motion
+    stopObservingMotion()
   }
   
   override func shouldAutorotate() -> Bool {
@@ -103,6 +111,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     let scene = GameScene(size: SceneSize, gameData: gameData)
     scene.scaleMode = .AspectFill
     scene.gameSceneDelegate = self
+    scene.motionDataSource = self
     
     // Present scene
     skView.presentScene(scene)
@@ -190,6 +199,19 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     SKTAudio.sharedInstance().pauseBackgroundMusic()
     
     return scene
+  }
+  
+  // MARK: - Motion
+  func observeMotion() {
+    // Motion manager
+    if motionManager.accelerometerAvailable && !motionManager.accelerometerActive {
+      motionManager.accelerometerUpdateInterval = 1/100
+      motionManager.startAccelerometerUpdates()
+    }
+  }
+  
+  func stopObservingMotion() {
+    motionManager.stopAccelerometerUpdates()
   }
   
   // MARK: - Leaderboard
@@ -464,6 +486,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
 
   func gameSceneDidRequestToggleMusic(gameScene: GameScene, withButton button: SpriteButtonNode) {
     toggleMusicForScene(gameScene, withButton: button)
+  }
+  
+  // MARK: - MotionDataSource
+  func accelerometerDataForScene(scene: SKScene) -> CMAccelerometerData? {
+    return motionManager.accelerometerData
   }
   
   // MARK: - StartSceneDelegate

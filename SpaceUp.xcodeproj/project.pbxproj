@@ -85,6 +85,7 @@
 		EB4603861B381452000639F5 /* ModalOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603851B381452000639F5 /* ModalOverlayNode.swift */; };
 		EB661F6C1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */; };
 		EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6F1B3E721900B6BA56 /* NotificationName.swift */; };
+		EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
 		EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73BAB11B382C4E00BC7A38 /* ModalView.swift */; };
 		EB7A1A8C1B3E284600C79457 /* ProductIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */; };
@@ -217,6 +218,7 @@
 		EB4603851B381452000639F5 /* ModalOverlayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalOverlayNode.swift; path = Nodes/ModalOverlayNode.swift; sourceTree = "<group>"; };
 		EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentTransactionObserver.swift; path = Lib/PaymentTransactionObserver.swift; sourceTree = "<group>"; };
 		EB661F6F1B3E721900B6BA56 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationName.swift; path = Types/NotificationName.swift; sourceTree = "<group>"; };
+		EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionDataSource.swift; path = Protocols/MotionDataSource.swift; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
 		EB73BAB11B382C4E00BC7A38 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalView.swift; path = ViewNodes/ModalView.swift; sourceTree = "<group>"; };
 		EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductIdentifier.swift; path = Types/ProductIdentifier.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				EB0212B31B22706D0087B2E6 /* GameCenterManagerDelegate.swift */,
 				EB0212BB1B22859F0087B2E6 /* GameDataSource.swift */,
 				EB0212B51B22708C0087B2E6 /* GameSceneDelegate.swift */,
+				EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */,
 				EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */,
 				EB0212681B1DD7D90087B2E6 /* WorldDelegate.swift */,
 			);
@@ -754,6 +757,7 @@
 				EB0212161B1DD1DD0087B2E6 /* GameViewController.swift in Sources */,
 				EB0212B81B2274CE0087B2E6 /* NSErrorExtension.swift in Sources */,
 				EBCA805B1B2C234B00CC00E2 /* SpriteButtonNode.swift in Sources */,
+				EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */,
 				EB899F5F1B36D4A900BE59BD /* EngineFlameNode.swift in Sources */,
 				EB02123C1B1DD3A00087B2E6 /* SKTTimingFunctions.swift in Sources */,
 				EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */,
