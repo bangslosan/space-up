@@ -17,11 +17,11 @@ private struct KeyForAction {
 class PlayerNode: SKSpriteNode {
   // MARK: - Vars
   private lazy var engineFlame = EngineFlameNode()
-  private var shieldNode: ShieldNode?
+  private(set) var shieldNode: ShieldNode?
   private(set) var isAlive: Bool = true
   var shouldMove: Bool = false
-  var distanceTravelled: CGFloat = 0
   var initialPosition: CGPoint?
+  var distanceTravelled: CGFloat = 0
 
   var state: PlayerState = .Standing {
     didSet {
@@ -95,6 +95,7 @@ class PlayerNode: SKSpriteNode {
     
     // Flame
     engineFlame.position = CGPoint(x: 30, y: -20)
+    engineFlame.stopAnimate()
     addChild(engineFlame)
   }
   
