@@ -53,9 +53,7 @@ class PlayerNode: SKSpriteNode {
   private lazy var stopMoveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "1"),
-      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "2"),
-      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "3"),
-      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "4")
+      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "2")
     ], timePerFrame: 1/30)
   }()
   
