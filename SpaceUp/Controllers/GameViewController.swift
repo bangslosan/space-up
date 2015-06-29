@@ -51,7 +51,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     skView.ignoresSiblingOrder = true
     
     // Present scene
-    presentStartScene()
+    preloadAndPresentStartScene()
     
     // GameCenter
     gameCenterManager.delegate = self
@@ -139,7 +139,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     ]
     
     // Show loading scene
-    presentLoadingScene()
+    presentLoadingScene(type: .Blank)
     
     // Preload textures
     preloadTextures(textures, textureAtlases) { [weak self] in
@@ -187,8 +187,8 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     }
   }
   
-  func presentLoadingScene() -> LoadingScene {
-    let scene = LoadingScene(size: SceneSize)
+  func presentLoadingScene(type: LoadingSceneType = .Regular) -> LoadingScene {
+    let scene = LoadingScene(size: SceneSize, type: type)
     scene.scaleMode = .AspectFill
     
     // Present scene

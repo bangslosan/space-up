@@ -13,13 +13,14 @@ private struct KeyForAction {
 }
 
 class LoadingScene: SKScene {
-  // MARK: - Vars
-  var backgroundPosition = CGPointZero
+  // MARK: - Immutable vars
+  var type: LoadingSceneType
 
-  // MARK: - Immutable var
-  let loadingLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
-  let background = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
-  let galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
+  // MARK: - Vars
+  lazy var backgroundPosition = CGPointZero
+  lazy var loadingLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
+  lazy var background = EndlessBackgroundNode(imageNames: [TextureFileName.Background])
+  lazy var galaxyStars = EndlessBackgroundNode(imageNames: [TextureFileName.BackgroundStars])
   
   lazy var dotAction: SKAction = {
     return SKAction.sequence([
@@ -36,32 +37,49 @@ class LoadingScene: SKScene {
     ])
   }()
   
+  // MARK: - Init
+  init(size: CGSize, type: LoadingSceneType) {
+    self.type = type
+
+    super.init(size: size)
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   // MARK: - Update
   override func update(currentTime: NSTimeInterval) {
-    backgroundPosition.y -= 1
-    
-    background.move(backgroundPosition, multiplier: 0.4)
-    galaxyStars.move(backgroundPosition, multiplier: 0.7)
+    if type == .Regular {
+      backgroundPosition.y -= 1
+      
+      background.move(backgroundPosition, multiplier: 0.4)
+      galaxyStars.move(backgroundPosition, multiplier: 0.7)
+    }
   }
 
   // MARK: - View
   override func didMoveToView(view: SKView) {
-    backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
+    if type == .Regular {
+      backgroundColor = UIColor(hexString: ColorHex.BackgroundColor)
 
-    // Background
-    addChild(background)
-    addChild(galaxyStars)
-    
-    // Label
-    loadingLabel.color = UIColor(hexString: ColorHex.TextColor)
-    loadingLabel.colorBlendFactor = 1
-    loadingLabel.fontSize = 60
-    loadingLabel.horizontalAlignmentMode = .Center
-    loadingLabel.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY)
-    loadingLabel.text = "LOADING"
-    addChild(loadingLabel)
+      // Background
+      addChild(background)
+      addChild(galaxyStars)
+      
+      // Label
+      loadingLabel.color = UIColor(hexString: ColorHex.TextColor)
+      loadingLabel.colorBlendFactor = 1
+      loadingLabel.fontSize = 60
+      loadingLabel.horizontalAlignmentMode = .Center
+      loadingLabel.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY)
+      loadingLabel.text = "LOADING"
+      addChild(loadingLabel)
 
-    // Animate
-    loadingLabel.runAction(SKAction.repeatActionForever(dotAction), withKey: KeyForAction.loadingAnimateAction)
+      // Animate
+      loadingLabel.runAction(SKAction.repeatActionForever(dotAction), withKey: KeyForAction.loadingAnimateAction)
+    } else {
+      backgroundColor = UIColor(white: 0, alpha: 1)
+    }
   }
 }
