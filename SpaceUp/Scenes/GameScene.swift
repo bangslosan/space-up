@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     updateMotion()
     addChild(background)
     background.world = world
-    background.updateOffsetByMotion(filteredMotion)
+    // background.updateOffsetByMotion(filteredMotion)
     background.move(world.position)
     
     // Bottom bound
@@ -137,9 +137,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     world.followPlayer(crawlIncrement: crawlIncrement)
     
     // Background
+    /*
     if round(gameData.score) == 0 {
       background.updateOffsetByMotion(filteredMotion)
     }
+    */
 
     background.move(world.position)
     
