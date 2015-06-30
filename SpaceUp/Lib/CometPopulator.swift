@@ -50,8 +50,8 @@ class CometPopulator {
     if let world = world, scene = world.scene, gameData = dataSource?.gameData {
       let textureSize = SKTexture(imageNamed: TextureFileName.CometLargeGlow).size()
       let spacing: CGFloat = EmitterVerticalSpacing
-      let initialFromOffset = CGPoint(x: -textureSize.width, y: scene.frame.height / 2 + textureSize.width)
-      let initialToOffset = CGPoint(x: textureSize.width, y: scene.frame.height / 2 - textureSize.width)
+      let initialFromOffset = CGPoint(x: -textureSize.width, y: scene.frame.height + textureSize.width)
+      let initialToOffset = CGPoint(x: textureSize.width, y: scene.frame.height - textureSize.width)
 
       var lastToPosition: CGPoint?
       var lastFromPosition: CGPoint?
@@ -79,7 +79,7 @@ class CometPopulator {
       toPosition = world.convertPoint(toPosition, fromNode: scene)
       
       // Swap direction
-      if CGFloat.random(min: 0, max: 1) <= gameData.levelFactor + 0.3 && emitters.count != 0 {
+      if CGFloat.random(min: 0, max: 1) <= gameData.levelFactor + 0.3 && emitters.count > 0 {
         let oldFromPosition = fromPosition
         
         fromPosition = toPosition

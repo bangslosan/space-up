@@ -59,8 +59,12 @@ class PlayerNode: SKSpriteNode {
   
   private lazy var killAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyDead)
-    ], timePerFrame: 1/60)
+      SKTexture(imageNamed: TextureFileName.MuffyDead + "1"),
+      SKTexture(imageNamed: TextureFileName.MuffyDead + "2"),
+      SKTexture(imageNamed: TextureFileName.MuffyDead + "3"),
+      SKTexture(imageNamed: TextureFileName.MuffyDead + "4"),
+      SKTexture(imageNamed: TextureFileName.MuffyDead + "5")
+    ], timePerFrame: 1/30)
   }()
   
   private lazy var killRotationAction: SKAction = {
@@ -220,7 +224,9 @@ class PlayerNode: SKSpriteNode {
       engineFlame.stopAnimate()
       
     case .Standing:
-      runAction(standAnimateAction)
+      if isAlive {
+        runAction(standAnimateAction)
+      }
       
     default:
       break
