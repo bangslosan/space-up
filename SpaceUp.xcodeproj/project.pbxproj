@@ -87,6 +87,7 @@
 		EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6F1B3E721900B6BA56 /* NotificationName.swift */; };
 		EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */; };
 		EB661F761B417CEB00B6BA56 /* LoadingSceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F751B417CEB00B6BA56 /* LoadingSceneType.swift */; };
+		EB661F781B42B3A000B6BA56 /* SphereSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = EB661F771B42B3A000B6BA56 /* SphereSmall.png */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
 		EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73BAB11B382C4E00BC7A38 /* ModalView.swift */; };
 		EB7A1A8C1B3E284600C79457 /* ProductIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */; };
@@ -221,6 +222,7 @@
 		EB661F6F1B3E721900B6BA56 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationName.swift; path = Types/NotificationName.swift; sourceTree = "<group>"; };
 		EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionDataSource.swift; path = Protocols/MotionDataSource.swift; sourceTree = "<group>"; };
 		EB661F751B417CEB00B6BA56 /* LoadingSceneType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingSceneType.swift; path = Types/LoadingSceneType.swift; sourceTree = "<group>"; };
+		EB661F771B42B3A000B6BA56 /* SphereSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SphereSmall.png; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
 		EB73BAB11B382C4E00BC7A38 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalView.swift; path = ViewNodes/ModalView.swift; sourceTree = "<group>"; };
 		EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductIdentifier.swift; path = Types/ProductIdentifier.swift; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				EBCA80721B34E26200CC00E2 /* ShieldGlow.sks */,
 				EB05653A1B2479BF00A76297 /* Spark.png */,
 				EBD100DF1B284A0600D3680B /* Sphere.png */,
+				EB661F771B42B3A000B6BA56 /* SphereSmall.png */,
 				EBCA806A1B2F046A00CC00E2 /* Star.png */,
 				EBCA806E1B2F052200CC00E2 /* StarField.sks */,
 				EB2914E51B2852E500C1E5BA /* Trail.sks */,
@@ -695,6 +698,7 @@
 				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,
 				EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */,
 				EBC2EB8C1B358E9D00CEA20B /* Environment.atlas in Resources */,
+				EB661F781B42B3A000B6BA56 /* SphereSmall.png in Resources */,
 				EBD100E21B284A3C00D3680B /* Propel.sks in Resources */,
 				EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */,
 				EBCA80731B34E26200CC00E2 /* ShieldGlow.sks in Resources */,

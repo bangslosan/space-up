@@ -146,7 +146,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     background.move(world.position)
     
     // Comet
-    if world.player.isAlive {
+    if gameStarted && world.player.isAlive {
       cometPopulator.update()
     }
   }
@@ -158,6 +158,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
 
     if world.player.isAlive {
+      if !gameStarted {
+        gameStarted = true
+      }
+
       world.player.startMoveUpward()
     }
   }
@@ -226,13 +230,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     
     // Data
     gameData.reset()
+    hud.updateWithGameData(gameData)
     
     // Notify
     gameSceneDelegate?.gameSceneDidStart?(self)
-    
-    afterDelay(0.5) { [weak self] in
-      self?.gameStarted = true
-    }
   }
 
   func endGame() {

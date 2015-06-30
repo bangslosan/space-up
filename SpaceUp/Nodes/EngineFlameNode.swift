@@ -10,11 +10,13 @@ import SpriteKit
 
 private struct KeyForAction {
   static let engineAnimateAction = "engineAnimateAction"
+  static let engineEndAnimateAction = "engineEndAnimateAction"
 }
 
 class EngineFlameNode: SKSpriteNode {
   // MARK: - Vars
-  private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.EngineSpark)
+  // private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
+
   private lazy var flameStartAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
       SKTexture(imageNamed: TextureFileName.EngineFlame + "1"),
@@ -24,6 +26,10 @@ class EngineFlameNode: SKSpriteNode {
       SKTexture(imageNamed: TextureFileName.EngineFlame + "5"),
       SKTexture(imageNamed: TextureFileName.EngineFlame + "6")
     ], timePerFrame: 1/30)
+  }()
+  
+  private lazy var flameEndAnimateAction: SKAction = {
+    return self.flameStartAnimateAction.reversedAction()
   }()
   
   private lazy var flamePersistAnimateAction: SKAction = {
@@ -49,6 +55,7 @@ class EngineFlameNode: SKSpriteNode {
     hidden = false
 
     // Action
+    removeActionForKey(KeyForAction.engineEndAnimateAction)
     runAction(SKAction.sequence([
       flameStartAnimateAction,
       flamePersistAnimateAction
@@ -56,16 +63,20 @@ class EngineFlameNode: SKSpriteNode {
     
     // Emitter
     /*
-    engineEmitterNode.position = CGPoint(x: 0, y: 20)
+    engineEmitterNode.zPosition = -1
+    engineEmitterNode.position = CGPoint(x: 0, y: 30)
     engineEmitterNode.resetSimulation()
     engineEmitterNode.addToParent(self)
     */
   }
   
   func stopAnimate() {
-    hidden = true
-
     removeActionForKey(KeyForAction.engineAnimateAction)
-    // engineEmitterNode.removeFromParent()
+    runAction(SKAction.sequence([
+      flameEndAnimateAction,
+      SKAction.runBlock { [weak self] in
+        self?.hidden = true
+      }
+    ]), withKey: KeyForAction.engineEndAnimateAction)
   }
 }
