@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   weak var motionDataSource: MotionDataSource?
   var textures: [SKTexture]?
   var textureAtlases: [SKTextureAtlas]?
+  var tip: TapTipNode?
   var gameStarted = false
   var godMode = false
   
@@ -80,6 +81,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     pauseButton.zPosition = 100
     pauseButton.position = CGPoint(x: screenFrame.maxX, y: screenFrame.maxY) - CGPoint(x: 60, y: 60)
     addChild(pauseButton)
+    
+    // Tip
+    if gameData.shouldShowTip {
+      tip = TapTipNode()
+      tip!.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY)
+      tip!.zPosition = 3
+      tip!.alpha = 0
+      tip!.appearWithDuration(0.5)
+      addChild(tip!)
+      
+      gameData.shouldShowTip = false
+    }
     
     // Notification
     let notificationCenter = NSNotificationCenter.defaultCenter()
@@ -163,6 +176,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
       }
 
       world.player.startMoveUpward()
+    }
+
+    if let tip = tip {
+      tip.removeWithDuration(0.5) {
+        self.tip = nil
+      }
     }
   }
   

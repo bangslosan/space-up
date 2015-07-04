@@ -15,7 +15,6 @@ class WorldNode: SKNode {
   let playerShadowNode = SKShapeNode(ellipseOfSize: CGSize(width: 100, height: 30))
   let ground = GroundNode(size: CGSize(width: SceneSize.width, height: 240))
   let scoreLine = ScoreLineNode(length: SceneSize.width)
-  // let tip = SKSpriteNode(imageNamed: TextureFileName.TapTip)
   
   // MARK: - Vars
   weak var delegate: WorldDelegate?

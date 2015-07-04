@@ -88,6 +88,7 @@
 		EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */; };
 		EB661F761B417CEB00B6BA56 /* LoadingSceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F751B417CEB00B6BA56 /* LoadingSceneType.swift */; };
 		EB661F781B42B3A000B6BA56 /* SphereSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = EB661F771B42B3A000B6BA56 /* SphereSmall.png */; };
+		EB661F7A1B45EC2300B6BA56 /* TapTipNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F791B45EC2300B6BA56 /* TapTipNode.swift */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
 		EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73BAB11B382C4E00BC7A38 /* ModalView.swift */; };
 		EB7A1A8C1B3E284600C79457 /* ProductIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */; };
@@ -223,6 +224,7 @@
 		EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionDataSource.swift; path = Protocols/MotionDataSource.swift; sourceTree = "<group>"; };
 		EB661F751B417CEB00B6BA56 /* LoadingSceneType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingSceneType.swift; path = Types/LoadingSceneType.swift; sourceTree = "<group>"; };
 		EB661F771B42B3A000B6BA56 /* SphereSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SphereSmall.png; sourceTree = "<group>"; };
+		EB661F791B45EC2300B6BA56 /* TapTipNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapTipNode.swift; path = Nodes/TapTipNode.swift; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
 		EB73BAB11B382C4E00BC7A38 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalView.swift; path = ViewNodes/ModalView.swift; sourceTree = "<group>"; };
 		EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductIdentifier.swift; path = Types/ProductIdentifier.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 				EB0212951B1F127C0087B2E6 /* ShieldNode.swift */,
 				EBC2EB8D1B3597CD00CEA20B /* SphereHighlightNode.swift */,
 				EBCA805A1B2C234B00CC00E2 /* SpriteButtonNode.swift */,
+				EB661F791B45EC2300B6BA56 /* TapTipNode.swift */,
 				EB0212501B1DD4010087B2E6 /* TextButtonNode.swift */,
 				EB0212591B1DD4F90087B2E6 /* WorldNode.swift */,
 			);
@@ -730,6 +733,7 @@
 				EB0212491B1DD3B50087B2E6 /* NSFileManagerExtension.swift in Sources */,
 				EB0212861B1E92320087B2E6 /* CometEmitter.swift in Sources */,
 				EB0212661B1DD7950087B2E6 /* HUDNode.swift in Sources */,
+				EB661F7A1B45EC2300B6BA56 /* TapTipNode.swift in Sources */,
 				EBCA805D1B2C239D00CC00E2 /* ButtonState.swift in Sources */,
 				EB0212521B1DD4010087B2E6 /* CameraNode.swift in Sources */,
 				EB0212481B1DD3B50087B2E6 /* CGSizeExtension.swift in Sources */,

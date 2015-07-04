@@ -48,7 +48,7 @@ class CometNode: SKSpriteNode {
       SKTexture(imageNamed: TextureFileName.Explosion + "3"),
       SKTexture(imageNamed: TextureFileName.Explosion + "4"),
       SKTexture(imageNamed: TextureFileName.Explosion + "5")
-    ], timePerFrame: 1/15)
+    ], timePerFrame: 1/20)
   }()
 
   // MARK: - Init

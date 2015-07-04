@@ -115,7 +115,7 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - Appear
   func appear() {
-    let startScale = CGPoint(x: 0.001, y: 0.001)
+    let startScale = CGPoint(x: 0.0001, y: 0.0001)
     let endScale = CGPoint(x: 1, y: 1)
     
     startButton.scaleAsPoint = startScale
@@ -124,14 +124,33 @@ class StartScene: SKScene, ButtonDelegate {
     storeButton.scaleAsPoint = startScale
     musicButton.scaleAsPoint = startScale
     
-    let startButtonAction = SKTScaleEffect.scaleActionWithNode(startButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
-    let leaderboardButtonAction = SKTScaleEffect.scaleActionWithNode(leaderboardButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
-    let soundButtonAction = SKTScaleEffect.scaleActionWithNode(soundButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
-    let storeButtonAction = SKTScaleEffect.scaleActionWithNode(storeButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
-    let musicButtonAction = SKTScaleEffect.scaleActionWithNode(musicButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut)
+    let startButtonAction = SKAction.group([
+      SKTScaleEffect.scaleActionWithNode(startButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut),
+      SKTAlphaEffect.alphaActionWithNode(startButton, duration: 1, startAlpha: 0, endAlpha: 1, timingFunction: SKTTimingFunctionBackEaseInOut)
+    ])
+
+    let leaderboardButtonAction = SKAction.group([
+      SKTScaleEffect.scaleActionWithNode(leaderboardButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut),
+      SKTAlphaEffect.alphaActionWithNode(leaderboardButton, duration: 1, startAlpha: 0, endAlpha: 1, timingFunction: SKTTimingFunctionBackEaseInOut)
+    ])
+
+    let soundButtonAction = SKAction.group([
+      SKTScaleEffect.scaleActionWithNode(soundButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut),
+      SKTAlphaEffect.alphaActionWithNode(soundButton, duration: 1, startAlpha: 0, endAlpha: 1, timingFunction: SKTTimingFunctionBackEaseInOut)
+    ])
+
+    let storeButtonAction = SKAction.group([
+      SKTScaleEffect.scaleActionWithNode(storeButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut),
+      SKTAlphaEffect.alphaActionWithNode(storeButton, duration: 1, startAlpha: 0, endAlpha: 1, timingFunction: SKTTimingFunctionBackEaseInOut)
+    ])
+
+    let musicButtonAction = SKAction.group([
+      SKTScaleEffect.scaleActionWithNode(musicButton, duration: 1, startScale: startScale, endScale: endScale, timingFunction: SKTTimingFunctionBackEaseInOut),
+      SKTAlphaEffect.alphaActionWithNode(musicButton, duration: 1, startAlpha: 0, endAlpha: 1, timingFunction: SKTTimingFunctionBackEaseInOut)
+    ])
     
     runAction(SKAction.group([
-      startButtonAction,
+      SKAction.afterDelay(0, performAction: startButtonAction),
       SKAction.afterDelay(0.1, performAction: leaderboardButtonAction),
       SKAction.afterDelay(0.2, performAction: storeButtonAction),
       SKAction.afterDelay(0.3, performAction: soundButtonAction),

@@ -98,6 +98,7 @@ class PlayerNode: SKSpriteNode {
     // Flame
     engineFlame.position = CGPoint(x: 30, y: -20)
     engineFlame.stopAnimate()
+    engineFlame.hidden = true
     addChild(engineFlame)
   }
   

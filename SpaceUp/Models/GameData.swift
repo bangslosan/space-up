@@ -31,6 +31,8 @@ class GameData: NSObject, NSCoding {
     }
   }
   
+  var shouldShowTip: Bool = true
+  
   // MARK: - Computed vars
   var level: UInt {
     let base: CGFloat = 1.1
