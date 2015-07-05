@@ -71,7 +71,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     notificationCenter.addObserver(self, selector: "paymentTransactionDidRestore:", name: PaymentTransactionDidRestoreNotification, object: nil)
     notificationCenter.addObserver(self, selector: "paymentTransactionDidFail:", name: PaymentTransactionDidFailNotification, object: nil)
     notificationCenter.addObserver(self, selector: "applicationWillResignActive:", name: UIApplicationWillResignActiveNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "applicationDidBecomeActive:", name: UIApplicationDidBecomeActiveNotification, object: nil)
   }
   
   override func viewWillDisappear(animated: Bool) {
@@ -102,7 +102,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     scene.appear()
     
     // Background music
-    SKTAudio.sharedInstance().pauseBackgroundMusic()
+    playMusicIfNeeded()
     
     return scene
   }
@@ -118,11 +118,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     skView.paused = false
     
     // Background music
-    if isMusicEnabled() {
-      SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic)
-    } else {
-      SKTAudio.sharedInstance().pauseBackgroundMusic()
-    }
+    playMusicIfNeeded()
     
     return scene
   }
@@ -194,9 +190,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Present scene
     skView.presentScene(scene)
     skView.paused = false
-    
-    // Background music
-    SKTAudio.sharedInstance().pauseBackgroundMusic()
     
     return scene
   }
@@ -346,6 +339,16 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - Sound
+  func playMusicIfNeeded() {
+    if isMusicEnabled() {
+      if SKTAudio.sharedInstance().backgroundMusicPlayer?.playing != true {
+        SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic, volume: 0.3)
+      }
+    } else {
+      SKTAudio.sharedInstance().pauseBackgroundMusic()
+    }
+  }
+
   func playMusic() {
     SKTAudio.sharedInstance().playBackgroundMusic(SoundFileName.BackgroundMusic)
   }
@@ -393,7 +396,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     SKTAudio.sharedInstance().pauseBackgroundMusic()
   }
   
-  func applicationWillEnterForeground(notification: NSNotification) {
+  func applicationDidBecomeActive(notification: NSNotification) {
     SKTAudio.sharedInstance().resumeBackgroundMusic()
   }
 

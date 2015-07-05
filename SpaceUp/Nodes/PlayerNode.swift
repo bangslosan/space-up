@@ -41,7 +41,9 @@ class PlayerNode: SKSpriteNode {
     return SKAction.repeatActionForever(action)
   }()
   
-  private lazy var killSoundAction: SKAction = SKAction.playSoundFileNamed(SoundFileName.Explosion, waitForCompletion: false)
+  private lazy var killSoundAction = SKAction.playSoundFileNamed(SoundFileName.Explosion, waitForCompletion: false)
+  private lazy var bonusSoundAction = SKAction.playSoundFileNamed(SoundFileName.Bonus, waitForCompletion: false)
+  private lazy var popSoundAction = SKAction.playSoundFileNamed(SoundFileName.Pop, waitForCompletion: false)
   
   private lazy var moveUpAnimateAction: SKAction = {
     return SKAction.animateWithTextures([
@@ -244,10 +246,12 @@ class PlayerNode: SKSpriteNode {
   // MARK: - Protection
   private func addShield() {
     if shieldNode == nil {
-      let diameter: CGFloat = 230
+      runAction(bonusSoundAction, when: isSoundEnabled())
+
+      let diameter: CGFloat = 260
 
       shieldNode = ShieldNode(size: CGSize(width: diameter, height: diameter))
-      shieldNode!.position = CGPoint(x: 0, y: diameter * 0.5 - 30)
+      shieldNode!.position = CGPoint(x: 0, y: diameter * 0.5 - 55)
       shieldNode!.zPosition = 20
       addChild(shieldNode!)
     }
@@ -255,6 +259,8 @@ class PlayerNode: SKSpriteNode {
   
   private func removeShield() {
     if shieldNode != nil {
+      runAction(popSoundAction, when: isSoundEnabled())
+
       shieldNode!.removeFromParent()
       shieldNode = nil
     }

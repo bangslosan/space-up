@@ -23,6 +23,8 @@ class ButtonNode: SKSpriteNode {
     }
   }
   
+  // private lazy var tapSoundAction = SKAction.playSoundFileNamed(SoundFileName.Button, waitForCompletion: false)
+  
   // MARK: - Init
   override init(texture: SKTexture?, color: UIColor?, size: CGSize) {
     super.init(texture: texture, color: color, size: size)
@@ -43,6 +45,9 @@ class ButtonNode: SKSpriteNode {
       isTouched = true
       
       touchCount++
+      
+      // Sound
+      playTapSoundIfNeeded()
     }
   }
   
@@ -57,5 +62,12 @@ class ButtonNode: SKSpriteNode {
   // MARK: - Touch count
   func resetTouchCount() {
     touchCount = 0
+  }
+  
+  // MARK: - Sound
+  private func playTapSoundIfNeeded() {
+    if isSoundEnabled() {
+      SKTAudio.sharedInstance().playSoundEffect(SoundFileName.Button, volume: 0.3)
+    }
   }
 }
