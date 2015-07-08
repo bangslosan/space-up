@@ -18,6 +18,14 @@ extension SKAction {
     return action
   }
   
+  class func moveByX(deltaX: CGFloat, y deltaY: CGFloat, duration sec: NSTimeInterval, timingMode: SKActionTimingMode) -> SKAction {
+    let action = moveByX(deltaX, y: deltaY, duration: sec)
+    
+    action.timingMode = timingMode
+    
+    return action
+  }
+  
   class func playSoundFileNamed(soundFile: String, volume: Float, waitForCompletion wait: Bool) -> SKAction {
     let url = NSBundle.mainBundle().URLForResource(soundFile, withExtension: nil)
     let audioPlayer = AVAudioPlayer(contentsOfURL: url, error: nil)

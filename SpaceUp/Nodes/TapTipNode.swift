@@ -11,14 +11,32 @@ import SpriteKit
 private struct KeyForAction {
   static let appearAction = "appearAction"
   static let disappearAction = "disappearAction"
+  static let upDownAction = "upDownAction"
 }
 
-class TapTipNode: SKSpriteNode {
-  // MARK: - Init
-  init() {
-    let texture = SKTexture(imageNamed: TextureFileName.TapTip)
+class TapTipNode: SKNode {
+  let hand = SKSpriteNode(imageNamed: TextureFileName.TapTip)
+  let textLabel = ShadowLabelNode(fontNamed: FontName.RegularFont)
+  
+  private lazy var upDownRepeatAction: SKAction = {
+    let upDownAction = SKAction.sequence([
+      SKAction.moveByX(0, y: 30, duration: 0.5, timingMode: .EaseInEaseOut),
+      SKAction.moveByX(0, y: -30, duration: 0.5, timingMode: .EaseInEaseOut),
+    ])
     
-    super.init(texture: texture, color: nil, size: texture.size())
+    return SKAction.repeatActionForever(upDownAction)
+  }()
+
+  // MARK: - Init
+  override init() {
+    super.init()
+    
+    hand.anchorPoint = CGPoint(x: 0.5, y: 0)
+    addChild(hand)
+    
+    textLabel.position = CGPoint(x: 0, y: -50)
+    textLabel.text = "Touch to start"
+    addChild(textLabel)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -35,7 +53,9 @@ class TapTipNode: SKSpriteNode {
     
     fadeInAction.timingMode = .EaseOut
 
+    // Run
     runAction(fadeInAction, withKey: KeyForAction.appearAction)
+    hand.runAction(upDownRepeatAction, withKey: KeyForAction.upDownAction)
   }
   
   func removeWithDuration(duration: NSTimeInterval, completion: (() -> Void)? = nil) {
@@ -50,10 +70,14 @@ class TapTipNode: SKSpriteNode {
     
     fadeOutAction.timingMode = .EaseOut
     
+    // Run
     runAction(SKAction.sequence([
       fadeOutAction,
       removeAction,
-      SKAction.runBlock { completion?() }
+      SKAction.runBlock {
+        self.removeActionForKey(KeyForAction.upDownAction)
+        completion?()
+      }
     ]), withKey: KeyForAction.disappearAction)
   }
 }
