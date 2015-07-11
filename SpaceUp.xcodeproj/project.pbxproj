@@ -83,6 +83,14 @@
 		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
 		EB4603841B38139D000639F5 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603831B38139D000639F5 /* StoreView.swift */; };
 		EB4603861B381452000639F5 /* ModalOverlayNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603851B381452000639F5 /* ModalOverlayNode.swift */; };
+		EB5DA09F1B5098690064B5F0 /* ButtonTap.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA0971B5098690064B5F0 /* ButtonTap.caf */; };
+		EB5DA0A01B5098690064B5F0 /* Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA0981B5098690064B5F0 /* Explosion.caf */; };
+		EB5DA0A11B5098690064B5F0 /* GameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA0991B5098690064B5F0 /* GameMusic.mp3 */; };
+		EB5DA0A21B5098690064B5F0 /* GameResult.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09A1B5098690064B5F0 /* GameResult.caf */; };
+		EB5DA0A31B5098690064B5F0 /* ItemCollected.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09B1B5098690064B5F0 /* ItemCollected.caf */; };
+		EB5DA0A41B5098690064B5F0 /* MeowBonus.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09C1B5098690064B5F0 /* MeowBonus.caf */; };
+		EB5DA0A51B5098690064B5F0 /* PopHigh.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09D1B5098690064B5F0 /* PopHigh.caf */; };
+		EB5DA0A61B5098690064B5F0 /* Spaceship.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09E1B5098690064B5F0 /* Spaceship.caf */; };
 		EB661F6C1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */; };
 		EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6F1B3E721900B6BA56 /* NotificationName.swift */; };
 		EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */; };
@@ -90,15 +98,7 @@
 		EB661F781B42B3A000B6BA56 /* SphereSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = EB661F771B42B3A000B6BA56 /* SphereSmall.png */; };
 		EB661F7A1B45EC2300B6BA56 /* TapTipNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F791B45EC2300B6BA56 /* TapTipNode.swift */; };
 		EB661F921B4939CE00B6BA56 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB661F911B4939CE00B6BA56 /* AVFoundation.framework */; };
-		EB661F9A1B495D7800B6BA56 /* MeowBonus.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661F931B495D7800B6BA56 /* MeowBonus.caf */; };
-		EB661F9B1B495D7800B6BA56 /* GameResult.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661F941B495D7800B6BA56 /* GameResult.caf */; };
-		EB661F9C1B495D7800B6BA56 /* Explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661F951B495D7800B6BA56 /* Explosion.caf */; };
-		EB661F9D1B495D7800B6BA56 /* Spaceship.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661F961B495D7800B6BA56 /* Spaceship.caf */; };
-		EB661F9E1B495D7800B6BA56 /* ItemCollected.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661F971B495D7800B6BA56 /* ItemCollected.caf */; };
-		EB661F9F1B495D7800B6BA56 /* ButtonTap.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661F981B495D7800B6BA56 /* ButtonTap.caf */; };
-		EB661FA01B495D7800B6BA56 /* GameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = EB661F991B495D7800B6BA56 /* GameMusic.mp3 */; };
 		EB661FA21B495E5500B6BA56 /* SKTAudioExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661FA11B495E5500B6BA56 /* SKTAudioExtension.swift */; };
-		EB661FA41B49635400B6BA56 /* PopHigh.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB661FA31B49635400B6BA56 /* PopHigh.caf */; };
 		EB6E2DD31B34FC3B00F6FF80 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */; };
 		EB73BAB21B382C4E00BC7A38 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73BAB11B382C4E00BC7A38 /* ModalView.swift */; };
 		EB7A1A8C1B3E284600C79457 /* ProductIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */; };
@@ -226,6 +226,14 @@
 		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		EB4603831B38139D000639F5 /* StoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreView.swift; path = ViewNodes/StoreView.swift; sourceTree = "<group>"; };
 		EB4603851B381452000639F5 /* ModalOverlayNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalOverlayNode.swift; path = Nodes/ModalOverlayNode.swift; sourceTree = "<group>"; };
+		EB5DA0971B5098690064B5F0 /* ButtonTap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ButtonTap.caf; path = Sounds/ButtonTap.caf; sourceTree = "<group>"; };
+		EB5DA0981B5098690064B5F0 /* Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Explosion.caf; path = Sounds/Explosion.caf; sourceTree = "<group>"; };
+		EB5DA0991B5098690064B5F0 /* GameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = GameMusic.mp3; path = Sounds/GameMusic.mp3; sourceTree = "<group>"; };
+		EB5DA09A1B5098690064B5F0 /* GameResult.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GameResult.caf; path = Sounds/GameResult.caf; sourceTree = "<group>"; };
+		EB5DA09B1B5098690064B5F0 /* ItemCollected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = ItemCollected.caf; path = Sounds/ItemCollected.caf; sourceTree = "<group>"; };
+		EB5DA09C1B5098690064B5F0 /* MeowBonus.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MeowBonus.caf; path = Sounds/MeowBonus.caf; sourceTree = "<group>"; };
+		EB5DA09D1B5098690064B5F0 /* PopHigh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PopHigh.caf; path = Sounds/PopHigh.caf; sourceTree = "<group>"; };
+		EB5DA09E1B5098690064B5F0 /* Spaceship.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Spaceship.caf; path = Sounds/Spaceship.caf; sourceTree = "<group>"; };
 		EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentTransactionObserver.swift; path = Lib/PaymentTransactionObserver.swift; sourceTree = "<group>"; };
 		EB661F6F1B3E721900B6BA56 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationName.swift; path = Types/NotificationName.swift; sourceTree = "<group>"; };
 		EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionDataSource.swift; path = Protocols/MotionDataSource.swift; sourceTree = "<group>"; };
@@ -233,15 +241,7 @@
 		EB661F771B42B3A000B6BA56 /* SphereSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SphereSmall.png; sourceTree = "<group>"; };
 		EB661F791B45EC2300B6BA56 /* TapTipNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapTipNode.swift; path = Nodes/TapTipNode.swift; sourceTree = "<group>"; };
 		EB661F911B4939CE00B6BA56 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		EB661F931B495D7800B6BA56 /* MeowBonus.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MeowBonus.caf; sourceTree = "<group>"; };
-		EB661F941B495D7800B6BA56 /* GameResult.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GameResult.caf; sourceTree = "<group>"; };
-		EB661F951B495D7800B6BA56 /* Explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Explosion.caf; sourceTree = "<group>"; };
-		EB661F961B495D7800B6BA56 /* Spaceship.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Spaceship.caf; sourceTree = "<group>"; };
-		EB661F971B495D7800B6BA56 /* ItemCollected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ItemCollected.caf; sourceTree = "<group>"; };
-		EB661F981B495D7800B6BA56 /* ButtonTap.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ButtonTap.caf; sourceTree = "<group>"; };
-		EB661F991B495D7800B6BA56 /* GameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameMusic.mp3; sourceTree = "<group>"; };
 		EB661FA11B495E5500B6BA56 /* SKTAudioExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKTAudioExtension.swift; path = Extensions/SKTAudioExtension.swift; sourceTree = "<group>"; };
-		EB661FA31B49635400B6BA56 /* PopHigh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PopHigh.caf; sourceTree = "<group>"; };
 		EB6E2DD21B34FC3B00F6FF80 /* ColorHex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorHex.swift; path = Types/ColorHex.swift; sourceTree = "<group>"; };
 		EB73BAB11B382C4E00BC7A38 /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalView.swift; path = ViewNodes/ModalView.swift; sourceTree = "<group>"; };
 		EB7A1A8B1B3E284600C79457 /* ProductIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductIdentifier.swift; path = Types/ProductIdentifier.swift; sourceTree = "<group>"; };
@@ -588,14 +588,14 @@
 		EBB1EC9D1B23CCEC00768015 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				EB661F981B495D7800B6BA56 /* ButtonTap.caf */,
-				EB661F951B495D7800B6BA56 /* Explosion.caf */,
-				EB661F991B495D7800B6BA56 /* GameMusic.mp3 */,
-				EB661F941B495D7800B6BA56 /* GameResult.caf */,
-				EB661F971B495D7800B6BA56 /* ItemCollected.caf */,
-				EB661F931B495D7800B6BA56 /* MeowBonus.caf */,
-				EB661FA31B49635400B6BA56 /* PopHigh.caf */,
-				EB661F961B495D7800B6BA56 /* Spaceship.caf */,
+				EB5DA0971B5098690064B5F0 /* ButtonTap.caf */,
+				EB5DA0981B5098690064B5F0 /* Explosion.caf */,
+				EB5DA0991B5098690064B5F0 /* GameMusic.mp3 */,
+				EB5DA09A1B5098690064B5F0 /* GameResult.caf */,
+				EB5DA09B1B5098690064B5F0 /* ItemCollected.caf */,
+				EB5DA09C1B5098690064B5F0 /* MeowBonus.caf */,
+				EB5DA09D1B5098690064B5F0 /* PopHigh.caf */,
+				EB5DA09E1B5098690064B5F0 /* Spaceship.caf */,
 			);
 			name = Sounds;
 			sourceTree = "<group>";
@@ -709,30 +709,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB661F9D1B495D7800B6BA56 /* Spaceship.caf in Resources */,
-				EB661F9A1B495D7800B6BA56 /* MeowBonus.caf in Resources */,
+				EB5DA0A21B5098690064B5F0 /* GameResult.caf in Resources */,
 				EBD100D51B27077800D3680B /* Character.atlas in Resources */,
 				EBD100DC1B27221500D3680B /* FontAwesome.otf in Resources */,
+				EB5DA0A01B5098690064B5F0 /* Explosion.caf in Resources */,
+				EB5DA0A51B5098690064B5F0 /* PopHigh.caf in Resources */,
 				EBD100E01B284A0600D3680B /* Sphere.png in Resources */,
+				EB5DA0A11B5098690064B5F0 /* GameMusic.mp3 in Resources */,
+				EB5DA0A61B5098690064B5F0 /* Spaceship.caf in Resources */,
 				EB899F611B38094A00BE59BD /* EngineSpark.sks in Resources */,
 				EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */,
 				EBCA806F1B2F052200CC00E2 /* StarField.sks in Resources */,
 				EBCA80651B2D484000CC00E2 /* UserInterface.atlas in Resources */,
-				EB661F9B1B495D7800B6BA56 /* GameResult.caf in Resources */,
-				EB661F9F1B495D7800B6BA56 /* ButtonTap.caf in Resources */,
+				EB5DA0A41B5098690064B5F0 /* MeowBonus.caf in Resources */,
 				EBC2EB901B36299200CEA20B /* ExplosionGlow.sks in Resources */,
 				EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */,
 				EB0211FC1B1DCF9A0087B2E6 /* LaunchScreen.xib in Resources */,
+				EB5DA09F1B5098690064B5F0 /* ButtonTap.caf in Resources */,
 				EB05653C1B2479BF00A76297 /* Spark.png in Resources */,
+				EB5DA0A31B5098690064B5F0 /* ItemCollected.caf in Resources */,
 				EBD100D91B2715EB00D3680B /* Righteous-Regular.ttf in Resources */,
-				EB661FA01B495D7800B6BA56 /* GameMusic.mp3 in Resources */,
-				EB661F9E1B495D7800B6BA56 /* ItemCollected.caf in Resources */,
 				EBC2EB8C1B358E9D00CEA20B /* Environment.atlas in Resources */,
 				EB661F781B42B3A000B6BA56 /* SphereSmall.png in Resources */,
 				EBD100E21B284A3C00D3680B /* Propel.sks in Resources */,
-				EB661FA41B49635400B6BA56 /* PopHigh.caf in Resources */,
 				EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */,
-				EB661F9C1B495D7800B6BA56 /* Explosion.caf in Resources */,
 				EBCA80731B34E26200CC00E2 /* ShieldGlow.sks in Resources */,
 				EBCA806B1B2F046A00CC00E2 /* Star.png in Resources */,
 				EB0211F71B1DCF9A0087B2E6 /* Main.storyboard in Resources */,
