@@ -91,6 +91,7 @@
 		EB5DA0A41B5098690064B5F0 /* MeowBonus.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09C1B5098690064B5F0 /* MeowBonus.caf */; };
 		EB5DA0A51B5098690064B5F0 /* PopHigh.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09D1B5098690064B5F0 /* PopHigh.caf */; };
 		EB5DA0A61B5098690064B5F0 /* Spaceship.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09E1B5098690064B5F0 /* Spaceship.caf */; };
+		EB5DA0A81B5098910064B5F0 /* TextureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DA0A71B5098910064B5F0 /* TextureHelper.swift */; };
 		EB661F6C1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */; };
 		EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6F1B3E721900B6BA56 /* NotificationName.swift */; };
 		EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */; };
@@ -234,6 +235,7 @@
 		EB5DA09C1B5098690064B5F0 /* MeowBonus.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MeowBonus.caf; path = Sounds/MeowBonus.caf; sourceTree = "<group>"; };
 		EB5DA09D1B5098690064B5F0 /* PopHigh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PopHigh.caf; path = Sounds/PopHigh.caf; sourceTree = "<group>"; };
 		EB5DA09E1B5098690064B5F0 /* Spaceship.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Spaceship.caf; path = Sounds/Spaceship.caf; sourceTree = "<group>"; };
+		EB5DA0A71B5098910064B5F0 /* TextureHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureHelper.swift; path = Helpers/TextureHelper.swift; sourceTree = "<group>"; };
 		EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentTransactionObserver.swift; path = Lib/PaymentTransactionObserver.swift; sourceTree = "<group>"; };
 		EB661F6F1B3E721900B6BA56 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationName.swift; path = Types/NotificationName.swift; sourceTree = "<group>"; };
 		EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionDataSource.swift; path = Protocols/MotionDataSource.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				43F1ABB21B2127DE00DA1E1D /* MathHelper.swift */,
 				EB0212971B1F188B0087B2E6 /* NodeHelper.swift */,
 				EBCA80601B2CF2A900CC00E2 /* PreloadHelper.swift */,
+				EB5DA0A71B5098910064B5F0 /* TextureHelper.swift */,
 				EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */,
 			);
 			name = Helpers;
@@ -825,6 +828,7 @@
 				EBB1ECA71B23DBEA00768015 /* KeyForUserDefaults.swift in Sources */,
 				43C05DF01B2A8154009B8148 /* FilteredMotion.swift in Sources */,
 				EB0212381B1DD3A00087B2E6 /* SKColor+Extensions.swift in Sources */,
+				EB5DA0A81B5098910064B5F0 /* TextureHelper.swift in Sources */,
 				EB02124B1B1DD3B50087B2E6 /* SKNodeExtension.swift in Sources */,
 				EB0212341B1DD3A00087B2E6 /* CGVector+Extensions.swift in Sources */,
 				EB0212531B1DD4010087B2E6 /* TextButtonNode.swift in Sources */,

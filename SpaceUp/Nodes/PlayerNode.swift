@@ -47,27 +47,21 @@ class PlayerNode: SKSpriteNode {
   private lazy var popSoundAction = SKAction.playSoundFileNamed(SoundFileName.Pop, waitForCompletion: false)
   
   private lazy var moveUpAnimateAction: SKAction = {
-    return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyFlying + "1"),
-      SKTexture(imageNamed: TextureFileName.MuffyFlying + "2")
-    ], timePerFrame: 1/30)
+    let textures = texturesWithName(TextureFileName.MuffyFlying, fromIndex: 1, toIndex: 2)
+
+    return SKAction.animateWithTextures(textures, timePerFrame: 1/30)
   }()
   
   private lazy var stopMoveUpAnimateAction: SKAction = {
-    return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "1"),
-      SKTexture(imageNamed: TextureFileName.MuffyStopFlying + "2")
-    ], timePerFrame: 1/30)
+    let textures = texturesWithName(TextureFileName.MuffyStopFlying, fromIndex: 1, toIndex: 2)
+
+    return SKAction.animateWithTextures(textures, timePerFrame: 1/30)
   }()
   
   private lazy var killAnimateAction: SKAction = {
-    return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyDead + "1"),
-      SKTexture(imageNamed: TextureFileName.MuffyDead + "2"),
-      SKTexture(imageNamed: TextureFileName.MuffyDead + "3"),
-      SKTexture(imageNamed: TextureFileName.MuffyDead + "4"),
-      SKTexture(imageNamed: TextureFileName.MuffyDead + "5")
-    ], timePerFrame: 1/30)
+    let textures = texturesWithName(TextureFileName.MuffyDead, fromIndex: 1, toIndex: 5)
+
+    return SKAction.animateWithTextures(textures, timePerFrame: 1/30)
   }()
   
   private lazy var killRotationAction: SKAction = {
@@ -79,16 +73,11 @@ class PlayerNode: SKSpriteNode {
   }()
   
   private lazy var standAnimateAction: SKAction = {
-    let blinkAction = SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyStanding + "1"),
-      SKTexture(imageNamed: TextureFileName.MuffyStanding + "2"),
-      SKTexture(imageNamed: TextureFileName.MuffyStanding + "3"),
-      SKTexture(imageNamed: TextureFileName.MuffyStanding + "2"),
-      SKTexture(imageNamed: TextureFileName.MuffyStanding + "1")
-    ], timePerFrame: 1/30)
+    let textures = texturesWithName(TextureFileName.MuffyStanding, fromIndex: 1, toIndex: 3, reversed: true)
+    let blinkAction = SKAction.animateWithTextures(textures, timePerFrame: 1/30)
     
     let idleAction = SKAction.sequence([
-      SKAction.waitForDuration(1),
+      SKAction.waitForDuration(2),
       blinkAction
     ])
     

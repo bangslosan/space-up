@@ -18,14 +18,9 @@ class EngineFlameNode: SKSpriteNode {
   // private lazy var engineEmitterNode = SKEmitterNode(fileNamed: EffectFileName.Propel)
 
   private lazy var flameStartAnimateAction: SKAction = {
-    return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "1"),
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "2"),
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "3"),
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "4"),
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "5"),
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "6")
-    ], timePerFrame: 1/30)
+    let textures = texturesWithName(TextureFileName.EngineFlame, fromIndex: 1, toIndex: 6)
+
+    return SKAction.animateWithTextures(textures, timePerFrame: 1/30)
   }()
   
   private lazy var flameEndAnimateAction: SKAction = {
@@ -33,10 +28,9 @@ class EngineFlameNode: SKSpriteNode {
   }()
   
   private lazy var flamePersistAnimateAction: SKAction = {
-    return SKAction.repeatActionForever(SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "5"),
-      SKTexture(imageNamed: TextureFileName.EngineFlame + "6")
-    ], timePerFrame: 1/20))
+    let textures = texturesWithName(TextureFileName.EngineFlame, fromIndex: 5, toIndex: 6)
+
+    return SKAction.repeatActionForever(SKAction.animateWithTextures(textures, timePerFrame: 1/20))
   }()
 
   // MARK: - Init

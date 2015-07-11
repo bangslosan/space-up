@@ -40,15 +40,12 @@ class CometNode: SKSpriteNode {
       texture0 = SKTexture(imageNamed: TextureFileName.CrackedMedium)
     }
     
-    return SKAction.animateWithTextures([
+    let textures = [
       texture0,
-      SKTexture(imageNamed: TextureFileName.CrackedRed),
-      SKTexture(imageNamed: TextureFileName.Explosion + "1"),
-      SKTexture(imageNamed: TextureFileName.Explosion + "2"),
-      SKTexture(imageNamed: TextureFileName.Explosion + "3"),
-      SKTexture(imageNamed: TextureFileName.Explosion + "4"),
-      SKTexture(imageNamed: TextureFileName.Explosion + "5")
-    ], timePerFrame: 1/20)
+      SKTexture(imageNamed: TextureFileName.CrackedRed)
+    ] + texturesWithName(TextureFileName.Explosion, fromIndex: 1, toIndex: 5)
+    
+    return SKAction.animateWithTextures(textures, timePerFrame: 1/20)
   }()
 
   // MARK: - Init
