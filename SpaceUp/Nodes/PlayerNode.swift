@@ -12,6 +12,7 @@ private struct KeyForAction {
   static let moveToSideAction = "moveToSideAction"
   static let movementSoundAction = "movementSoundAction"
   static let killSoundAction = "killSoundAction"
+  static let standAnimateAction = "standAnimateAction"
 }
 
 class PlayerNode: SKSpriteNode {
@@ -78,14 +79,25 @@ class PlayerNode: SKSpriteNode {
   }()
   
   private lazy var standAnimateAction: SKAction = {
-    return SKAction.animateWithTextures([
-      SKTexture(imageNamed: TextureFileName.MuffyStanding)
-    ], timePerFrame: 1/60)
+    let blinkAction = SKAction.animateWithTextures([
+      SKTexture(imageNamed: TextureFileName.MuffyStanding + "1"),
+      SKTexture(imageNamed: TextureFileName.MuffyStanding + "2"),
+      SKTexture(imageNamed: TextureFileName.MuffyStanding + "3"),
+      SKTexture(imageNamed: TextureFileName.MuffyStanding + "2"),
+      SKTexture(imageNamed: TextureFileName.MuffyStanding + "1")
+    ], timePerFrame: 1/30)
+    
+    let idleAction = SKAction.sequence([
+      SKAction.waitForDuration(1),
+      blinkAction
+    ])
+    
+    return SKAction.repeatActionForever(idleAction)
   }()
 
   // MARK: - Init
   init() {
-    let texture = SKTexture(imageNamed: TextureFileName.MuffyStanding)
+    let texture = SKTexture(imageNamed: TextureFileName.MuffyStanding + "1")
     let ratio: CGFloat = 1/3
     let size = CGSize(width: 520 * ratio, height: 680 * ratio)
     
@@ -207,6 +219,8 @@ class PlayerNode: SKSpriteNode {
   
   // MARK: - Animation
   func runAnimationForState(state: PlayerState) {
+    removeActionForKey(KeyForAction.standAnimateAction)
+
     switch state {
     case .Dying:
       runAction(killAnimateAction)
@@ -227,8 +241,8 @@ class PlayerNode: SKSpriteNode {
       engineFlame.stopAnimate()
       
     case .Standing:
-      if isAlive {
-        runAction(standAnimateAction)
+      if isAlive && !hasActionForKey(KeyForAction.standAnimateAction) {
+        runAction(standAnimateAction, withKey: KeyForAction.standAnimateAction)
       }
       
     default:
