@@ -16,12 +16,12 @@ func texturesWithName(name: String, #fromIndex: Int, #toIndex: Int, #reversed: B
   var textures = [SKTexture]()
   
   for (_, index) in enumerate(fromIndex...toIndex) {
-    textures << SKTexture(imageNamed: "\(name)\(index)")
+    textures << SKTexture(imageNamed: name, index: index)
   }
   
   if reversed {
     for (_, index) in enumerate(fromIndex...toIndex) {
-      textures << SKTexture(imageNamed: "\(name)\(toIndex - index + fromIndex)")
+      textures << SKTexture(imageNamed: name, index: toIndex - index + fromIndex)
     }
   }
   

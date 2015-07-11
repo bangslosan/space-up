@@ -77,6 +77,9 @@ class PlayerNode: SKSpriteNode {
     let blinkAction = SKAction.animateWithTextures(textures, timePerFrame: 1/30)
     
     let idleAction = SKAction.sequence([
+      SKAction.runBlock {
+        self.texture = SKTexture(imageNamed: TextureFileName.MuffyStanding, index: 1)
+      },
       SKAction.waitForDuration(2),
       blinkAction
     ])
@@ -86,7 +89,7 @@ class PlayerNode: SKSpriteNode {
 
   // MARK: - Init
   init() {
-    let texture = SKTexture(imageNamed: TextureFileName.MuffyStanding + "1")
+    let texture = SKTexture(imageNamed: TextureFileName.MuffyStanding, index: 1)
     let ratio: CGFloat = 1/3
     let size = CGSize(width: 520 * ratio, height: 680 * ratio)
     

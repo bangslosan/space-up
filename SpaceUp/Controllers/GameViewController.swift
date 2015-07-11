@@ -160,9 +160,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     let textures: [SKTexture] = [
       SKTexture(imageNamed: TextureFileName.Background),
       SKTexture(imageNamed: TextureFileName.BackgroundSmallPlanets),
-      SKTexture(imageNamed: TextureFileName.BackgroundSmallPlanets + "2"),
+      SKTexture(imageNamed: TextureFileName.BackgroundSmallPlanets, index: 2),
       SKTexture(imageNamed: TextureFileName.BackgroundLargePlanets),
-      SKTexture(imageNamed: TextureFileName.BackgroundLargePlanets + "2"),
+      SKTexture(imageNamed: TextureFileName.BackgroundLargePlanets, index: 2),
       SKTexture(imageNamed: TextureFileName.BackgroundStars),
       SKTexture(imageNamed: TextureFileName.PlanetGround)
     ]

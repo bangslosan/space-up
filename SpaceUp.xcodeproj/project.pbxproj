@@ -92,6 +92,7 @@
 		EB5DA0A51B5098690064B5F0 /* PopHigh.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09D1B5098690064B5F0 /* PopHigh.caf */; };
 		EB5DA0A61B5098690064B5F0 /* Spaceship.caf in Resources */ = {isa = PBXBuildFile; fileRef = EB5DA09E1B5098690064B5F0 /* Spaceship.caf */; };
 		EB5DA0A81B5098910064B5F0 /* TextureHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DA0A71B5098910064B5F0 /* TextureHelper.swift */; };
+		EB5DA0AA1B50A2900064B5F0 /* SKTextureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DA0A91B50A2900064B5F0 /* SKTextureExtension.swift */; };
 		EB661F6C1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */; };
 		EB661F701B3E721900B6BA56 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F6F1B3E721900B6BA56 /* NotificationName.swift */; };
 		EB661F721B3FB6DE00B6BA56 /* MotionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */; };
@@ -236,6 +237,7 @@
 		EB5DA09D1B5098690064B5F0 /* PopHigh.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PopHigh.caf; path = Sounds/PopHigh.caf; sourceTree = "<group>"; };
 		EB5DA09E1B5098690064B5F0 /* Spaceship.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Spaceship.caf; path = Sounds/Spaceship.caf; sourceTree = "<group>"; };
 		EB5DA0A71B5098910064B5F0 /* TextureHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextureHelper.swift; path = Helpers/TextureHelper.swift; sourceTree = "<group>"; };
+		EB5DA0A91B50A2900064B5F0 /* SKTextureExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKTextureExtension.swift; path = Extensions/SKTextureExtension.swift; sourceTree = "<group>"; };
 		EB661F6B1B3E6A3D00B6BA56 /* PaymentTransactionObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentTransactionObserver.swift; path = Lib/PaymentTransactionObserver.swift; sourceTree = "<group>"; };
 		EB661F6F1B3E721900B6BA56 /* NotificationName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationName.swift; path = Types/NotificationName.swift; sourceTree = "<group>"; };
 		EB661F711B3FB6DE00B6BA56 /* MotionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MotionDataSource.swift; path = Protocols/MotionDataSource.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				EB0212441B1DD3B50087B2E6 /* SKSceneExtension.swift */,
 				EB661FA11B495E5500B6BA56 /* SKTAudioExtension.swift */,
 				EBCA80701B321B4200CC00E2 /* SKTEffectExtension.swift */,
+				EB5DA0A91B50A2900064B5F0 /* SKTextureExtension.swift */,
 				EB0212451B1DD3B50087B2E6 /* UIColorExtension.swift */,
 			);
 			name = Extensions;
@@ -787,6 +790,7 @@
 				EB0211EE1B1DCF990087B2E6 /* AppDelegate.swift in Sources */,
 				EB0212631B1DD5760087B2E6 /* PhysicsCategory.swift in Sources */,
 				EB02127B1B1DEC060087B2E6 /* ArrayHelper.swift in Sources */,
+				EB5DA0AA1B50A2900064B5F0 /* SKTextureExtension.swift in Sources */,
 				EB0212471B1DD3B50087B2E6 /* CGPointExtension.swift in Sources */,
 				EBD100CC1B2533F500D3680B /* PauseMenuView.swift in Sources */,
 				EB0212671B1DD7950087B2E6 /* IconButtonNode.swift in Sources */,
