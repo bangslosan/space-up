@@ -44,12 +44,12 @@ class StartScene: SKScene, ButtonDelegate {
     addChild(galaxyStars)
     
     // Logo
-    logo.anchorPoint = CGPoint(x: 0.5, y: 1)
-    logo.position = CGPoint(x: screenFrame.midX, y: screenFrame.maxY - 60)
+    logo.anchorPoint = CGPoint(x: 0.5, y: 0)
+    logo.position = CGPoint(x: screenFrame.midX, y: screenFrame.midY - 140)
     addChild(logo)
     
     // Start button
-    startButton.position = CGPoint(x: logo.frame.midX, y: logo.frame.minY - 100)
+    startButton.position = CGPoint(x: logo.frame.midX, y: logo.frame.minY - 90)
     startButton.delegate = self
     addChild(startButton)
     
@@ -97,17 +97,31 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - Layout
   func updateLayout() {
+    let screenBounds = UIScreen.mainScreen().nativeBounds
+    var offset = CGPointZero
+    
+    if screenBounds.height > 960 {
+      offset = CGPoint(x: 10, y: 30)
+    }
+
     if isAdsEnabled() {
-      leaderboardButton.position = CGPoint(x: screenFrame.minX + 100, y: startButton.frame.midY - 40)
-      musicButton.position = CGPoint(x: screenFrame.maxX - 100, y: startButton.frame.midY - 40)
-      soundButton.position = CGPoint(x: screenFrame.maxX - 250, y: screenFrame.minY + 170)
-      storeButton.position = CGPoint(x: screenFrame.minX + 250, y: screenFrame.minY + 170)
+      leaderboardButton.position = CGPoint(x: startButton.frame.midX - (240 + offset.x),
+                                           y: startButton.frame.midY - (45 + offset.y))
+      musicButton.position = CGPoint(x: startButton.frame.midX + (240 + offset.x),
+                                     y: startButton.frame.midY - (45 + offset.y))
+      soundButton.position = CGPoint(x: startButton.frame.midX + 110,
+                                     y: startButton.frame.midY - (200 + offset.y))
+      storeButton.position = CGPoint(x: startButton.frame.midX - 110,
+                                     y: startButton.frame.midY - (200 + offset.y))
       
       addChildIfNeeded(storeButton)
     } else {
-      leaderboardButton.position = CGPoint(x: screenFrame.minX + 140, y: startButton.frame.midY - 120)
-      musicButton.position = CGPoint(x: screenFrame.maxX - 140, y: startButton.frame.midY - 120)
-      soundButton.position = CGPoint(x: screenFrame.midX, y: screenFrame.minY + 170)
+      leaderboardButton.position = CGPoint(x: startButton.frame.midX - (220 + offset.x),
+                                           y: startButton.frame.midY - (80 + offset.y))
+      musicButton.position = CGPoint(x: startButton.frame.midX + (220 + offset.x),
+                                     y: startButton.frame.midY - (80 + offset.y))
+      soundButton.position = CGPoint(x: startButton.frame.midX,
+                                     y: startButton.frame.midY - (200 + offset.y))
     
       storeButton.removeFromParentIfNeeded()
     }
