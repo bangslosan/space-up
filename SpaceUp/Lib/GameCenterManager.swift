@@ -23,16 +23,20 @@ class GameCenterManager: NSObject {
   // MARK: - GameCenter
   func authenticateLocalPlayer() {
     localPlayer?.authenticateHandler = { [weak self] (viewController, error) -> Void in
-      if let delegate = self?.delegate, localPlayer = self?.localPlayer {
+      if let delegate = self?.delegate {
         if let viewController = viewController {
           delegate.gameCenterManager?(self!, didProvideViewController: viewController)
-        } else {
+        } else if let localPlayer = self?.localPlayer {
           self!.isAuthenticated = localPlayer.authenticated
           delegate.gameCenterManager?(self!, didAuthenticateLocalPlayer: localPlayer.authenticated)
         }
         
         if let error = error {
           delegate.gameCenterManager?(self!, didReceiveError: error)
+        } else {
+          let error = NSError.errorWithMessage("Unknown error for GameCenterManager")
+          
+          self?.delegate?.gameCenterManager?(self!, didReceiveError: error)
         }
       }
     }

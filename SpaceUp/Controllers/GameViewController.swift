@@ -53,6 +53,12 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Present scene
     preloadAndPresentStartScene()
     
+    // Authenticate GameCenter in next loop
+    dispatch_async(dispatch_get_main_queue()) {
+      LoadingIndicatorView.sharedView.showInView(self.view)
+      self.gameCenterManager.authenticateLocalPlayer()
+    }
+    
     // GameCenter
     gameCenterManager.delegate = self
   }
@@ -60,10 +66,6 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   override func viewWillAppear(animated: Bool) {
     // Motion
     observeMotion()
-
-    // Authenticate GameCenter
-    LoadingIndicatorView.sharedView.showInView(view)
-    gameCenterManager.authenticateLocalPlayer()
     
     // Notification
     let notificationCenter = NSNotificationCenter.defaultCenter()
