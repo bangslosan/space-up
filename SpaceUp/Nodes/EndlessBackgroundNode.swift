@@ -41,7 +41,7 @@ class EndlessBackgroundNode: SKNode {
       if let lastBackground = backgrounds.last {
         maxY = scene.convertFrame(lastBackground.frame, fromNode: self).maxY
         
-        if let lastImageName = lastBackground.imageName, lastImageNameIndex = find(imageNames, lastImageName) {
+        if let lastImageName = lastBackground.imageName, lastImageNameIndex = imageNames.indexOf(lastImageName) {
           index = lastImageNameIndex + 1
         }
       }
@@ -70,7 +70,7 @@ class EndlessBackgroundNode: SKNode {
       if let firstBackground = backgrounds.first {
         minY = scene.convertFrame(firstBackground.frame, fromNode: self).minY
         
-        if let firstImageName = firstBackground.imageName, firstImageNameIndex = find(imageNames, firstImageName) {
+        if let firstImageName = firstBackground.imageName, firstImageNameIndex = imageNames.indexOf(firstImageName) {
           index = firstImageNameIndex - 1
         }
       }

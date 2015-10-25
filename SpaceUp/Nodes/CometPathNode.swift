@@ -12,7 +12,7 @@ class CometPathNode: SKShapeNode {
   init(fromPosition: CGPoint, toPosition: CGPoint) {
     super.init()
     
-    var path = CGPathCreateMutable()
+    let path = CGPathCreateMutable()
     
     CGPathMoveToPoint(path, nil, fromPosition.x, fromPosition.y)
     CGPathAddLineToPoint(path, nil, toPosition.x, toPosition.y)

@@ -62,7 +62,7 @@ class GameData: NSObject, NSCoding {
     super.init()
   }
   
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     if aDecoder.containsValueForKey(KeyForCoder.topScore) {
       topScore = CGFloat(aDecoder.decodeFloatForKey(KeyForCoder.topScore))
     }

@@ -26,7 +26,7 @@ class ButtonNode: SKSpriteNode {
   // private lazy var tapSoundAction = SKAction.playSoundFileNamed(SoundFileName.Button, waitForCompletion: false)
   
   // MARK: - Init
-  override init(texture: SKTexture?, color: UIColor?, size: CGSize) {
+  override init(texture: SKTexture?, color: UIColor, size: CGSize) {
     super.init(texture: texture, color: color, size: size)
     
     // Interaction
@@ -38,7 +38,7 @@ class ButtonNode: SKSpriteNode {
   }
   
   // MARK: - UIResponder
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     if let touch = touches.first as? UITouch {
       let touchLocation = touch.locationInNode(self)
       
@@ -51,11 +51,11 @@ class ButtonNode: SKSpriteNode {
     }
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     isTouched = false
   }
   
-  override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
+  override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
     isTouched = false
   }
 

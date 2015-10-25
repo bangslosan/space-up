@@ -9,7 +9,7 @@
 import UIKit
 
 extension Array {
-  func pick(index: Int) -> T? {
+  func pick(index: Int) -> Element? {
     if 0 <= index && index < count {
       return self[index]
     } else {
@@ -17,7 +17,7 @@ extension Array {
     }
   }
   
-  func pick(subRange: Range<Int>) -> ArraySlice<T>? {
+  func pick(subRange: Range<Int>) -> ArraySlice<Element>? {
     if count == 0 {
       return nil
     }
@@ -27,13 +27,13 @@ extension Array {
     return self[cappedRange]
   }
   
-  func sample() -> T? {
+  func sample() -> Element? {
     let index = Int(arc4random_uniform(UInt32(count)))
 
     return self.pick(index)
   }
   
-  func find(callback: (T) -> Bool) -> T? {
+  func find(callback: (Element) -> Bool) -> Element? {
     for item in self {
       if callback(item) {
         return item
@@ -43,7 +43,7 @@ extension Array {
     return nil
   }
   
-  mutating func prepend(newElement: T) {
+  mutating func prepend(newElement: Element) {
     insert(newElement, atIndex: 0)
   }
 }

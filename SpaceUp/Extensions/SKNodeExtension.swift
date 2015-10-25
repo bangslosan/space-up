@@ -62,10 +62,10 @@ extension SKNode {
   
   func isOffscreen(offset: CGPoint = CGPointZero, axis: AxisType = .Both) -> Bool {
     if let scene = scene where inParentHierarchy(scene) {
-      var screenFrame = scene.screenFrame
+      let screenFrame = scene.screenFrame
       let frame = scene.convertFrame(self.frame, fromNode: parent!)
 
-      screenFrame.offset(dx: offset.x, dy: offset.y)
+      screenFrame.offsetInPlace(dx: offset.x, dy: offset.y)
 
       switch axis {
       case .X:

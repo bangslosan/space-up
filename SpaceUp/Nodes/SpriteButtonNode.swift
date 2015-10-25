@@ -24,7 +24,7 @@ class SpriteButtonNode: ButtonNode {
     self.init(texture: SKTexture(imageNamed: imageName))
   }
 
-  init(texture: SKTexture) {
+  init(texture: SKTexture?) {
     super.init(texture: texture, color: nil, size: texture.size())
     
     setTexture(texture, forState: .Normal)

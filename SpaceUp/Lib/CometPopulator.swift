@@ -136,16 +136,16 @@ class CometPopulator {
   // MARK: - Type
   private func randomCometType() -> CometType {
     let levelFactor = dataSource?.gameData.levelFactor ?? 0
-    var type = CometType.randomType(levelFactor: levelFactor, exceptTypes: [.Award])
+    let type = CometType.randomType(levelFactor: levelFactor, exceptTypes: [.Award])
     
     return type
   }
 
   private func hasEmitterOfType(type: CometType) -> Bool {
     if type == .Award {
-      return contains(emitters) { $0.shouldAward == true }
+      return emitters.contains { $0.shouldAward == true }
     } else {
-      return contains(emitters) { $0.type == type }
+      return emitters.contains { $0.type == type }
     }
   }
 }

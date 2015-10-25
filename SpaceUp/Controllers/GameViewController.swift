@@ -137,10 +137,10 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     ]
     
     // Show loading scene
-    presentLoadingScene(type: .Blank)
+    presentLoadingScene(.Blank)
     
     // Preload textures
-    preloadTextures(textures, textureAtlases) { [weak self] in
+    preloadTextures(textures, textureAtlases: textureAtlases) { [weak self] in
       // Present game scene
       if let scene = self?.presentStartScene() {
         // Retain preloaded textures
@@ -173,7 +173,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     presentLoadingScene()
 
     // Preload textures
-    preloadTextures(textures, textureAtlases) { [weak self] in
+    preloadTextures(textures, textureAtlases: textureAtlases) { [weak self] in
       // Present game scene
       if let scene = self?.presentGameScene() {
         // Retain preloaded textures
@@ -250,11 +250,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
 
   func presentInterstitialAd() -> Bool {
     if isAdsEnabled() == false {
-      println("Ads are disabled")
+      print("Ads are disabled")
       
       return false
     } else if interstitialAd?.loaded != true {
-      println("Ad not loaded")
+      print("Ad not loaded")
       
       return false
     }
@@ -421,7 +421,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - GKGameCenterControllerDelegate
-  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+  func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
     gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
 
     skView.paused = false
@@ -529,11 +529,11 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   func interstitialAd(interstitialAd: ADInterstitialAd!, didFailWithError error: NSError!) {
     resetInterstitialAd()
     
-    println(error)
+    print(error)
   }
 
   func interstitialAdDidLoad(interstitialAd: ADInterstitialAd!) {
-    println("Ad loaded")
+    print("Ad loaded")
   }
   
   func interstitialAdActionDidFinish(interstitialAd: ADInterstitialAd!) {
@@ -541,7 +541,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   // MARK: - SKProductsRequestDelegate
-  func productsRequest(request: SKProductsRequest!, didReceiveResponse response: SKProductsResponse!) {
+  func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
     products = response.products as? [SKProduct]
     
     if let products = products {

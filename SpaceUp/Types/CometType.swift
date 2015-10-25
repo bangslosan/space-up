@@ -14,7 +14,7 @@ enum CometType {
   case Fast
   case Award
   
-  static func randomType(#levelFactor: CGFloat, exceptTypes: [CometType]? = nil) -> CometType {
+  static func randomType(levelFactor levelFactor: CGFloat, exceptTypes: [CometType]? = nil) -> CometType {
     var types = [CometType]()
     
     for i in 0..<5 {
@@ -28,7 +28,7 @@ enum CometType {
     }
     
     if let exceptTypes = exceptTypes {
-      types = types.filter { !contains(exceptTypes, $0) }
+      types = types.filter { !exceptTypes.contains($0) }
     }
     
     return types.sample() ?? .Regular

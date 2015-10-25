@@ -274,10 +274,10 @@ class PlayerNode: SKSpriteNode {
   
   // MARK: - Physics
   private func physicsBodyPathOfSize(size: CGSize) -> CGPath {
-    var offsetX = CGFloat(size.width * anchorPoint.x)
-    var offsetY = CGFloat(size.height * anchorPoint.y)
-    var path = CGPathCreateMutable()
-    var ratio: CGFloat = 1/3
+    let offsetX = CGFloat(size.width * anchorPoint.x)
+    let offsetY = CGFloat(size.height * anchorPoint.y)
+    let path = CGPathCreateMutable()
+    let ratio: CGFloat = 1/3
 
     CGPathMoveToPoint(path, nil, 250 * ratio - offsetX, size.height - 560 * ratio - offsetY)
     CGPathAddLineToPoint(path, nil, 155 * ratio - offsetX, size.height - 470 * ratio - offsetY)

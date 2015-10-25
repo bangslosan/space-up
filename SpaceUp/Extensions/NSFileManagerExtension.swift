@@ -19,8 +19,12 @@ extension NSFileManager {
     let url = URLForDirectory(.LibraryDirectory, withPathComponent: "Private Documents", isDirectory: true)
     var error: NSError?
     
-    // Create directory if it doesn't exist
-    createDirectoryAtURL(url, withIntermediateDirectories: true, attributes: nil, error: &error)
+    do {
+      // Create directory if it doesn't exist
+      try createDirectoryAtURL(url, withIntermediateDirectories: true, attributes: nil)
+    } catch let error1 as NSError {
+      error = error1
+    }
     
     if error != nil {
       fatalError("Failed to create Private Documents directory in Library Directory")

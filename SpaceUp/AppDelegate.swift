@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
     let audioSession = AVAudioSession.sharedInstance()
 
-    audioSession.setCategory(AVAudioSessionCategoryAmbient, error: nil)
+    do {
+      try audioSession.setCategory(AVAudioSessionCategoryAmbient)
+    } catch _ {
+    }
     
     // Payment transaction
     let queue = SKPaymentQueue.defaultQueue()

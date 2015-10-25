@@ -147,7 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
 
     // Camera
-    world.followPlayer(crawlIncrement: crawlIncrement)
+    world.followPlayer(crawlIncrement)
     
     // Background
     /*
@@ -165,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   // MARK: - Event
-  override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
     if view?.paused == true {
       return
     }
@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     }
   }
   
-  override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
     if view?.paused == true {
       return
     }
@@ -271,7 +271,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
     gameStarted = false
 
     // End view
-    endGameView = presentEndGameView(hasNewTopScore: hasNewTopScore)
+    endGameView = presentEndGameView(hasNewTopScore)
     endGameView!.hidden = true
 
     afterDelay(0.5) { [weak self] in

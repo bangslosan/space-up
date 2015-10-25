@@ -13,7 +13,7 @@ class CameraNode: SKNode {
   func followPlayer(player: PlayerNode, crawlIncrement: CGFloat = 0) {
     if let scene = scene, playerParent = player.parent {
       var cameraPosition = position
-      var boundaryFrame = playerParent.convertFrame(scene.frame, fromNode: scene)
+      let boundaryFrame = playerParent.convertFrame(scene.frame, fromNode: scene)
       let maxY = boundaryFrame.minY + scene.size.height * 3/5
       
       cameraPosition.x = scene.frame.midX

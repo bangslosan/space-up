@@ -10,7 +10,7 @@ import UIKit
 import iAd
 
 class InterstitialAdView: UIView {
-  let closeButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+  let closeButton = UIButton(type: UIButtonType.Custom)
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -27,7 +27,7 @@ class InterstitialAdView: UIView {
     addSubview(closeButton)
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   

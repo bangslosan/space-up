@@ -56,7 +56,7 @@ class CometEmitter {
   }
   
   // MARK: - Populate
-  func startEmit(#speedFactor: CGFloat, initialPercentage: CGFloat) {
+  func startEmit(speedFactor speedFactor: CGFloat, initialPercentage: CGFloat) {
     if let world = populator?.world {
       // Only the add the same action once
       if world.hasActionForKey(KeyForAction.emitCometAction) {

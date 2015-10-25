@@ -17,7 +17,7 @@ func >> <T>(inout array: Array<T>, item: T) {
 }
 
 func findIndex<T>(array: [T], callback: (T) -> Bool) -> Int? {
-  for (index, elem : T) in enumerate(array) {
+  for (index, elem): (Int, T) in array.enumerate() {
     if callback(elem) {
       return index
     }
@@ -27,7 +27,7 @@ func findIndex<T>(array: [T], callback: (T) -> Bool) -> Int? {
 }
 
 func removeObject<T: Equatable>(object: T, inout fromArray array: [T]) -> Int? {
-  if let index = find(array, object) {
+  if let index = array.indexOf(object) {
     array.removeAtIndex(index)
     
     return index
@@ -37,7 +37,7 @@ func removeObject<T: Equatable>(object: T, inout fromArray array: [T]) -> Int? {
 }
 
 func removeObjectByReference<T: AnyObject>(object: T, inout fromArray array: [T]) -> Int? {
-  if let index = findIndex(array, { $0 === object }) {
+  if let index = findIndex(array, callback: { $0 === object }) {
     array.removeAtIndex(index)
     
     return index

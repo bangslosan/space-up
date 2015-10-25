@@ -28,8 +28,8 @@ extension SKScene {
   
   class func unarchiveFromSksFile(file: String) -> SKScene? {
     if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-      var sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
-      var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+      let sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+      let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
       
       archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
       
@@ -61,10 +61,17 @@ extension SKScene {
     let fileURL = directoryURL.URLByAppendingPathComponent(fileName)
     
     var error: NSError?
-    let success = fileManager.removeItemAtURL(fileURL, error: &error)
+    let success: Bool
+    do {
+      try fileManager.removeItemAtURL(fileURL)
+      success = true
+    } catch let error1 as NSError {
+      error = error1
+      success = false
+    }
     
     if error != nil {
-      println(error)
+      print(error)
     }
     
     return success

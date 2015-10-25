@@ -12,7 +12,7 @@ class ShadowLabelNode: SKLabelNode {
   private let effectLabel = SKLabelNode()
 
   // MARK: - Init
-  override init(fontNamed fontName: String!) {
+  override init(fontNamed fontName: String?) {
     super.init(fontNamed: fontName)
     
     // Effect
@@ -39,7 +39,7 @@ class ShadowLabelNode: SKLabelNode {
   }
   
   // MARK: - KVO
-  override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+  override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
     if keyPath == "text" {
       effectLabel.fontSize = fontSize
       effectLabel.fontName = fontName

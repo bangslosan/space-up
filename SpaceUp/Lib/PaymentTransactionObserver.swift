@@ -35,7 +35,7 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
     let queue = SKPaymentQueue.defaultQueue()
     
     if let error = transaction.error where error.code != SKErrorPaymentCancelled {
-      println("Transaction error: \(transaction.error.localizedDescription)")
+      print("Transaction error: \(transaction.error.localizedDescription)")
     }
     
     queue.finishTransaction(transaction)
@@ -51,7 +51,7 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
   }
   
   // MARK: - SKPaymentTransactionObserver
-  func paymentQueue(queue: SKPaymentQueue!, updatedTransactions transactions: [AnyObject]!) {
+  func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
     if let transactions = transactions {
       for transaction in transactions {
         if let transaction = transaction as? SKPaymentTransaction {
@@ -73,7 +73,7 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
     }
   }
   
-  func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue!) {
+  func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
     postNotificatonName(PaymentTransactionDidRestoreAllNotification, forTransaction: nil)
   }
   
