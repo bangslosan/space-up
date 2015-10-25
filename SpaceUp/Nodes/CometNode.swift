@@ -81,7 +81,7 @@ class CometNode: SKSpriteNode {
 
     physicsFrame = CGRect(x: radius, y: radius, width: radius * 2, height: radius * 2)
 
-    super.init(texture: nil, color: nil, size: sphere.texture!.size())
+    super.init(texture: nil, color: UIColor.clearColor(), size: sphere.texture!.size())
     
     // Sphere
     addChild(sphere)
@@ -145,7 +145,7 @@ class CometNode: SKSpriteNode {
     if let parent = parent {
       // Add explosion effect
       let explosion = SKSpriteNode(imageNamed: TextureFileName.CrackedRed)
-      let glow = SKEmitterNode(fileNamed: EffectFileName.ExplosionGlow)
+      let glow = SKEmitterNode(fileNamed: EffectFileName.ExplosionGlow)!
       
       explosion.position = position
       parent.addChild(explosion)

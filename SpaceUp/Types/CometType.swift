@@ -17,11 +17,11 @@ enum CometType {
   static func randomType(levelFactor levelFactor: CGFloat, exceptTypes: [CometType]? = nil) -> CometType {
     var types = [CometType]()
     
-    for i in 0..<5 {
+    for _ in 0..<5 {
       types << .Regular
     }
     
-    for i in 0..<Int(round(levelFactor * 5)) {
+    for _ in 0..<Int(round(levelFactor * 5)) {
       types << .Slow
       types << .Fast
       types << .Award

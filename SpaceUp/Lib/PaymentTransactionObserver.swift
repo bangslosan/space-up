@@ -24,18 +24,20 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
   func restoreTransaction(transaction: SKPaymentTransaction) {
     let queue = SKPaymentQueue.defaultQueue()
     
-    updateUserDefaultsWithBoolValue(true, forKey: transaction.originalTransaction.payment.productIdentifier)
-    
-    queue.finishTransaction(transaction)
-
-    postNotificatonName(PaymentTransactionDidRestoreNotification, forTransaction: transaction.originalTransaction)
+    if let originalTransaction = transaction.originalTransaction {
+      updateUserDefaultsWithBoolValue(true, forKey: originalTransaction.payment.productIdentifier)
+      
+      queue.finishTransaction(transaction)
+      
+      postNotificatonName(PaymentTransactionDidRestoreNotification, forTransaction: transaction.originalTransaction)
+    }
   }
   
   func failedTransaction(transaction: SKPaymentTransaction) {
     let queue = SKPaymentQueue.defaultQueue()
     
     if let error = transaction.error where error.code != SKErrorPaymentCancelled {
-      print("Transaction error: \(transaction.error.localizedDescription)")
+      print("Transaction error: \(error.localizedDescription)")
     }
     
     queue.finishTransaction(transaction)
@@ -52,23 +54,19 @@ class PaymentTransactionObserver: NSObject, SKPaymentTransactionObserver {
   
   // MARK: - SKPaymentTransactionObserver
   func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-    if let transactions = transactions {
-      for transaction in transactions {
-        if let transaction = transaction as? SKPaymentTransaction {
-          switch (transaction.transactionState) {
-          case SKPaymentTransactionState.Purchased:
-            completeTransaction(transaction)
-            
-          case SKPaymentTransactionState.Restored:
-            restoreTransaction(transaction)
-            
-          case SKPaymentTransactionState.Failed:
-            failedTransaction(transaction)
-            
-          default:
-            break
-          }
-        }
+    for transaction in transactions {
+      switch (transaction.transactionState) {
+      case SKPaymentTransactionState.Purchased:
+        completeTransaction(transaction)
+        
+      case SKPaymentTransactionState.Restored:
+        restoreTransaction(transaction)
+        
+      case SKPaymentTransactionState.Failed:
+        failedTransaction(transaction)
+        
+      default:
+        break
       }
     }
   }

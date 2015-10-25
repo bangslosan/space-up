@@ -14,7 +14,7 @@ class TextButtonNode: ButtonNode {
 
   // MARK: - Init
   init(size: CGSize) {
-    super.init(texture: nil, color: nil, size: size)
+    super.init(texture: nil, color: UIColor.clearColor(), size: size)
     
     // Fill color
     color = UIColor(white: 0, alpha: 0.2)

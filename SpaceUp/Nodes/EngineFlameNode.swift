@@ -37,7 +37,7 @@ class EngineFlameNode: SKSpriteNode {
   init() {
     let texture = SKTexture(imageNamed: TextureFileName.EngineFlame + "1")
 
-    super.init(texture: texture, color: nil, size: texture.size())
+    super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
   }
 
   required init?(coder aDecoder: NSCoder) {

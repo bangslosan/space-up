@@ -10,9 +10,11 @@ import UIKit
 
 extension NSFileManager {
   func URLForDirectory(directory: NSSearchPathDirectory, withPathComponent pathComponent: String, isDirectory: Bool = false) -> NSURL {
-    let documentURL = URLsForDirectory(directory, inDomains: .UserDomainMask).last as! NSURL
+    if let documentURL = URLsForDirectory(directory, inDomains: .UserDomainMask).last {
+      return documentURL.URLByAppendingPathComponent(pathComponent)
+    }
     
-    return documentURL.URLByAppendingPathComponent(pathComponent)
+    return NSURL()
   }
   
   func URLForPrivateDocumentsDirectory() -> NSURL {

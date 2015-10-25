@@ -19,7 +19,7 @@ class IconButtonNode: ButtonNode {
     iconLabel = SKLabelNode(fontNamed: "FontAwesome")
     buttonFace = SKShapeNode(rect: rect, cornerRadius: 12)
     
-    super.init(texture: nil, color: nil, size: size)
+    super.init(texture: nil, color: UIColor.clearColor(), size: size)
     
     // Button
     buttonFace.fillColor = UIColor(white: 0, alpha: 0.8)

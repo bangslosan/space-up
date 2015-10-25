@@ -141,12 +141,10 @@ class CometEmitter {
   }
   
   func revealComet(comet: CometNode, fromPosition: CGPoint, toPosition: CGPoint, completion: (() -> Void)? = nil) {
-    if let world = populator?.world, scene = world.scene {
-      comet.moveFromPosition(fromPosition, toPosition: toPosition, duration: duration) {
-        self.removeComet(comet)
-        
-        completion?()
-      }
+    comet.moveFromPosition(fromPosition, toPosition: toPosition, duration: duration) {
+      self.removeComet(comet)
+      
+      completion?()
     }
   }
   

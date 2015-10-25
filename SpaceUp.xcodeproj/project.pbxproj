@@ -67,7 +67,6 @@
 		EB0212981B1F188B0087B2E6 /* NodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212971B1F188B0087B2E6 /* NodeHelper.swift */; };
 		EB02129A1B1F18B40087B2E6 /* DispatchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */; };
 		EB0212A81B1F1BC60087B2E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0212A21B1F1BC60087B2E6 /* Images.xcassets */; };
-		EB0212AE1B1FAAA70087B2E6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0212AD1B1FAAA70087B2E6 /* GameKit.framework */; };
 		EB0212B01B22557B0087B2E6 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212AF1B22557B0087B2E6 /* GameCenterManager.swift */; };
 		EB0212B41B22706D0087B2E6 /* GameCenterManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212B31B22706D0087B2E6 /* GameCenterManagerDelegate.swift */; };
 		EB0212B61B22708C0087B2E6 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212B51B22708C0087B2E6 /* GameSceneDelegate.swift */; };
@@ -78,7 +77,6 @@
 		EB0212C41B2331760087B2E6 /* StartSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */; };
 		EB05653C1B2479BF00A76297 /* Spark.png in Resources */ = {isa = PBXBuildFile; fileRef = EB05653A1B2479BF00A76297 /* Spark.png */; };
 		EB05653E1B247BAB00A76297 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB05653D1B247BAB00A76297 /* Explosion.sks */; };
-		EB22525E1B366D320026BFCC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB22525D1B366D320026BFCC /* StoreKit.framework */; };
 		EB2914E41B28522D00C1E5BA /* EffectFileName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2914E31B28522D00C1E5BA /* EffectFileName.swift */; };
 		EB2914E61B2852E500C1E5BA /* Trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB2914E51B2852E500C1E5BA /* Trail.sks */; };
 		EB4603841B38139D000639F5 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4603831B38139D000639F5 /* StoreView.swift */; };
@@ -107,6 +105,8 @@
 		EB7A1A901B3E2EC400C79457 /* SKProductExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7A1A8F1B3E2EC400C79457 /* SKProductExtension.swift */; };
 		EB899F5F1B36D4A900BE59BD /* EngineFlameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */; };
 		EB899F611B38094A00BE59BD /* EngineSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB899F601B38094A00BE59BD /* EngineSpark.sks */; };
+		EBAE01C01BDCEE5A000759AF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAE01BF1BDCEE5A000759AF /* StoreKit.framework */; };
+		EBAE01C21BDCEE5E000759AF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAE01C11BDCEE5E000759AF /* GameKit.framework */; };
 		EBB1ECA71B23DBEA00768015 /* KeyForUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */; };
 		EBB1ECA91B23DCD200768015 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */; };
 		EBC2EB8C1B358E9D00CEA20B /* Environment.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EBC2EB8B1B358E9D00CEA20B /* Environment.atlas */; };
@@ -212,7 +212,6 @@
 		EB0212971B1F188B0087B2E6 /* NodeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NodeHelper.swift; path = Helpers/NodeHelper.swift; sourceTree = "<group>"; };
 		EB0212991B1F18B40087B2E6 /* DispatchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DispatchHelper.swift; path = Helpers/DispatchHelper.swift; sourceTree = "<group>"; };
 		EB0212A21B1F1BC60087B2E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Images/Images.xcassets; sourceTree = "<group>"; };
-		EB0212AD1B1FAAA70087B2E6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		EB0212AF1B22557B0087B2E6 /* GameCenterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCenterManager.swift; path = Lib/GameCenterManager.swift; sourceTree = "<group>"; };
 		EB0212B31B22706D0087B2E6 /* GameCenterManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCenterManagerDelegate.swift; path = Protocols/GameCenterManagerDelegate.swift; sourceTree = "<group>"; };
 		EB0212B51B22708C0087B2E6 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameSceneDelegate.swift; path = Protocols/GameSceneDelegate.swift; sourceTree = "<group>"; };
@@ -223,7 +222,6 @@
 		EB0212C31B2331760087B2E6 /* StartSceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StartSceneDelegate.swift; path = Protocols/StartSceneDelegate.swift; sourceTree = "<group>"; };
 		EB05653A1B2479BF00A76297 /* Spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spark.png; sourceTree = "<group>"; };
 		EB05653D1B247BAB00A76297 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
-		EB22525D1B366D320026BFCC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		EB2914E31B28522D00C1E5BA /* EffectFileName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EffectFileName.swift; path = Types/EffectFileName.swift; sourceTree = "<group>"; };
 		EB2914E51B2852E500C1E5BA /* Trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Trail.sks; sourceTree = "<group>"; };
 		EB4603831B38139D000639F5 /* StoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreView.swift; path = ViewNodes/StoreView.swift; sourceTree = "<group>"; };
@@ -252,6 +250,8 @@
 		EB7A1A8F1B3E2EC400C79457 /* SKProductExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKProductExtension.swift; path = Extensions/SKProductExtension.swift; sourceTree = "<group>"; };
 		EB899F5E1B36D4A900BE59BD /* EngineFlameNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EngineFlameNode.swift; path = Nodes/EngineFlameNode.swift; sourceTree = "<group>"; };
 		EB899F601B38094A00BE59BD /* EngineSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EngineSpark.sks; sourceTree = "<group>"; };
+		EBAE01BF1BDCEE5A000759AF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EBAE01C11BDCEE5E000759AF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		EBB1ECA61B23DBEA00768015 /* KeyForUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyForUserDefaults.swift; path = Types/KeyForUserDefaults.swift; sourceTree = "<group>"; };
 		EBB1ECA81B23DCD200768015 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaultsHelper.swift; path = Helpers/UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		EBC2EB8B1B358E9D00CEA20B /* Environment.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = Environment.atlas; path = Images/Environment.atlas; sourceTree = "<group>"; };
@@ -287,10 +287,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAE01C01BDCEE5A000759AF /* StoreKit.framework in Frameworks */,
 				EB661F921B4939CE00B6BA56 /* AVFoundation.framework in Frameworks */,
-				EB22525E1B366D320026BFCC /* StoreKit.framework in Frameworks */,
 				EB0212BE1B228E570087B2E6 /* iAd.framework in Frameworks */,
-				EB0212AE1B1FAAA70087B2E6 /* GameKit.framework in Frameworks */,
+				EBAE01C21BDCEE5E000759AF /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,10 +307,10 @@
 		EB0211DF1B1DCF990087B2E6 = {
 			isa = PBXGroup;
 			children = (
+				EBAE01C11BDCEE5E000759AF /* GameKit.framework */,
+				EBAE01BF1BDCEE5A000759AF /* StoreKit.framework */,
 				EB661F911B4939CE00B6BA56 /* AVFoundation.framework */,
-				EB22525D1B366D320026BFCC /* StoreKit.framework */,
 				EB0212BD1B228E570087B2E6 /* iAd.framework */,
-				EB0212AD1B1FAAA70087B2E6 /* GameKit.framework */,
 				EB0211EA1B1DCF990087B2E6 /* SpaceUp */,
 				EB0212041B1DCF9A0087B2E6 /* SpaceUpTests */,
 				EB0211E91B1DCF990087B2E6 /* Products */,
@@ -672,7 +672,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "David Chin";
 				TargetAttributes = {
 					EB0211E71B1DCF990087B2E6 = {
@@ -919,6 +919,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -987,9 +988,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SpaceUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.davidchin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SpaceUp;
 				PROVISIONING_PROFILE = "";
-				SPRITEKIT_TEXTURE_ATLAS_SIZE = 4096x4096;
+				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Debug;
 		};
@@ -1001,9 +1003,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SpaceUp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.davidchin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SpaceUp;
 				PROVISIONING_PROFILE = "";
-				SPRITEKIT_TEXTURE_ATLAS_SIZE = 4096x4096;
+				"Texture Atlas Maximum Size" = 4096x4096;
 			};
 			name = Release;
 		};
@@ -1011,16 +1014,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SpaceUpTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.davidchin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SpaceUpTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceUp.app/SpaceUp";
 			};
@@ -1030,12 +1030,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = SpaceUpTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "me.davidchin.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = SpaceUpTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpaceUp.app/SpaceUp";
 			};

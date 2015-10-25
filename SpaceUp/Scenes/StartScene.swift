@@ -194,8 +194,6 @@ class StartScene: SKScene, ButtonDelegate {
   
   // MARK: - ButtonDelegate
   func touchBeganForButton(button: ButtonNode) {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    
     switch button {
     case startButton:
       startSceneDelegate?.startSceneDidRequestStart?(self)

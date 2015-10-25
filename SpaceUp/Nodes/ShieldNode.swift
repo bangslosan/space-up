@@ -30,7 +30,7 @@ class ShieldNode: SKSpriteNode {
   init(size: CGSize) {
     let texture = SKTexture(imageNamed: TextureFileName.Shield)
 
-    super.init(texture: texture, color: nil, size: size)
+    super.init(texture: texture, color: UIColor.clearColor(), size: size)
     
     animate()
   }

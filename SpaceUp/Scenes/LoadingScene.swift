@@ -30,7 +30,7 @@ class LoadingScene: SKScene {
           if loadingLabel.text == "LOADING..." {
             loadingLabel.text = "LOADING"
           } else {
-            loadingLabel.text = loadingLabel.text + "."
+            loadingLabel.text = loadingLabel.text! + "."
           }
         }
       }

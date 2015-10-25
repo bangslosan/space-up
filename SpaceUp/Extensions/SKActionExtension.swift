@@ -28,7 +28,7 @@ extension SKAction {
   
   class func playSoundFileNamed(soundFile: String, volume: Float, waitForCompletion wait: Bool) -> SKAction {
     let url = NSBundle.mainBundle().URLForResource(soundFile, withExtension: nil)
-    let audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+    let audioPlayer = try! AVAudioPlayer(contentsOfURL: url!)
 
     audioPlayer.volume = volume
     audioPlayer.prepareToPlay()

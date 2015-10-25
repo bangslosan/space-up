@@ -56,7 +56,7 @@ class GameCenterManager: NSObject {
         if let error = error {
           delegate.gameCenterManager?(self!, didReceiveError: error)
         } else {
-          delegate.gameCenterManager?(self!, didLoadDefaultLeaderboardIdentifier: leaderboardIdentifier)
+          delegate.gameCenterManager?(self!, didLoadDefaultLeaderboardIdentifier: leaderboardIdentifier!)
         }
       }
     }
@@ -68,7 +68,7 @@ class GameCenterManager: NSObject {
       
       self.delegate?.gameCenterManager?(self, didReceiveError: error)
     } else {
-      let score = GKScore(leaderboardIdentifier: leaderboardIdentifier, player: localPlayer)
+      let score = GKScore(leaderboardIdentifier: leaderboardIdentifier!, player: localPlayer!)
       
       score.value = scoreValue
       

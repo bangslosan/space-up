@@ -378,7 +378,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func didEndContact(contact: SKPhysicsContact) {
-    let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+    // let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
   }
   
   // MARK: - NSNotification

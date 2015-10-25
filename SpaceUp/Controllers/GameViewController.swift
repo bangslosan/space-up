@@ -542,7 +542,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   
   // MARK: - SKProductsRequestDelegate
   func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
-    products = response.products as? [SKProduct]
+    products = response.products
     
     if let products = products {
       for product in products {

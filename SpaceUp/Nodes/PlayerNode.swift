@@ -236,9 +236,6 @@ class PlayerNode: SKSpriteNode {
       if isAlive && !hasActionForKey(KeyForAction.standAnimateAction) {
         runAction(standAnimateAction, withKey: KeyForAction.standAnimateAction)
       }
-      
-    default:
-      break
     }
   }
   

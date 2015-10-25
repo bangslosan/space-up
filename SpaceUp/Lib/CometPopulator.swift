@@ -108,7 +108,7 @@ class CometPopulator {
   }
   
   func addEmitterOfType(type: CometType, fromPosition: CGPoint, toPosition: CGPoint) -> CometEmitter? {
-    if let world = world, scene = world.scene, gameData = dataSource?.gameData {
+    if let gameData = dataSource?.gameData {
       let speedOffset = gameData.levelFactor * 100
       let speed = CGFloat.random(min: 200, max: 300) + speedOffset
       let levelFactor = dataSource?.gameData.levelFactor ?? 0

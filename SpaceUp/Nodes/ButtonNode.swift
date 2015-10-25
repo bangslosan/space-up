@@ -39,16 +39,12 @@ class ButtonNode: SKSpriteNode {
   
   // MARK: - UIResponder
   override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    if let touch = touches.first as? UITouch {
-      let touchLocation = touch.locationInNode(self)
-      
-      isTouched = true
-      
-      touchCount++
-      
-      // Sound
-      playTapSoundIfNeeded()
-    }
+    isTouched = true
+    
+    touchCount++
+    
+    // Sound
+    playTapSoundIfNeeded()
   }
   
   override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

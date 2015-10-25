@@ -25,9 +25,9 @@ class SpriteButtonNode: ButtonNode {
   }
 
   init(texture: SKTexture?) {
-    super.init(texture: texture, color: nil, size: texture.size())
+    super.init(texture: texture, color: UIColor.clearColor(), size: texture?.size() ?? CGSizeZero)
     
-    setTexture(texture, forState: .Normal)
+    setTexture(texture ?? SKTexture(), forState: .Normal)
   }
 
   required init?(coder aDecoder: NSCoder) {
