@@ -233,6 +233,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   
   // MARK: - Gameflow
   func startGame() {
+    if gameStarted || world.player.isAlive {
+      return
+    }
+
     // Unpause
     pauseGame(false)
     

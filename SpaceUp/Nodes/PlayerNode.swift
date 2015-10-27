@@ -19,7 +19,7 @@ class PlayerNode: SKSpriteNode {
   // MARK: - Vars
   private lazy var engineFlame = EngineFlameNode()
   private(set) var shieldNode: ShieldNode?
-  private(set) var isAlive: Bool = true
+  private(set) var isAlive: Bool = false
   var shouldMove: Bool = false
   var initialPosition: CGPoint?
   var distanceTravelled: CGFloat = 0

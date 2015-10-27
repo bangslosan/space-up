@@ -277,13 +277,15 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     // Clean up
     interstitialAdView?.removeFromSuperview()
     resetInterstitialAd()
-
-    // Unpause view
-    skView.paused = false
     
     // Restart game
-    if let gameScene = skView.scene as? GameScene {
-      gameScene.startGame()
+    dispatch_async(dispatch_get_main_queue()) {
+      if let gameScene = self.skView.scene as? GameScene where !gameScene.gameStarted {
+        // Unpause view
+        self.skView.paused = false
+
+        gameScene.startGame()
+      }
     }
   }
   
