@@ -17,9 +17,10 @@ class ShadowLabelNode: SKLabelNode {
     
     // Effect
     effectLabel.position = CGPoint(x: 6, y: -6)
-    effectLabel.alpha = 0.3
+    effectLabel.zPosition = -1
     effectLabel.colorBlendFactor = 1
-    effectLabel.color = UIColor.blackColor()
+    effectLabel.alpha = 0.3
+    effectLabel.fontColor = UIColor.blackColor()
     addChild(effectLabel)
     
     // KVO
