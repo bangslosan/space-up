@@ -280,7 +280,7 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
     
     // Restart game
     dispatch_async(dispatch_get_main_queue()) {
-      if let gameScene = self.skView.scene as? GameScene where !gameScene.gameStarted {
+      if let gameScene = self.skView.scene as? GameScene {
         // Unpause view
         self.skView.paused = false
 
@@ -539,7 +539,9 @@ class GameViewController: UIViewController, GKGameCenterControllerDelegate, ADIn
   }
   
   func interstitialAdActionDidFinish(interstitialAd: ADInterstitialAd!) {
-    closeInterstitialAd()
+    if interstitialAd?.loaded == true {
+      closeInterstitialAd()
+    }
   }
   
   // MARK: - SKProductsRequestDelegate
