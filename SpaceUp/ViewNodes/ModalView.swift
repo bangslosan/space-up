@@ -55,8 +55,8 @@ class ModalView: SKNode {
     modal.runAction(SKAction.group([
       SKAction.actionWithEffect(moveEffect),
       SKAction.fadeInWithDuration(0)
-      ])) {
-        completion?()
+    ])) {
+      completion?()
     }
   }
   

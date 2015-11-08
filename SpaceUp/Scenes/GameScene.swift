@@ -305,17 +305,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, WorldDelegate, ButtonDelegat
   }
   
   func pauseGame(paused: Bool, presentMenuIfNeeded: Bool = true) {
-    view?.paused = paused
-    
     if paused {
       if presentMenuIfNeeded {
         pauseMenu = presentPauseMenu()
       }
       
-      gameSceneDelegate?.gameSceneDidPause?(self)
+      let pauseAction = SKAction.runBlock {
+        self.view?.paused = true
+        self.gameSceneDelegate?.gameSceneDidPause?(self)
+      }
+      
+      runAction(pauseAction)
     } else {
       pauseMenu?.removeFromParent()
       pauseMenu = nil
+      view?.paused = false
       
       gameSceneDelegate?.gameSceneDidResume?(self)
     }
